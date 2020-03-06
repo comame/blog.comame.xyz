@@ -1,0 +1,294 @@
+<!DOCTYPE html><html lang="ja"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog.comame.xyz</title>
+</head>
+
+<body>
+    <header>
+        <a href="/">blog.comame.xyz</a>
+    </header>
+
+    
+    
+    
+    
+    <div component="entry" id="c-entry">
+        <div id="metadata">
+            <h1 id="title">AdSense の申請をした</h1>
+            <time id="time">2019-09-24</time>
+            <ul id="tags" class="tag-list"><li><a href="/tags/Blog.html">Blog</a></li><li><a href="/tags/Google.html">Google</a></li></ul>
+        </div>
+        <div id="content"><p>今日このブログで AdSense の申請をしましたが、いくつか技術的な問題があったため、それの対処法を紹介します。</p>
+
+<h2>発生した問題</h2>
+<p>AdSense の申請をするには当然対象の URL が必要ですが、サブドメインでは申請できないという問題があります。このブログは blog.comame.xyz で配信していましたが、comame.xyz に付け替える必要がありました。<br>
+一方、comame.xyz はすでに自前のサーバに割り当てていました。このブログで使用している一部の画像やスクリプトなども comame.xyz から取得していました。そのため、DNS を書き換えるだけではブログのレイアウトが崩れてしまいます。</p>
+
+<h2>状況</h2>
+<p>comame.xyz 上では、すでにいくつかのサービスが動いています。一方で、過去に Docker を使用することで複数のサーバに分割させており、Nginx のリバースプロキシを使ってリクエストを振り分けていました。実際の Nginx のコンフィグの一部は以下のようになっていました。</p><p>
+</p><pre><code>
+server {
+  location / {
+    location / {
+       # Docker Compose のサービスの1つとしてホームページを配信していた
+       proxy_pass http://home/;
+    }
+    location /assets {
+      # 画像や CSS、JavaScript はここから配信していた
+      proxy_pass http://assets/;
+    }
+  }
+}
+</code></pre>
+<p>この設定ファイルからわかるように、アセット配信サーバとホームページ配信サーバは別のコンテナで実行していました。</p>
+
+
+<h2>解決策</h2>
+<p>ルートディレクトリだけを blog.comame.xyz へのリバースプロキシとすることで解決しました。アセット配信サーバは変わらず /assets で配信しています。</p>
+<pre><code>
+server {
+    location / {
+        location / {
+            # 今まではコンテナに向けていたものを、blog.comame.xyz に差し替え
+            proxy_pass: https://blog.comame.xyz/;
+
+            # TLS 周りのエラーが発生したので
+            proxy_ssl_server_name on;
+        }
+        location /assets {
+            # 変更なし
+            proxy_pass: http://assets/;
+        }
+    }
+}
+</code></pre>
+
+<h2>現状</h2>
+<p>DNS をいじったわけではないので、blog.comame.xyz にアクセスすることでもブログにアクセスできます。comame.xyz にアクセスすると、今まで表示されていたホームページではなく、ブログが表示されるようになっています。<br>
+次のような流れになっています。<br>
+<code>User Agent -&gt; comame.xyz -(Nginx が代理アクセス)-&gt; blog.comame.xyz</code>
+</p>
+
+<h2>教訓</h2>
+<p>止めると影響が大きいサーバとそうでもないサーバは、分けておいたほうが後々役に立つ (適当)<br>
+AdSense の申請通るといいな</p>
+</div>
+        <div id="share">
+            <img alt="共有" src="https://comame.xyz/assets/img/icons/share.svg">
+            <a rel="noopener" target="_blank" title="Twitter で共有" href="https://twitter.com/intent/tweet?text=AdSense%20%E3%81%AE%E7%94%B3%E8%AB%8B%E3%82%92%E3%81%97%E3%81%9F%0a&amp;url=http%3A%2F%2Flocalhost%3A8080%2Fentries%2F2019-09-24%2Fapply-adsense.html'&amp;related=comameito">
+                <img alt="Twitter で共有" src="https://comame.xyz/assets/img/icons/twitter_logo.svg">
+            </a>
+            <a rel="noopener" target="_blank" title="Facebook で共有" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8080%2Fentries%2F2019-09-24%2Fapply-adsense.html'">
+                <img alt="Facebook で共有" src="https://comame.xyz/assets/img/icons/facebook_logo.svg">
+            </a>
+            <a title="URL をコピー">
+                <img alt="URL をコピー" src="https://comame.xyz/assets/img/icons/link.svg">
+            </a>
+            </div>
+    </div>
+
+    <footer>
+        <small id="copyright">Copyright 2020 <a href="https://comame.xyz">comame</a></small>
+    </footer>
+
+    <style>
+        :root {
+            font-size: 16px;
+            --main-color: black;
+            --link-color: #00e;
+            --code-color: #efefef;
+            --radius: 5px;
+        }
+
+        /* Desktop */
+        @media screen and (min-width: 1000px) {
+            :root {
+                --content-width: 80vw;
+                --image-width: 50vw;
+            }
+        }
+
+        /* Mobile / Tablet */
+        @media screen and (max-width: 1000px) {
+            :root {
+                --content-width: 90vw;
+                --image-width: 90vw;
+            }
+        }
+
+        body {
+            box-sizing: border-box;
+            margin: 0;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            height: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0 calc((100vw - var(--content-width)) / 2);
+        }
+        header a {
+            display: inline-block;
+            line-height: 3rem;
+            text-decoration: none;
+            color: var(--main-color);
+        }
+        a {
+            text-decoration: none;
+            color: var(--link-color);
+        }
+        *[component] {
+            width: var(--content-width);
+            margin: 0 auto;
+        }
+        .entries {
+            list-style: none;
+            padding-left: 0;
+        }
+        .entries > li::before {
+            content: '- ';
+        }
+        .entries > li > time::after {
+            content: ': ';
+        }
+        .entries a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        .entries a.entry {
+            margin-right: 1rem;
+        }
+        .tag-list {
+            list-style: none;
+            display: inline;
+            padding-left: 0;
+        }
+        .tag-list::before {
+            content: '[';
+        }
+        .tag-list::after {
+            content: ']';
+        }
+        .tag-list > li {
+            display: inline;
+        }
+        .tag-list > li:not(:last-child)::after {
+            content: ', ';
+        }
+        #metadata {
+            margin-bottom: 3rem;
+        }
+        #metadata h1 {
+            font-size: 1.5rem;
+        }
+        #content {
+            word-break: break-all;
+        }
+        #content p {
+            text-indent: .5rem;
+        }
+        #content h2 {
+            margin-top: 2rem;
+            font-size: 1.3rem;
+        }
+        #content code {
+            background: var(--code-color);
+            border-radius: var(--radius);
+            font-family: monospace;
+            padding: 2px 4px;
+            word-break: break-all;
+        }
+        #content pre {
+            padding: 0.5rem;
+            white-space: pre;
+            overflow-x: scroll;
+            border-radius: var(--radius);
+            background: var(--code-color);
+        }
+        #content pre > code {
+            padding: 0;
+        }
+        #content img {
+            display: block;
+            width: var(--image-width);
+            margin-right: auto;
+            margin-left: auto;
+        }
+        #content ul, #content ol {
+            counter-reset: ol;
+            list-style: none;
+            padding-left: 0;
+            text-indent: 1rem;
+        }
+        #content ul > li::before {
+            content: '- ';
+        }
+        #content ol > li::before {
+            counter-increment: ol;
+            content: counter(ol) '. ';
+        }
+
+        #share {
+            margin-top: 3rem;
+        }
+        #share > img {
+            margin-right: 2rem;
+        }
+        #share a {
+            margin-right: 1rem;
+        }
+        #share img {
+            height: 2rem;
+            width: 2rem;
+        }
+
+        footer {
+            margin: 3rem auto 1rem auto;
+            text-align: center;
+        }
+    </style>
+
+    
+    
+    <script not-remove="">
+        if (document.getElementById('share')) {
+            let coping = false;
+            document.querySelectorAll("#share a")[2].addEventListener("click", function() {
+                if (coping) return;
+                coping = true;
+                const tmp = document.createElement("div");
+                tmp.appendChild(document.createElement("pre")).textContent = "https://" + location.host + location.pathname;
+                tmp.style.position = "fixed";
+                tmp.style.left = "-100%";
+                document.body.appendChild(tmp);
+                document.getSelection().selectAllChildren(tmp);
+                const result = document.createElement("div");
+                result.style = "position: fixed; bottom: 0; color: white; padding: 0.5em 1em; width: 100%;";
+                if (document.execCommand("copy")) {
+                    result.innerText = "URL をコピーしました";
+                    result.setAttribute("style", "position: fixed; bottom: 0; color: white; padding: 0.5em 1em; width: 100%; background: rgba(32, 33, 35, 0.8);");
+                    document.body.appendChild(result);
+                    setTimeout(function() {
+                        document.body.removeChild(result);
+                        coping = false;
+                    }, 3000);
+                } else {
+                    result.innerText = "URL をコピーできませんでした";
+                    result.setAttribute("style", "position: fixed; bottom: 0; color: white; padding: 0.5em 1em; width: 100%; background: rgba(214, 11, 11, 0.6);");
+                    document.body.appendChild(result);
+                    setTimeout(function() {
+                        document.body.removeChild(result);
+                        coping = false;
+                    }, 3000);
+                }
+                document.body.removeChild(tmp);
+            });
+        }
+    </script>
+
+
+
+</body></html>

@@ -1,0 +1,78 @@
+<h2>
+    TL;DR</h2>
+    <ol>
+    <li>レンダリングブロッキング要素を減らす<ol>
+    <li tabbing="1">&lt;script&gt;</li>
+    <li tabbing="1">&lt;link rel="stylesheet"&gt;</li>
+    </ol>
+    </li>
+    <li>Web フォントのロードを制御する</li>
+    <li>画像を最適化する</li>
+    <li>地理的に近い場所にサーバを置く</li>
+    </ol>
+    <h2>
+    レンダリングブロッキング要素を減らす</h2>
+    ブラウザのレンダラは、HTML を上から順に (ファイルに記述してある順に) 解釈して DOM を構築します。途中で JavaScript や CSS が埋め込まれている場合は、スクリプトの実行やスタイルの計算が終わるまで DOM の構築は中断されます。これをレンダリングブロッキングと呼びます。<br />
+    <h3>
+    &lt;script&gt;</h3>
+    最も効果的な対処法は、<code>async</code>属性をつけることです。<code>async</code>属性が付与されたスクリプトは、DOM の構築を妨げません。特に、外部リソースを取得するような場合に効果が発揮されます。<br />
+    一方で、複数の<code>&lt;script&gt;</code>タグにそれぞれ<code>async</code>属性が付与されていた場合、実行順序が保証されないことに注意が必要です。<code>HTMLScriptElement.onload</code> イベントを活用するのが良いでしょう。<br />
+    <h3>
+    &lt;link rel="stylesheet"&gt;</h3>
+    <code>&lt;script&gt;</code>タグの場合は<code>async</code>属性をつけるだけで済みましたね。しかし、<code>&lt;link&gt;</code> タグには非同期に読み込ませるような属性は存在しません。そのため、JavaScript を使用して非同期に読み込ませるような処理を書くことになります。<br />
+    <pre><code>&lt;head&gt;
+     &lt;noscript id="async-styles"&gt;
+      &lt;link rel="stylesheet" href="style.css"&gt;
+     &lt;/noscript&gt;
+     &lt;script&gt;
+      window.requestAnimationFrame(() =&gt; {
+       document.head.innerHTML +=
+        document.getElementById('async-styles').textContent;
+      });
+     &lt;/script&gt;
+    &lt;/head&gt;</code></pre>
+    あるいは、<code>&lt;style&gt;</code> タグを使用して HTML に埋め込んでしまうのも有効です。ただし、再利用性が低いこと、Contents Security Policy との相性が悪いことに注意が必要です。<br />
+    <br />
+    実際のところ、レンダリングブロックする要素を減らすだけでも相当な効果が見込めます。適切にレンダリングブロックを制御した場合、リソースのダウンロードがすべて完了していなくとも必要最低限の要素だけ表示させることができます。<br />
+    一方で、JavaScript の実行が必須な Web アプリケーションの場合、表示されているのに操作できない時間が発生することになります。このような場合は、ローディングアニメーションを表示するか、あるいは意図的にレンダリングブロックを発生させるという手段も選択肢となり得るでしょう。<br />
+    <h2>
+    Web フォントのロードを制御する</h2>
+    Web フォントというのはとても便利なものです。導入が簡単にもかかわらず、Web ページの印象を大きく変えてくれます。<br />
+    しかし、無頓着に Web フォントを使うのは考えものです。ネットワークの速度が遅い環境では、Web フォントのロードが終わるまで文字が表示されないかもしれません。(みなさんも経験ありませんか？) 酷い場合にはユーザーを5秒以上待たせてしまうこともあります。<br />
+    <br />
+    これは CSS ファイルにほんの数行付け足すだけで解決できます。<br />
+    <pre><code>@font-face {
+     /* ... */
+     font-display: swap;
+    }</code></pre>
+    この 1 行を付け足すだけで、ブラウザは Web フォントがロードされるまでは、オフラインで使用可能な他のフォントで代わりに表示してくれます！<br />
+    <h2>
+    画像を最適化する</h2>
+    Web ページの平均サイズはどんどん巨大化しています。そして、そのうちの大部分を画像が占めています。<br />
+    画像のファイルサイズを少しでも減らすことができれば、きっともう少しページの読み込みが早くなることでしょう。<br />
+    WebP など最新のフォーマットを有効活用しましょう。フォーマットに気を配るだけで、ファイルサイズを大幅に削減できます。<br />
+    <code>&lt;picture&gt;</code>タグを使って複数のフォーマットの画像を選択できるようにすれば、最新のフォーマットに対応していないようなブラウザでも正常に画像を表示させることができます。<br />
+    <h2>
+    最後に</h2>
+    これらの対策を施したら、最適化の効果の程を確かめてみましょう。<br />
+    Chrome ブラウザを使用しているのであれば、DevTools の Audits タブでパフォーマンスを調査できます。<br />
+    また、<a href="https://developers.google.com/speed/pagespeed/insights/?hl=ja" rel="noopener" target="_blank">PageSpeed Insights</a> を使用するのもおすすめです。<br />
+    <br />
+    ここに紹介した以外にもたくさんの高速化の手法があります。調べてみると良いでしょう。<br />
+    <ul>
+    <li>Resource Hints</li>
+    <li>Service Worker + Cache API</li>
+    <li>Lazy Load (Intersection Observer v2 とかいい感じに使えそう)</li>
+    <li>レイアウトを静的に指定する</li>
+    <li>AMP (Accelerated Mobile Pages)</li>
+    <li>SSR (Server Side Rendering)</li>
+    </ul>
+
+    <h2>2019/07/04 追記</h2>
+    上にメモした Lazy Loading ですが、Chrome に<code>loading</code>属性が追加されました。まだ実用段階ではなさそうですが、注目していきたいです。
+
+    <h2>2019/07/10 また追記</h2>
+    今まで Google Compute Engine の US リージョンに置いていましたが、ConoHa の東京リージョンに置くようにしたらめちゃくちゃ速度が改善しました。<br>
+    地理的な要因も見過ごせませんね。
+
+    <!-- スタイルを確定させる -->

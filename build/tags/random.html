@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="ja"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog.comame.xyz</title>
+</head>
+
+<body>
+    <header>
+        <a href="/">blog.comame.xyz</a>
+    </header>
+
+    
+    
+    
+    
+    <div component="tag" id="c-tag"><h2>random</h2><ul class="entries"><li><time>2019-03-12</time><a class="entry" href="/entries/2019-03-12/macbook-pro.html">Macbook Pro を買いました</a><ul class="tag-list"><li><a href="/tags/random.html">random</a></li></ul></li></ul></div>
+
+    <footer>
+        <small id="copyright">Copyright 2020 <a href="https://comame.xyz">comame</a></small>
+    </footer>
+
+    <style>
+        :root {
+            font-size: 16px;
+            --main-color: black;
+            --link-color: #00e;
+            --code-color: #efefef;
+            --radius: 5px;
+        }
+
+        /* Desktop */
+        @media screen and (min-width: 1000px) {
+            :root {
+                --content-width: 80vw;
+                --image-width: 50vw;
+            }
+        }
+
+        /* Mobile / Tablet */
+        @media screen and (max-width: 1000px) {
+            :root {
+                --content-width: 90vw;
+                --image-width: 90vw;
+            }
+        }
+
+        body {
+            box-sizing: border-box;
+            margin: 0;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            height: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0 calc((100vw - var(--content-width)) / 2);
+        }
+        header a {
+            display: inline-block;
+            line-height: 3rem;
+            text-decoration: none;
+            color: var(--main-color);
+        }
+        a {
+            text-decoration: none;
+            color: var(--link-color);
+        }
+        *[component] {
+            width: var(--content-width);
+            margin: 0 auto;
+        }
+        .entries {
+            list-style: none;
+            padding-left: 0;
+        }
+        .entries > li::before {
+            content: '- ';
+        }
+        .entries > li > time::after {
+            content: ': ';
+        }
+        .entries a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        .entries a.entry {
+            margin-right: 1rem;
+        }
+        .tag-list {
+            list-style: none;
+            display: inline;
+            padding-left: 0;
+        }
+        .tag-list::before {
+            content: '[';
+        }
+        .tag-list::after {
+            content: ']';
+        }
+        .tag-list > li {
+            display: inline;
+        }
+        .tag-list > li:not(:last-child)::after {
+            content: ', ';
+        }
+        #metadata {
+            margin-bottom: 3rem;
+        }
+        #metadata h1 {
+            font-size: 1.5rem;
+        }
+        #content {
+            word-break: break-all;
+        }
+        #content p {
+            text-indent: .5rem;
+        }
+        #content h2 {
+            margin-top: 2rem;
+            font-size: 1.3rem;
+        }
+        #content code {
+            background: var(--code-color);
+            border-radius: var(--radius);
+            font-family: monospace;
+            padding: 2px 4px;
+            word-break: break-all;
+        }
+        #content pre {
+            padding: 0.5rem;
+            white-space: pre;
+            overflow-x: scroll;
+            border-radius: var(--radius);
+            background: var(--code-color);
+        }
+        #content pre > code {
+            padding: 0;
+        }
+        #content img {
+            display: block;
+            width: var(--image-width);
+            margin-right: auto;
+            margin-left: auto;
+        }
+        #content ul, #content ol {
+            counter-reset: ol;
+            list-style: none;
+            padding-left: 0;
+            text-indent: 1rem;
+        }
+        #content ul > li::before {
+            content: '- ';
+        }
+        #content ol > li::before {
+            counter-increment: ol;
+            content: counter(ol) '. ';
+        }
+
+        #share {
+            margin-top: 3rem;
+        }
+        #share > img {
+            margin-right: 2rem;
+        }
+        #share a {
+            margin-right: 1rem;
+        }
+        #share img {
+            height: 2rem;
+            width: 2rem;
+        }
+
+        footer {
+            margin: 3rem auto 1rem auto;
+            text-align: center;
+        }
+    </style>
+
+    
+    
+    <script not-remove="">
+        if (document.getElementById('share')) {
+            let coping = false;
+            document.querySelectorAll("#share a")[2].addEventListener("click", function() {
+                if (coping) return;
+                coping = true;
+                const tmp = document.createElement("div");
+                tmp.appendChild(document.createElement("pre")).textContent = "https://" + location.host + location.pathname;
+                tmp.style.position = "fixed";
+                tmp.style.left = "-100%";
+                document.body.appendChild(tmp);
+                document.getSelection().selectAllChildren(tmp);
+                const result = document.createElement("div");
+                result.style = "position: fixed; bottom: 0; color: white; padding: 0.5em 1em; width: 100%;";
+                if (document.execCommand("copy")) {
+                    result.innerText = "URL をコピーしました";
+                    result.setAttribute("style", "position: fixed; bottom: 0; color: white; padding: 0.5em 1em; width: 100%; background: rgba(32, 33, 35, 0.8);");
+                    document.body.appendChild(result);
+                    setTimeout(function() {
+                        document.body.removeChild(result);
+                        coping = false;
+                    }, 3000);
+                } else {
+                    result.innerText = "URL をコピーできませんでした";
+                    result.setAttribute("style", "position: fixed; bottom: 0; color: white; padding: 0.5em 1em; width: 100%; background: rgba(214, 11, 11, 0.6);");
+                    document.body.appendChild(result);
+                    setTimeout(function() {
+                        document.body.removeChild(result);
+                        coping = false;
+                    }, 3000);
+                }
+                document.body.removeChild(tmp);
+            });
+        }
+    </script>
+
+
+
+</body></html>

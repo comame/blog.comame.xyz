@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="ja"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog.comame.xyz</title>
+</head>
+
+<body>
+    <header>
+        <a href="/">blog.comame.xyz</a>
+    </header>
+
+    
+    
+    
+    
+    <div component="entry" id="c-entry">
+        <div id="metadata">
+            <h1 id="title">comame.xyz を ConoHa に移した</h1>
+            <time id="time">2019-07-11</time>
+            <ul id="tags" class="tag-list"><li><a href="/tags/server.html">server</a></li></ul>
+        </div>
+        <div id="content">このはちゃんかわいい
+
+
+<h2>Docker</h2>
+
+今回は、Web サーバを Docker でコンテナに包んでみました。デプロイが圧倒的に簡単になりました。<br>
+今まではマネージドサービスと自分でサーバを管理するのとの間で振り子のように動いていましたが、これからは移動も楽になる気がします。
+
+
+<h2>速度</h2>
+
+今までは Firebase Hosting の US リージョンに置いていたため、RTT が 300 ms くらいありました。流石に堪えられないなーと思っていたのが ConoHa に移した大きな理由の一つです。ConoHa は東京にリージョンがあるので、とてもはやいです (小並感)。
+
+
+<h2>開発のしやすさ</h2>
+
+今回は Nginx もコンテナに閉じ込めたので、リモートマシンでも完全に同じ環境でサーバを起動できるようになりました。これにより、今まではサーバにアップロードしないと確認できなかったようなこと (Secure Context で動く API とか) もローカル環境で手軽にできるようになりました。
+
+<h2>改善したい点</h2>
+
+<ul>
+  <li>ログ設定をきちんとしていないので、コンテナを止めるとログも消えてしまう</li>
+  <li>Nginx の proxy_pass でサービス名を直に指定しているので、すべてのコンテナを立ち上げないとエラーを吐いてしまう</li>
+</ul>
+
+
+<h2></h2>
+このはちゃんかわいい
+</div>
+        <div id="share">
+            <img alt="共有" src="https://comame.xyz/assets/img/icons/share.svg">
+            <a rel="noopener" target="_blank" title="Twitter で共有" href="https://twitter.com/intent/tweet?text=comame.xyz%20%E3%82%92%20ConoHa%20%E3%81%AB%E7%A7%BB%E3%81%97%E3%81%9F%0a&amp;url=http%3A%2F%2Flocalhost%3A8080%2Fentries%2F2019-07-11%2Fmigrate-to-conoha.html&amp;related=comameito">
+                <img alt="Twitter で共有" src="https://comame.xyz/assets/img/icons/twitter_logo.svg">
+            </a>
+            <a rel="noopener" target="_blank" title="Facebook で共有" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8080%2Fentries%2F2019-07-11%2Fmigrate-to-conoha.html">
+                <img alt="Facebook で共有" src="https://comame.xyz/assets/img/icons/facebook_logo.svg">
+            </a>
+            <a title="URL をコピー">
+                <img alt="URL をコピー" src="https://comame.xyz/assets/img/icons/link.svg">
+            </a>
+            </div>
+    </div>
+
+    <footer>
+        <small id="copyright">Copyright 2020 <a href="https://comame.xyz">comame</a></small>
+    </footer>
+
+    <style>
+        :root {
+            font-size: 16px;
+            --main-color: black;
+            --link-color: #00e;
+            --code-color: #efefef;
+            --radius: 5px;
+        }
+
+        /* Desktop */
+        @media screen and (min-width: 1000px) {
+            :root {
+                --content-width: 80vw;
+                --image-width: 50vw;
+            }
+        }
+
+        /* Mobile / Tablet */
+        @media screen and (max-width: 1000px) {
+            :root {
+                --content-width: 90vw;
+                --image-width: 90vw;
+            }
+        }
+
+        body {
+            box-sizing: border-box;
+            margin: 0;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            height: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0 calc((100vw - var(--content-width)) / 2);
+        }
+        header a {
+            display: inline-block;
+            line-height: 3rem;
+            text-decoration: none;
+            color: var(--main-color);
+        }
+        a {
+            text-decoration: none;
+            color: var(--link-color);
+        }
+        *[component] {
+            width: var(--content-width);
+            margin: 0 auto;
+        }
+        .entries {
+            list-style: none;
+            padding-left: 0;
+        }
+        .entries > li::before {
+            content: '- ';
+        }
+        .entries > li > time::after {
+            content: ': ';
+        }
+        .entries a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        .entries a.entry {
+            margin-right: 1rem;
+        }
+        .tag-list {
+            list-style: none;
+            display: inline;
+            padding-left: 0;
+        }
+        .tag-list::before {
+            content: '[';
+        }
+        .tag-list::after {
+            content: ']';
+        }
+        .tag-list > li {
+            display: inline;
+        }
+        .tag-list > li:not(:last-child)::after {
+            content: ', ';
+        }
+        #metadata {
+            margin-bottom: 3rem;
+        }
+        #metadata h1 {
+            font-size: 1.5rem;
+        }
+        #content {
+            word-break: break-all;
+        }
+        #content p {
+            text-indent: .5rem;
+        }
+        #content h2 {
+            margin-top: 2rem;
+            font-size: 1.3rem;
+        }
+        #content code {
+            background: var(--code-color);
+            border-radius: var(--radius);
+            font-family: monospace;
+            padding: 2px 4px;
+            word-break: break-all;
+        }
+        #content pre {
+            padding: 0.5rem;
+            white-space: pre;
+            overflow-x: scroll;
+            border-radius: var(--radius);
+            background: var(--code-color);
+        }
+        #content pre > code {
+            padding: 0;
+        }
+        #content img {
+            display: block;
+            width: var(--image-width);
+            margin-right: auto;
+            margin-left: auto;
+        }
+        #content ul, #content ol {
+            counter-reset: ol;
+            list-style: none;
+            padding-left: 0;
+            text-indent: 1rem;
+        }
+        #content ul > li::before {
+            content: '- ';
+        }
+        #content ol > li::before {
+            counter-increment: ol;
+            content: counter(ol) '. ';
+        }
+
+        #share {
+            margin-top: 3rem;
+        }
+        #share > img {
+            margin-right: 2rem;
+        }
+        #share a {
+            margin-right: 1rem;
+        }
+        #share img {
+            height: 2rem;
+            width: 2rem;
+        }
+
+        footer {
+            margin: 3rem auto 1rem auto;
+            text-align: center;
+        }
+    </style>
+
+    
+    
+    <script not-remove="">
+        if (document.getElementById('share')) {
+            let coping = false;
+            document.querySelectorAll("#share a")[2].addEventListener("click", function() {
+                if (coping) return;
+                coping = true;
+                const tmp = document.createElement("div");
+                tmp.appendChild(document.createElement("pre")).textContent = "https://" + location.host + location.pathname;
+                tmp.style.position = "fixed";
+                tmp.style.left = "-100%";
+                document.body.appendChild(tmp);
+                document.getSelection().selectAllChildren(tmp);
+                const result = document.createElement("div");
+                result.style = "position: fixed; bottom: 0; color: white; padding: 0.5em 1em; width: 100%;";
+                if (document.execCommand("copy")) {
+                    result.innerText = "URL をコピーしました";
+                    result.setAttribute("style", "position: fixed; bottom: 0; color: white; padding: 0.5em 1em; width: 100%; background: rgba(32, 33, 35, 0.8);");
+                    document.body.appendChild(result);
+                    setTimeout(function() {
+                        document.body.removeChild(result);
+                        coping = false;
+                    }, 3000);
+                } else {
+                    result.innerText = "URL をコピーできませんでした";
+                    result.setAttribute("style", "position: fixed; bottom: 0; color: white; padding: 0.5em 1em; width: 100%; background: rgba(214, 11, 11, 0.6);");
+                    document.body.appendChild(result);
+                    setTimeout(function() {
+                        document.body.removeChild(result);
+                        coping = false;
+                    }, 3000);
+                }
+                document.body.removeChild(tmp);
+            });
+        }
+    </script>
+
+
+
+</body></html>
