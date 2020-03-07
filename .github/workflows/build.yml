@@ -1,0 +1,20 @@
+name: blog.comame.xyz build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the site in the comameito/puppeteer-nginx container
+      run: |
+        docker run \
+        -v ${{ github.workspace }}:/files comameito/puppeteer-nginx sh -c \
+        "service nginx start && chmod +x /files/build.js && node /files/build.js"
