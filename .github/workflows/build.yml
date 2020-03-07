@@ -33,5 +33,5 @@ jobs:
     - name: Push
       run: |
         cd ${{ github.workspace }}
-        remote_repo "https://comame:${{ secrets.TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+        remote_repo="https://comame:${{ secrets.TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
         git push remote_repo master
