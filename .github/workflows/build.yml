@@ -1,4 +1,6 @@
-name: blog.comame.xyz build and deploy
+name: Build and Deploy
+
+
 
 on:
   push:
@@ -12,13 +14,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: echo
-      run: echo ${{ github.workspace }} && echo ${{ github.ref }}
     - uses: actions/checkout@v2
-    - name: Build the site in the comameito/puppeteer-nginx container
+   
+    - name: Build
       run: |
-        docker run \
-        -v ${{ github.workspace }}:/files comameito/puppeteer-nginx sh -c \
+        docker run
+        -v ${{ github.workspace }}:/files comameito/puppeteer-nginx sh -c
         "service nginx start && chmod +x /files/build.js && node /files/build.js"
+   
+    - name: Commit
+      run: |
+        cd ${{ github.workspace }}
+        git config --user.name "GitHib Actions"
+        git config --user.email dev@comame.xyz
+        git add docs
+        git commit -m "Action: deploy" | exit 0
 
-
+    - name: Push
+      run: |
+        cd ${{ github.workspace }}
+        remote_repo "https://comame:${{ secrets.TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+        git push remote_repo master
