@@ -13,7 +13,6 @@ async function savePage(path, content, overwrite = true) {
         // do nothing
     })
     if (!dirStat) {
-        console.log(`Directory ${dirName} created`)
         await fs.mkdir(__dirname + buildDir + '/'+ dirName, { recursive: true })
     }
 
@@ -23,13 +22,6 @@ async function savePage(path, content, overwrite = true) {
 
     if (!fileStat || (fileStat && overwrite)) {
         await fs.writeFile(__dirname + buildDir + '/' + dirName + '/' + fileName, content)
-        if (fileStat) {
-            console.log(`File ${dirName}/${fileName} overwritten`)
-        } else {
-            console.log(`File ${dirName}/${fileName} created`)
-        }
-    } else {
-        console.log(`File ${dirName}/${fileName} skipped`)
     }
 }
 
@@ -56,8 +48,6 @@ async function copyAssets() {
 async function crawl(path, page, crawledPathSet) {
     if (crawledPathSet.has(path)) return
     crawledPathSet.add(path)
-
-    console.log(path)
 
     await page.goto(BLOG_HOST + '/' + path)
     await page.$$eval('script:not([not-remove])', elements => {
