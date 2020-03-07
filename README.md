@@ -1,3 +1,5 @@
+![Build and Deploy](https://github.com/comame/blog.comame.xyz/workflows/Build%20and%20Deploy/badge.svg)
+
 # blog.comame.xyz
 - [blog.comame.xyz](https://blog.comame.xyz)
 - docs/ にビルド済み静的ファイルが置いてある
