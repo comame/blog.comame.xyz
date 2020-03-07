@@ -19,7 +19,7 @@
 <p>ユーザーが閲覧する環境で毎回スクリプトでページを生成するのは筋が悪いため、手元で静的ファイルとしてビルドを行う。ページは JavaScript を使って生成するため、Puppeteer でクロールしてスクリプト実行後の HTML を静的ファイルとして保存している。画像ファイルなどのアセットは、/assets に置いておけば /build/assets にそのままコピーされる。ビルド用のスクリプトは <a target='_blank' href="https://github.com/comame/blog.comame.xyz/blob/master/build.js">build.js</a> である。</p>
 
 <h2>今後の運用</h2>
-<p>VSCode で記事を書き、手元でビルドし、GitHub にアップする。あとはビルド済みの静的ファイルを適当に配信すればよい。自分の開発環境で記事をかけるため、かなり書きやすくなった。一方で、ビルドをするためだけにローカルサーバを立てなければいけないのは結構面倒くさい。</p>
+<p>VSCode で記事を書き、手元でビルドし、GitHub にアップする。あとはビルド済みの静的ファイルを適当に配信すればよい。今回は GitHub Pages で公開することにした。自分の開発環境で記事をかけるため、かなり書きやすくなった。一方で、ビルドをするためだけにローカルサーバを立てなければいけないのは結構面倒くさい。</p>
 <p>[追記] Git の post-commit フックを使って、自動的にビルドを走らせるようにしてみた。本当は GitHub Actions を使いたかったが、ビルド用のサーバを立てて、Puppeteer を起動して...とするのは厄介そうだったので妥協策ではある。post-commit フックは <a href="https://github.com/comame/blog.comame.xyz/blob/master/post-commit" target="_blank">post-commit</a> に置いておく。</p>
 
 <h2>今後やりたいこと</h2>
