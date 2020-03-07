@@ -47,10 +47,10 @@ $ openssl x509 -req -days 90 -signkey server.key -extfile altNames.txt &lt; serv
 </div>
         <div id="share">
             <img alt="共有" src="https://comame.xyz/assets/img/icons/share.svg">
-            <a rel="noopener" target="_blank" title="Twitter で共有" href="https://twitter.com/intent/tweet?text=OpenSSL%20%E3%81%A7%E8%87%AA%E5%B7%B1%E8%A8%BC%E6%98%8E%E6%9B%B8%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%0a&amp;url=http%3A%2F%2Flocalhost%3A2525%2Fentries%2F2019-09-26%2Fself-signed-certificate.html&amp;related=comameito">
+            <a rel="noopener" target="_blank" title="Twitter で共有" href="https://twitter.com/intent/tweet?text=OpenSSL%20%E3%81%A7%E8%87%AA%E5%B7%B1%E8%A8%BC%E6%98%8E%E6%9B%B8%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95%0a&amp;url=http%3A%2F%2Flocalhost%2Fentries%2F2019-09-26%2Fself-signed-certificate.html&amp;related=comameito">
                 <img alt="Twitter で共有" src="https://comame.xyz/assets/img/icons/twitter_logo.svg">
             </a>
-            <a rel="noopener" target="_blank" title="Facebook で共有" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A2525%2Fentries%2F2019-09-26%2Fself-signed-certificate.html">
+            <a rel="noopener" target="_blank" title="Facebook で共有" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%2Fentries%2F2019-09-26%2Fself-signed-certificate.html">
                 <img alt="Facebook で共有" src="https://comame.xyz/assets/img/icons/facebook_logo.svg">
             </a>
             <a title="URL をコピー">
@@ -69,6 +69,7 @@ $ openssl x509 -req -days 90 -signkey server.key -extfile altNames.txt &lt; serv
             font-size: 16px;
             --main-color: black;
             --link-color: #00e;
+            --visited-link-color: #a52a2a;
             --code-color: #efefef;
             --radius: 5px;
         }
@@ -108,9 +109,15 @@ $ openssl x509 -req -days 90 -signkey server.key -extfile altNames.txt &lt; serv
             text-decoration: none;
             color: var(--main-color);
         }
+        header a:visited {
+            color: var(--main-color)
+        }
         a {
             text-decoration: none;
             color: var(--link-color);
+        }
+        a:visited {
+            color: var(--visited-link-color);
         }
         *[component] {
             width: var(--content-width);
@@ -128,10 +135,6 @@ $ openssl x509 -req -days 90 -signkey server.key -extfile altNames.txt &lt; serv
         }
         .entries > li > time::after {
             content: ': ';
-        }
-        .entries a {
-            color: var(--link-color);
-            text-decoration: none;
         }
         .entries a.entry {
             margin-right: 1rem;

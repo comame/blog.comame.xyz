@@ -51,10 +51,10 @@ GitHub を調べ忘れていました。GitHub でも USB, NFC ともに使用�
 </div>
         <div id="share">
             <img alt="共有" src="https://comame.xyz/assets/img/icons/share.svg">
-            <a rel="noopener" target="_blank" title="Twitter で共有" href="https://twitter.com/intent/tweet?text=USB%20%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%82%AD%E3%83%BC%E3%82%92%E8%B2%B7%E3%81%A3%E3%81%9F%0a&amp;url=http%3A%2F%2Flocalhost%3A2525%2Fentries%2F2019-01-15%2Fusb-security-key.html&amp;related=comameito">
+            <a rel="noopener" target="_blank" title="Twitter で共有" href="https://twitter.com/intent/tweet?text=USB%20%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%82%AD%E3%83%BC%E3%82%92%E8%B2%B7%E3%81%A3%E3%81%9F%0a&amp;url=http%3A%2F%2Flocalhost%2Fentries%2F2019-01-15%2Fusb-security-key.html&amp;related=comameito">
                 <img alt="Twitter で共有" src="https://comame.xyz/assets/img/icons/twitter_logo.svg">
             </a>
-            <a rel="noopener" target="_blank" title="Facebook で共有" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A2525%2Fentries%2F2019-01-15%2Fusb-security-key.html">
+            <a rel="noopener" target="_blank" title="Facebook で共有" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%2Fentries%2F2019-01-15%2Fusb-security-key.html">
                 <img alt="Facebook で共有" src="https://comame.xyz/assets/img/icons/facebook_logo.svg">
             </a>
             <a title="URL をコピー">
@@ -73,6 +73,7 @@ GitHub を調べ忘れていました。GitHub でも USB, NFC ともに使用�
             font-size: 16px;
             --main-color: black;
             --link-color: #00e;
+            --visited-link-color: #a52a2a;
             --code-color: #efefef;
             --radius: 5px;
         }
@@ -112,9 +113,15 @@ GitHub を調べ忘れていました。GitHub でも USB, NFC ともに使用�
             text-decoration: none;
             color: var(--main-color);
         }
+        header a:visited {
+            color: var(--main-color)
+        }
         a {
             text-decoration: none;
             color: var(--link-color);
+        }
+        a:visited {
+            color: var(--visited-link-color);
         }
         *[component] {
             width: var(--content-width);
@@ -132,10 +139,6 @@ GitHub を調べ忘れていました。GitHub でも USB, NFC ともに使用�
         }
         .entries > li > time::after {
             content: ': ';
-        }
-        .entries a {
-            color: var(--link-color);
-            text-decoration: none;
         }
         .entries a.entry {
             margin-right: 1rem;
