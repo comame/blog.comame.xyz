@@ -25,8 +25,8 @@ jobs:
     - name: Commit
       run: |
         cd ${{ github.workspace }}
-        git config --user.name "GitHib Actions"
-        git config --user.email dev@comame.xyz
+        git config --local user.name "GitHib Actions"
+        git config --local user.email dev@comame.xyz
         git add docs
         git commit -m "Action: deploy" | exit 0
 
