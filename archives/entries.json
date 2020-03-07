@@ -149,7 +149,7 @@
     "date": "2020-03-07",
     "tags": [ "Blog" ]
 }, {
-    "entry": "docker-startup-wsl2.html",
+    "entry": "docker-startup-wsl2",
     "title": "WSL2 で Docker を自動起動する",
     "date": "2020-03-08",
     "tags": [ "Windows", "note" ]
