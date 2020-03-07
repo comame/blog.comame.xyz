@@ -33,7 +33,6 @@ async function savePage(path, content, overwrite) {
 
 async function copyAssets() {
     const copy = async (dirname, files) => {
-        console.log({ dirname, files })
         for (const file of files) {
             const stats = await fs.stat(__dirname + '/assets/' + dirname + '/' + file)
             if (stats.isDirectory()) {
