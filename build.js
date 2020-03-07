@@ -1,6 +1,6 @@
 const buildDir = '/docs'
 
-const BLOG_HOST = process.env.BLOG_HOST || 'http://localhost:8080'
+const BLOG_HOST = process.env.BLOG_HOST || 'http://localhost:2525'
 
 const puppeteer = require('puppeteer')
 const fs = require('fs').promises
