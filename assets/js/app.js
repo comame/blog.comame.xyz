@@ -53,7 +53,7 @@ window.addEventListener('component-create', async e => {
 async function getEntries() {
     if (window.entries) return window.entries
 
-    const res = await fetch('/entries.json')
+    const res = await fetch('/archives/entries.json')
     const json = await res.json()
     window.entries = json
 

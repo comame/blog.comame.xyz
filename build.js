@@ -31,9 +31,32 @@ async function savePage(path, content, overwrite) {
     }
 }
 
+async function copyAssets() {
+    const copy = async (dirname, files) => {
+        console.log({ dirname, files })
+        for (const file of files) {
+            const stats = await fs.stat(__dirname + '/assets/' + dirname + '/' + file)
+            if (stats.isDirectory()) {
+                await copy(dirname + '/' + file, await fs.readdir(__dirname + '/assets/' + dirname + '/' + file))
+            } else {
+                const stat = await fs.stat(__dirname + '/bulid/assets/' + dirname).catch(() => {})
+                if (!stat) await fs.mkdir(__dirname + '/build/assets/' + dirname, { recursive: true })
+                await fs.copyFile(
+                    __dirname + '/assets/' + dirname + '/' + file,
+                    __dirname + '/build/assets/' + dirname + '/' + file
+                )
+            }
+        }
+    }
+
+    await copy('', await fs.readdir(__dirname + '/assets'))
+}
+
 async function crawl(path, page, crawledPathSet) {
     if (crawledPathSet.has(path)) return
     crawledPathSet.add(path)
+
+    console.log(path)
 
     await page.goto(BLOG_HOST + '/' + path)
     await page.$$eval('script:not([not-remove])', elements => {
@@ -42,8 +65,10 @@ async function crawl(path, page, crawledPathSet) {
         }
     })
 
+    const notfound = await page.$('#c-notfound')
+
     const content = await page.content()
-    savePage(path, content, OVERWRITE)
+    if (!notfound) savePage(path, content, OVERWRITE)
 
     const crawlLinks = await page.$$eval('a', (elements, host) => {
         return elements.filter(el => el.href.startsWith(host)).map(el => el.href)
@@ -59,6 +84,8 @@ async function main() {
         console.error('Set BLOG_HOST environment variable.')
         return
     }
+
+    await copyAssets()
 
     const browser = await puppeteer.launch({ headless: true })
     const page = await browser.newPage()
