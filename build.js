@@ -1,4 +1,6 @@
-const { BLOG_HOST, OVERWRITE } = process.env
+const buildDir = '/docs'
+
+const BLOG_HOST = process.env.BLOG_HOST || 'http://localhost:8080'
 
 const puppeteer = require('puppeteer')
 const fs = require('fs').promises
@@ -7,20 +9,20 @@ async function savePage(path, content, overwrite = true) {
     const dirName = path.split('/').slice(0, -1).join('/')
     const fileName = path.split('/').slice(-1)[0] || 'index.html'
 
-    const dirStat = await fs.stat(__dirname + '/build/' + dirName).catch(err => {
+    const dirStat = await fs.stat(__dirname + buildDir + '/' + dirName).catch(err => {
         // do nothing
     })
     if (!dirStat) {
         console.log(`Directory ${dirName} created`)
-        await fs.mkdir(__dirname + '/build/'+ dirName, { recursive: true })
+        await fs.mkdir(__dirname + buildDir + '/'+ dirName, { recursive: true })
     }
 
-    const fileStat = await fs.stat(__dirname + '/build/' + dirName + '/' + fileName).catch(err => {
+    const fileStat = await fs.stat(__dirname + buildDir + '/' + dirName + '/' + fileName).catch(err => {
         // do nothing
     })
 
     if (!fileStat || (fileStat && overwrite)) {
-        await fs.writeFile(__dirname + '/build/' + dirName + '/' + fileName, content)
+        await fs.writeFile(__dirname + buildDir + '/' + dirName + '/' + fileName, content)
         if (fileStat) {
             console.log(`File ${dirName}/${fileName} overwritten`)
         } else {
@@ -38,11 +40,11 @@ async function copyAssets() {
             if (stats.isDirectory()) {
                 await copy(dirname + '/' + file, await fs.readdir(__dirname + '/assets/' + dirname + '/' + file))
             } else {
-                const stat = await fs.stat(__dirname + '/bulid/assets/' + dirname).catch(() => {})
-                if (!stat) await fs.mkdir(__dirname + '/build/assets/' + dirname, { recursive: true })
+                const stat = await fs.stat(__dirname + buildDir + '/assets/' + dirname).catch(() => {})
+                if (!stat) await fs.mkdir(__dirname + buildDir + '/assets/' + dirname, { recursive: true })
                 await fs.copyFile(
                     __dirname + '/assets/' + dirname + '/' + file,
-                    __dirname + '/build/assets/' + dirname + '/' + file
+                    __dirname + buildDir + '/assets/' + dirname + '/' + file
                 )
             }
         }
