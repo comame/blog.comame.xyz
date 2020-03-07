@@ -47,6 +47,7 @@
             font-size: 16px;
             --main-color: black;
             --link-color: #00e;
+            --visited-link-color: #a52a2a;
             --code-color: #efefef;
             --radius: 5px;
         }
@@ -86,9 +87,15 @@
             text-decoration: none;
             color: var(--main-color);
         }
+        header a:visited {
+            color: var(--main-color)
+        }
         a {
             text-decoration: none;
             color: var(--link-color);
+        }
+        a:visited {
+            color: var(--visited-link-color);
         }
         *[component] {
             width: var(--content-width);
@@ -106,10 +113,6 @@
         }
         .entries > li > time::after {
             content: ': ';
-        }
-        .entries a {
-            color: var(--link-color);
-            text-decoration: none;
         }
         .entries a.entry {
             margin-right: 1rem;
