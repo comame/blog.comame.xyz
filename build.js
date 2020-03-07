@@ -1,6 +1,6 @@
 const buildDir = '/docs'
 
-const BLOG_HOST = process.env.BLOG_HOST || 'http://localhost:2525'
+const BLOG_HOST = process.env.BLOG_HOST || 'http://localhost'
 
 const puppeteer = require('puppeteer')
 const fs = require('fs').promises
@@ -78,7 +78,13 @@ async function main() {
 
     await copyAssets()
 
-    const browser = await puppeteer.launch({ headless: true })
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox'
+        ]
+    })
     const page = await browser.newPage()
 
     await crawl('', page, new Set())
