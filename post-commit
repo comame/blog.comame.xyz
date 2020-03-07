@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ $(git log -1 --pretty=%B) == *"[post-commit]"* ]]
+then
+    exit 0
+fi
+
+docker run --name hook-blog-build -p 2525:80 -v $(pwd):/files -d --rm comameito/index-server
+node build
+docker stop hook-blog-build
+git add docs/
+git commit -n -m '[post-commit] build'
