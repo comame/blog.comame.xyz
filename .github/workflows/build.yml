@@ -18,8 +18,8 @@ jobs:
    
     - name: Build
       run: |
-        docker run
-        -v ${{ github.workspace }}:/files comameito/puppeteer-nginx sh -c
+        docker run \
+        -v ${{ github.workspace }}:/files comameito/puppeteer-nginx sh -c \
         "service nginx start && chmod +x /files/build.js && node /files/build.js"
    
     - name: Commit
