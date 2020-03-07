@@ -143,6 +143,7 @@ async function entryPage(date, entry) {
         return
     }
 
+    document.title = entryObj.title + ' | blog.comame.xyz'
     const text = await getEntry(entryObj)
 
     document.querySelector('time').with(it => {
@@ -170,6 +171,8 @@ async function entryPage(date, entry) {
 }
 
 async function tagPage(tag) {
+    document.title = tag + ' | comame.xyz'
+
     const entries = (await getEntries()).filter(it => it.tags.includes(tag))
     entries.sort((a, b) => {
         const [aYear, aMonth, aDay] = a.date.split('-').map(it => Number.parseInt(it))
