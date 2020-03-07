@@ -1,15 +1,9 @@
 # blog.comame.xyz
 - [blog.comame.xyz](https://blog.comame.xyz)
-- build/ にビルド済み静的ファイルが置いてある
-
-## インストール
-```
-$ cd project-dir
-$ docker run -v $(pwd):/files -p 8080:80 comameito/index-server
-$ mkdir build
-$ BLOG_HOST=http://localhost:8080 OVERWRITE=1 node build.js
-```
+- docs/ にビルド済み静的ファイルが置いてある
 
 ## ビルド
-- assets/ 内のファイルはそのままコピー
-- Puppeteer を使って、ページ生成用の JavaScript を消す。
+[post-commit](https://github.com/comame/blog.comame.xyz/blob/master/post-commit) を参照
+
+## ちょっと詳しい話
+[ブログシステムを新しくした (Blogger からの移行)](https://blog.comame.xyz/entries/2020-03-07/new-blog-system.html)
