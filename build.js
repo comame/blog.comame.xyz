@@ -22,6 +22,7 @@ async function savePage(path, content, overwrite = true) {
 
     if (!fileStat || (fileStat && overwrite)) {
         await fs.writeFile(__dirname + buildDir + '/' + dirName + '/' + fileName, content)
+        console.log(`Page saved: ${path}`)
     }
 }
 
@@ -38,6 +39,7 @@ async function copyAssets() {
                     __dirname + '/assets/' + dirname + '/' + file,
                     __dirname + buildDir + '/assets/' + dirname + '/' + file
                 )
+                console.log(`Asset copied: ${dirname + '/' + file}`)
             }
         }
     }
