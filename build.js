@@ -3,7 +3,7 @@ const { BLOG_HOST, OVERWRITE } = process.env
 const puppeteer = require('puppeteer')
 const fs = require('fs').promises
 
-async function savePage(path, content, overwrite) {
+async function savePage(path, content, overwrite = true) {
     const dirName = path.split('/').slice(0, -1).join('/')
     const fileName = path.split('/').slice(-1)[0] || 'index.html'
 
@@ -67,7 +67,7 @@ async function crawl(path, page, crawledPathSet) {
     const notfound = await page.$('#c-notfound')
 
     const content = await page.content()
-    if (!notfound) savePage(path, content, OVERWRITE)
+    if (!notfound) savePage(path, content)
 
     const crawlLinks = await page.$$eval('a', (elements, host) => {
         return elements.filter(el => el.href.startsWith(host)).map(el => el.href)
