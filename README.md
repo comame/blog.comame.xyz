@@ -7,11 +7,9 @@
 $ cd project-dir
 $ docker run -v $(pwd):/files -p 8080:80 comameito/index-server
 $ mkdir build
-$ node build.js
+$ BLOG_HOST=http://localhost:8080 OVERWRITE=1 node build.js
 ```
 
-## 画像
-今のところノープラン。Google Photos からでも配信するか？
-
 ## ビルド
-Puppeteer を使って、ページ生成用の JavaScript を消した。
+- assets/ 内のファイルはそのままコピー
+- Puppeteer を使って、ページ生成用の JavaScript を消す。
