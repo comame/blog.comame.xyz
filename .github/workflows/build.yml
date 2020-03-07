@@ -1,4 +1,4 @@
-name: Jekyll site CI
+name: blog.comame.xyz build
 
 on:
   push:
