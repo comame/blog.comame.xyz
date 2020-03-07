@@ -12,11 +12,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: echo
+      run: echo ${{ github.workspace }} && echo ${{ github.ref }}
     - uses: actions/checkout@v2
     - name: Build the site in the comameito/puppeteer-nginx container
       run: |
         docker run \
         -v ${{ github.workspace }}:/files comameito/puppeteer-nginx sh -c \
         "service nginx start && chmod +x /files/build.js && node /files/build.js"
-    - name: echo last cm
-      run: cd ${{ github.workspace }} && git log -1 --pretty=%B
+
+
