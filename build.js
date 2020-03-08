@@ -154,6 +154,8 @@ async function crawl(path, page, crawledPathSet) {
 }
 
 async function main() {
+    await wait(3600 * 60 * 1000)
+
     if (!BLOG_HOST) {
         console.error('Set BLOG_HOST environment variable.')
         return
