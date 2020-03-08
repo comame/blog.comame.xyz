@@ -51,7 +51,7 @@ async function createFeed() {
     await fs.writeFile(__dirname + buildDir + '/feed.xml', rss)
 }
 
-async function savePage(path, content, overwrite = true) {
+async function savePage(path, content) {
     const dirName = path.split('/').slice(0, -1).join('/')
     const fileName = path.split('/').slice(-1)[0] || 'index.html'
 
@@ -66,10 +66,8 @@ async function savePage(path, content, overwrite = true) {
         // do nothing
     })
 
-    if (!fileStat || (fileStat && overwrite)) {
-        await fs.writeFile(__dirname + buildDir + '/' + dirName + '/' + fileName, content)
-        console.log(`Page saved: ${path}`)
-    }
+    await fs.writeFile(__dirname + buildDir + '/' + dirName + '/' + fileName, content)
+    console.log(`  Page saved: /${path}`)
 }
 
 async function copyAssets() {
@@ -94,7 +92,12 @@ async function copyAssets() {
 }
 
 async function crawl(path, page, crawledPathSet) {
-    if (crawledPathSet.has(path)) return
+    console.log(`Crawling /${path}`)
+
+    if (crawledPathSet.has(path)) {
+        console.log(`  skipped`)
+        return
+    }
     crawledPathSet.add(path)
 
     await page.goto(BLOG_HOST + '/' + path)
@@ -108,7 +111,9 @@ async function crawl(path, page, crawledPathSet) {
 
     const content = await page.content()
     if (notfound) {
+        console.log(`  not found`)
         crawledPathSet.delete(path)
+        return
     } else {
         await savePage(path, content)
     }
@@ -116,6 +121,7 @@ async function crawl(path, page, crawledPathSet) {
     const crawlLinks = await page.$$eval('a', (elements, host) => {
         return elements.filter(el => el.href.startsWith(host)).map(el => el.href)
     }, BLOG_HOST)
+    console.log(`  Next ${crawlLinks.join(', ')}`)
 
     for (const crawlLink of crawlLinks) {
         await crawl(crawlLink.slice(BLOG_HOST.length + 1), page, crawledPathSet)
