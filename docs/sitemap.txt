@@ -25,7 +25,6 @@ https://blog.comame.xyz/entries/2020-03-07/new-blog-system.html
 https://blog.comame.xyz/entries/2019-09-24/apply-adsense.html
 https://blog.comame.xyz/entries/2019-02-04/firebase-hosting.html
 https://blog.comame.xyz/entries/2018-10-20/new-template.html
-https://blog.comame.xyz/p/test.html
 https://blog.comame.xyz/entries/2018-11-30/line-pay-google-pay.html
 https://blog.comame.xyz/entries/2018-10-21/pixel-event.html
 https://blog.comame.xyz/tags/events.html
