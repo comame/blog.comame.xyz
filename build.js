@@ -6,6 +6,7 @@ const puppeteer = require('puppeteer')
 const fs = require('fs').promises
 
 async function createSiteMap(paths) {
+    await fs.writeFile(__dirname + buildDir + '/sitemap.txt', '')
     for (const path of paths) {
         await fs.appendFile(__dirname + buildDir + '/sitemap.txt', 'https://blog.comame.xyz/' + path + '\n')
     }
