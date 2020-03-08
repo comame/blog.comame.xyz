@@ -21,6 +21,9 @@ jobs:
         mkdir docs
         echo "blog.comame.xyz" | cat > docs/CNAME
 
+        echo "Downloading image comameito/puppeteer-nginx"
+        docker pull -q comameito/puppeteer-nginx
+        echo "Starting build"
         docker run \
         -v ${{ github.workspace }}:/files comameito/puppeteer-nginx sh -c \
         "service nginx start && chmod +x /files/build.js && node /files/build.js"
