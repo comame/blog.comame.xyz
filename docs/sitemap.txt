@@ -11,6 +11,7 @@ https://blog.comame.xyz/entries/2020-02-19/windows-ssh-error.html
 https://blog.comame.xyz/entries/2019-11-04/catalina-chrome-screen-share.html
 https://blog.comame.xyz/tags/Chrome.html
 https://blog.comame.xyz/entries/2019-04-22/safari-bookmark-import.html
+https://blog.comame.xyz/tags/feed.xml
 https://blog.comame.xyz/entries/2019-01-25/windows10-install-media.html
 https://blog.comame.xyz/entries/2019-09-26/self-signed-certificate.html
 https://blog.comame.xyz/entries/2019-01-15/usb-security-key.html

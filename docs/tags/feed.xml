@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="ja"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | comame.xyz</title>
+    <title> | comame.xyz</title>
 </head>
 
 <body>
@@ -13,7 +13,7 @@
     
     
     
-    <div component="tag" id="c-tag"><h2>Blog</h2><ul class="entries"><li><time>2020-03-07</time><a class="entry" href="/entries/2020-03-07/new-blog-system.html">ブログシステムを新しくした (Blogger からの移行)</a><ul class="tag-list"><li><a href="/tags/Blog.html">Blog</a></li></ul></li><li><time>2019-09-27</time><a class="entry" href="/entries/2019-09-27/why-fail-adsense.html">AdSense の申請が落ちた理由？</a><ul class="tag-list"><li><a href="/tags/Blog.html">Blog</a></li><li><a href="/tags/Google.html">Google</a></li></ul></li><li><time>2019-09-24</time><a class="entry" href="/entries/2019-09-24/apply-adsense.html">AdSense の申請をした</a><ul class="tag-list"><li><a href="/tags/Blog.html">Blog</a></li><li><a href="/tags/Google.html">Google</a></li></ul></li><li><time>2019-02-04</time><a class="entry" href="/entries/2019-02-04/firebase-hosting.html">ただいま Firebase Hosting</a><ul class="tag-list"><li><a href="/tags/Blog.html">Blog</a></li></ul></li><li><time>2018-10-20</time><a class="entry" href="/entries/2018-10-20/new-template.html">ブログの新テンプレートが完成！</a><ul class="tag-list"><li><a href="/tags/Blog.html">Blog</a></li></ul></li></ul></div>
+    <div component="tag" id="c-tag"><h2></h2><ul class="entries"></ul></div>
 
     <footer>
         <small>Copyright 2020 <a href="https://comame.xyz">comame</a> | <a href="https://github.com/comame/blog.comame.xyz">GitHub</a> | <a href="feed.xml">Feed</a></small>
