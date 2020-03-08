@@ -95,17 +95,25 @@ async function main() {
     })
     const page = await browser.newPage()
 
+    let hasError = false
+
     const crawledPageSets = new Set()
     try {
-        await crawl('', page, new crawledPageSets)
+        await crawl('', page, crawledPageSets)
     } catch (err) {
         console.error(err)
+        hasError = true
     } finally {
         await browser.close()
     }
 
-    await createSiteMap(Array.from(crawledPageSets.values()))
+    await createSiteMap(Array.from(crawledPageSets.values())).catch(err => {
+        console.error(err)
+        hasError = true
+    })
     console.log('Sitemap creted')
+
+    if (hasError) process.exit(1)
 }
 
 main()
