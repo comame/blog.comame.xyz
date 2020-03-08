@@ -20,7 +20,7 @@ jobs:
         -v ${{ github.workspace }}:/files comameito/puppeteer-nginx sh -c \
         "service nginx start && chmod +x /files/build.js && \
         node /files/build.js && \
-        chown -R comame:comame /files/docs && chmod -R 777 /files/docs"
+        adduser comame && chown -R comame:comame /files/docs && chmod -R 777 /files/docs"
    
     - name: Commit
       run: |
