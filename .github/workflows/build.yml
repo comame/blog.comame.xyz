@@ -13,18 +13,26 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-   
+
     - name: Build
       run: |
+        cd ${{ github.workspace }}
+        rm -r docs
+        mkdir docs
+        echo "blog.comame.xyz" | cat > docs/CNAME
+
         docker run \
         -v ${{ github.workspace }}:/files comameito/puppeteer-nginx sh -c \
-        "service nginx start && chmod +x /files/build.js && \
-        node /files/build.js && \
-        adduser comame --disabled-password --gecos ""  -q && chown -R comame:comame /files/docs && chmod -R 777 /files/docs"
-   
+        "service nginx start && chmod +x /files/build.js && node /files/build.js"
+
+        adduser comame --disabled-password --gecos ""  -q
+        chown -R comame:comame docs
+        chmod -R 777 docs
+
     - name: Commit
       run: |
         cd ${{ github.workspace }}
+        echo "blog.comame.xyz" | cat > docs/CNAME
         git config --local user.name "GitHib Actions"
         git config --local user.email dev@comame.xyz
         git add docs
