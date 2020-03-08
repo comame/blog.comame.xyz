@@ -41,7 +41,7 @@
 
 <h2>今後の運用</h2>
 <p>VSCode で記事を書き、手元でビルドし、GitHub にアップする。あとはビルド済みの静的ファイルを適当に配信すればよい。今回は GitHub Pages で公開することにした。自分の開発環境で記事をかけるため、かなり書きやすくなった。一方で、ビルドをするためだけにローカルサーバを立てなければいけないのは結構面倒くさい。</p>
-<p>[追記] Git の post-commit フックを使って、自動的にビルドを走らせるようにしてみた。本当は GitHub Actions を使いたかったが、ビルド用のサーバを立てて、Puppeteer を起動して...とするのは厄介そうだったので妥協策ではある。post-commit フックは <a href="https://github.com/comame/blog.comame.xyz/blob/master/post-commit" target="_blank">post-commit</a> に置いておく。</p>
+<p>[追記] Git の post-commit フックを使って、自動的にビルドを走らせるようにしてみた。本当は GitHub Actions を使いたかったが、ビルド用のサーバを立てて、Puppeteer を起動して...とするのは厄介そうだったので妥協策ではある。post-commit フックは <a href="https://github.com/comame/blog.comame.xyz/blob/194b480ee2beec8a75c7638ab7453078faa7aa3f/post-commit" target="_blank">post-commit</a> に置いておく。</p>
 <p>[追記] <a href="https://github.com/comame/blog.comame.xyz/tree/master/.github/workflows/build.yml" target="_blank">GitHub Actions</a> で push したときにビルドが走るようにした。</p>
 
 <h2>今後やりたいこと</h2>
