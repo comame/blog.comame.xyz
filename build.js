@@ -4,12 +4,49 @@ const BLOG_HOST = process.env.BLOG_HOST || 'http://localhost'
 
 const puppeteer = require('puppeteer')
 const fs = require('fs').promises
+const entries = require('./archives/entries.json')
 
 async function createSiteMap(paths) {
     await fs.writeFile(__dirname + buildDir + '/sitemap.txt', '')
     for (const path of paths) {
         await fs.appendFile(__dirname + buildDir + '/sitemap.txt', 'https://blog.comame.xyz/' + path + '\n')
     }
+}
+
+async function createFeed() {
+    const items = []
+
+    const base = (items) => `
+    <? xml version='1.0' ?>
+    <rss version='2.0'>
+    <channel>
+      <title>blog.comame.xyz</title>
+      <link>https://blog.comame.xyz</link>
+      ${items}
+    </channel>
+    </rss>
+    `
+
+    const item = (title, link, pubDate) => `
+    <item>
+      <title>${title}</title>
+      <link>${link}</link>
+      <pubDate>${pubDate}</pubDate>
+    </item>
+    `
+
+    for (const entry of entries) {
+        const title = entry.title
+        const dateString = entry.date
+        const link = 'https://blog.comame.xyz/entries/' + dateString + '/' + entry.entry
+        const [ year, month, day ] = [ ...dateString.split('-').map(it => Number.parseInt(it)) ]
+        const pubDate = new Date(year, month - 1, day).toUTCString()
+        items.push(item(title, link, pubDate))
+    }
+
+    const rss = base(items)
+
+    await fs.writeFile(__dirname + buildDir + '/feed.xml', rss)
 }
 
 async function savePage(path, content, overwrite = true) {
@@ -117,6 +154,12 @@ async function main() {
         hasError = true
     })
     console.log('Sitemap creted')
+
+    await createFeed().catch(err => {
+        console.error(err)
+        hasError = true
+    })
+    console.log('RSS feed created')
 
     if (hasError) process.exit(1)
 }
