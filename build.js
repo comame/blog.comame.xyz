@@ -5,6 +5,12 @@ const BLOG_HOST = process.env.BLOG_HOST || 'http://localhost'
 const puppeteer = require('puppeteer')
 const fs = require('fs').promises
 
+async function createSiteMap(paths) {
+    for (const path of paths) {
+        await fs.appendFile(__dirname + buildDir + '/sitemap.txt', 'https://blog.comame.xyz/' + path + '\n')
+    }
+}
+
 async function savePage(path, content, overwrite = true) {
     const dirName = path.split('/').slice(0, -1).join('/')
     const fileName = path.split('/').slice(-1)[0] || 'index.html'
@@ -89,13 +95,17 @@ async function main() {
     })
     const page = await browser.newPage()
 
+    const crawledPageSets = new Set()
     try {
-        await crawl('', page, new Set())
+        await crawl('', page, new crawledPageSets)
     } catch (err) {
         console.error(err)
     } finally {
         await browser.close()
     }
+
+    await createSiteMap(Array.from(crawledPageSets.values()))
+    console.log('Sitemap creted')
 }
 
 main()
