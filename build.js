@@ -173,3 +173,7 @@ async function main() {
 }
 
 main()
+setTimeout(() => {
+    console.error('TLE')
+    process.exit(1)
+}, 3 * 60 * 1000)
