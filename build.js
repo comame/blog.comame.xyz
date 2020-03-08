@@ -68,7 +68,11 @@ async function crawl(path, page, crawledPathSet) {
     const notfound = await page.$('#c-notfound')
 
     const content = await page.content()
-    if (!notfound) savePage(path, content)
+    if (notfound) {
+        crawledPathSet.delete(path)
+    } else {
+        await savePage(path, content)
+    }
 
     const crawlLinks = await page.$$eval('a', (elements, host) => {
         return elements.filter(el => el.href.startsWith(host)).map(el => el.href)
