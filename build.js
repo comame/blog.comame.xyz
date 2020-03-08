@@ -13,6 +13,14 @@ async function createSiteMap(paths) {
     }
 }
 
+async function wait(ms) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve()
+        }, ms)
+    })
+}
+
 async function createFeed() {
     const items = []
 
@@ -101,10 +109,19 @@ async function crawl(path, page, crawledPathSet) {
     crawledPathSet.add(path)
 
     await page.goto(BLOG_HOST + '/' + path)
+
+    while (!await page.$('meta[name=x-render-complete]')) {
+        console.log('  waiting 1ms for rendering')
+        wait(1)
+    }
+
     await page.$$eval('script:not([not-remove])', elements => {
         for (const element of elements) {
             element.parentNode.removeChild(element)
         }
+    })
+    await page.$eval('meta[name=x-render-complete]', element => {
+        element.parentNode.removeChild(element)
     })
 
     const notfound = await page.$('#c-notfound')

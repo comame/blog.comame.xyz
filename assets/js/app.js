@@ -47,7 +47,10 @@ window.addEventListener('component-create', async e => {
             }
     }
 
-    if ('puppeteerOnComplete' in window) puppeteerOnComplete()
+    const complete = document.createElement('meta').with(meta => {
+        meta.name = 'x-render-complete'
+    })
+    document.head.appendChild(complete)
 })
 
 async function getEntries() {
