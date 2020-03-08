@@ -1,7 +1,5 @@
 name: Build and Deploy
 
-
-
 on:
   push:
     branches: [ master ]
@@ -20,7 +18,9 @@ jobs:
       run: |
         docker run \
         -v ${{ github.workspace }}:/files comameito/puppeteer-nginx sh -c \
-        "service nginx start && chmod +x /files/build.js && node /files/build.js"
+        "service nginx start && chmod +x /files/build.js && \
+        node /files/build.js && \
+        chown -R comame:comame /files/docs && chmod -R 777 /files/docs"
    
     - name: Commit
       run: |
