@@ -1,3 +1,5 @@
+process.exit(1)
+
 const buildDir = '/docs'
 
 const BLOG_HOST = process.env.BLOG_HOST || 'http://localhost'
