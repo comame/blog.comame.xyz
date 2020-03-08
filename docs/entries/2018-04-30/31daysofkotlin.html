@@ -1,0 +1,290 @@
+<!DOCTYPE html><html lang="ja"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#31DaysOfKotlin Week 1 日本語訳 | blog.comame.xyz</title>
+</head>
+
+<body>
+    <header>
+        <a href="/">blog.comame.xyz</a>
+    </header>
+
+    
+    
+    
+    
+    <div component="entry" id="c-entry">
+        <div id="metadata">
+            <h1 id="title">#31DaysOfKotlin Week 1 日本語訳</h1>
+            <time id="time">2018-04-30</time>
+            <ul id="tags" class="tag-list"><li><a href="/tags/Kotlin.html">Kotlin</a></li></ul>
+        </div>
+        <div id="content"><p>この記事は、<a href="https://twitter.com/androiddev" rel="noopener" target="_blank">@AndroidDev</a>&nbsp;による&nbsp;<a href="https://medium.com/google-developers/31daysofkotlin-week-1-recap-fbd5a622ef86" target="_blank" rel="noopener">#31DaysOfKotlin — Week 1 Recap</a>&nbsp;を<strong>勝手に</strong>日本語訳したものです。<br>
+    基本的な文法からちょっとした TIPS まで様々なことが紹介されているので、知らないものがあったらぜひ使ってみてください。</p><h2>Day 1: Elvis Operator (エルビス演算子)</h2><p>Null チェックをよりスマートにするには、エルビス演算子を使ってみましょう。<br>
+    Null を別の値に置き換えたり、あるいは<code>return</code>したりもできます！<br>
+    Docs: <a href="https://kotlinlang.org/docs/reference/null-safety.html#elvis-operator" target="_blank" rel="noopener">Elvis Operator</a></p><pre><code>val name: String = person.name ?: “unknown”
+    val age = person.age ?: return</code></pre><h2><a class="name" name="day2"></a>Day 2: String Templates (文字列テンプレート)</h2><p>文字列に変数を埋め込むには、変数名の前に<code>$</code>を入れましょう。<br>
+    式を入れるには<code>${expression}</code>のようにしてください。<br>
+    Docs: <a href="https://kotlinlang.org/docs/reference/basic-types.html#string-templates" target="_blank" rel="noopener">String Templates</a></p><pre><code>val language = “Kotlin”
+
+    // “Kotlin has 6 characters”
+    val text = “$language has ${language.length} characters”</code></pre><h2>Day 3: Destructing Declarations (分解宣言)</h2><p><a href="https://github.com/android/kotlin-extensions" target="_blank" rel="noopener">Android KTX</a> では、色の成分値を割り当てるのに分解宣言を使用します。<br>
+    自作のクラス内で分割代入を使用できますし、既存のクラスを拡張して追加することも可能です。(<a href="http://sys1yagi.hatenablog.com/entry/2016/06/05/171132" target="_blank" rel="noopener">日本語名称について参考にした記事</a>)<br>
+    Docs: <a href="https://kotlinlang.org/docs/reference/multi-declarations.html" target="_blank" rel="noopener">Destructing Declarations</a></p><pre><code>// 色要素
+    val (red, green, blue) = color
+
+    // 四角形
+    val (left, top, right, bottom) = rect
+
+    // 座標
+    val (x, y) = point</code></pre><h2><a class="name" name="day4"></a>Day 4: When Expression (When 式)</h2><p>条件分岐をよりよく書くには<code>when</code>式を使ってみましょう。<br>
+    Kotlin の<code>when</code>式は、文字列リテラルや Enum、Range など何にでも使用できます！任意の関数を呼ぶことも可能です。<br>
+    Docs:&nbsp;<a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/control-flow.html#when-expression" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/control-flow.html#when-expression">When</a></p><pre><code>class Train(val cargo: Number?) {
+        override fun toString(): String {
+            return when (cargo) {
+                null, 0 -&gt; "empty"
+                1 -&gt; "tiny"
+                in 2..10 -&gt; "small"
+                is Int -&gt; "big inty"
+                else -&gt; "$cargo"
+            }
+        }
+    }</code></pre><h2>Day 5: For loops, range expressions and destructing (For ループと Range、分解宣言)</h2><p><code>for</code>ループは Kotlin の Range や分解宣言を使うと便利です。<br>
+    Docs:&nbsp;<a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/ranges.html" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/ranges.html">Ranges</a>,&nbsp;<a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/multi-declarations.html#destructuring-declarations" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/multi-declarations.html#destructuring-declarations">Destructuring</a></p><pre><code>// 1 から 100　まで
+    for(i in 1..100) {…}
+
+    // 1 から 100 まで降順
+    for(i in 100 downTo 1){…}
+
+    // 配列の要素を1つ飛ばしで
+    val array = arrayOf(“a”, “b”, “x”)
+    for(i in 1 until array.size step 2 ){…}
+
+    // 配列の要素を分解宣言で取り出す
+    for((index, element) in array.withIndex()) {…}
+
+    // Map の要素を分解宣言で取り出す
+    val map = mapOf(1 to “one”, 2 to “two”)
+    for( (key, value) in map){…}</code></pre><h2><a class="name" name="day6"></a>Day 6: Properties (プロパティ)</h2><p>Kotlin では、クラスのプロパティのゲッターとセッターが自動生成されます。必要に応じてカスタマイズすることも可能です。<br>
+    Docs:&nbsp;<a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/properties.html" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/properties.html">Properties</a></p><pre><code>class User {
+        // properties
+        val id: String = “” // 変更禁止。ゲッターのみ
+
+        var name: String = “” // デフォルトのゲッターとセッター
+
+        var surname: String = “” // カスタムゲッターとデフォルトのセッター
+          get() = surname.toUpperCase() // custom getter declaration
+
+        var email: String = “” // デフォルトのゲッターとカスタムセッター
+          set(value) { // カスタムセッターの宣言
+              // “value” = セッターのパラメータ
+              // “field” = 自動生成されるバッキングフィールド
+              if(isEmailValid(value)) field = value
+          }
+    }</code></pre><h2>Day 7: Data Classes and equality (データクラスと等価性)</h2><p>データの保持だけが目的であれば、データクラスを使ってみましょう。構造的等価性 (Structual Equality) をチェックする<code>equals()</code>や<code>hashCode()</code>,<code>toString()</code>,<code>copy()</code>などの関数が自動生成されます。<br>
+    Docs:&nbsp;<a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/data-classes.html#data-classes" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/data-classes.html#data-classes">Data Classes</a>,&nbsp;<a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/equality.html" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/equality.html">Equality</a></p><pre><code>data class User(
+        val name: String,
+        val email: String,
+        val address: Address,
+        …
+    )
+    public class UserListDiffCallback: DiffUtil.Callback() {
+        override fun areContentsTheSame(
+             oldItemPosition: Int,
+             newItemPosition: Int
+        ): Boolean {
+        // 自動生成された比較メソッドを使用
+        return newUserList[newItemPosition] ==
+               oldUserList[oldItemPosition])
+    }</code></pre>
+</div>
+        <div id="share">
+            <img alt="共有" src="https://comame.xyz/assets/img/icons/share.svg">
+            <a rel="noopener" target="_blank" title="Twitter で共有" href="https://twitter.com/intent/tweet?text=%2331DaysOfKotlin%20Week%201%20%E6%97%A5%E6%9C%AC%E8%AA%9E%E8%A8%B3%0a&amp;url=http%3A%2F%2Flocalhost%2Fentries%2F2018-04-30%2F31daysofkotlin.html&amp;related=comameito">
+                <img alt="Twitter で共有" src="https://comame.xyz/assets/img/icons/twitter_logo.svg">
+            </a>
+            <a rel="noopener" target="_blank" title="Facebook で共有" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%2Fentries%2F2018-04-30%2F31daysofkotlin.html">
+                <img alt="Facebook で共有" src="https://comame.xyz/assets/img/icons/facebook_logo.svg">
+            </a>
+            <a title="URL をコピー">
+                <img alt="URL をコピー" src="https://comame.xyz/assets/img/icons/link.svg">
+            </a>
+            </div>
+        <script async="" not-remove="" src="/assets/js/url-copy.js"></script>
+    </div>
+
+    <footer>
+        <small>Copyright 2020 <a href="https://comame.xyz">comame</a> | <a href="https://github.com/comame/blog.comame.xyz">GitHub</a> | <a href="feed.xml">Feed</a></small>
+    </footer>
+
+    <style>
+        :root {
+            font-size: 16px;
+            --main-color: black;
+            --link-color: #00e;
+            --visited-link-color: #a52a2a;
+            --code-color: #efefef;
+            --radius: 5px;
+        }
+
+        /* Desktop */
+        @media screen and (min-width: 1000px) {
+            :root {
+                --content-width: 80vw;
+                --image-width: 50vw;
+            }
+        }
+
+        /* Mobile / Tablet */
+        @media screen and (max-width: 1000px) {
+            :root {
+                --content-width: 90vw;
+                --image-width: 90vw;
+            }
+        }
+
+        body {
+            box-sizing: border-box;
+            margin: 0;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            height: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0 calc((100vw - var(--content-width)) / 2);
+        }
+        header a {
+            display: inline-block;
+            line-height: 3rem;
+            text-decoration: none;
+            color: var(--main-color);
+        }
+        header a:visited {
+            color: var(--main-color)
+        }
+        a {
+            text-decoration: none;
+            color: var(--link-color);
+        }
+        a:visited {
+            color: var(--visited-link-color);
+        }
+        *[component] {
+            width: var(--content-width);
+            margin: 0 auto;
+        }
+        .entries {
+            list-style: none;
+            padding-left: 0;
+        }
+        .entries > li {
+            margin-bottom: .5rem;
+        }
+        .entries > li::before {
+            content: '- ';
+        }
+        .entries > li > time::after {
+            content: ': ';
+        }
+        .entries a.entry {
+            margin-right: 1rem;
+        }
+        .tag-list {
+            list-style: none;
+            display: inline;
+            padding-left: 0;
+        }
+        .tag-list::before {
+            content: '[';
+        }
+        .tag-list::after {
+            content: ']';
+        }
+        .tag-list > li {
+            display: inline;
+        }
+        .tag-list > li:not(:last-child)::after {
+            content: ', ';
+        }
+        #metadata {
+            margin-bottom: 3rem;
+        }
+        #metadata h1 {
+            font-size: 1.5rem;
+        }
+        #content {
+            word-break: break-all;
+        }
+        #content p {
+            text-indent: .5rem;
+        }
+        #content h2 {
+            margin-top: 2rem;
+            font-size: 1.3rem;
+        }
+        #content code {
+            background: var(--code-color);
+            border-radius: var(--radius);
+            font-family: monospace;
+            padding: 2px 4px;
+            word-break: break-all;
+        }
+        #content pre {
+            padding: 0.5rem;
+            white-space: pre;
+            overflow-x: scroll;
+            border-radius: var(--radius);
+            background: var(--code-color);
+        }
+        #content pre > code {
+            padding: 0;
+        }
+        #content img {
+            display: block;
+            width: var(--image-width);
+            margin-right: auto;
+            margin-left: auto;
+        }
+        #content ul, #content ol {
+            counter-reset: ol;
+            list-style: none;
+            padding-left: 0;
+            text-indent: 1rem;
+        }
+        #content ul > li::before {
+            content: '- ';
+        }
+        #content ol > li::before {
+            counter-increment: ol;
+            content: counter(ol) '. ';
+        }
+
+        #share {
+            margin-top: 3rem;
+        }
+        #share > img {
+            margin-right: 2rem;
+        }
+        #share a {
+            margin-right: 1rem;
+        }
+        #share img {
+            height: 2rem;
+            width: 2rem;
+        }
+
+        footer {
+            margin: 3rem auto 1rem auto;
+            text-align: center;
+        }
+    </style>
+
+    
+    
+
+
+
+</body></html>

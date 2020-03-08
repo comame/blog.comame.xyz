@@ -1,0 +1,226 @@
+<?xml version='1.0'?>
+    <rss version='2.0'>
+    <channel>
+      <title>blog.comame.xyz</title>
+      <link>https://blog.comame.xyz</link>
+      <description>blog.comame.xyz</description>
+      
+    <item>
+      <title>新しいデザインの Gmail がリリースされました</title>
+      <link>https://blog.comame.xyz/entries/2018-04-26/new-design-gmail-released</link>
+      <pubDate>Thu, 26 Apr 2018 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2018-04-26/new-design-gmail-released</guid>
+    </item>
+    
+    <item>
+      <title>#31DaysOfKotlin Week 1 日本語訳</title>
+      <link>https://blog.comame.xyz/entries/2018-04-30/31daysofkotlin</link>
+      <pubDate>Mon, 30 Apr 2018 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2018-04-30/31daysofkotlin</guid>
+    </item>
+    
+    <item>
+      <title>Gmail のフォローアップ機能を停止する</title>
+      <link>https://blog.comame.xyz/entries/2018-07-27/stop-gmail-followup</link>
+      <pubDate>Fri, 27 Jul 2018 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2018-07-27/stop-gmail-followup</guid>
+    </item>
+    
+    <item>
+      <title>Gmail アドレスにおけるピリオドの扱い</title>
+      <link>https://blog.comame.xyz/entries/2018-07-28/gmail-period</link>
+      <pubDate>Sat, 28 Jul 2018 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2018-07-28/gmail-period</guid>
+    </item>
+    
+    <item>
+      <title>App Engine から Compute Engine に移行</title>
+      <link>https://blog.comame.xyz/entries/2018-08-19/ae-to-ce</link>
+      <pubDate>Sun, 19 Aug 2018 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2018-08-19/ae-to-ce</guid>
+    </item>
+    
+    <item>
+      <title>ブログの新テンプレートが完成！</title>
+      <link>https://blog.comame.xyz/entries/2018-10-20/new-template</link>
+      <pubDate>Sat, 20 Oct 2018 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2018-10-20/new-template</guid>
+    </item>
+    
+    <item>
+      <title>「Google Pixel まだ見ぬ世界展」に行ってきた</title>
+      <link>https://blog.comame.xyz/entries/2018-10-21/pixel-event</link>
+      <pubDate>Sun, 21 Oct 2018 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2018-10-21/pixel-event</guid>
+    </item>
+    
+    <item>
+      <title>LINE Pay を Google Pay で使ってみた</title>
+      <link>https://blog.comame.xyz/entries/2018-11-30/line-pay-google-pay</link>
+      <pubDate>Fri, 30 Nov 2018 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2018-11-30/line-pay-google-pay</guid>
+    </item>
+    
+    <item>
+      <title>Let's Encrypt でワイルドカード証明書を発行してみたお話</title>
+      <link>https://blog.comame.xyz/entries/2018-12-18/letsencrypt-wildcard</link>
+      <pubDate>Tue, 18 Dec 2018 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2018-12-18/letsencrypt-wildcard</guid>
+    </item>
+    
+    <item>
+      <title>8.8.8.8 が DNS-over-TLS に対応したようです</title>
+      <link>https://blog.comame.xyz/entries/2019-01-11/8888-dns-over-tls</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2019-01-11/8888-dns-over-tls</guid>
+    </item>
+    
+    <item>
+      <title>USB セキュリティキーを買った</title>
+      <link>https://blog.comame.xyz/entries/2019-01-15/usb-security-key</link>
+      <pubDate>Tue, 15 Jan 2019 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2019-01-15/usb-security-key</guid>
+    </item>
+    
+    <item>
+      <title>Windows 10 の Media Creation Tool で USB インストールメディアの作成に失敗する</title>
+      <link>https://blog.comame.xyz/entries/2019-01-25/windows10-install-media</link>
+      <pubDate>Fri, 25 Jan 2019 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2019-01-25/windows10-install-media</guid>
+    </item>
+    
+    <item>
+      <title>ただいま Firebase Hosting</title>
+      <link>https://blog.comame.xyz/entries/2019-02-04/firebase-hosting</link>
+      <pubDate>Mon, 04 Feb 2019 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2019-02-04/firebase-hosting</guid>
+    </item>
+    
+    <item>
+      <title>Macbook Pro を買いました</title>
+      <link>https://blog.comame.xyz/entries/2019-03-12/macbook-pro</link>
+      <pubDate>Tue, 12 Mar 2019 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2019-03-12/macbook-pro</guid>
+    </item>
+    
+    <item>
+      <title>Safari のブックマークを Chrome にインポートできない問題</title>
+      <link>https://blog.comame.xyz/entries/2019-04-22/safari-bookmark-import</link>
+      <pubDate>Mon, 22 Apr 2019 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2019-04-22/safari-bookmark-import</guid>
+    </item>
+    
+    <item>
+      <title>Web ページの読み込みパフォーマンスを改善する</title>
+      <link>https://blog.comame.xyz/entries/2019-04-23/improve-web-performance</link>
+      <pubDate>Tue, 23 Apr 2019 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2019-04-23/improve-web-performance</guid>
+    </item>
+    
+    <item>
+      <title>comame.xyz を ConoHa に移した</title>
+      <link>https://blog.comame.xyz/entries/2019-07-11/migrate-to-conoha</link>
+      <pubDate>Thu, 11 Jul 2019 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2019-07-11/migrate-to-conoha</guid>
+    </item>
+    
+    <item>
+      <title>Rootless Docker のインストール方法</title>
+      <link>https://blog.comame.xyz/entries/2019-09-13/install-rootless-docker</link>
+      <pubDate>Fri, 13 Sep 2019 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2019-09-13/install-rootless-docker</guid>
+    </item>
+    
+    <item>
+      <title>Ubuntu ユーザー作成</title>
+      <link>https://blog.comame.xyz/entries/2019-09-18/ubuntu-create-user</link>
+      <pubDate>Wed, 18 Sep 2019 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2019-09-18/ubuntu-create-user</guid>
+    </item>
+    
+    <item>
+      <title>AdSense の申請をした</title>
+      <link>https://blog.comame.xyz/entries/2019-09-24/apply-adsense</link>
+      <pubDate>Tue, 24 Sep 2019 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2019-09-24/apply-adsense</guid>
+    </item>
+    
+    <item>
+      <title>OpenSSL で自己証明書を作成する方法</title>
+      <link>https://blog.comame.xyz/entries/2019-09-26/self-signed-certificate</link>
+      <pubDate>Thu, 26 Sep 2019 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2019-09-26/self-signed-certificate</guid>
+    </item>
+    
+    <item>
+      <title>AdSense の申請が落ちた理由？</title>
+      <link>https://blog.comame.xyz/entries/2019-09-27/why-fail-adsense</link>
+      <pubDate>Fri, 27 Sep 2019 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2019-09-27/why-fail-adsense</guid>
+    </item>
+    
+    <item>
+      <title>Let's Encrypt (Certbot) でワイルドカード証明書を取得できないときの解決法</title>
+      <link>https://blog.comame.xyz/entries/2019-10-03/letsencrypt-wildcard-error</link>
+      <pubDate>Thu, 03 Oct 2019 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2019-10-03/letsencrypt-wildcard-error</guid>
+    </item>
+    
+    <item>
+      <title>Unlimited Mirai に参加しました</title>
+      <link>https://blog.comame.xyz/entries/2019-10-30/unlimited-mirai</link>
+      <pubDate>Wed, 30 Oct 2019 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2019-10-30/unlimited-mirai</guid>
+    </item>
+    
+    <item>
+      <title>Catalina で Chrome の画面共有が使用できない問題</title>
+      <link>https://blog.comame.xyz/entries/2019-11-04/catalina-chrome-screen-share</link>
+      <pubDate>Mon, 04 Nov 2019 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2019-11-04/catalina-chrome-screen-share</guid>
+    </item>
+    
+    <item>
+      <title>Google のエキスパートとして回答すること</title>
+      <link>https://blog.comame.xyz/entries/2019-12-01/google-expert</link>
+      <pubDate>Sun, 01 Dec 2019 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2019-12-01/google-expert</guid>
+    </item>
+    
+    <item>
+      <title>Blogger のテーマ作成について</title>
+      <link>https://blog.comame.xyz/entries/2019-12-10/blogger-theme</link>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2019-12-10/blogger-theme</guid>
+    </item>
+    
+    <item>
+      <title>CNAME トラッキングについての議論</title>
+      <link>https://blog.comame.xyz/entries/2020-01-20/cname-tracking</link>
+      <pubDate>Mon, 20 Jan 2020 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2020-01-20/cname-tracking</guid>
+    </item>
+    
+    <item>
+      <title>Windows 10 の ssh で Permission refusedが出る問題</title>
+      <link>https://blog.comame.xyz/entries/2020-02-19/windows-ssh-error</link>
+      <pubDate>Wed, 19 Feb 2020 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2020-02-19/windows-ssh-error</guid>
+    </item>
+    
+    <item>
+      <title>ブログシステムを新しくした (Blogger からの移行)</title>
+      <link>https://blog.comame.xyz/entries/2020-03-07/new-blog-system</link>
+      <pubDate>Sat, 07 Mar 2020 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2020-03-07/new-blog-system</guid>
+    </item>
+    
+    <item>
+      <title>WSL2 で Docker を自動起動する</title>
+      <link>https://blog.comame.xyz/entries/2020-03-08/docker-startup-wsl2</link>
+      <pubDate>Sun, 08 Mar 2020 00:00:00 GMT</pubDate>
+      <guid isPermaLink='true'>https://blog.comame.xyz/entries/2020-03-08/docker-startup-wsl2</guid>
+    </item>
+    
+    </channel>
+    </rss>

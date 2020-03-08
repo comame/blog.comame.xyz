@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="ja"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's Encrypt (Certbot) でワイルドカード証明書を取得できないときの解決法 | blog.comame.xyz</title>
+</head>
+
+<body>
+    <header>
+        <a href="/">blog.comame.xyz</a>
+    </header>
+
+    
+    
+    
+    
+    <div component="entry" id="c-entry">
+        <div id="metadata">
+            <h1 id="title">Let's Encrypt (Certbot) でワイルドカード証明書を取得できないときの解決法</h1>
+            <time id="time">2019-10-03</time>
+            <ul id="tags" class="tag-list"><li><a href="/tags/security.html">security</a></li><li><a href="/tags/troubleshoot.html">troubleshoot</a></li><li><a href="/tags/server.html">server</a></li></ul>
+        </div>
+        <div id="content"><h2>発生する問題</h2>
+<p>Certbot でワイルドカード証明書を発行しようとしたときに<code>The currently selected ACME CA endpoint does not support issuing wildcard certificates</code>というお叱りを受ける。</p>
+
+<h2>解決方法</h2>
+<p>ACME v2 のエンドポイントを直接指定してやれば良い。
+</p><pre><code>$ certbot certonly --server https://acme-v02.api.letsencrypt.org/directory</code></pre>
+Let's Encrypt のエンドポイントは<a href="https://letsencrypt.org/ja/docs/acme-protocol-updates/">このドキュメント</a>に記載されている。<p></p>
+</div>
+        <div id="share">
+            <img alt="共有" src="https://comame.xyz/assets/img/icons/share.svg">
+            <a rel="noopener" target="_blank" title="Twitter で共有" href="https://twitter.com/intent/tweet?text=Let's%20Encrypt%20(Certbot)%20%E3%81%A7%E3%83%AF%E3%82%A4%E3%83%AB%E3%83%89%E3%82%AB%E3%83%BC%E3%83%89%E8%A8%BC%E6%98%8E%E6%9B%B8%E3%82%92%E5%8F%96%E5%BE%97%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84%E3%81%A8%E3%81%8D%E3%81%AE%E8%A7%A3%E6%B1%BA%E6%B3%95%0a&amp;url=http%3A%2F%2Flocalhost%2Fentries%2F2019-10-03%2Fletsencrypt-wildcard-error.html&amp;related=comameito">
+                <img alt="Twitter で共有" src="https://comame.xyz/assets/img/icons/twitter_logo.svg">
+            </a>
+            <a rel="noopener" target="_blank" title="Facebook で共有" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%2Fentries%2F2019-10-03%2Fletsencrypt-wildcard-error.html">
+                <img alt="Facebook で共有" src="https://comame.xyz/assets/img/icons/facebook_logo.svg">
+            </a>
+            <a title="URL をコピー">
+                <img alt="URL をコピー" src="https://comame.xyz/assets/img/icons/link.svg">
+            </a>
+            </div>
+        <script async="" not-remove="" src="/assets/js/url-copy.js"></script>
+    </div>
+
+    <footer>
+        <small>Copyright 2020 <a href="https://comame.xyz">comame</a> | <a href="https://github.com/comame/blog.comame.xyz">GitHub</a> | <a href="feed.xml">Feed</a></small>
+    </footer>
+
+    <style>
+        :root {
+            font-size: 16px;
+            --main-color: black;
+            --link-color: #00e;
+            --visited-link-color: #a52a2a;
+            --code-color: #efefef;
+            --radius: 5px;
+        }
+
+        /* Desktop */
+        @media screen and (min-width: 1000px) {
+            :root {
+                --content-width: 80vw;
+                --image-width: 50vw;
+            }
+        }
+
+        /* Mobile / Tablet */
+        @media screen and (max-width: 1000px) {
+            :root {
+                --content-width: 90vw;
+                --image-width: 90vw;
+            }
+        }
+
+        body {
+            box-sizing: border-box;
+            margin: 0;
+        }
+        header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            height: 3rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0 calc((100vw - var(--content-width)) / 2);
+        }
+        header a {
+            display: inline-block;
+            line-height: 3rem;
+            text-decoration: none;
+            color: var(--main-color);
+        }
+        header a:visited {
+            color: var(--main-color)
+        }
+        a {
+            text-decoration: none;
+            color: var(--link-color);
+        }
+        a:visited {
+            color: var(--visited-link-color);
+        }
+        *[component] {
+            width: var(--content-width);
+            margin: 0 auto;
+        }
+        .entries {
+            list-style: none;
+            padding-left: 0;
+        }
+        .entries > li {
+            margin-bottom: .5rem;
+        }
+        .entries > li::before {
+            content: '- ';
+        }
+        .entries > li > time::after {
+            content: ': ';
+        }
+        .entries a.entry {
+            margin-right: 1rem;
+        }
+        .tag-list {
+            list-style: none;
+            display: inline;
+            padding-left: 0;
+        }
+        .tag-list::before {
+            content: '[';
+        }
+        .tag-list::after {
+            content: ']';
+        }
+        .tag-list > li {
+            display: inline;
+        }
+        .tag-list > li:not(:last-child)::after {
+            content: ', ';
+        }
+        #metadata {
+            margin-bottom: 3rem;
+        }
+        #metadata h1 {
+            font-size: 1.5rem;
+        }
+        #content {
+            word-break: break-all;
+        }
+        #content p {
+            text-indent: .5rem;
+        }
+        #content h2 {
+            margin-top: 2rem;
+            font-size: 1.3rem;
+        }
+        #content code {
+            background: var(--code-color);
+            border-radius: var(--radius);
+            font-family: monospace;
+            padding: 2px 4px;
+            word-break: break-all;
+        }
+        #content pre {
+            padding: 0.5rem;
+            white-space: pre;
+            overflow-x: scroll;
+            border-radius: var(--radius);
+            background: var(--code-color);
+        }
+        #content pre > code {
+            padding: 0;
+        }
+        #content img {
+            display: block;
+            width: var(--image-width);
+            margin-right: auto;
+            margin-left: auto;
+        }
+        #content ul, #content ol {
+            counter-reset: ol;
+            list-style: none;
+            padding-left: 0;
+            text-indent: 1rem;
+        }
+        #content ul > li::before {
+            content: '- ';
+        }
+        #content ol > li::before {
+            counter-increment: ol;
+            content: counter(ol) '. ';
+        }
+
+        #share {
+            margin-top: 3rem;
+        }
+        #share > img {
+            margin-right: 2rem;
+        }
+        #share a {
+            margin-right: 1rem;
+        }
+        #share img {
+            height: 2rem;
+            width: 2rem;
+        }
+
+        footer {
+            margin: 3rem auto 1rem auto;
+            text-align: center;
+        }
+    </style>
+
+    
+    
+
+
+
+</body></html>
