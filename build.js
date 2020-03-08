@@ -110,9 +110,15 @@ async function crawl(path, page, crawledPathSet) {
 
     await page.goto(BLOG_HOST + '/' + path)
 
+    let waiting = 0
     while (!await page.$('meta[name=x-render-complete]')) {
+        if (waiting > 100) {
+            console.error('Page rendering was not finished!')
+            process.exit(1)
+        }
+        waiting += 1
         console.log('  waiting 1ms for rendering')
-        wait(1)
+        await wait(1)
     }
 
     await page.$$eval('script:not([not-remove])', elements => {

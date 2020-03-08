@@ -36,17 +36,26 @@ window.addEventListener('component-create', async e => {
             {
                 const date = component.params.date
                 const entry = component.params['entry.html'].split('.html').slice(0, -1).join('')
-                await entryPage(date, entry)
+                try {
+                    await entryPage(date, entry)
+                } catch (err) {
+                    return
+                }
                 break
             }
         case 'tag':
             {
                 const tag = component.params['tag.html'].split('.html').slice(0, -1).join('')
-                await tagPage(tag)
+                try {
+                    await tagPage(tag)
+                } catch (err) {
+                    return
+                }
                 break
             }
     }
 
+    console.log('rendering complete')
     const complete = document.createElement('meta').with(meta => {
         meta.name = 'x-render-complete'
     })
@@ -143,7 +152,7 @@ async function entryPage(date, entry) {
 
     if (!entryObj) {
         router.redirect('/notfound')
-        return
+        throw 1
     }
 
     document.title = entryObj.title + ' | blog.comame.xyz'
@@ -177,6 +186,12 @@ async function tagPage(tag) {
     document.title = tag + ' | comame.xyz'
 
     const entries = (await getEntries()).filter(it => it.tags.includes(tag))
+
+    if (entries.length == 0) {
+        router.redirect('/notfound')
+        throw 1
+    }
+
     entries.sort((a, b) => {
         const [aYear, aMonth, aDay] = a.date.split('-').map(it => Number.parseInt(it))
         const [bYear, bMonth, bDay] = b.date.split('-').map(it => Number.parseInt(it))
