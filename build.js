@@ -17,11 +17,12 @@ async function createFeed() {
     const items = []
 
     const base = (items) => `
-    <? xml version='1.0' ?>
+    <?xml version='1.0'?>
     <rss version='2.0'>
     <channel>
       <title>blog.comame.xyz</title>
       <link>https://blog.comame.xyz</link>
+      <description>blog.comame.xyz</description>
       ${items}
     </channel>
     </rss>
@@ -32,6 +33,7 @@ async function createFeed() {
       <title>${title}</title>
       <link>${link}</link>
       <pubDate>${pubDate}</pubDate>
+      <guid isPermaLink='true'>${link}</guid>
     </item>
     `
 
