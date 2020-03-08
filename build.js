@@ -89,9 +89,13 @@ async function main() {
     })
     const page = await browser.newPage()
 
-    await crawl('', page, new Set())
-
-    await browser.close()
+    try {
+        await crawl('', page, new Set())
+    } catch (err) {
+        console.error(err)
+    } finally {
+        await browser.close()
+    }
 }
 
 main()
