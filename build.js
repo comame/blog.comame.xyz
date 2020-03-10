@@ -6,12 +6,58 @@ const puppeteer = require('puppeteer')
 const fs = require('fs').promises
 const entries = require('./archives/entries.json')
 
-async function createSiteMap(paths) {
-    await fs.writeFile(__dirname + buildDir + '/sitemap.txt', '')
-    for (const path of paths) {
-        await fs.appendFile(__dirname + buildDir + '/sitemap.txt', 'https://blog.comame.xyz/' + path + '\n')
+async function main() {
+    if (!BLOG_HOST) {
+        console.error('Set BLOG_HOST environment variable.')
+        return
     }
+
+    await copyAssets()
+
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox'
+        ]
+    })
+    const page = await browser.newPage()
+
+    let hasError = false
+
+    const crawledPageSets = new Set()
+    try {
+        await crawl('', page, crawledPageSets)
+    } catch (err) {
+        console.error(err)
+        hasError = true
+    } finally {
+        await browser.close()
+    }
+
+    await createSiteMap(Array.from(crawledPageSets.values())).catch(err => {
+        console.error(err)
+        hasError = true
+    })
+    console.log('Sitemap creted')
+
+    await createFeed().catch(err => {
+        console.error(err)
+        hasError = true
+    })
+    console.log('RSS feed created')
+
+    if (hasError) process.exit(1)
 }
+
+main().then(() => {
+    process.exit(0)
+})
+setTimeout(() => {
+    console.error('TLE')
+    process.exit(1)
+}, 3 * 60 * 1000)
+
 
 async function wait(ms) {
     return new Promise(resolve => {
@@ -20,6 +66,35 @@ async function wait(ms) {
         }, ms)
     })
 }
+
+async function copyAssets() {
+    const copy = async (dirname, files) => {
+        for (const file of files) {
+            const stats = await fs.stat(__dirname + '/assets/' + dirname + '/' + file)
+            if (stats.isDirectory()) {
+                await copy(dirname + '/' + file, await fs.readdir(__dirname + '/assets/' + dirname + '/' + file))
+            } else {
+                const stat = await fs.stat(__dirname + buildDir + '/assets/' + dirname).catch(() => {})
+                if (!stat) await fs.mkdir(__dirname + buildDir + '/assets/' + dirname, { recursive: true })
+                await fs.copyFile(
+                    __dirname + '/assets/' + dirname + '/' + file,
+                    __dirname + buildDir + '/assets/' + dirname + '/' + file
+                )
+                console.log(`Asset copied: ${dirname + '/' + file}`)
+            }
+        }
+    }
+
+    await copy('', await fs.readdir(__dirname + '/assets'))
+}
+
+async function createSiteMap(paths) {
+    await fs.writeFile(__dirname + buildDir + '/sitemap.txt', '')
+    for (const path of paths) {
+        await fs.appendFile(__dirname + buildDir + '/sitemap.txt', 'https://blog.comame.xyz/' + path + '\n')
+    }
+}
+
 
 async function createFeed() {
     const items = []
@@ -57,46 +132,6 @@ async function createFeed() {
     const rss = base(items.join('')).replace(/^\s+|\s+$/g,"");
 
     await fs.writeFile(__dirname + buildDir + '/feed.xml', rss)
-}
-
-async function savePage(path, content) {
-    const dirName = path.split('/').slice(0, -1).join('/')
-    const fileName = path.split('/').slice(-1)[0] || 'index.html'
-
-    const dirStat = await fs.stat(__dirname + buildDir + '/' + dirName).catch(err => {
-        // do nothing
-    })
-    if (!dirStat) {
-        await fs.mkdir(__dirname + buildDir + '/'+ dirName, { recursive: true })
-    }
-
-    const fileStat = await fs.stat(__dirname + buildDir + '/' + dirName + '/' + fileName).catch(err => {
-        // do nothing
-    })
-
-    await fs.writeFile(__dirname + buildDir + '/' + dirName + '/' + fileName, content)
-    console.log(`  Page saved: /${path}`)
-}
-
-async function copyAssets() {
-    const copy = async (dirname, files) => {
-        for (const file of files) {
-            const stats = await fs.stat(__dirname + '/assets/' + dirname + '/' + file)
-            if (stats.isDirectory()) {
-                await copy(dirname + '/' + file, await fs.readdir(__dirname + '/assets/' + dirname + '/' + file))
-            } else {
-                const stat = await fs.stat(__dirname + buildDir + '/assets/' + dirname).catch(() => {})
-                if (!stat) await fs.mkdir(__dirname + buildDir + '/assets/' + dirname, { recursive: true })
-                await fs.copyFile(
-                    __dirname + '/assets/' + dirname + '/' + file,
-                    __dirname + buildDir + '/assets/' + dirname + '/' + file
-                )
-                console.log(`Asset copied: ${dirname + '/' + file}`)
-            }
-        }
-    }
-
-    await copy('', await fs.readdir(__dirname + '/assets'))
 }
 
 async function crawl(path, page, crawledPathSet) {
@@ -151,54 +186,21 @@ async function crawl(path, page, crawledPathSet) {
     }
 }
 
-async function main() {
-    if (!BLOG_HOST) {
-        console.error('Set BLOG_HOST environment variable.')
-        return
+async function savePage(path, content) {
+    const dirName = path.split('/').slice(0, -1).join('/')
+    const fileName = path.split('/').slice(-1)[0] || 'index.html'
+
+    const dirStat = await fs.stat(__dirname + buildDir + '/' + dirName).catch(err => {
+        // do nothing
+    })
+    if (!dirStat) {
+        await fs.mkdir(__dirname + buildDir + '/'+ dirName, { recursive: true })
     }
 
-    await copyAssets()
-
-    const browser = await puppeteer.launch({
-        headless: true,
-        args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox'
-        ]
+    const fileStat = await fs.stat(__dirname + buildDir + '/' + dirName + '/' + fileName).catch(err => {
+        // do nothing
     })
-    const page = await browser.newPage()
 
-    let hasError = false
-
-    const crawledPageSets = new Set()
-    try {
-        await crawl('', page, crawledPageSets)
-    } catch (err) {
-        console.error(err)
-        hasError = true
-    } finally {
-        await browser.close()
-    }
-
-    await createSiteMap(Array.from(crawledPageSets.values())).catch(err => {
-        console.error(err)
-        hasError = true
-    })
-    console.log('Sitemap creted')
-
-    await createFeed().catch(err => {
-        console.error(err)
-        hasError = true
-    })
-    console.log('RSS feed created')
-
-    if (hasError) process.exit(1)
+    await fs.writeFile(__dirname + buildDir + '/' + dirName + '/' + fileName, content)
+    console.log(`  Page saved: /${path}`)
 }
-
-main().then(() => {
-    process.exit(0)
-})
-setTimeout(() => {
-    console.error('TLE')
-    process.exit(1)
-}, 3 * 60 * 1000)
