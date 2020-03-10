@@ -120,7 +120,7 @@ async function createFeed() {
         const link = 'https://blog.comame.xyz/entries/' + date + '/' + entry.entry
 
         const year = date.split('-')[0]
-        const htmlContent = await fs.readFile(__dirname + buildDir + '/archives/' + year + '/' + entry.entry + '.html', {
+        const htmlContent = await fs.readFile(__dirname + '/archives/' + year + '/' + entry.entry + '.html', {
             encoding: 'utf8'
         })
         items.push(item(title, link, date, htmlContent))
