@@ -1,11 +1,11 @@
 <?xml version='1.0'?>
     <feed xmlns='http://www.w3.org/2005/Atom'>
-      <id>https://blog.comame.xyz</id>
+      <id>https://blog.comame.xyz/</id>
       <title>blog.comame.xyz</title>
       <link rel='alternate' href='https://blog.comame.xyz/' />
       <link rel='self' href='https://blog.comame.xyz/feed.xml' />
       <author><name>comame</name></author>
-      <updated>2020-3-10T10:39:23Z}T00:00:00Z</updated>
+      <updated>2020-3-10T10:44:48Z}T00:00:00Z</updated>
 
       
     <entry>
@@ -118,7 +118,7 @@
     &lt;li&gt;最下部の「設定」を開き、フォローアップ機能を停止したいアカウントを選択する&lt;/li&gt;
     &lt;li&gt;「アクションの提案」セクション内の「返信とフォローアップ」を開く&lt;/li&gt;
     &lt;li&gt;停止したいもののチェックボックスを外す&lt;/li&gt;
-    &lt;/ol&gt;&lt;h2&gt;デスクトップ&lt;/h2&gt;&lt;ol&gt;&lt;li&gt;&lt;a href="https://gmail.com/" target="_blank" rel="noopener"&gt;Gmail&lt;/a&gt;&nbsp;を開く&lt;/li&gt;
+    &lt;/ol&gt;&lt;h2&gt;デスクトップ&lt;/h2&gt;&lt;ol&gt;&lt;li&gt;&lt;a href="https://gmail.com/" target="_blank" rel="noopener"&gt;Gmail&lt;/a&gt; を開く&lt;/li&gt;
     &lt;li&gt;右上の歯車アイコンを押し、設定を開く&lt;/li&gt;
     &lt;li&gt;「概要」タブの「アクションの提案」セクションに移動する&lt;/li&gt;
     &lt;li&gt;チェックボックスを外す&lt;/li&gt;
@@ -492,7 +492,7 @@ HTML でブックマークを書き出し、Chrome にインポートする。&l
 &lt;li&gt;Safari を開き、「ファイル」&gt;「ブックマークの書き出し」を実行してください。&lt;/li&gt;
 &lt;li&gt;Chrome の設定画面を開いてください。&lt;/li&gt;
 &lt;li&gt;「ブックマークと設定のインポート」を開き、インポート先を「HTML ファイルをブックマークに登録」に指定してください。&lt;/li&gt;
-&lt;li&gt;「ファイルを選択」ボタンを押し、手順&nbsp; 1 でエクスポートしたファイルを選択してください。&lt;/li&gt;
+&lt;li&gt;「ファイルを選択」ボタンを押し、手順  1 でエクスポートしたファイルを選択してください。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div&gt;
 &lt;h2&gt;
@@ -1125,7 +1125,7 @@ ng -- &lt;img src='https://example.com/foo.png'&gt;&lt;/code&gt;&lt;/pre&gt;
     Third-party Cookie に対する制限の回避策となり得ます。&lt;/p&gt;
 &lt;h2&gt;セキュリティの懸念事項&lt;/h2&gt;
 &lt;h3&gt;不適切な設定をされた Cookie が、トラッキングサービスに送信されてしまう&lt;/h3&gt;
-&lt;p&gt;&lt;code&gt;Set-Cookie&lt;/code&gt;&nbsp;ヘッダに&nbsp;&lt;code&gt;Domain&lt;/code&gt;&nbsp;ディレクティブを指定した場合、すべてのサブドメインに Cookie
+&lt;p&gt;&lt;code&gt;Set-Cookie&lt;/code&gt; ヘッダに &lt;code&gt;Domain&lt;/code&gt; ディレクティブを指定した場合、すべてのサブドメインに Cookie
     が送信されてしまいます。もし認証に用いる機密情報などをこの方法で設定した場合、CNAME レコードとして設定したトラッキングサービスにも Cookie が送信されてしまいます。&lt;a
         href="https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie#Directives"&gt;Set-Cookie - HTTP | MDN&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;プライバシーの懸念事項&lt;/h2&gt;
