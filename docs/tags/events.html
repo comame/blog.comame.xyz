@@ -3,92 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>events | comame.xyz</title>
 
-    <style>:root {
-    font-size: 16px;
-    --main-color: black;
-    --link-color: #00e;
-    --visited-link-color: #a52a2a;
-    --code-color: #efefef;
-    --radius: 5px;
-}
-
-/* Desktop */
-@media screen and (min-width: 1000px) {
-    :root {
-        --content-width: 80vw;
-        --image-width: 50vw;
-    }
-}
-
-/* Mobile / Tablet */
-@media screen and (max-width: 1000px) {
-    :root {
-        --content-width: 90vw;
-        --image-width: 90vw;
-    }
-}
-
-body {
-    box-sizing: border-box;
-    margin: 0;
-}
-header {
-    position: sticky;
-    top: 0;
-    left: 0;
-    height: 3rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    background: rgba(255, 255, 255, 0.95);
-    padding: 0 calc((100vw - var(--content-width)) / 2);
-}
-header a {
-    display: inline-block;
-    line-height: 3rem;
-    text-decoration: none;
-    color: var(--main-color);
-}
-header a:visited {
-    color: var(--main-color)
-}
-a {
-    text-decoration: none;
-    color: var(--link-color);
-}
-a:visited {
-    color: var(--visited-link-color);
-}
-*[component] {
-    width: var(--content-width);
-    margin: 0 auto;
-}
-.entries {
-    list-style: none;
-    padding-left: 0;
-}
-
-.tag-list {
-    list-style: none;
-    display: inline;
-    padding-left: 0;
-}
-.tag-list::before {
-    content: '[';
-}
-.tag-list::after {
-    content: ']';
-}
-.tag-list > li {
-    display: inline;
-}
-.tag-list > li:not(:last-child)::after {
-    content: ', ';
-}
-
-footer {
-    margin: 3rem auto 1rem auto;
-    text-align: center;
-}
-</style>
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
 <body>
@@ -101,19 +16,7 @@ footer {
     
     
     <div component="tag" id="c-tag">
-        <style>.entries > li {
-    margin-bottom: .5rem;
-}
-.entries > li::before {
-    content: '- ';
-}
-.entries > li > time::after {
-    content: ': ';
-}
-.entries a.entry {
-    margin-right: 1rem;
-}
-</style>
+        <link rel="stylesheet" href="/assets/css/home.css">
     <h2>events</h2><ul class="entries"><li><time>2019-10-30</time><a class="entry" href="/entries/2019-10-30/unlimited-mirai.html">Unlimited Mirai に参加しました</a><ul class="tag-list"><li><a href="/tags/events.html">events</a></li></ul></li><li><time>2018-10-21</time><a class="entry" href="/entries/2018-10-21/pixel-event.html">「Google Pixel まだ見ぬ世界展」に行ってきた</a><ul class="tag-list"><li><a href="/tags/Google.html">Google</a></li><li><a href="/tags/events.html">events</a></li></ul></li></ul></div>
 
     <footer>
