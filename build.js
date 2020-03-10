@@ -115,6 +115,15 @@ async function createFeed() {
     </entry>
     `
 
+    entries.sort((a, b) => {
+        const [aYear, aMonth, aDay] = a.date.split('-').map(it => Number.parseInt(it))
+        const [bYear, bMonth, bDay] = b.date.split('-').map(it => Number.parseInt(it))
+
+        if (aYear != bYear) return bYear - aYear
+        if (aMonth != bMonth) return bMonth - aMonth
+        return bDay - aDay
+    })
+
     for (const entry of entries) {
         const title = entry.title
         const date = entry.date
@@ -127,7 +136,8 @@ async function createFeed() {
         items.push(item(title, link, date, htmlContent))
     }
 
-    const date = new Date()
+    const latestEntryDate = entries[0].date.split('-')
+    const date = new Date(latestEntryDate[0], latestEntryDate[1] - 1, latestEntryDate[2])
     const updated =
         date.getFullYear() + '-' +
         (((date.getMonth() + 1) < 10) ? `0${date.getMonth() + 1}-` : `${date.getMonth() + 1}-`) +
