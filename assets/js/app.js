@@ -55,6 +55,11 @@ window.addEventListener('component-create', async e => {
             }
     }
 
+    document.getElementById('build-status').with(it => {
+        const date = new Date().toUTCString()
+        it.title = date
+    })
+
     console.log('rendering complete')
     const complete = document.createElement('meta').with(meta => {
         meta.name = 'x-render-complete'

@@ -83,3 +83,7 @@ footer {
     margin: 3rem auto 1rem auto;
     text-align: center;
 }
+
+footer small {
+    display: block;
+}
