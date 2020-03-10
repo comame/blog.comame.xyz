@@ -78,6 +78,35 @@ async function getEntry(entryObj) {
     return await res.text()
 }
 
+function generateOgp(description) {
+    const type = document.createElement('meta').with(it => {
+        it.setAttribute('property', 'og:type')
+        it.content = 'article'
+    })
+    const url = document.createElement('meta').with(it => {
+        it.setAttribute('property', 'og:url')
+        it.content = location.href
+    })
+    const title = document.createElement('meta').with(it => {
+        it.setAttribute('property', 'og:title')
+        it.content = document.title
+    })
+    const siteName = document.createElement('meta').with(it => {
+        it.setAttribute('property', 'og:site_name')
+        it.content = 'blog.comame.xyz'
+    })
+    const property = document.createElement('meta').with(it => {
+        it.setAttribute('property', 'og:description')
+        it.content = description
+    })
+
+    document.head.appendChild(type)
+    document.head.appendChild(url)
+    document.head.appendChild(title)
+    document.head.appendChild(siteName)
+    document.head.appendChild(property)
+}
+
 async function homePage() {
     const entries = await getEntries()
     entries.sort((a, b) => {
@@ -144,6 +173,8 @@ async function homePage() {
         router.current().element.appendChild(h2)
         router.current().element.appendChild(ul)
     }
+
+    generateOgp('blog.comame.xyz')
 }
 
 async function entryPage(date, entry) {
@@ -180,6 +211,13 @@ async function entryPage(date, entry) {
 
     document.querySelectorAll("#share a")[0].href = "https://twitter.com/intent/tweet?text="+ encodeURIComponent(document.getElementById("title").textContent) + "%0a&url=" + encodeURIComponent(location.origin + location.pathname) + "&related=comameito";
     document.querySelectorAll("#share a")[1].href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(location.origin + location.pathname);
+
+    const cloneContentNode = document.getElementById('content').cloneNode(true)
+    cloneContentNode.querySelectorAll('#content > h2, #content > h3, #content > h4, #content > h5, #content > h6').forEach(it => {
+        cloneContentNode.removeChild(it)
+    })
+    const description = cloneContentNode.textContent.replace(/\n/g, ' ').replace(/\s+/, ' ').slice(0, 137) + '...'
+    generateOgp(description)
 }
 
 async function tagPage(tag) {
