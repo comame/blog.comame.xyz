@@ -91,37 +91,38 @@ async function createSiteMap(paths) {
 async function createFeed() {
     const items = []
 
-    const base = (items) => `
+    const base = (updated, items) => `
     <?xml version='1.0'?>
-    <rss version='2.0'>
-    <channel>
-      <title>blog.comame.xyz</title>
-      <link>https://blog.comame.xyz</link>
-      <description>blog.comame.xyz</description>
-      ${items}
-    </channel>
-    </rss>
+    <feed xmlns='http://www.w3.org/2005/Atom'>
+      <id>blog.comame.xyz</id>
+      <link rel='alternate' href='https://blog.comame.xyz/' />
+      <link rel='self' href='https://blog.comame.xyz/feed.xml' />
+      <author><name>comame</name></author>
+      <updated>${updated}T00:00:00Z</updated>
+
+      ${items.join('')}
+    </feed>
     `
 
-    const item = (title, link, pubDate) => `
-    <item>
+    const item = (title, link, date, htmlContent) => `
+    <entry>
       <title>${title}</title>
-      <link>${link}</link>
-      <pubDate>${pubDate}</pubDate>
-      <guid isPermaLink='true'>${link}</guid>
-    </item>
+      <link rel='alternate' href=${link} />
+      <id>${link}</id>
+      <updated>${date}T00:00:00Z</updated>
+      <content type='html'>${htmlContent.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</content>
+    </entry>
     `
 
     for (const entry of entries) {
         const title = entry.title
-        const dateString = entry.date
-        const link = 'https://blog.comame.xyz/entries/' + dateString + '/' + entry.entry
-        const [ year, month, day ] = [ ...dateString.split('-').map(it => Number.parseInt(it)) ]
-        const pubDate = new Date(year, month - 1, day).toUTCString()
-        items.push(item(title, link, pubDate))
+        const date = entry.date
+        const link = 'https://blog.comame.xyz/entries/' + date + '/' + entry.entry
+        const htmlContent = await fs.readFile(__dirname + buildDir + '/entries/' + date + '/' + entry.entry + '.html')
+        items.push(item(title, link, date, htmlContent))
     }
 
-    const rss = base(items.join('')).replace(/^\s+|\s+$/g,"");
+    const rss = base(items).replace(/^\s+|\s+$/g,"");
 
     await fs.writeFile(__dirname + buildDir + '/feed.xml', rss)
 }
