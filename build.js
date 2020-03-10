@@ -94,7 +94,7 @@ async function createFeed() {
     const base = (updated, items) => `
     <?xml version='1.0'?>
     <feed xmlns='http://www.w3.org/2005/Atom'>
-      <id>https://blog.comame.xyz</id>
+      <id>https://blog.comame.xyz/</id>
       <title>blog.comame.xyz</title>
       <link rel='alternate' href='https://blog.comame.xyz/' />
       <link rel='self' href='https://blog.comame.xyz/feed.xml' />

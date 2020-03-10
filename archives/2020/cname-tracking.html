@@ -11,7 +11,7 @@
     Third-party Cookie に対する制限の回避策となり得ます。</p>
 <h2>セキュリティの懸念事項</h2>
 <h3>不適切な設定をされた Cookie が、トラッキングサービスに送信されてしまう</h3>
-<p><code>Set-Cookie</code>&nbsp;ヘッダに&nbsp;<code>Domain</code>&nbsp;ディレクティブを指定した場合、すべてのサブドメインに Cookie
+<p><code>Set-Cookie</code> ヘッダに <code>Domain</code> ディレクティブを指定した場合、すべてのサブドメインに Cookie
     が送信されてしまいます。もし認証に用いる機密情報などをこの方法で設定した場合、CNAME レコードとして設定したトラッキングサービスにも Cookie が送信されてしまいます。<a
         href="https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Set-Cookie#Directives">Set-Cookie - HTTP | MDN</a></p>
 <h2>プライバシーの懸念事項</h2>
