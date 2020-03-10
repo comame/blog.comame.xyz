@@ -145,10 +145,13 @@ async function crawl(path, page, crawledPathSet) {
     await page.$$eval('link[rel=stylesheet]', elements => {
         for (const element of elements) {
             const href = element.href
-            const css = await (await fetch(href)).text()
-            const styleEl = document.createElement('style')
-            styleEl.textContent = css
-            element.parentNode.replaceChild(styleEl, element)
+            fetch(href).then(res => {
+                return res.text()
+            }).then(css => {
+                const styleEl = document.createElement('style')
+                styleEl.textContent = css
+                element.parentNode.replaceChild(styleEl, element)
+            })
         }
     })
 
