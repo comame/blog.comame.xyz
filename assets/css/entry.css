@@ -1,0 +1,66 @@
+#metadata {
+    margin-bottom: 3rem;
+}
+#metadata h1 {
+    font-size: 1.5rem;
+}
+#content {
+    word-break: break-all;
+}
+#content p {
+    text-indent: .5rem;
+}
+#content h2 {
+    margin-top: 2rem;
+    font-size: 1.3rem;
+}
+#content code {
+    background: var(--code-color);
+    border-radius: var(--radius);
+    font-family: monospace;
+    padding: 2px 4px;
+    word-break: break-all;
+}
+#content pre {
+    padding: 0.5rem;
+    white-space: pre;
+    overflow-x: scroll;
+    border-radius: var(--radius);
+    background: var(--code-color);
+}
+#content pre > code {
+    padding: 0;
+}
+#content img {
+    display: block;
+    width: var(--image-width);
+    margin-right: auto;
+    margin-left: auto;
+}
+#content ul, #content ol {
+    counter-reset: ol;
+    list-style: none;
+    padding-left: 0;
+    text-indent: 1rem;
+}
+#content ul > li::before {
+    content: '- ';
+}
+#content ol > li::before {
+    counter-increment: ol;
+    content: counter(ol) '. ';
+}
+
+#share {
+    margin-top: 3rem;
+}
+#share > img {
+    margin-right: 2rem;
+}
+#share a {
+    margin-right: 1rem;
+}
+#share img {
+    height: 2rem;
+    width: 2rem;
+}

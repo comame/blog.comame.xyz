@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>blog.comame.xyz</title>
+
+    <link rel='stylesheet' href='/assets/css/style.css'>
 </head>
 
 <body>
@@ -12,7 +14,9 @@
         <a href='/'>blog.comame.xyz</a>
     </header>
 
-    <div component='home'></div>
+    <div component='home'>
+        <link rel='stylesheet' href='/assets/css/home.css'>
+    </div>
     <div component='entry'>
         <div id='metadata'>
             <h1 id='title'></h1>
@@ -32,17 +36,18 @@
                 <img alt="URL をコピー" src="https://comame.xyz/assets/img/icons/link.svg">
             </a>
             </div>
+        <link rel='stylesheet' href='/assets/css/entry.css.css'>
         <script async not-remove src='/assets/js/url-copy.js'></script>
     </div>
-    <div component='tag'></div>
+    <div component='tag'>
+        <link rel='stylesheet' href='/assets/css/home.css'>
+    </div>
     <div component='notfound'></div>
     <div component-place></div>
 
     <footer>
         <small>Copyright 2020 <a href='https://comame.xyz'>comame</a> | <a href='https://github.com/comame/blog.comame.xyz'>GitHub</a> | <a href="/feed.xml">Feed</a></small>
     </footer>
-
-    <link rel='stylesheet' href='/assets/css/style.css'>
 
     <script src='https://comame.xyz/assets/script/spa-router.js'></script>
     <script src='/assets/js/app.js'></script>

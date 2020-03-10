@@ -1,0 +1,12 @@
+.entries > li {
+    margin-bottom: .5rem;
+}
+.entries > li::before {
+    content: '- ';
+}
+.entries > li > time::after {
+    content: ': ';
+}
+.entries a.entry {
+    margin-right: 1rem;
+}
