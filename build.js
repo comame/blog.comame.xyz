@@ -124,7 +124,9 @@ async function createFeed() {
         items.push(item(title, link, date, htmlContent))
     }
 
-    const rss = base(items).replace(/^\s+|\s+$/g,"");
+    const date = new Date()
+    const updated = `${date.getFullYear}-${date.getMonth + 1}-${date.getDate()}T${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}Z}`
+    const rss = base(updated, items).replace(/^\s+|\s+$/g,"");
 
     await fs.writeFile(__dirname + buildDir + '/feed.xml', rss)
 }
