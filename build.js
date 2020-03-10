@@ -99,7 +99,7 @@ async function createFeed() {
       <link rel='alternate' href='https://blog.comame.xyz/' />
       <link rel='self' href='https://blog.comame.xyz/feed.xml' />
       <author><name>comame</name></author>
-      <updated>${updated}T00:00:00Z</updated>
+      <updated>${updated}</updated>
 
       ${items.join('')}
     </feed>
@@ -128,7 +128,7 @@ async function createFeed() {
     }
 
     const date = new Date()
-    const updated = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}T${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}Z}`
+    const updated = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}T${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}Z`
     const rss = base(updated, items).replace(/^\s+|\s+$/g,"");
 
     await fs.writeFile(__dirname + buildDir + '/feed.xml', rss)
