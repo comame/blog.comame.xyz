@@ -142,6 +142,16 @@ async function crawl(path, page, crawledPathSet) {
         element.parentNode.removeChild(element)
     })
 
+    await page.$$eval('link[rel=stylesheet]', elements => {
+        for (const element of elements) {
+            const href = element.href
+            const css = await (await fetch(href)).text()
+            const styleEl = document.createElement('style')
+            styleEl.textContent = css
+            element.parentNode.replaceChild(styleEl, element)
+        }
+    })
+
     await page.$$eval('script:not([not-remove])', elements => {
         for (const element of elements) {
             element.parentNode.removeChild(element)
