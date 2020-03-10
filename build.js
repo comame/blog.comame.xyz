@@ -157,10 +157,10 @@ async function crawl(path, page, crawledPathSet) {
         element.parentNode.removeChild(element)
     })
 
-    await page.$$eval('link[rel=stylesheet]', async elements => {
+    await page.$$eval('link[rel=stylesheet]', async (elements, hostname) => {
         for (const element of elements) {
             const href = element.href
-            if (!href.startsWith(BLOG_HOST)) continue
+            if (!href.startsWith(hostname)) continue
             const res = await fetch(href)
             const css = await res.text()
 
@@ -168,7 +168,7 @@ async function crawl(path, page, crawledPathSet) {
             styleEl.textContent = css
             element.parentNode.replaceChild(styleEl, element)
         }
-    })
+    }, BLOG_HOST)
 
     await page.$$eval('script:not([not-remove])', elements => {
         for (const element of elements) {
