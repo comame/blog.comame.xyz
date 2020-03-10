@@ -94,7 +94,8 @@ async function createFeed() {
     const base = (updated, items) => `
     <?xml version='1.0'?>
     <feed xmlns='http://www.w3.org/2005/Atom'>
-      <id>blog.comame.xyz</id>
+      <id>https://blog.comame.xyz</id>
+      <title>blog.comame.xyz</title>
       <link rel='alternate' href='https://blog.comame.xyz/' />
       <link rel='self' href='https://blog.comame.xyz/feed.xml' />
       <author><name>comame</name></author>
@@ -107,7 +108,7 @@ async function createFeed() {
     const item = (title, link, date, htmlContent) => `
     <entry>
       <title>${title}</title>
-      <link rel='alternate' href=${link} />
+      <link rel='alternate' href='${link}' />
       <id>${link}</id>
       <updated>${date}T00:00:00Z</updated>
       <content type='html'>${htmlContent.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</content>
@@ -127,7 +128,7 @@ async function createFeed() {
     }
 
     const date = new Date()
-    const updated = `${date.getFullYear}-${date.getMonth + 1}-${date.getDate()}T${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}Z}`
+    const updated = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}T${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}Z}`
     const rss = base(updated, items).replace(/^\s+|\s+$/g,"");
 
     await fs.writeFile(__dirname + buildDir + '/feed.xml', rss)
