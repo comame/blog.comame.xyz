@@ -3,22 +3,16 @@ name: Build
 on:
   push:
     branches: [ master ]
-    paths:
-      - .github/**
-      - archives/**
-      - assets/**
-      - build/**
-      - build.js
-      - index.html
+    paths-ignore:
+      - docs/**
+      - .gitignore
+      - README.md
   pull_request:
     branches: [ master ]
-    paths:
-      - .github/**
-      - archives/**
-      - assets/**
-      - build/**
-      - build.js
-      - index.html
+    paths-ignore:
+      - docs/**
+      - .gitignore
+      - README.md
 
 jobs:
   build:
