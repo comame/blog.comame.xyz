@@ -128,7 +128,14 @@ async function createFeed() {
     }
 
     const date = new Date()
-    const updated = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}T${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}Z`
+    const updated =
+        date.getFullYear() + '-' +
+        (((date.getMonth() + 1) < 10) ? `0${date.getMonth() + 1}-` : `${date.getMonth() + 1}-`) +
+        ((date.getDate() < 10) ? `0${date.getDate()}T` : `${date.getDate()}T`) +
+        ((date.getHours() < 10) ? `0${date.getHours()}:` : `${date.getHours()}:`) +
+        ((date.getMinutes() < 10) ? `0${date.getMinutes()}:` : `${date.getMinutes()}:`) +
+        ((date.getSeconds() < 10) ? `0${date.getSeconds()}Z` : `${date.getSeconds()}Z`)
+
     const rss = base(updated, items).replace(/^\s+|\s+$/g,"");
 
     await fs.writeFile(__dirname + buildDir + '/feed.xml', rss)
