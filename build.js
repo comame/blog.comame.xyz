@@ -157,16 +157,16 @@ async function crawl(path, page, crawledPathSet) {
         element.parentNode.removeChild(element)
     })
 
-    await page.$$eval('link[rel=stylesheet]', elements => {
+    await page.$$eval('link[rel=stylesheet]', async elements => {
         for (const element of elements) {
             const href = element.href
-            fetch(href).then(res => {
-                return res.text()
-            }).then(css => {
-                const styleEl = document.createElement('style')
-                styleEl.textContent = css
-                element.parentNode.replaceChild(styleEl, element)
-            })
+            if (!href.startsWith(BLOG_HOST)) continue
+            const res = await fetch(href)
+            const css = await res.text()
+
+            const styleEl = document.createElement('style')
+            styleEl.textContent = css
+            element.parentNode.replaceChild(styleEl, element)
         }
     })
 
