@@ -59,14 +59,6 @@ setTimeout(() => {
 }, 3 * 60 * 1000)
 
 
-async function wait(ms) {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve()
-        }, ms)
-    })
-}
-
 async function copyAssets() {
     const copy = async (dirname, files) => {
         for (const file of files) {
