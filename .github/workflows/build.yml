@@ -38,7 +38,7 @@ jobs:
         echo "Starting build"
         docker run \
         -v ${{ github.workspace }}:/files comameito/puppeteer-nginx sh -c \
-        "service nginx start && chmod +x /files/build.js && node /files/build.js"
+        "service nginx start && npm install && node /files/build.js"
 
         sudo adduser comame --disabled-password --gecos ""  -q
         sudo chown -R comame:comame docs
