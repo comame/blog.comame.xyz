@@ -2,22 +2,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows | comame.xyz</title>
-</head>
-
-<body>
-    <header>
-        <a href="/">blog.comame.xyz</a>
-    </header>
-
-    
-    
-    
-    
-    <div component="tag" id="c-tag"><h2>Windows</h2><ul class="entries"><li><time>2020-03-08</time><a class="entry" href="/entries/2020-03-08/docker-startup-wsl2.html">WSL2 で Docker を自動起動する</a><ul class="tag-list"><li><a href="/tags/Windows.html">Windows</a></li><li><a href="/tags/note.html">note</a></li></ul></li><li><time>2020-02-19</time><a class="entry" href="/entries/2020-02-19/windows-ssh-error.html">Windows 10 の ssh で Permission refusedが出る問題</a><ul class="tag-list"><li><a href="/tags/troubleshoot.html">troubleshoot</a></li><li><a href="/tags/Windows.html">Windows</a></li></ul></li><li><time>2019-01-25</time><a class="entry" href="/entries/2019-01-25/windows10-install-media.html">Windows 10 の Media Creation Tool で USB インストールメディアの作成に失敗する</a><ul class="tag-list"><li><a href="/tags/troubleshoot.html">troubleshoot</a></li><li><a href="/tags/Windows.html">Windows</a></li></ul></li></ul></div>
-
-    <footer>
-        <small>Copyright 2020 <a href="https://comame.xyz">comame</a> | <a href="https://github.com/comame/blog.comame.xyz">GitHub</a> | <a href="/feed.xml">Feed</a></small>
-    </footer>
 
     <style>:root {
     font-size: 16px;
@@ -81,18 +65,7 @@ a:visited {
     list-style: none;
     padding-left: 0;
 }
-.entries > li {
-    margin-bottom: .5rem;
-}
-.entries > li::before {
-    content: '- ';
-}
-.entries > li > time::after {
-    content: ': ';
-}
-.entries a.entry {
-    margin-right: 1rem;
-}
+
 .tag-list {
     list-style: none;
     display: inline;
@@ -110,78 +83,42 @@ a:visited {
 .tag-list > li:not(:last-child)::after {
     content: ', ';
 }
-#metadata {
-    margin-bottom: 3rem;
-}
-#metadata h1 {
-    font-size: 1.5rem;
-}
-#content {
-    word-break: break-all;
-}
-#content p {
-    text-indent: .5rem;
-}
-#content h2 {
-    margin-top: 2rem;
-    font-size: 1.3rem;
-}
-#content code {
-    background: var(--code-color);
-    border-radius: var(--radius);
-    font-family: monospace;
-    padding: 2px 4px;
-    word-break: break-all;
-}
-#content pre {
-    padding: 0.5rem;
-    white-space: pre;
-    overflow-x: scroll;
-    border-radius: var(--radius);
-    background: var(--code-color);
-}
-#content pre > code {
-    padding: 0;
-}
-#content img {
-    display: block;
-    width: var(--image-width);
-    margin-right: auto;
-    margin-left: auto;
-}
-#content ul, #content ol {
-    counter-reset: ol;
-    list-style: none;
-    padding-left: 0;
-    text-indent: 1rem;
-}
-#content ul > li::before {
-    content: '- ';
-}
-#content ol > li::before {
-    counter-increment: ol;
-    content: counter(ol) '. ';
-}
-
-#share {
-    margin-top: 3rem;
-}
-#share > img {
-    margin-right: 2rem;
-}
-#share a {
-    margin-right: 1rem;
-}
-#share img {
-    height: 2rem;
-    width: 2rem;
-}
 
 footer {
     margin: 3rem auto 1rem auto;
     text-align: center;
 }
 </style>
+</head>
+
+<body>
+    <header>
+        <a href="/">blog.comame.xyz</a>
+    </header>
+
+    
+    
+    
+    
+    <div component="tag" id="c-tag">
+        <style>.entries > li {
+    margin-bottom: .5rem;
+}
+.entries > li::before {
+    content: '- ';
+}
+.entries > li > time::after {
+    content: ': ';
+}
+.entries a.entry {
+    margin-right: 1rem;
+}
+</style>
+    <h2>Windows</h2><ul class="entries"><li><time>2020-03-08</time><a class="entry" href="/entries/2020-03-08/docker-startup-wsl2.html">WSL2 で Docker を自動起動する</a><ul class="tag-list"><li><a href="/tags/Windows.html">Windows</a></li><li><a href="/tags/note.html">note</a></li></ul></li><li><time>2020-02-19</time><a class="entry" href="/entries/2020-02-19/windows-ssh-error.html">Windows 10 の ssh で Permission refusedが出る問題</a><ul class="tag-list"><li><a href="/tags/troubleshoot.html">troubleshoot</a></li><li><a href="/tags/Windows.html">Windows</a></li></ul></li><li><time>2019-01-25</time><a class="entry" href="/entries/2019-01-25/windows10-install-media.html">Windows 10 の Media Creation Tool で USB インストールメディアの作成に失敗する</a><ul class="tag-list"><li><a href="/tags/troubleshoot.html">troubleshoot</a></li><li><a href="/tags/Windows.html">Windows</a></li></ul></li></ul></div>
+
+    <footer>
+        <small>Copyright 2020 <a href="https://comame.xyz">comame</a> | <a href="https://github.com/comame/blog.comame.xyz">GitHub</a> | <a href="/feed.xml">Feed</a></small>
+    </footer>
 
     
     

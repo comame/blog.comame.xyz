@@ -2,71 +2,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USB セキュリティキーを買った | blog.comame.xyz</title>
-</head>
-
-<body>
-    <header>
-        <a href="/">blog.comame.xyz</a>
-    </header>
-
-    
-    
-    
-    
-    <div component="entry" id="c-entry">
-        <div id="metadata">
-            <h1 id="title">USB セキュリティキーを買った</h1>
-            <time id="time">2019-01-15</time>
-            <ul id="tags" class="tag-list"><li><a href="/tags/security.html">security</a></li></ul>
-        </div>
-        <div id="content"><img src="https://4.bp.blogspot.com/-K7VZSb9bU4I/XD2o-Aew2TI/AAAAAAABDRo/aOmdBYpSjPcWL7bdHBt-ON64j1rsMxN_QCKgBGAs/s1600/IMG_20190115_181149.jpg">
-
-<p>2 段階認証を楽にしたいと思って飛天の e-Pass FIDO-NFC を購入しました。<br>
-Google Authenticator などのコード表示アプリからコードをコピペしなくても、キーを USB ポートに入れるだけでログインできるようになります。フィッシング攻撃に対しても非常に有効です。</p>
-
-<h2>サービスごとの対応状況</h2>
-<p>早速、各 Web サービスごとに対応状況を確認してみました。<br>
-PC: ASUS Chromebook C100PA (Chrome OS 72.0.3626.49 Beta)<br>
-Android: Google Pixel 3 (Android 9, Chrome for Android 71.0.3578.99)</p>
-
-<h3>Google</h3>
-<p>USB, NFC ともに対応済みでした。Android 端末からでも NFC を利用して認証できます。</p>
-
-<h3>Twitter</h3>
-<p>USB のみ対応済みでした。PC からであれば USB を使って認証できますが、Android からは次のように表示されてしまいます。</p>
-<img src="https://2.bp.blogspot.com/-WYMjEddpHBg/XD2mzITN3II/AAAAAAABDRU/ZIuQFcbXDj4jCvT_0NkE7zdaW7sfFPcBgCKgBGAs/s1600/Screenshot_20190115-181555%257E2.png">
-
-<h3>Microsoft</h3>
-<p>設定項目を見つけられませんでした。FIDO 2 でのログインに対応したというニュースを見かけたので、できると思ったのですが。</p>
-
-<h3>Amazon</h3>
-<p>これまた設定項目が見つかりませんでした。「Amazon セキュリティキー」で調べると商品ページしか出てこないんですね...</p>
-
-<h3>GitHub</h3>
-<p>01/16 追記<br>
-GitHub を調べ忘れていました。GitHub でも USB, NFC ともに使用可能でした。</p>
-
-<h2></h2>
-<p>(少なくとも僕の身近なところでは) 思ったよりきちんと使えるサービスが少ないということが分かりました。WebAuthn 流行ってほしいです。</p>
-</div>
-        <div id="share">
-            <img alt="共有" src="https://comame.xyz/assets/img/icons/share.svg">
-            <a rel="noopener" target="_blank" title="Twitter で共有" href="https://twitter.com/intent/tweet?text=USB%20%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%82%AD%E3%83%BC%E3%82%92%E8%B2%B7%E3%81%A3%E3%81%9F%0a&amp;url=http%3A%2F%2Flocalhost%2Fentries%2F2019-01-15%2Fusb-security-key.html&amp;related=comameito">
-                <img alt="Twitter で共有" src="https://comame.xyz/assets/img/icons/twitter_logo.svg">
-            </a>
-            <a rel="noopener" target="_blank" title="Facebook で共有" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%2Fentries%2F2019-01-15%2Fusb-security-key.html">
-                <img alt="Facebook で共有" src="https://comame.xyz/assets/img/icons/facebook_logo.svg">
-            </a>
-            <a title="URL をコピー">
-                <img alt="URL をコピー" src="https://comame.xyz/assets/img/icons/link.svg">
-            </a>
-            </div>
-        <script async="" not-remove="" src="/assets/js/url-copy.js"></script>
-    </div>
-
-    <footer>
-        <small>Copyright 2020 <a href="https://comame.xyz">comame</a> | <a href="https://github.com/comame/blog.comame.xyz">GitHub</a> | <a href="/feed.xml">Feed</a></small>
-    </footer>
 
     <style>:root {
     font-size: 16px;
@@ -130,18 +65,7 @@ a:visited {
     list-style: none;
     padding-left: 0;
 }
-.entries > li {
-    margin-bottom: .5rem;
-}
-.entries > li::before {
-    content: '- ';
-}
-.entries > li > time::after {
-    content: ': ';
-}
-.entries a.entry {
-    margin-right: 1rem;
-}
+
 .tag-list {
     list-style: none;
     display: inline;
@@ -159,78 +83,134 @@ a:visited {
 .tag-list > li:not(:last-child)::after {
     content: ', ';
 }
-#metadata {
-    margin-bottom: 3rem;
-}
-#metadata h1 {
-    font-size: 1.5rem;
-}
-#content {
-    word-break: break-all;
-}
-#content p {
-    text-indent: .5rem;
-}
-#content h2 {
-    margin-top: 2rem;
-    font-size: 1.3rem;
-}
-#content code {
-    background: var(--code-color);
-    border-radius: var(--radius);
-    font-family: monospace;
-    padding: 2px 4px;
-    word-break: break-all;
-}
-#content pre {
-    padding: 0.5rem;
-    white-space: pre;
-    overflow-x: scroll;
-    border-radius: var(--radius);
-    background: var(--code-color);
-}
-#content pre > code {
-    padding: 0;
-}
-#content img {
-    display: block;
-    width: var(--image-width);
-    margin-right: auto;
-    margin-left: auto;
-}
-#content ul, #content ol {
-    counter-reset: ol;
-    list-style: none;
-    padding-left: 0;
-    text-indent: 1rem;
-}
-#content ul > li::before {
-    content: '- ';
-}
-#content ol > li::before {
-    counter-increment: ol;
-    content: counter(ol) '. ';
-}
-
-#share {
-    margin-top: 3rem;
-}
-#share > img {
-    margin-right: 2rem;
-}
-#share a {
-    margin-right: 1rem;
-}
-#share img {
-    height: 2rem;
-    width: 2rem;
-}
 
 footer {
     margin: 3rem auto 1rem auto;
     text-align: center;
 }
 </style>
+</head>
+
+<body>
+    <header>
+        <a href="/">blog.comame.xyz</a>
+    </header>
+
+    
+    
+    
+    
+    <div component="entry" id="c-entry">
+        <div id="metadata">
+            <h1 id="title">USB セキュリティキーを買った</h1>
+            <time id="time">2019-01-15</time>
+            <ul id="tags" class="tag-list"><li><a href="/tags/security.html">security</a></li></ul>
+        </div>
+        <div id="content"><img src="https://4.bp.blogspot.com/-K7VZSb9bU4I/XD2o-Aew2TI/AAAAAAABDRo/aOmdBYpSjPcWL7bdHBt-ON64j1rsMxN_QCKgBGAs/s1600/IMG_20190115_181149.jpg">
+
+<p>2 段階認証を楽にしたいと思って飛天の e-Pass FIDO-NFC を購入しました。<br>
+Google Authenticator などのコード表示アプリからコードをコピペしなくても、キーを USB ポートに入れるだけでログインできるようになります。フィッシング攻撃に対しても非常に有効です。</p>
+
+<h2>サービスごとの対応状況</h2>
+<p>早速、各 Web サービスごとに対応状況を確認してみました。<br>
+PC: ASUS Chromebook C100PA (Chrome OS 72.0.3626.49 Beta)<br>
+Android: Google Pixel 3 (Android 9, Chrome for Android 71.0.3578.99)</p>
+
+<h3>Google</h3>
+<p>USB, NFC ともに対応済みでした。Android 端末からでも NFC を利用して認証できます。</p>
+
+<h3>Twitter</h3>
+<p>USB のみ対応済みでした。PC からであれば USB を使って認証できますが、Android からは次のように表示されてしまいます。</p>
+<img src="https://2.bp.blogspot.com/-WYMjEddpHBg/XD2mzITN3II/AAAAAAABDRU/ZIuQFcbXDj4jCvT_0NkE7zdaW7sfFPcBgCKgBGAs/s1600/Screenshot_20190115-181555%257E2.png">
+
+<h3>Microsoft</h3>
+<p>設定項目を見つけられませんでした。FIDO 2 でのログインに対応したというニュースを見かけたので、できると思ったのですが。</p>
+
+<h3>Amazon</h3>
+<p>これまた設定項目が見つかりませんでした。「Amazon セキュリティキー」で調べると商品ページしか出てこないんですね...</p>
+
+<h3>GitHub</h3>
+<p>01/16 追記<br>
+GitHub を調べ忘れていました。GitHub でも USB, NFC ともに使用可能でした。</p>
+
+<h2></h2>
+<p>(少なくとも僕の身近なところでは) 思ったよりきちんと使えるサービスが少ないということが分かりました。WebAuthn 流行ってほしいです。</p>
+</div>
+        <div id="share">
+            <img alt="共有" src="https://comame.xyz/assets/img/icons/share.svg">
+            <a rel="noopener" target="_blank" title="Twitter で共有" href="https://twitter.com/intent/tweet?text=USB%20%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E3%82%AD%E3%83%BC%E3%82%92%E8%B2%B7%E3%81%A3%E3%81%9F%0a&amp;url=http%3A%2F%2Flocalhost%2Fentries%2F2019-01-15%2Fusb-security-key.html&amp;related=comameito">
+                <img alt="Twitter で共有" src="https://comame.xyz/assets/img/icons/twitter_logo.svg">
+            </a>
+            <a rel="noopener" target="_blank" title="Facebook で共有" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%2Fentries%2F2019-01-15%2Fusb-security-key.html">
+                <img alt="Facebook で共有" src="https://comame.xyz/assets/img/icons/facebook_logo.svg">
+            </a>
+            <a title="URL をコピー">
+                <img alt="URL をコピー" src="https://comame.xyz/assets/img/icons/link.svg">
+            </a>
+            </div>
+        <style><!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog.comame.xyz</title>
+
+    <link rel='stylesheet' href='/assets/css/style.css'>
+</head>
+
+<body>
+    <header>
+        <a href='/'>blog.comame.xyz</a>
+    </header>
+
+    <div component='home'>
+        <link rel='stylesheet' href='/assets/css/home.css'>
+    </div>
+    <div component='entry'>
+        <div id='metadata'>
+            <h1 id='title'></h1>
+            <time id='time'></time>
+            <ul id='tags' class='tag-list'></ul>
+        </div>
+        <div id='content'></div>
+        <div id="share">
+            <img alt="共有" src="https://comame.xyz/assets/img/icons/share.svg">
+            <a rel="noopener" target="_blank" title="Twitter で共有">
+                <img alt="Twitter で共有" src="https://comame.xyz/assets/img/icons/twitter_logo.svg">
+            </a>
+            <a rel="noopener" target="_blank" title="Facebook で共有">
+                <img alt="Facebook で共有" src="https://comame.xyz/assets/img/icons/facebook_logo.svg">
+            </a>
+            <a title="URL をコピー">
+                <img alt="URL をコピー" src="https://comame.xyz/assets/img/icons/link.svg">
+            </a>
+            </div>
+        <link rel='stylesheet' href='/assets/css/entry.css.css'>
+        <script async not-remove src='/assets/js/url-copy.js'></script>
+    </div>
+    <div component='tag'>
+        <link rel='stylesheet' href='/assets/css/home.css'>
+    </div>
+    <div component='notfound'></div>
+    <div component-place></div>
+
+    <footer>
+        <small>Copyright 2020 <a href='https://comame.xyz'>comame</a> | <a href='https://github.com/comame/blog.comame.xyz'>GitHub</a> | <a href="/feed.xml">Feed</a></small>
+    </footer>
+
+    <script src='https://comame.xyz/assets/script/spa-router.js'></script>
+    <script src='/assets/js/app.js'></script>
+</body>
+
+</html>
+</style>
+        <script async="" not-remove="" src="/assets/js/url-copy.js"></script>
+    </div>
+
+    <footer>
+        <small>Copyright 2020 <a href="https://comame.xyz">comame</a> | <a href="https://github.com/comame/blog.comame.xyz">GitHub</a> | <a href="/feed.xml">Feed</a></small>
+    </footer>
 
     
     

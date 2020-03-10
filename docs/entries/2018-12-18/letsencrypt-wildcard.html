@@ -2,6 +2,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Let's Encrypt でワイルドカード証明書を発行してみたお話 | blog.comame.xyz</title>
+
+    <style>:root {
+    font-size: 16px;
+    --main-color: black;
+    --link-color: #00e;
+    --visited-link-color: #a52a2a;
+    --code-color: #efefef;
+    --radius: 5px;
+}
+
+/* Desktop */
+@media screen and (min-width: 1000px) {
+    :root {
+        --content-width: 80vw;
+        --image-width: 50vw;
+    }
+}
+
+/* Mobile / Tablet */
+@media screen and (max-width: 1000px) {
+    :root {
+        --content-width: 90vw;
+        --image-width: 90vw;
+    }
+}
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+}
+header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 3rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0 calc((100vw - var(--content-width)) / 2);
+}
+header a {
+    display: inline-block;
+    line-height: 3rem;
+    text-decoration: none;
+    color: var(--main-color);
+}
+header a:visited {
+    color: var(--main-color)
+}
+a {
+    text-decoration: none;
+    color: var(--link-color);
+}
+a:visited {
+    color: var(--visited-link-color);
+}
+*[component] {
+    width: var(--content-width);
+    margin: 0 auto;
+}
+.entries {
+    list-style: none;
+    padding-left: 0;
+}
+
+.tag-list {
+    list-style: none;
+    display: inline;
+    padding-left: 0;
+}
+.tag-list::before {
+    content: '[';
+}
+.tag-list::after {
+    content: ']';
+}
+.tag-list > li {
+    display: inline;
+}
+.tag-list > li:not(:last-child)::after {
+    content: ', ';
+}
+
+footer {
+    margin: 3rem auto 1rem auto;
+    text-align: center;
+}
+</style>
 </head>
 
 <body>
@@ -85,176 +172,69 @@ Press Enter to Continue
                 <img alt="URL をコピー" src="https://comame.xyz/assets/img/icons/link.svg">
             </a>
             </div>
+        <style><!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog.comame.xyz</title>
+
+    <link rel='stylesheet' href='/assets/css/style.css'>
+</head>
+
+<body>
+    <header>
+        <a href='/'>blog.comame.xyz</a>
+    </header>
+
+    <div component='home'>
+        <link rel='stylesheet' href='/assets/css/home.css'>
+    </div>
+    <div component='entry'>
+        <div id='metadata'>
+            <h1 id='title'></h1>
+            <time id='time'></time>
+            <ul id='tags' class='tag-list'></ul>
+        </div>
+        <div id='content'></div>
+        <div id="share">
+            <img alt="共有" src="https://comame.xyz/assets/img/icons/share.svg">
+            <a rel="noopener" target="_blank" title="Twitter で共有">
+                <img alt="Twitter で共有" src="https://comame.xyz/assets/img/icons/twitter_logo.svg">
+            </a>
+            <a rel="noopener" target="_blank" title="Facebook で共有">
+                <img alt="Facebook で共有" src="https://comame.xyz/assets/img/icons/facebook_logo.svg">
+            </a>
+            <a title="URL をコピー">
+                <img alt="URL をコピー" src="https://comame.xyz/assets/img/icons/link.svg">
+            </a>
+            </div>
+        <link rel='stylesheet' href='/assets/css/entry.css.css'>
+        <script async not-remove src='/assets/js/url-copy.js'></script>
+    </div>
+    <div component='tag'>
+        <link rel='stylesheet' href='/assets/css/home.css'>
+    </div>
+    <div component='notfound'></div>
+    <div component-place></div>
+
+    <footer>
+        <small>Copyright 2020 <a href='https://comame.xyz'>comame</a> | <a href='https://github.com/comame/blog.comame.xyz'>GitHub</a> | <a href="/feed.xml">Feed</a></small>
+    </footer>
+
+    <script src='https://comame.xyz/assets/script/spa-router.js'></script>
+    <script src='/assets/js/app.js'></script>
+</body>
+
+</html>
+</style>
         <script async="" not-remove="" src="/assets/js/url-copy.js"></script>
     </div>
 
     <footer>
         <small>Copyright 2020 <a href="https://comame.xyz">comame</a> | <a href="https://github.com/comame/blog.comame.xyz">GitHub</a> | <a href="/feed.xml">Feed</a></small>
     </footer>
-
-    <style>:root {
-    font-size: 16px;
-    --main-color: black;
-    --link-color: #00e;
-    --visited-link-color: #a52a2a;
-    --code-color: #efefef;
-    --radius: 5px;
-}
-
-/* Desktop */
-@media screen and (min-width: 1000px) {
-    :root {
-        --content-width: 80vw;
-        --image-width: 50vw;
-    }
-}
-
-/* Mobile / Tablet */
-@media screen and (max-width: 1000px) {
-    :root {
-        --content-width: 90vw;
-        --image-width: 90vw;
-    }
-}
-
-body {
-    box-sizing: border-box;
-    margin: 0;
-}
-header {
-    position: sticky;
-    top: 0;
-    left: 0;
-    height: 3rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    background: rgba(255, 255, 255, 0.95);
-    padding: 0 calc((100vw - var(--content-width)) / 2);
-}
-header a {
-    display: inline-block;
-    line-height: 3rem;
-    text-decoration: none;
-    color: var(--main-color);
-}
-header a:visited {
-    color: var(--main-color)
-}
-a {
-    text-decoration: none;
-    color: var(--link-color);
-}
-a:visited {
-    color: var(--visited-link-color);
-}
-*[component] {
-    width: var(--content-width);
-    margin: 0 auto;
-}
-.entries {
-    list-style: none;
-    padding-left: 0;
-}
-.entries > li {
-    margin-bottom: .5rem;
-}
-.entries > li::before {
-    content: '- ';
-}
-.entries > li > time::after {
-    content: ': ';
-}
-.entries a.entry {
-    margin-right: 1rem;
-}
-.tag-list {
-    list-style: none;
-    display: inline;
-    padding-left: 0;
-}
-.tag-list::before {
-    content: '[';
-}
-.tag-list::after {
-    content: ']';
-}
-.tag-list > li {
-    display: inline;
-}
-.tag-list > li:not(:last-child)::after {
-    content: ', ';
-}
-#metadata {
-    margin-bottom: 3rem;
-}
-#metadata h1 {
-    font-size: 1.5rem;
-}
-#content {
-    word-break: break-all;
-}
-#content p {
-    text-indent: .5rem;
-}
-#content h2 {
-    margin-top: 2rem;
-    font-size: 1.3rem;
-}
-#content code {
-    background: var(--code-color);
-    border-radius: var(--radius);
-    font-family: monospace;
-    padding: 2px 4px;
-    word-break: break-all;
-}
-#content pre {
-    padding: 0.5rem;
-    white-space: pre;
-    overflow-x: scroll;
-    border-radius: var(--radius);
-    background: var(--code-color);
-}
-#content pre > code {
-    padding: 0;
-}
-#content img {
-    display: block;
-    width: var(--image-width);
-    margin-right: auto;
-    margin-left: auto;
-}
-#content ul, #content ol {
-    counter-reset: ol;
-    list-style: none;
-    padding-left: 0;
-    text-indent: 1rem;
-}
-#content ul > li::before {
-    content: '- ';
-}
-#content ol > li::before {
-    counter-increment: ol;
-    content: counter(ol) '. ';
-}
-
-#share {
-    margin-top: 3rem;
-}
-#share > img {
-    margin-right: 2rem;
-}
-#share a {
-    margin-right: 1rem;
-}
-#share img {
-    height: 2rem;
-    width: 2rem;
-}
-
-footer {
-    margin: 3rem auto 1rem auto;
-    text-align: center;
-}
-</style>
 
     
     
