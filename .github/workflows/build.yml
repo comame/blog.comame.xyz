@@ -7,6 +7,7 @@ on:
       - .github/**
       - archives/**
       - assets/**
+      - build/**
       - build.js
       - index.html
   pull_request:
@@ -15,6 +16,7 @@ on:
       - .github/**
       - archives/**
       - assets/**
+      - build/**
       - build.js
       - index.html
 
