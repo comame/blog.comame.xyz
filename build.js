@@ -145,35 +145,24 @@ async function crawl(path, page, crawledPathSet) {
 
     await page.goto(BLOG_HOST + '/' + path)
 
-    let waiting = 0
-    while (!await page.$('meta[name=x-render-complete]')) {
-        if (waiting > 100) {
-            console.error('Page rendering was not finished!')
-            process.exit(1)
-        }
-        waiting += 1
-        console.log('  waiting 1ms for rendering')
-        await wait(1)
-    }
+    await page.waitForSelector('meta[name=x-render-complete]')
+    await page.$eval('meta[name=x-render-complete]', element => {
+        element.parentNode.removeChild(element)
+    })
 
     await page.$$eval('script:not([not-remove])', elements => {
         for (const element of elements) {
             element.parentNode.removeChild(element)
         }
     })
-    await page.$eval('meta[name=x-render-complete]', element => {
-        element.parentNode.removeChild(element)
-    })
 
     const notfound = await page.$('#c-notfound')
-
-    const content = await page.content()
     if (notfound) {
         console.log(`  not found`)
         crawledPathSet.delete(path)
         return
     } else {
-        await savePage(path, content)
+        await savePage(path, await page.content())
     }
 
     const crawlLinks = await page.$$eval('a', (elements, host) => {
@@ -196,10 +185,6 @@ async function savePage(path, content) {
     if (!dirStat) {
         await fs.mkdir(__dirname + buildDir + '/'+ dirName, { recursive: true })
     }
-
-    const fileStat = await fs.stat(__dirname + buildDir + '/' + dirName + '/' + fileName).catch(err => {
-        // do nothing
-    })
 
     await fs.writeFile(__dirname + buildDir + '/' + dirName + '/' + fileName, content)
     console.log(`  Page saved: /${path}`)
