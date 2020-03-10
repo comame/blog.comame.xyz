@@ -209,8 +209,8 @@ async function entryPage(date, entry) {
     }
     document.getElementById('content').innerHTML = text
 
-    document.querySelectorAll("#share a")[0].href = "https://twitter.com/intent/tweet?text="+ encodeURIComponent(document.getElementById("title").textContent) + "%0a&url=" + encodeURIComponent(location.origin + location.pathname) + "&related=comameito";
-    document.querySelectorAll("#share a")[1].href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(location.origin + location.pathname);
+    document.querySelectorAll("#share a")[0].href = "https://twitter.com/intent/tweet?text="+ encodeURIComponent(document.getElementById("title").textContent) + "%0a&url=" + encodeURIComponent('https://blog.comame.xyz' + location.pathname) + "&related=comameito";
+    document.querySelectorAll("#share a")[1].href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent('https://blog.comame.xyz' + location.pathname);
 
     const cloneContentNode = document.getElementById('content').cloneNode(true)
     cloneContentNode.querySelectorAll('#content > h2, #content > h3, #content > h4, #content > h5, #content > h6').forEach(it => {
