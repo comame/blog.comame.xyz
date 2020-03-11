@@ -44,7 +44,7 @@
 - [build.js](https://github.com/comame/blog.comame.xyz/blob/master/build.js)
 - [build/comameito_puppeteer-nginx](https://github.com/comame/blog.comame.xyz/blob/master/build/comameito_puppeteer-nginx)
 
-基本的には `main()` を追っていけばよい。Puppeteer が確実に動くようにするため、[Puppeteer に必要な依存関係](https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md), Nginx, Node.jsをインストールした Docker コンテナを事前に用意した。
+基本的には `main()` を追っていけばよい。Puppeteer が確実に動くようにするため、[Puppeteer に必要な依存関係](https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md#chrome-headless-doesnt-launch-on-unix), Nginx, Node.jsをインストールした Docker コンテナを事前に用意した。
 
 ### `buildMarkdown()`
 
