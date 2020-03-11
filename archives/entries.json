@@ -153,4 +153,9 @@
     "title": "WSL2 で Docker を自動起動する",
     "date": "2020-03-08",
     "tags": [ "Windows", "note" ]
+}, {
+    "entry": "blog-tech",
+    "title": "ブログシステムを新しくした (技術面)",
+    "date": "2020-03-11",
+    "tags": [ "Blog" ]
 }]
