@@ -48,6 +48,19 @@ function handleError(err) {
 }
 
 async function buildMarkdown() {
+    const renderer = new md.Renderer()
+    renderer.link = function(href, title, text) {
+        if (
+            href.startsWith('http://') ||
+            href.startsWith('https://') ||
+            href.startsWith('//')
+        ) {
+            return `<a href=${href} target='_blank'>${text}</a>`
+        } else {
+            return `<a href=${href}>${text}</a>`
+        }
+    }
+
     const archiveDirs = await fs.readdir(__dirname + '/archives')
     for (const archiveDir of archiveDirs) {
         if (archiveDir == 'entries.json') continue
@@ -59,7 +72,7 @@ async function buildMarkdown() {
             })
             const html = md(markdown, {
                 headerIds: false
-            })
+            }, { renderer })
             const htmlFilename = entryFilename.replace(/\.md$/, '.html')
             await fs.writeFile(__dirname + '/archives/' + archiveDir + '/' + htmlFilename, html)
             console.log(`Compiled ${archiveDir}/${entryFilename}`)
