@@ -44,7 +44,7 @@ async function main() {
 
 function handleError(err) {
     console.error(err)
-    exit(1)
+    process.exit(1)
 }
 
 async function buildMarkdown() {
@@ -71,8 +71,9 @@ async function buildMarkdown() {
                 encoding: 'utf8'
             })
             const html = md(markdown, {
-                headerIds: false
-            }, { renderer })
+                headerIds: false,
+                renderer
+            })
             const htmlFilename = entryFilename.replace(/\.md$/, '.html')
             await fs.writeFile(__dirname + '/archives/' + archiveDir + '/' + htmlFilename, html)
             console.log(`Compiled ${archiveDir}/${entryFilename}`)
