@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="ja"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブログシステムを新しくした (技術面) | blog.comame.xyz</title>
+
+    <style>:root {
+    font-size: 16px;
+    --main-color: black;
+    --link-color: #00e;
+    --visited-link-color: #a52a2a;
+    --code-color: #efefef;
+    --radius: 5px;
+}
+
+/* Desktop */
+@media screen and (min-width: 1000px) {
+    :root {
+        --content-width: 80vw;
+        --image-width: 50vw;
+    }
+}
+
+/* Mobile / Tablet */
+@media screen and (max-width: 1000px) {
+    :root {
+        --content-width: 90vw;
+        --image-width: 90vw;
+    }
+}
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+}
+header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 3rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0 calc((100vw - var(--content-width)) / 2);
+}
+header a {
+    display: inline-block;
+    line-height: 3rem;
+    text-decoration: none;
+    color: var(--main-color);
+}
+header a:visited {
+    color: var(--main-color)
+}
+a {
+    text-decoration: none;
+    color: var(--link-color);
+}
+a:visited {
+    color: var(--visited-link-color);
+}
+*[component] {
+    width: var(--content-width);
+    margin: 0 auto;
+}
+.entries {
+    list-style: none;
+    padding-left: 0;
+}
+
+.tag-list {
+    list-style: none;
+    display: inline;
+    padding-left: 0;
+}
+.tag-list::before {
+    content: '[';
+}
+.tag-list::after {
+    content: ']';
+}
+.tag-list > li {
+    display: inline;
+}
+.tag-list > li:not(:last-child)::after {
+    content: ', ';
+}
+
+footer {
+    margin: 3rem auto 1rem auto;
+    text-align: center;
+}
+
+footer small {
+    display: block;
+}
+</style>
+<meta property="og:type" content="article"><meta property="og:url" content="http://localhost/entries/2020-03-11/blog-tech.html"><meta property="og:title" content="ブログシステムを新しくした (技術面) | blog.comame.xyz"><meta property="og:site_name" content="blog.comame.xyz"><meta property="og:description" content="このブログの技術的な要素を解説する。最終的に静的なファイルとして出力されるまでの流れは、概ね次のようになる。 ブラウザ上の JavaScript で記事データを読み、ページを生成する Puppeteer でスクリプト実行後のページを保存する 記事データを読み、サイトマップや..."></head>
+
+<body>
+    <header>
+        <a href="/">blog.comame.xyz</a>
+    </header>
+
+    
+    
+    
+    
+    <div component="entry" id="c-entry">
+        <div id="metadata">
+            <h1 id="title">ブログシステムを新しくした (技術面)</h1>
+            <time id="time">2020-03-11</time>
+            <ul id="tags" class="tag-list"><li><a href="/tags/Blog.html">Blog</a></li></ul>
+        </div>
+        <div id="content"><p>このブログの技術的な要素を解説する。最終的に静的なファイルとして出力されるまでの流れは、概ね次のようになる。</p>
+<ol>
+<li>ブラウザ上の JavaScript で記事データを読み、ページを生成する</li>
+<li>Puppeteer でスクリプト実行後のページを保存する</li>
+<li>記事データを読み、サイトマップやフィードを書き出す</li>
+</ol>
+<h2>記事データ</h2>
+<ul>
+<li><a href="https://github.com/comame/blog.comame.xyz/blob/master/archives/entries.json">archives/entries.json</a></li>
+</ul>
+<p>年毎にディレクトリを分けることにした。</p>
+<h3><code>archives/entries.json</code></h3>
+<p>すべての記事のメタデータを保存する。ページを生成するときに参照する。</p>
+<ul>
+<li><code>entry</code>: <code>.html</code> 拡張子を付けるとファイル名と対応する。</li>
+<li><code>title</code>: ページに表示されるタイトル。</li>
+<li><code>date</code>: <code>yyyy-mm-dd</code> の形式。</li>
+<li><code>tags</code>: 文字列の配列。</li>
+</ul>
+<h2>フロントエンドでのページ生成</h2>
+<ul>
+<li><a href="https://github.com/comame/blog.comame.xyz/blob/master/index.html">index.html</a></li>
+<li><a href="https://github.com/comame/blog.comame.xyz/blob/master/assets/js/app.js">assets/js/app.js</a></li>
+</ul>
+<p>記事データを読み込んで、ページを生成する。後に Puppeteer でスクレイピングする際にページが生成し終わったことを確認できるよう、ページの生成後に特別な <code>&lt;meta&gt;</code> タグを埋め込んだ。</p>
+<p>今回は自前のルーターライブラリを用いたが、React などを使っても問題ないはず。</p>
+<h3>記事の一覧・タグ</h3>
+<p><code>entries.json</code> を Fetch API で取得し、該当するページの情報を得た。</p>
+<h3>記事ページ</h3>
+<p><code>entries.json</code> から記事の HTML のファイルパスを取得し、HTML を埋め込んだ。</p>
+<h2>Node.js を使ったビルド</h2>
+<ul>
+<li><a href="https://github.com/comame/blog.comame.xyz/blob/master/build.js">build.js</a></li>
+<li><a href="https://github.com/comame/blog.comame.xyz/blob/master/build/comameito_puppeteer-nginx">build/comameito_puppeteer-nginx</a></li>
+</ul>
+<p>基本的には <code>main()</code> を追っていけばよい。Puppeteer が確実に動くようにするため、<a href="https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md">Puppeteer に必要な依存関係</a>, Nginx, Node.jsをインストールした Docker コンテナを事前に用意した。</p>
+<h3><code>buildMarkdown()</code></h3>
+<p><a href="https://www.npmjs.com/package/markdown-it">markdown-it</a> を使って、Markdown で書かれた記事を HTML に変換する。</p>
+<h3><code>copyAssets()</code></h3>
+<p><code>assets/</code> を再帰的に潜っていって、画像や CSS、JavaScript などのファイルをそのままコピーする。</p>
+<h3><code>crawl()</code></h3>
+<p><a href="https://github.com/puppeteer/puppeteer">Puppeteer</a> を用いて、実際に見えている Web ページを JavaScript を用いない静的な HTML ファイルに変換した。<code>index.html</code> から内部リンクをすべて拾っていく形にしている。Puppeteer では Browser Context でのスクリプトも簡単に実行できるため、あまり苦労しなかった。</p>
+<p><code>load</code> イベントと JavaScipt の実行が完了するタイミングが一致しない (非同期処理) ため、スクリプトでのページ生成が終わった時点で追加される <code>meta</code> タグを待機してからページを保存する (<a href="https://github.com/puppeteer/puppeteer/blob/v2.1.1/docs/api.md#pagewaitforselectorselector-options"><code>async page.waitForSelector(selector)</code></a> が便利だった)。</p>
+<p>無限ループを防ぐために、保存済みページの URL の Set を受け取るようにした。これは後のサイトマップ生成でも活用されることになった。</p>
+<p>読み込みの高速化のため、ページ生成用の JavaScript を削除し、CSS をインラインに展開している。</p>
+<h3><code>createSitemap()</code></h3>
+<p><code>crawl()</code> で作成した保存済みページの URL のセットから、サイトマップを書き出した。今回は URL を列挙しただけのテキストファイルにした。</p>
+<h3><code>createFeed()</code></h3>
+<p><code>entries.json</code> から、Atom のフィードを生成する。</p>
+<h2>GitHub Actions</h2>
+<ul>
+<li><a href="https://github.com/comame/blog.comame.xyz/blob/master/.github/workflows/build.yml">.github/workflows/build.yml</a></li>
+</ul>
+<p>Node.js のビルドは、GitHub Actions で自動的に行うことにした。ビルド用の Docker コンテナを起動し、Node.js でビルドし、生成物を commit するようになっている。</p>
+<h2>公開</h2>
+<p>GitHub Pages を使うようにした。GitHub Actions でのビルドが終わり、レポジトリに push されると自動的に反映される。</p>
+</div>
+        <div id="share">
+            <img alt="共有" src="https://comame.xyz/assets/img/icons/share.svg">
+            <a rel="noopener" target="_blank" title="Twitter で共有" href="https://twitter.com/intent/tweet?text=%E3%83%96%E3%83%AD%E3%82%B0%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%82%92%E6%96%B0%E3%81%97%E3%81%8F%E3%81%97%E3%81%9F%20(%E6%8A%80%E8%A1%93%E9%9D%A2)%0a&amp;url=https%3A%2F%2Fblog.comame.xyz%2Fentries%2F2020-03-11%2Fblog-tech.html&amp;related=comameito">
+                <img alt="Twitter で共有" src="https://comame.xyz/assets/img/icons/twitter_logo.svg">
+            </a>
+            <a rel="noopener" target="_blank" title="Facebook で共有" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.comame.xyz%2Fentries%2F2020-03-11%2Fblog-tech.html">
+                <img alt="Facebook で共有" src="https://comame.xyz/assets/img/icons/facebook_logo.svg">
+            </a>
+            <a title="URL をコピー">
+                <img alt="URL をコピー" src="https://comame.xyz/assets/img/icons/link.svg">
+            </a>
+            </div>
+        <style>#metadata {
+    margin-bottom: 3rem;
+}
+#metadata h1 {
+    font-size: 1.5rem;
+}
+#content {
+    word-break: break-all;
+}
+#content p {
+    text-indent: .5rem;
+}
+#content h2 {
+    margin-top: 2rem;
+    font-size: 1.3rem;
+}
+#content code {
+    background: var(--code-color);
+    border-radius: var(--radius);
+    font-family: monospace;
+    padding: 2px 4px;
+    word-break: break-all;
+}
+#content pre {
+    padding: 0.5rem;
+    white-space: pre;
+    overflow-x: scroll;
+    border-radius: var(--radius);
+    background: var(--code-color);
+}
+#content pre > code {
+    padding: 0;
+}
+#content img {
+    display: block;
+    width: var(--image-width);
+    margin-right: auto;
+    margin-left: auto;
+}
+#content ul, #content ol {
+    counter-reset: ol;
+    list-style: none;
+    padding-left: 0;
+    text-indent: 1rem;
+}
+#content ul > li::before {
+    content: '- ';
+}
+#content ol > li::before {
+    counter-increment: ol;
+    content: counter(ol) '. ';
+}
+
+#share {
+    margin-top: 3rem;
+}
+#share > img {
+    margin-right: 2rem;
+}
+#share a {
+    margin-right: 1rem;
+}
+#share img {
+    height: 2rem;
+    width: 2rem;
+}
+</style>
+        <script async="" not-remove="" src="/assets/js/url-copy.js"></script>
+    </div>
+
+    <footer>
+        <small><img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Wed, 11 Mar 2020 06:13:40 GMT"></small>
+        <small>Copyright 2020 <a href="https://comame.xyz">comame</a> | <a href="https://github.com/comame/blog.comame.xyz">GitHub</a> | <a href="/feed.xml">Feed</a></small>
+    </footer>
+
+    
+    
+
+
+
+</body></html>
