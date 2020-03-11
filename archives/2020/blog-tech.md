@@ -50,6 +50,8 @@
 
 [markdown-it](https://www.npmjs.com/package/markdown-it) を使って、Markdown で書かれた記事を HTML に変換する。
 
+[追記] API がよりシンプルで、カスタマイズが簡単な [marked](https://www.npmjs.com/package/marked) を使うように変更した。それにより、外部リンクは新しいタブで開くようにした。
+
 ### `copyAssets()`
 
 `assets/` を再帰的に潜っていって、画像や CSS、JavaScript などのファイルをそのままコピーする。
