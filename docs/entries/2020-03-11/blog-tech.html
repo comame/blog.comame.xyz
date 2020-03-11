@@ -118,7 +118,7 @@ footer small {
 </ol>
 <h2>記事データ</h2>
 <ul>
-<li><a href="https://github.com/comame/blog.comame.xyz/blob/master/archives/entries.json">archives/entries.json</a></li>
+<li><a href="https://github.com/comame/blog.comame.xyz/blob/master/archives/entries.json" target="_blank">archives/entries.json</a></li>
 </ul>
 <p>年毎にディレクトリを分けることにした。</p>
 <h3><code>archives/entries.json</code></h3>
@@ -131,8 +131,8 @@ footer small {
 </ul>
 <h2>フロントエンドでのページ生成</h2>
 <ul>
-<li><a href="https://github.com/comame/blog.comame.xyz/blob/master/index.html">index.html</a></li>
-<li><a href="https://github.com/comame/blog.comame.xyz/blob/master/assets/js/app.js">assets/js/app.js</a></li>
+<li><a href="https://github.com/comame/blog.comame.xyz/blob/master/index.html" target="_blank">index.html</a></li>
+<li><a href="https://github.com/comame/blog.comame.xyz/blob/master/assets/js/app.js" target="_blank">assets/js/app.js</a></li>
 </ul>
 <p>記事データを読み込んで、ページを生成する。後に Puppeteer でスクレイピングする際にページが生成し終わったことを確認できるよう、ページの生成後に特別な <code>&lt;meta&gt;</code> タグを埋め込んだ。</p>
 <p>今回は自前のルーターライブラリを用いたが、React などを使っても問題ないはず。</p>
@@ -142,17 +142,17 @@ footer small {
 <p><code>entries.json</code> から記事の HTML のファイルパスを取得し、HTML を埋め込んだ。</p>
 <h2>Node.js を使ったビルド</h2>
 <ul>
-<li><a href="https://github.com/comame/blog.comame.xyz/blob/master/build.js">build.js</a></li>
-<li><a href="https://github.com/comame/blog.comame.xyz/blob/master/build/comameito_puppeteer-nginx">build/comameito_puppeteer-nginx</a></li>
+<li><a href="https://github.com/comame/blog.comame.xyz/blob/master/build.js" target="_blank">build.js</a></li>
+<li><a href="https://github.com/comame/blog.comame.xyz/blob/master/build/comameito_puppeteer-nginx" target="_blank">build/comameito_puppeteer-nginx</a></li>
 </ul>
-<p>基本的には <code>main()</code> を追っていけばよい。Puppeteer が確実に動くようにするため、<a href="https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md">Puppeteer に必要な依存関係</a>, Nginx, Node.jsをインストールした Docker コンテナを事前に用意した。</p>
+<p>基本的には <code>main()</code> を追っていけばよい。Puppeteer が確実に動くようにするため、<a href="https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md" target="_blank">Puppeteer に必要な依存関係</a>, Nginx, Node.jsをインストールした Docker コンテナを事前に用意した。</p>
 <h3><code>buildMarkdown()</code></h3>
-<p><a href="https://www.npmjs.com/package/markdown-it">markdown-it</a> を使って、Markdown で書かれた記事を HTML に変換する。</p>
+<p><a href="https://www.npmjs.com/package/markdown-it" target="_blank">markdown-it</a> を使って、Markdown で書かれた記事を HTML に変換する。</p>
 <h3><code>copyAssets()</code></h3>
 <p><code>assets/</code> を再帰的に潜っていって、画像や CSS、JavaScript などのファイルをそのままコピーする。</p>
 <h3><code>crawl()</code></h3>
-<p><a href="https://github.com/puppeteer/puppeteer">Puppeteer</a> を用いて、実際に見えている Web ページを JavaScript を用いない静的な HTML ファイルに変換した。<code>index.html</code> から内部リンクをすべて拾っていく形にしている。Puppeteer では Browser Context でのスクリプトも簡単に実行できるため、あまり苦労しなかった。</p>
-<p><code>load</code> イベントと JavaScipt の実行が完了するタイミングが一致しない (非同期処理) ため、スクリプトでのページ生成が終わった時点で追加される <code>meta</code> タグを待機してからページを保存する (<a href="https://github.com/puppeteer/puppeteer/blob/v2.1.1/docs/api.md#pagewaitforselectorselector-options"><code>async page.waitForSelector(selector)</code></a> が便利だった)。</p>
+<p><a href="https://github.com/puppeteer/puppeteer" target="_blank">Puppeteer</a> を用いて、実際に見えている Web ページを JavaScript を用いない静的な HTML ファイルに変換した。<code>index.html</code> から内部リンクをすべて拾っていく形にしている。Puppeteer では Browser Context でのスクリプトも簡単に実行できるため、あまり苦労しなかった。</p>
+<p><code>load</code> イベントと JavaScipt の実行が完了するタイミングが一致しない (非同期処理) ため、スクリプトでのページ生成が終わった時点で追加される <code>meta</code> タグを待機してからページを保存する (<a href="https://github.com/puppeteer/puppeteer/blob/v2.1.1/docs/api.md#pagewaitforselectorselector-options" target="_blank"><code>async page.waitForSelector(selector)</code></a> が便利だった)。</p>
 <p>無限ループを防ぐために、保存済みページの URL の Set を受け取るようにした。これは後のサイトマップ生成でも活用されることになった。</p>
 <p>読み込みの高速化のため、ページ生成用の JavaScript を削除し、CSS をインラインに展開している。</p>
 <h3><code>createSitemap()</code></h3>
@@ -161,7 +161,7 @@ footer small {
 <p><code>entries.json</code> から、Atom のフィードを生成する。</p>
 <h2>GitHub Actions</h2>
 <ul>
-<li><a href="https://github.com/comame/blog.comame.xyz/blob/master/.github/workflows/build.yml">.github/workflows/build.yml</a></li>
+<li><a href="https://github.com/comame/blog.comame.xyz/blob/master/.github/workflows/build.yml" target="_blank">.github/workflows/build.yml</a></li>
 </ul>
 <p>Node.js のビルドは、GitHub Actions で自動的に行うことにした。ビルド用の Docker コンテナを起動し、Node.js でビルドし、生成物を commit するようになっている。</p>
 <h2>公開</h2>
@@ -250,7 +250,7 @@ footer small {
     </div>
 
     <footer>
-        <small><img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Wed, 11 Mar 2020 07:55:39 GMT"></small>
+        <small><img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Wed, 11 Mar 2020 08:11:08 GMT"></small>
         <small>Copyright 2020 <a href="https://comame.xyz">comame</a> | <a href="https://github.com/comame/blog.comame.xyz">GitHub</a> | <a href="/feed.xml">Feed</a></small>
     </footer>
 
