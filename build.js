@@ -55,7 +55,7 @@ async function buildMarkdown() {
             href.startsWith('https://') ||
             href.startsWith('//')
         ) {
-            return `<a href=${href} target='_blank'>${text}</a>`
+            return `<a href=${href} target='_blank' rel='noopener'>${text}</a>`
         } else {
             return `<a href=${href}>${text}</a>`
         }
