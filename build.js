@@ -3,7 +3,7 @@ const buildDir = '/docs'
 const BLOG_HOST = process.env.BLOG_HOST || 'http://localhost'
 
 const puppeteer = require('puppeteer')
-const md = require('markdown-it')({ html: true })
+const md = require('marked')
 const fs = require('fs').promises
 const entries = require('./archives/entries.json')
 
@@ -57,7 +57,7 @@ async function buildMarkdown() {
             const markdown = await fs.readFile(__dirname + '/archives/' + archiveDir + '/' + entryFilename, {
                 encoding: 'utf8'
             })
-            const html = md.render(markdown)
+            const html = md(markdown)
             const htmlFilename = entryFilename.replace(/\.md$/, '.html')
             await fs.writeFile(__dirname + '/archives/' + archiveDir + '/' + htmlFilename, html)
             console.log(`Compiled ${archiveDir}/${entryFilename}`)
