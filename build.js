@@ -20,16 +20,15 @@ async function main() {
     await buildMarkdown().catch(handleError)
     await copyAssets().catch(handleError)
 
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox'
+        ]
+    })
     try {
-        const browser = await puppeteer.launch({
-            headless: true,
-            args: [
-                '--no-sandbox',
-                '--disable-setuid-sandbox'
-            ]
-        })
         const page = await browser.newPage()
-
         await crawl('', page, crawledPageSets)
     } catch (err) {
         handleError(err)
