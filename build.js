@@ -3,61 +3,68 @@ const buildDir = '/docs'
 const BLOG_HOST = process.env.BLOG_HOST || 'http://localhost'
 
 const puppeteer = require('puppeteer')
+const md = require('markdown-it')({ html: true })
 const fs = require('fs').promises
 const entries = require('./archives/entries.json')
 
+main()
+
 async function main() {
-    if (!BLOG_HOST) {
-        console.error('Set BLOG_HOST environment variable.')
-        return
-    }
-
-    await copyAssets()
-
-    const browser = await puppeteer.launch({
-        headless: true,
-        args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox'
-        ]
-    })
-    const page = await browser.newPage()
-
-    let hasError = false
+    setTimeout(() => {
+        console.error('TLE')
+        process.exit(1)
+    }, 3 * 60 * 1000)
 
     const crawledPageSets = new Set()
+
+    await buildMarkdown().catch(handleError)
+    await copyAssets().catch(handleError)
+
     try {
+        const browser = await puppeteer.launch({
+            headless: true,
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox'
+            ]
+        })
+        const page = await browser.newPage()
+
         await crawl('', page, crawledPageSets)
     } catch (err) {
-        console.error(err)
-        hasError = true
+        handleError(err)
     } finally {
         await browser.close()
     }
 
-    await createSiteMap(Array.from(crawledPageSets.values())).catch(err => {
-        console.error(err)
-        hasError = true
-    })
-    console.log('Sitemap creted')
+    await createSiteMap(Array.from(crawledPageSets.values())).catch(handleError)
+    await createFeed().catch(handleError)
 
-    await createFeed().catch(err => {
-        console.error(err)
-        hasError = true
-    })
-    console.log('RSS feed created')
-
-    if (hasError) process.exit(1)
+    process.exit(0)
 }
 
-main().then(() => {
-    process.exit(0)
-})
-setTimeout(() => {
-    console.error('TLE')
-    process.exit(1)
-}, 3 * 60 * 1000)
+function handleError(err) {
+    console.error(err)
+    exit(1)
+}
 
+async function buildMarkdown() {
+    const archiveDirs = await fs.readdir(__dirname + '/archives')
+    for (const archiveDir of archiveDirs) {
+        if (archiveDir == 'entries.json') continue
+        const entryFilenames = await fs.readdir(__dirname + '/archives/' + archiveDir)
+        for (const entryFilename of entryFilenames) {
+            if (!entryFilename.endsWith('.md')) continue
+            const markdown = await fs.readFile(__dirname + '/archives/' + archiveDir + '/' + entryFilename, {
+                encoding: 'utf8'
+            })
+            const html = md.render(markdown)
+            const htmlFilename = entryFilename.replace(/\.md$/, '.html')
+            await fs.writeFile(__dirname + '/archives/' + archiveDir + '/' + htmlFilename, html)
+            console.log(`Compiled ${archiveDir}/${entryFilename}`)
+        }
+    }
+}
 
 async function copyAssets() {
     const copy = async (dirname, files) => {
@@ -78,6 +85,7 @@ async function copyAssets() {
     }
 
     await copy('', await fs.readdir(__dirname + '/assets'))
+    console.log('Assets copied')
 }
 
 async function createSiteMap(paths) {
@@ -85,6 +93,7 @@ async function createSiteMap(paths) {
     for (const path of paths) {
         await fs.appendFile(__dirname + buildDir + '/sitemap.txt', 'https://blog.comame.xyz/' + path + '\n')
     }
+    console.log('Sitemap created')
 }
 
 
@@ -149,6 +158,8 @@ async function createFeed() {
     const rss = base(updated, items).replace(/^\s+|\s+$/g,"");
 
     await fs.writeFile(__dirname + buildDir + '/feed.xml', rss)
+
+    console.log('Feed created')
 }
 
 async function crawl(path, page, crawledPathSet) {
@@ -189,7 +200,6 @@ async function crawl(path, page, crawledPathSet) {
     const notfound = await page.$('#c-notfound')
     if (notfound) {
         console.log(`  not found`)
-        crawledPathSet.delete(path)
         return
     } else {
         await savePage(path, await page.content())
