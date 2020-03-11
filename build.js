@@ -57,7 +57,9 @@ async function buildMarkdown() {
             const markdown = await fs.readFile(__dirname + '/archives/' + archiveDir + '/' + entryFilename, {
                 encoding: 'utf8'
             })
-            const html = md(markdown)
+            const html = md(markdown, {
+                headerIds: false
+            })
             const htmlFilename = entryFilename.replace(/\.md$/, '.html')
             await fs.writeFile(__dirname + '/archives/' + archiveDir + '/' + htmlFilename, html)
             console.log(`Compiled ${archiveDir}/${entryFilename}`)
