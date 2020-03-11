@@ -148,6 +148,7 @@ footer small {
 <p>基本的には <code>main()</code> を追っていけばよい。Puppeteer が確実に動くようにするため、<a href="https://github.com/puppeteer/puppeteer/blob/master/docs/troubleshooting.md" target="_blank">Puppeteer に必要な依存関係</a>, Nginx, Node.jsをインストールした Docker コンテナを事前に用意した。</p>
 <h3><code>buildMarkdown()</code></h3>
 <p><a href="https://www.npmjs.com/package/markdown-it" target="_blank">markdown-it</a> を使って、Markdown で書かれた記事を HTML に変換する。</p>
+<p>[追記] API がよりシンプルで、カスタマイズが簡単な <a href="https://www.npmjs.com/package/marked" target="_blank">marked</a> を使うように変更した。それにより、外部リンクは新しいタブで開くようにした。</p>
 <h3><code>copyAssets()</code></h3>
 <p><code>assets/</code> を再帰的に潜っていって、画像や CSS、JavaScript などのファイルをそのままコピーする。</p>
 <h3><code>crawl()</code></h3>
@@ -250,7 +251,7 @@ footer small {
     </div>
 
     <footer>
-        <small><img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Wed, 11 Mar 2020 08:11:08 GMT"></small>
+        <small><img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Wed, 11 Mar 2020 08:14:39 GMT"></small>
         <small>Copyright 2020 <a href="https://comame.xyz">comame</a> | <a href="https://github.com/comame/blog.comame.xyz">GitHub</a> | <a href="/feed.xml">Feed</a></small>
     </footer>
 
