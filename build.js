@@ -20,21 +20,7 @@ async function main() {
     await buildMarkdown().catch(handleError)
     await copyAssets().catch(handleError)
 
-    const browser = await puppeteer.launch({
-        headless: true,
-        args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox'
-        ]
-    })
-    try {
-        const page = await browser.newPage()
-        await crawl('', page, crawledPageSets)
-    } catch (err) {
-        handleError(err)
-    } finally {
-        await browser.close()
-    }
+    await buildArticles(crawledPageSets).catch(handleError)
 
     await createSiteMap(Array.from(crawledPageSets.values())).catch(handleError)
     await createFeed().catch(handleError)
@@ -82,17 +68,23 @@ async function buildMarkdown() {
 }
 
 async function copyAssets() {
-    const copy = async (dirname, files) => {
+    const copy = async (dirname, files, index = false) => {
         for (const file of files) {
             const stats = await fs.stat(__dirname + '/assets/' + dirname + '/' + file)
             if (stats.isDirectory()) {
-                await copy(dirname + '/' + file, await fs.readdir(__dirname + '/assets/' + dirname + '/' + file))
+                const isIndex = file == '_index'
+                await copy(dirname + '/' + file, await fs.readdir(__dirname + '/assets/' + dirname + '/' + file), isIndex)
             } else {
-                const stat = await fs.stat(__dirname + buildDir + '/assets/' + dirname).catch(() => {})
-                if (!stat) await fs.mkdir(__dirname + buildDir + '/assets/' + dirname, { recursive: true })
+                const targetDirname =
+                    index ?
+                    __dirname + buildDir + '/' + dirname :
+                    __dirname + buildDir + '/assets/' + dirname
+
+                const stat = await fs.stat(targetDirname).catch(() => {})
+                if (!stat) await fs.mkdir(targetDirname, { recursive: true })
                 await fs.copyFile(
                     __dirname + '/assets/' + dirname + '/' + file,
-                    __dirname + buildDir + '/assets/' + dirname + '/' + file
+                    targetDirname + '/' + file
                 )
                 console.log(`Asset copied: ${dirname + '/' + file}`)
             }
@@ -175,6 +167,22 @@ async function createFeed() {
     await fs.writeFile(__dirname + buildDir + '/feed.xml', rss)
 
     console.log('Feed created')
+}
+
+async function buildArticles(crawledPageSets) {
+    const browser = await puppeteer.launch({
+        headless: true,
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox'
+        ]
+    })
+    try {
+        const page = await browser.newPage()
+        await crawl('', page, crawledPageSets)
+    } finally {
+        await browser.close()
+    }
 }
 
 async function crawl(path, page, crawledPathSet) {
