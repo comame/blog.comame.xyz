@@ -1,13 +1,14 @@
 const buildDir = '/docs'
 
 const BLOG_HOST = process.env.BLOG_HOST || 'http://localhost'
+const ALL = 'ALL' in process.env
 
 const puppeteer = require('puppeteer')
 const md = require('marked')
 const fs = require('fs').promises
 const entries = require('./archives/entries.json')
 
-main()
+if (ALL) main()
 
 async function main() {
     setTimeout(() => {
@@ -77,7 +78,7 @@ async function copyAssets() {
             } else {
                 const targetDirname =
                     index ?
-                    __dirname + buildDir + '/' + dirname :
+                    __dirname + buildDir :
                     __dirname + buildDir + '/assets/' + dirname
 
                 const stat = await fs.stat(targetDirname).catch(() => {})
@@ -251,4 +252,12 @@ async function savePage(path, content) {
 
     await fs.writeFile(__dirname + buildDir + '/' + dirName + '/' + fileName, content)
     console.log(`  Page saved: /${path}`)
+}
+
+module.exports = {
+    buildMarkdown,
+    copyAssets,
+    createSiteMap,
+    createFeed,
+    buildArticles
 }
