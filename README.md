@@ -14,4 +14,4 @@
 [Actions](https://github.com/comame/blog.comame.xyz/blob/master/.github/workflows/build.yml) を参照
 
 ### ちょっと詳しい話
-[ブログシステムを新しくした (Blogger からの移行)](https://blog.comame.xyz/entries/2020-03-07/new-blog-system.html)
+[ブログシステムを新しくした (技術面)](https://blog.comame.xyz/entries/2020-03-11/blog-tech.html)
