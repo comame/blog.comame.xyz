@@ -1,0 +1,26 @@
+name: Docker
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - build/comameito_puppeteer-nginx
+  pull_request:
+    branches: [ master ]
+    paths:
+      - build/comameito_puppeteer-nginx
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Docker
+      run: |
+        cd ${{ github.workspace }}/build/comameito_puppeteer-nginx
+        docker build --tag comameito/puppeteer-nginx .
+        docker login -u comameito -p ${{ secrets.DOKCER_PASSWORD}}
+        docker push comameito/puppeteer-nginx
