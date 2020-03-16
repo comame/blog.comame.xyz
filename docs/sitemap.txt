@@ -2,7 +2,6 @@ https://blog.comame.xyz/
 https://blog.comame.xyz/entries/2020-03-11/blog-tech.html
 https://blog.comame.xyz/tags/Blog.html
 https://blog.comame.xyz/entries/2020-03-07/new-blog-system.html
-https://blog.comame.xyz/feed.xml
 https://blog.comame.xyz/entries/2019-09-27/why-fail-adsense.html
 https://blog.comame.xyz/tags/Google.html
 https://blog.comame.xyz/entries/2019-12-01/google-expert.html
@@ -43,7 +42,6 @@ https://blog.comame.xyz/entries/2018-07-27/stop-gmail-followup.html
 https://blog.comame.xyz/entries/2018-04-26/new-design-gmail-released.html
 https://blog.comame.xyz/entries/2019-02-04/firebase-hosting.html
 https://blog.comame.xyz/entries/2018-10-20/new-template.html
-https://blog.comame.xyz/p/test.html
 https://blog.comame.xyz/entries/2019-03-12/macbook-pro.html
 https://blog.comame.xyz/tags/random.html
 https://blog.comame.xyz/entries/2018-04-30/31daysofkotlin.html
