@@ -223,6 +223,7 @@ async function crawl(path, page, crawledPathSet) {
 
     const notfound = await page.$('#c-notfound')
     if (notfound) {
+        crawledPathSet.delete(path)
         console.log(`  not found`)
         return
     } else {
