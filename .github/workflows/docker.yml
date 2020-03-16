@@ -5,10 +5,12 @@ on:
     branches: [ master ]
     paths:
       - build/comameito_puppeteer-nginx/**
+      - .github/workflows/docker.yml
   pull_request:
     branches: [ master ]
     paths:
       - build/comameito_puppeteer-nginx/**
+      - .github/workflows/docker.yml
 
 jobs:
   build:
