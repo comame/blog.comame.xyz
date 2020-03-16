@@ -24,5 +24,5 @@ jobs:
       run: |
         cd ${{ github.workspace }}/build/comameito_puppeteer-nginx
         docker build --tag comameito/puppeteer-nginx .
-        docker login -u comameito -p ${{ secrets.DOKCER_PASSWORD}}
+        docker login -u comameito -p ${{ secrets.DOCKER_PASSWORD }}
         docker push comameito/puppeteer-nginx
