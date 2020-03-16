@@ -33,7 +33,6 @@ jobs:
         cd ${{ github.workspace }}
         rm -r docs
         mkdir docs
-        echo "blog.comame.xyz" | cat > docs/CNAME
 
         echo "Downloading image comameito/puppeteer-nginx"
         docker pull -q comameito/puppeteer-nginx
