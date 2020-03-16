@@ -4,11 +4,11 @@ on:
   push:
     branches: [ master ]
     paths:
-      - build/comameito_puppeteer-nginx
+      - build/comameito_puppeteer-nginx/**
   pull_request:
     branches: [ master ]
     paths:
-      - build/comameito_puppeteer-nginx
+      - build/comameito_puppeteer-nginx/**
 
 jobs:
   build:
