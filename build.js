@@ -144,7 +144,7 @@ async function createFeed() {
     for (const entry of entries) {
         const title = entry.title
         const date = entry.date
-        const link = 'https://blog.comame.xyz/entries/' + date + '/' + entry.entry
+        const link = 'https://blog.comame.xyz/entries/' + date + '/' + entry.entry + '.html'
 
         const year = date.split('-')[0]
         const htmlContent = await fs.readFile(__dirname + '/archives/' + year + '/' + entry.entry + '.html', {
