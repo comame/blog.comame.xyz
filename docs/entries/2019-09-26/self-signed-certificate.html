@@ -108,6 +108,10 @@ footer small {
         <div id="metadata">
             <h1 id="title">OpenSSL で自己証明書を作成する方法</h1>
             <time id="time">2019-09-26</time>
+            <div id="source-history">
+                <a id="source" href="https://github.com/comame/blog.comame.xyz/blob/master/archives/2019/self-signed-certificate.html">source</a>
+                <a id="history" href="https://github.com/comame/blog.comame.xyz/commits/master/archives/2019/self-signed-certificate.html">history</a>
+            </div>
             <ul id="tags" class="tag-list"><li><a href="/tags/security.html">security</a></li><li><a href="/tags/server.html">server</a></li></ul>
         </div>
         <div id="content"><p>開発鯖用に毎回 Let's Encrypt で発行するのめんどいので、自分で発行しようと思った</p>
@@ -147,13 +151,23 @@ $ openssl x509 -req -days 90 -signkey server.key -extfile altNames.txt &lt; serv
             <a title="URL をコピー">
                 <img alt="URL をコピー" src="/assets/icons/link.svg">
             </a>
-            </div>
+        </div>
         <style>#metadata {
     margin-bottom: 3rem;
 }
 #metadata h1 {
     font-size: 1.5rem;
 }
+
+#source-history {
+    display:inline;
+}
+
+#tags {
+    display: block;
+    margin-top: .3rem;
+}
+
 #content {
     word-break: break-all;
 }
@@ -219,7 +233,7 @@ $ openssl x509 -req -days 90 -signkey server.key -extfile altNames.txt &lt; serv
     </div>
 
     <footer>
-        <small><img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Mon, 16 Mar 2020 08:32:07 GMT"></small>
+        <small><img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Mon, 16 Mar 2020 11:28:38 GMT"></small>
         <small>Copyright 2020 <a href="https://comame.xyz">comame</a> | <a href="https://github.com/comame/blog.comame.xyz">GitHub</a> | <a href="/feed.xml">Feed</a></small>
     </footer>
 
