@@ -10,8 +10,8 @@
       
     <entry>
       <title>ブログシステムを新しくした (技術面)</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-03-11/blog-tech' />
-      <id>https://blog.comame.xyz/entries/2020-03-11/blog-tech</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-03-11/blog-tech.html' />
+      <id>https://blog.comame.xyz/entries/2020-03-11/blog-tech.html</id>
       <updated>2020-03-11T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;このブログの技術的な要素を解説する。最終的に静的なファイルとして出力されるまでの流れは、概ね次のようになる。&lt;/p&gt;
 &lt;ol&gt;
@@ -75,8 +75,8 @@
     
     <entry>
       <title>WSL2 で Docker を自動起動する</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-03-08/docker-startup-wsl2' />
-      <id>https://blog.comame.xyz/entries/2020-03-08/docker-startup-wsl2</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-03-08/docker-startup-wsl2.html' />
+      <id>https://blog.comame.xyz/entries/2020-03-08/docker-startup-wsl2.html</id>
       <updated>2020-03-08T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;WSL2 では systemctl が使えないため、システムの起動時に Docker を自動起動することができない。ただ、Windows 側のタスクスケジューラを使えばできるらしい。&lt;/p&gt;
 
@@ -106,8 +106,8 @@ user ALL=(ALL:ALL) NOPASSWD: /bin/sh /path/to/script
     
     <entry>
       <title>ブログシステムを新しくした (Blogger からの移行)</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-03-07/new-blog-system' />
-      <id>https://blog.comame.xyz/entries/2020-03-07/new-blog-system</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-03-07/new-blog-system.html' />
+      <id>https://blog.comame.xyz/entries/2020-03-07/new-blog-system.html</id>
       <updated>2020-03-07T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;新しいブログシステムを作成して、Blogger から移行した。今は静的ファイルとして静的ファイルサーバから配信している。GitHub でソースコードを公開した。&lt;a href="https://github.com/comame/blog.comame.xyz" target="_blank"&gt;comame/blog.comame.xyz&lt;/a&gt;&lt;/p&gt;
 
@@ -146,8 +146,8 @@ user ALL=(ALL:ALL) NOPASSWD: /bin/sh /path/to/script
     
     <entry>
       <title>Windows 10 の ssh で Permission refusedが出る問題</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-02-19/windows-ssh-error' />
-      <id>https://blog.comame.xyz/entries/2020-02-19/windows-ssh-error</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-02-19/windows-ssh-error.html' />
+      <id>https://blog.comame.xyz/entries/2020-02-19/windows-ssh-error.html</id>
       <updated>2020-02-19T00:00:00Z</updated>
       <content type='html'>&lt;h2&gt;対処法&lt;/h2&gt;
 &lt;p&gt;ssh-agent を有効にして、ssh-add する。&lt;/p&gt;
@@ -163,8 +163,8 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
     
     <entry>
       <title>CNAME トラッキングについての議論</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-01-20/cname-tracking' />
-      <id>https://blog.comame.xyz/entries/2020-01-20/cname-tracking</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-01-20/cname-tracking.html' />
+      <id>https://blog.comame.xyz/entries/2020-01-20/cname-tracking.html</id>
       <updated>2020-01-20T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;先日&lt;a href="https://twitter.com/comameito/status/1218434263768428544"&gt;割と感情的に呟いたもの&lt;/a&gt;がそこそこ拡散されてしまって、「良くないものだ」という気持ちだけが広まってしまうのは本意ではないので、改めてきちんとした議論をしたいという思いでこの記事を書きます。
 &lt;/p&gt;
@@ -212,8 +212,8 @@ ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;/pre&gt;
     
     <entry>
       <title>Blogger のテーマ作成について</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-12-10/blogger-theme' />
-      <id>https://blog.comame.xyz/entries/2019-12-10/blogger-theme</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-12-10/blogger-theme.html' />
+      <id>https://blog.comame.xyz/entries/2019-12-10/blogger-theme.html</id>
       <updated>2019-12-10T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;&lt;a href='https://adventar.org/calendars/4197'&gt;Google Blogger Advent Calendar 2019&lt;/a&gt; の 10 日目の記事です。&lt;/p&gt;
 
@@ -396,8 +396,8 @@ ng -- &lt;img src='https://example.com/foo.png'&gt;&lt;/code&gt;&lt;/pre&gt;
     
     <entry>
       <title>Google のエキスパートとして回答すること</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-12-01/google-expert' />
-      <id>https://blog.comame.xyz/entries/2019-12-01/google-expert</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-12-01/google-expert.html' />
+      <id>https://blog.comame.xyz/entries/2019-12-01/google-expert.html</id>
       <updated>2019-12-01T00:00:00Z</updated>
       <content type='html'>&lt;p&gt; &lt;a href='https://adventar.org/calendars/4226'&gt;Google Products Advent Calendar 2019&lt;/a&gt; の 1 日目の記事です。&lt;/p&gt;
 
@@ -431,8 +431,8 @@ ng -- &lt;img src='https://example.com/foo.png'&gt;&lt;/code&gt;&lt;/pre&gt;
     
     <entry>
       <title>Catalina で Chrome の画面共有が使用できない問題</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-11-04/catalina-chrome-screen-share' />
-      <id>https://blog.comame.xyz/entries/2019-11-04/catalina-chrome-screen-share</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-11-04/catalina-chrome-screen-share.html' />
+      <id>https://blog.comame.xyz/entries/2019-11-04/catalina-chrome-screen-share.html</id>
       <updated>2019-11-04T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;macOS 10.15 Catalina において、Chrome の画面共有が使用できない問題が発生しています。これにより、例えば Hangout で手元の画面を映すことできなくなってしまいます。&lt;/p&gt;
 
@@ -448,8 +448,8 @@ ng -- &lt;img src='https://example.com/foo.png'&gt;&lt;/code&gt;&lt;/pre&gt;
     
     <entry>
       <title>Unlimited Mirai に参加しました</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-10-30/unlimited-mirai' />
-      <id>https://blog.comame.xyz/entries/2019-10-30/unlimited-mirai</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-10-30/unlimited-mirai.html' />
+      <id>https://blog.comame.xyz/entries/2019-10-30/unlimited-mirai.html</id>
       <updated>2019-10-30T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;2019年10月29日に開催された&lt;a href='https://www.waseda.jp/inst/icc/news/2019/09/04/10146/'&gt;Unlimited Mirai&lt;/a&gt;に参加しました。&lt;/p&gt;
 
@@ -509,8 +509,8 @@ ng -- &lt;img src='https://example.com/foo.png'&gt;&lt;/code&gt;&lt;/pre&gt;
     
     <entry>
       <title>Let's Encrypt (Certbot) でワイルドカード証明書を取得できないときの解決法</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-10-03/letsencrypt-wildcard-error' />
-      <id>https://blog.comame.xyz/entries/2019-10-03/letsencrypt-wildcard-error</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-10-03/letsencrypt-wildcard-error.html' />
+      <id>https://blog.comame.xyz/entries/2019-10-03/letsencrypt-wildcard-error.html</id>
       <updated>2019-10-03T00:00:00Z</updated>
       <content type='html'>&lt;h2&gt;発生する問題&lt;/h2&gt;
 &lt;p&gt;Certbot でワイルドカード証明書を発行しようとしたときに&lt;code&gt;The currently selected ACME CA endpoint does not support issuing wildcard certificates&lt;/code&gt;というお叱りを受ける。&lt;/p&gt;
@@ -524,8 +524,8 @@ Let's Encrypt のエンドポイントは&lt;a href='https://letsencrypt.org/ja/
     
     <entry>
       <title>AdSense の申請が落ちた理由？</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-09-27/why-fail-adsense' />
-      <id>https://blog.comame.xyz/entries/2019-09-27/why-fail-adsense</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-09-27/why-fail-adsense.html' />
+      <id>https://blog.comame.xyz/entries/2019-09-27/why-fail-adsense.html</id>
       <updated>2019-09-27T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;結論を先に述べると、AdSense の審査は無事に通過しました。1度審査に落ちたため、その理由と思われるものを残しておこうと思います。&lt;p&gt;
 
@@ -547,8 +547,8 @@ Let's Encrypt のエンドポイントは&lt;a href='https://letsencrypt.org/ja/
     
     <entry>
       <title>OpenSSL で自己証明書を作成する方法</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-09-26/self-signed-certificate' />
-      <id>https://blog.comame.xyz/entries/2019-09-26/self-signed-certificate</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-09-26/self-signed-certificate.html' />
+      <id>https://blog.comame.xyz/entries/2019-09-26/self-signed-certificate.html</id>
       <updated>2019-09-26T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;開発鯖用に毎回 Let's Encrypt で発行するのめんどいので、自分で発行しようと思った&lt;/p&gt;
 
@@ -580,8 +580,8 @@ $ openssl x509 -req -days 90 -signkey server.key -extfile altNames.txt &lt; serv
     
     <entry>
       <title>AdSense の申請をした</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-09-24/apply-adsense' />
-      <id>https://blog.comame.xyz/entries/2019-09-24/apply-adsense</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-09-24/apply-adsense.html' />
+      <id>https://blog.comame.xyz/entries/2019-09-24/apply-adsense.html</id>
       <updated>2019-09-24T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;今日このブログで AdSense の申請をしましたが、いくつか技術的な問題があったため、それの対処法を紹介します。&lt;/p&gt;
 
@@ -642,8 +642,8 @@ AdSense の申請通るといいな&lt;/p&gt;
     
     <entry>
       <title>Ubuntu ユーザー作成</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-09-18/ubuntu-create-user' />
-      <id>https://blog.comame.xyz/entries/2019-09-18/ubuntu-create-user</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-09-18/ubuntu-create-user.html' />
+      <id>https://blog.comame.xyz/entries/2019-09-18/ubuntu-create-user.html</id>
       <updated>2019-09-18T00:00:00Z</updated>
       <content type='html'>&lt;ol&gt;
     &lt;li&gt;&lt;code&gt;adduser [user]&lt;/code&gt;&lt;/li&gt;
@@ -654,8 +654,8 @@ AdSense の申請通るといいな&lt;/p&gt;
     
     <entry>
       <title>Rootless Docker のインストール方法</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-09-13/install-rootless-docker' />
-      <id>https://blog.comame.xyz/entries/2019-09-13/install-rootless-docker</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-09-13/install-rootless-docker.html' />
+      <id>https://blog.comame.xyz/entries/2019-09-13/install-rootless-docker.html</id>
       <updated>2019-09-13T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;今更感は否めないが、備忘録も兼ねて&lt;/p&gt;
 
@@ -678,8 +678,8 @@ AdSense の申請通るといいな&lt;/p&gt;
     
     <entry>
       <title>comame.xyz を ConoHa に移した</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-07-11/migrate-to-conoha' />
-      <id>https://blog.comame.xyz/entries/2019-07-11/migrate-to-conoha</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-07-11/migrate-to-conoha.html' />
+      <id>https://blog.comame.xyz/entries/2019-07-11/migrate-to-conoha.html</id>
       <updated>2019-07-11T00:00:00Z</updated>
       <content type='html'>このはちゃんかわいい
 
@@ -714,8 +714,8 @@ AdSense の申請通るといいな&lt;/p&gt;
     
     <entry>
       <title>Web ページの読み込みパフォーマンスを改善する</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-04-23/improve-web-performance' />
-      <id>https://blog.comame.xyz/entries/2019-04-23/improve-web-performance</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-04-23/improve-web-performance.html' />
+      <id>https://blog.comame.xyz/entries/2019-04-23/improve-web-performance.html</id>
       <updated>2019-04-23T00:00:00Z</updated>
       <content type='html'>&lt;h2&gt;
     TL;DR&lt;/h2&gt;
@@ -800,8 +800,8 @@ AdSense の申請通るといいな&lt;/p&gt;
     
     <entry>
       <title>Safari のブックマークを Chrome にインポートできない問題</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-04-22/safari-bookmark-import' />
-      <id>https://blog.comame.xyz/entries/2019-04-22/safari-bookmark-import</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-04-22/safari-bookmark-import.html' />
+      <id>https://blog.comame.xyz/entries/2019-04-22/safari-bookmark-import.html</id>
       <updated>2019-04-22T00:00:00Z</updated>
       <content type='html'>現在、macOS 10.14 Mojave において、Safari のブックマークを Chrome にインポートできない問題が発生しているようです。&lt;br /&gt;
 &lt;h2&gt;
@@ -843,8 +843,8 @@ Issue 850225: Mojave: Review importers from other browsers&lt;/div&gt;
     
     <entry>
       <title>Macbook Pro を買いました</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-03-12/macbook-pro' />
-      <id>https://blog.comame.xyz/entries/2019-03-12/macbook-pro</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-03-12/macbook-pro.html' />
+      <id>https://blog.comame.xyz/entries/2019-03-12/macbook-pro.html</id>
       <updated>2019-03-12T00:00:00Z</updated>
       <content type='html'>&lt;b&gt;やったぜ！！！！！！！！！！！&lt;/b&gt;&lt;br /&gt;
 &lt;br /&gt;
@@ -856,8 +856,8 @@ Issue 850225: Mojave: Review importers from other browsers&lt;/div&gt;
     
     <entry>
       <title>ただいま Firebase Hosting</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-02-04/firebase-hosting' />
-      <id>https://blog.comame.xyz/entries/2019-02-04/firebase-hosting</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-02-04/firebase-hosting.html' />
+      <id>https://blog.comame.xyz/entries/2019-02-04/firebase-hosting.html</id>
       <updated>2019-02-04T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;
     comame.xyz を Google Compute Engine から Firebase Hosting に戻しました。やはり、自動ですべてを管理してくれるのは便利なものですね。&lt;br&gt;
@@ -872,8 +872,8 @@ Issue 850225: Mojave: Review importers from other browsers&lt;/div&gt;
     
     <entry>
       <title>Windows 10 の Media Creation Tool で USB インストールメディアの作成に失敗する</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-01-25/windows10-install-media' />
-      <id>https://blog.comame.xyz/entries/2019-01-25/windows10-install-media</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-01-25/windows10-install-media.html' />
+      <id>https://blog.comame.xyz/entries/2019-01-25/windows10-install-media.html</id>
       <updated>2019-01-25T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;Windows 10 の Media Creation Tool で USB インストールメディアの作成に失敗するなあ、と思っていたら、予想外のところに理由があったようです。すでに同じようなことを書いてある記事がたくさんありますが、備忘録程度に。&lt;/p&gt;
 
@@ -890,8 +890,8 @@ Issue 850225: Mojave: Review importers from other browsers&lt;/div&gt;
     
     <entry>
       <title>USB セキュリティキーを買った</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-01-15/usb-security-key' />
-      <id>https://blog.comame.xyz/entries/2019-01-15/usb-security-key</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-01-15/usb-security-key.html' />
+      <id>https://blog.comame.xyz/entries/2019-01-15/usb-security-key.html</id>
       <updated>2019-01-15T00:00:00Z</updated>
       <content type='html'>&lt;img src="https://4.bp.blogspot.com/-K7VZSb9bU4I/XD2o-Aew2TI/AAAAAAABDRo/aOmdBYpSjPcWL7bdHBt-ON64j1rsMxN_QCKgBGAs/s1600/IMG_20190115_181149.jpg"&gt;
 
@@ -927,8 +927,8 @@ GitHub を調べ忘れていました。GitHub でも USB, NFC ともに使用�
     
     <entry>
       <title>8.8.8.8 が DNS-over-TLS に対応したようです</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-01-11/8888-dns-over-tls' />
-      <id>https://blog.comame.xyz/entries/2019-01-11/8888-dns-over-tls</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2019-01-11/8888-dns-over-tls.html' />
+      <id>https://blog.comame.xyz/entries/2019-01-11/8888-dns-over-tls.html</id>
       <updated>2019-01-11T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;8.8.8.8 で知られる Google Public DNS が &lt;a href="https://developers.google.com/speed/public-dns/docs/dns-over-tls" rel="noopener" target="_blank"&gt;DNS-over-TLS&lt;/a&gt; に対応したようです。既に Cloudflare の提供する 1.1.1.1 は対応済みなので、耳にしたことはあるかもしれません。&lt;br&gt;
     DNS への問い合わせを TLS で暗号化することで、応答の改ざんを防ぐことができます。&lt;/p&gt;
@@ -950,8 +950,8 @@ GitHub を調べ忘れていました。GitHub でも USB, NFC ともに使用�
     
     <entry>
       <title>Let's Encrypt でワイルドカード証明書を発行してみたお話</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2018-12-18/letsencrypt-wildcard' />
-      <id>https://blog.comame.xyz/entries/2018-12-18/letsencrypt-wildcard</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2018-12-18/letsencrypt-wildcard.html' />
+      <id>https://blog.comame.xyz/entries/2018-12-18/letsencrypt-wildcard.html</id>
       <updated>2018-12-18T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;Let's Encrypt でワイルドカード証明書を取得してみたら驚くほど簡単だったので、記事として残しておきます。&lt;/p&gt;
 
@@ -1011,8 +1011,8 @@ Press Enter to Continue
     
     <entry>
       <title>LINE Pay を Google Pay で使ってみた</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2018-11-30/line-pay-google-pay' />
-      <id>https://blog.comame.xyz/entries/2018-11-30/line-pay-google-pay</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2018-11-30/line-pay-google-pay.html' />
+      <id>https://blog.comame.xyz/entries/2018-11-30/line-pay-google-pay.html</id>
       <updated>2018-11-30T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;&lt;a href="http://pay-blog.line.me/archives/13246446.html"&gt;LINE Pay を Google Pay で使用できるようになった&lt;/a&gt;ので、早速使い始めてみました。今までスマホを使って支払いをしたことがなかったので、おサイフケータイを使うこと自体が初めてです。&lt;/p&gt;
 
@@ -1034,8 +1034,8 @@ Press Enter to Continue
     
     <entry>
       <title>「Google Pixel まだ見ぬ世界展」に行ってきた</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2018-10-21/pixel-event' />
-      <id>https://blog.comame.xyz/entries/2018-10-21/pixel-event</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2018-10-21/pixel-event.html' />
+      <id>https://blog.comame.xyz/entries/2018-10-21/pixel-event.html</id>
       <updated>2018-10-21T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;表参道駅前で28日まで行われている、&lt;a href="http://designart.jp/designarttokyo2018/exhibitor/google/" target="_blank" rel="noopener"&gt;Google Pixel まだ見ぬ世界展&lt;/a&gt; に遊びに行ってきました。このイベントでは、11月1日に日本で発売される Google Pixel 3 の実機を試すことができます。&lt;br&gt;
     会場は Pixel のカメラ性能を実感できるような造りになっていましたが、カメラ以外にもかなり自由に端末に触れることができました。&lt;/p&gt;
@@ -1091,8 +1091,8 @@ Press Enter to Continue
     
     <entry>
       <title>ブログの新テンプレートが完成！</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2018-10-20/new-template' />
-      <id>https://blog.comame.xyz/entries/2018-10-20/new-template</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2018-10-20/new-template.html' />
+      <id>https://blog.comame.xyz/entries/2018-10-20/new-template.html</id>
       <updated>2018-10-20T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;やっと Blogger 向けのテンプレートが完成しました！&lt;br&gt;
     &lt;a href="/p/test.html"&gt;サンプル&lt;/a&gt;&lt;/p&gt;
@@ -1106,8 +1106,8 @@ Press Enter to Continue
     
     <entry>
       <title>App Engine から Compute Engine に移行</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2018-08-19/ae-to-ce' />
-      <id>https://blog.comame.xyz/entries/2018-08-19/ae-to-ce</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2018-08-19/ae-to-ce.html' />
+      <id>https://blog.comame.xyz/entries/2018-08-19/ae-to-ce.html</id>
       <updated>2018-08-19T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;今まで Google App Engine Node.js Standard Environment (GAE/Node.js SE) で動かしていた &lt;a href="https://comame.xyz/" target="_blank" rel="noopener"&gt;comame.xyz&lt;/a&gt; を、Compute Engine に移しました。&lt;/p&gt;&lt;h2&gt;理由&lt;/h2&gt;&lt;p&gt;Nginx をいじってたら楽しくなってきちゃったから。&lt;/p&gt;&lt;h2&gt;感想&lt;/h2&gt;&lt;ul&gt;    &lt;li&gt;予想を遥かに上回るレベルで楽だった&lt;/li&gt;
     &lt;li&gt;環境依存するコードをほぼ書かなくて済むので、GAE/Node.js SE はいいぞ&lt;/li&gt;
@@ -1166,8 +1166,8 @@ server {
     
     <entry>
       <title>Gmail アドレスにおけるピリオドの扱い</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2018-07-28/gmail-period' />
-      <id>https://blog.comame.xyz/entries/2018-07-28/gmail-period</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2018-07-28/gmail-period.html' />
+      <id>https://blog.comame.xyz/entries/2018-07-28/gmail-period.html</id>
       <updated>2018-07-28T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;&lt;a href="https://productforums.google.com/forum/#!forum/gmail-ja" target="_blank" rel="noopener"&gt;Gmail ヘルプフォーラム&lt;/a&gt; で回答していると、それなりの頻度で次のような質問が届きます。&lt;/p&gt;&lt;blockquote&gt;ピリオドの有無が違うだけのメールアドレス宛のメールが、私にも届いています。これは他人宛のものではないのですか？&lt;/blockquote&gt;&lt;p&gt;Gmail の仕様では、@ より左側にあるピリオドの有無は無視されるようになっています。この仕様について、実験を交えて少し詳しく解説します。&lt;/p&gt;&lt;h2&gt;どのような仕様になっているの？&lt;/h2&gt;&lt;p&gt;以下のメールアドレスは、全て同じアカウントのメールアドレスとして扱われます。&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;i&gt;example@gmail.com&lt;/i&gt;&lt;/li&gt;
     &lt;li&gt;&lt;i&gt;exam.ple@gmail.com&lt;/i&gt;&lt;/li&gt;
@@ -1193,8 +1193,8 @@ server {
     
     <entry>
       <title>Gmail のフォローアップ機能を停止する</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2018-07-27/stop-gmail-followup' />
-      <id>https://blog.comame.xyz/entries/2018-07-27/stop-gmail-followup</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2018-07-27/stop-gmail-followup.html' />
+      <id>https://blog.comame.xyz/entries/2018-07-27/stop-gmail-followup.html</id>
       <updated>2018-07-27T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;新デザインの Gmail には、返信し忘れたメールや対応が必要なメールを判別し、受信トレイの先頭に表示してくれる機能が追加されました。&lt;br /&gt;
     このフォローアップ機能は便利ですが、一方で不要な方もいるでしょう。この機能を停止する方法を紹介します。&lt;/p&gt;&lt;h2&gt;モバイル&lt;/h2&gt;&lt;ol&gt;&lt;li&gt;Gmail アプリを開く&lt;/li&gt;
@@ -1212,8 +1212,8 @@ server {
     
     <entry>
       <title>#31DaysOfKotlin Week 1 日本語訳</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2018-04-30/31daysofkotlin' />
-      <id>https://blog.comame.xyz/entries/2018-04-30/31daysofkotlin</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2018-04-30/31daysofkotlin.html' />
+      <id>https://blog.comame.xyz/entries/2018-04-30/31daysofkotlin.html</id>
       <updated>2018-04-30T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;この記事は、&lt;a href="https://twitter.com/androiddev" rel="noopener" target="_blank"&gt;@AndroidDev&lt;/a&gt; による &lt;a href="https://medium.com/google-developers/31daysofkotlin-week-1-recap-fbd5a622ef86" target="_blank" rel="noopener"&gt;#31DaysOfKotlin — Week 1 Recap&lt;/a&gt; を&lt;strong&gt;勝手に&lt;/strong&gt;日本語訳したものです。&lt;br /&gt;
     基本的な文法からちょっとした TIPS まで様々なことが紹介されているので、知らないものがあったらぜひ使ってみてください。&lt;/p&gt;&lt;h2&gt;Day 1: Elvis Operator (エルビス演算子)&lt;/h2&gt;&lt;p&gt;Null チェックをよりスマートにするには、エルビス演算子を使ってみましょう。&lt;br /&gt;
@@ -1298,8 +1298,8 @@ server {
     
     <entry>
       <title>新しいデザインの Gmail がリリースされました</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2018-04-26/new-design-gmail-released' />
-      <id>https://blog.comame.xyz/entries/2018-04-26/new-design-gmail-released</id>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2018-04-26/new-design-gmail-released.html' />
+      <id>https://blog.comame.xyz/entries/2018-04-26/new-design-gmail-released.html</id>
       <updated>2018-04-26T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;新しいデザインの Gmail が、昨日リリースされました！マテリアルデザインが適用されたほか、カレンダーや ToDo リストが使いやすくなっているようです。&lt;br /&gt;
     &lt;a href="https://japan.googleblog.com/2018/04/gmail.html" target="_blank" rel="noopener"&gt;新しい Gmail をお試しください。- Google Japan Blog&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;変更点&lt;/h2&gt;&lt;h3&gt;スヌーズ機能が追加された&lt;/h3&gt;&lt;p&gt;この機能は &lt;a href="https://inbox.google.com" target="_blank" rel="noopener"&gt;Inbox by Gmail&lt;/a&gt; からの逆輸入ですね。メールを一旦受信トレイから非表示 (アーカイブ) にし、指定した日付に再び受信トレイに戻す機能です。&lt;/p&gt;&lt;h3&gt;メールに対しての操作が簡単になった&lt;/h3&gt;&lt;p&gt;これまた Inbox からの逆輸入です。メールの一覧画面から、今までより簡単にアーカイブ、削除、移動などの操作が行えるようになりました。マウスカーソルをメールに合わせると、下の画像のようなアイコンが表示されます。&lt;/p&gt;&lt;img src="https://2.bp.blogspot.com/-IMmNaD33EcI/W8oUwVKCbcI/AAAAAAABAYQ/QaRXXsRJrnMRb8beuxaGIDIvLjY2fDXxACLcBGAs/s1600/%25E3%2582%25B3%25E3%2583%25A1%25E3%2583%25B3%25E3%2583%2588.png"/&gt;&lt;br /&gt;

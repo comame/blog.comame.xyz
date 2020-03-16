@@ -60,6 +60,8 @@ window.addEventListener('component-create', async e => {
         it.title = date
     })
 
+    addCanonicalLink()
+
     console.log('rendering complete')
     const complete = document.createElement('meta').with(meta => {
         meta.name = 'x-render-complete'
@@ -110,6 +112,14 @@ function generateOgp(description) {
     document.head.appendChild(title)
     document.head.appendChild(siteName)
     document.head.appendChild(property)
+}
+
+function addCanonicalLink() {
+    const link = document.createElement('link').with(it => {
+        it.rel = 'canonical'
+        it.href = 'https://blog.comame.xyz' + location.pathname
+    })
+    document.head.appendChild(link)
 }
 
 async function homePage() {
