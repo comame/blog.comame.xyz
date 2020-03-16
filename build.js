@@ -4,7 +4,6 @@ const BLOG_HOST = process.env.BLOG_HOST || 'http://localhost'
 const ALL = 'ALL' in process.env
 
 const puppeteer = require('puppeteer')
-const md = require('marked')
 const fs = require('fs').promises
 const entries = require('./archives/entries.json')
 
@@ -18,7 +17,6 @@ async function main() {
 
     const crawledPageSets = new Set()
 
-    await buildMarkdown().catch(handleError)
     await copyAssets().catch(handleError)
 
     await buildArticles(crawledPageSets).catch(handleError)
@@ -32,40 +30,6 @@ async function main() {
 function handleError(err) {
     console.error(err)
     process.exit(1)
-}
-
-async function buildMarkdown() {
-    const renderer = new md.Renderer()
-    renderer.link = function(href, title, text) {
-        if (
-            href.startsWith('http://') ||
-            href.startsWith('https://') ||
-            href.startsWith('//')
-        ) {
-            return `<a href=${href} target='_blank' rel='noopener'>${text}</a>`
-        } else {
-            return `<a href=${href}>${text}</a>`
-        }
-    }
-
-    const archiveDirs = await fs.readdir(__dirname + '/archives')
-    for (const archiveDir of archiveDirs) {
-        if (archiveDir == 'entries.json') continue
-        const entryFilenames = await fs.readdir(__dirname + '/archives/' + archiveDir)
-        for (const entryFilename of entryFilenames) {
-            if (!entryFilename.endsWith('.md')) continue
-            const markdown = await fs.readFile(__dirname + '/archives/' + archiveDir + '/' + entryFilename, {
-                encoding: 'utf8'
-            })
-            const html = md(markdown, {
-                headerIds: false,
-                renderer
-            })
-            const htmlFilename = entryFilename.replace(/\.md$/, '.html')
-            await fs.writeFile(__dirname + '/archives/' + archiveDir + '/' + htmlFilename, html)
-            console.log(`Compiled ${archiveDir}/${entryFilename}`)
-        }
-    }
 }
 
 async function copyAssets() {
