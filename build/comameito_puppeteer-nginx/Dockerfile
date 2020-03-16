@@ -47,7 +47,7 @@ RUN apt update && \
 RUN wget https://deb.nodesource.com/setup_13.x -O -| bash - && \
     apt install -y nodejs
 
-# install Nginx
+# Install Nginx
 RUN apt install -y curl gnupg2 ca-certificates lsb-release && \
     echo "deb http://nginx.org/packages/mainline/ubuntu `lsb_release -cs` nginx" > \
     /etc/apt/sources.list.d/nginx.list && \
