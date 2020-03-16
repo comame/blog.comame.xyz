@@ -43,7 +43,7 @@ RUN apt update && \
     xdg-utils \
     wget
 
-# Install Node.js and Puppeteer
+# Install Node.js
 RUN wget https://deb.nodesource.com/setup_13.x -O -| bash - && \
     apt install -y nodejs
 
