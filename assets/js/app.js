@@ -232,6 +232,14 @@ async function entryPage(date, entry) {
         cloneContentNode.removeChild(it)
     })
     const description = cloneContentNode.textContent.replace(/\n/g, ' ').replace(/\s+/, ' ').slice(0, 137) + '...'
+
+    const year = entryObj.date.split('-')[0]
+    const filename = entryObj.entry + '.' + entryObj.type
+    const githubHistoryUrl = `https://github.com/comame/blog.comame.xyz/commits/master/archives/${year}/${filename}`
+    const githubSourceUrl = `https://github.com/comame/blog.comame.xyz/blob/master/archives/${year}/${filename}`
+    document.getElementById('history').href = githubHistoryUrl
+    document.getElementById('source').href = githubSourceUrl
+
     generateOgp(description)
 }
 
