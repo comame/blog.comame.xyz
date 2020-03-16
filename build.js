@@ -256,6 +256,7 @@ async function savePage(path, content) {
 }
 
 module.exports = {
+    buildMarkdown,
     copyAssets,
     createSiteMap,
     createFeed,
