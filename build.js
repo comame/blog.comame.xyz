@@ -208,9 +208,8 @@ async function crawl(path, page, crawledPathSet) {
     }
     crawledPathSet.add(path)
 
-    page.on('console', consoleMessage => {
-        if (consoleMessage.type() != 'error') return
-        throw consoleMessage.text()
+    page.on('pageerror', error => {
+        throw error
     })
 
     await page.goto(BLOG_HOST + '/' + path)
