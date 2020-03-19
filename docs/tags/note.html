@@ -3,115 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>note | comame.xyz</title>
 
-    <style>:root {
-    font-size: 16px;
-
-    --main-color: black;
-    --link-color: #00e;
-    --visited-link-color: #a52a2a;
-    --code-color: #efefef;
-    --radius: 5px;
-}
-
-html {
-    box-sizing: border-box;
-}
-
-/* Desktop */
-@media screen and (min-width: 1000px) {
-    :root {
-        --content-width: 80vw;
-        --image-width: 50vw;
-
-        --block-code-radius: 5px;
-        --block-code-width: var(--content-width);
-    }
-}
-
-/* Tablet */
-@media screen and (min-width: 700px) {
-    :root {
-        --content-width: 80vw;
-        --image-width: 50vw;
-
-        --block-code-radius: 5px;
-        --block-code-width: var(--content-width);
-    }
-}
-
-/* Mobile / Tablet */
-@media screen and (max-width: 1000px) {
-    :root {
-        --content-width: 90vw;
-        --image-width: 90vw;
-
-        --block-code-radius: none;
-        --block-code-width: var(100vw);
-    }
-}
-
-body {
-    box-sizing: border-box;
-    margin: 0;
-}
-header {
-    position: sticky;
-    top: 0;
-    left: 0;
-    height: 3rem;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    background: rgba(255, 255, 255, 0.95);
-    padding: 0 calc((100vw - var(--content-width)) / 2);
-    z-index: 1000;
-}
-header a {
-    display: inline-block;
-    line-height: 3rem;
-    text-decoration: none;
-    color: var(--main-color);
-}
-header a:visited {
-    color: var(--main-color)
-}
-a {
-    text-decoration: none;
-    color: var(--link-color);
-}
-a:visited {
-    color: var(--visited-link-color);
-}
-.entries {
-    list-style: none;
-    padding-left: 0;
-}
-
-.tag-list {
-    list-style: none;
-    display: inline;
-    padding-left: 0;
-}
-.tag-list::before {
-    content: '[';
-}
-.tag-list::after {
-    content: ']';
-}
-.tag-list > li {
-    display: inline;
-}
-.tag-list > li:not(:last-child)::after {
-    content: ', ';
-}
-
-footer {
-    margin: 3rem auto 1rem auto;
-    text-align: center;
-}
-
-footer small {
-    display: block;
-}
-</style>
+    <style>:root {font-size: 16px;--main-color: black;--link-color: #00e;--visited-link-color: #a52a2a;--code-color: #efefef;--radius: 5px;}html {box-sizing: border-box;}@media screen and (min-width: 1000px) {:root {--content-width: 80vw;--image-width: 50vw;--block-code-radius: 5px;--block-code-width: var(--content-width);}}@media screen and (min-width: 700px) {:root {--content-width: 80vw;--image-width: 50vw;--block-code-radius: 5px;--block-code-width: var(--content-width);}}@media screen and (max-width: 1000px) {:root {--content-width: 90vw;--image-width: 90vw;--block-code-radius: none;--block-code-width: var(100vw);}}body {box-sizing: border-box;margin: 0;}header {position: sticky;top: 0;left: 0;height: 3rem;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);background: rgba(255, 255, 255, 0.95);padding: 0 calc((100vw - var(--content-width)) / 2);z-index: 1000;}header a {display: inline-block;line-height: 3rem;text-decoration: none;color: var(--main-color);}header a:visited {color: var(--main-color)}a {text-decoration: none;color: var(--link-color);}a:visited {color: var(--visited-link-color);}.entries {list-style: none;padding-left: 0;}.tag-list {list-style: none;display: inline;padding-left: 0;}.tag-list::before {content: '[';}.tag-list::after {content: ']';}.tag-list > li {display: inline;}.tag-list > li:not(:last-child)::after {content: ', ';}footer {margin: 3rem auto 1rem auto;text-align: center;}footer small {display: block;}</style>
 <link rel="canonical" href="https://blog.comame.xyz/tags/note.html"></head>
 
 <body>
@@ -124,28 +16,11 @@ footer small {
     
     
     <div component="tag" id="c-tag">
-        <style>#c-home, #c-tag {
-    width: var(--content-width);
-    margin: 0 auto;
-}
-
-.entries > li {
-    margin-bottom: .5rem;
-}
-.entries > li::before {
-    content: '- ';
-}
-.entries > li > time::after {
-    content: ': ';
-}
-.entries a.entry {
-    margin-right: 1rem;
-}
-</style>
+        <style>#c-home, #c-tag {width: var(--content-width);margin: 0 auto;}.entries > li {margin-bottom: .5rem;}.entries > li::before {content: '- ';}.entries > li > time::after {content: ': ';}.entries a.entry {margin-right: 1rem;}</style>
     <h2>note</h2><ul class="entries"><li><time>2020-03-08</time><a class="entry" href="/entries/2020-03-08/docker-startup-wsl2.html">WSL2 で Docker を自動起動する</a><ul class="tag-list"><li><a href="/tags/Windows.html">Windows</a></li><li><a href="/tags/note.html">note</a></li></ul></li><li><time>2019-09-18</time><a class="entry" href="/entries/2019-09-18/ubuntu-create-user.html">Ubuntu ユーザー作成</a><ul class="tag-list"><li><a href="/tags/server.html">server</a></li><li><a href="/tags/note.html">note</a></li></ul></li></ul></div>
 
     <footer>
-        <small><img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Thu, 19 Mar 2020 09:40:11 GMT"></small>
+        <small><img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Thu, 19 Mar 2020 10:27:55 GMT"></small>
         <small>Copyright 2020 <a href="https://comame.xyz">comame</a> | <a href="https://github.com/comame/blog.comame.xyz">GitHub</a> | <a href="/feed.xml">Feed</a></small>
     </footer>
 
