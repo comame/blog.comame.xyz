@@ -113,7 +113,3 @@ footer small {
 footer small > span:not(:last-child)::after {
     content: ' | ';
 }
-
-footer small > span[component-place] {
-    display: none;
-}
