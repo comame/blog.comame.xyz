@@ -34,6 +34,19 @@ function handleError(err) {
     process.exit(1)
 }
 
+async function minifyCss(css) {
+    return css
+        .replace(/\/\*.*\*\//g, '')
+        .split(/\n/g)
+        .map(line =>
+            line
+                .replace(/^\s+/g, '')
+                .replace(/\s+$/g, '')
+        )
+        .join('')
+
+}
+
 async function buildMarkdown() {
     const renderer = new md.Renderer()
     renderer.link = function(href, title, text) {
@@ -202,18 +215,31 @@ async function crawl(path, page, crawledPathSet) {
         element.parentNode.removeChild(element)
     })
 
-    await page.$$eval('link[rel=stylesheet]', async (elements, hostname) => {
+    const styles = await page.$$eval('link[rel=stylesheet]', async (elements, hostname) => {
+        const styles = []
         for (const element of elements) {
             const href = element.href
             if (!href.startsWith(hostname)) continue
             const res = await fetch(href)
             const css = await res.text()
-
-            const styleEl = document.createElement('style')
-            styleEl.textContent = css
-            element.parentNode.replaceChild(styleEl, element)
+            styles.push(css)
         }
+        return styles
     }, BLOG_HOST)
+
+    for (let i = 0; i < styles.length; i += 1) {
+        styles[i] = await minifyCss(styles[i])
+    }
+
+    await page.$$eval('link[rel=stylesheet', async(elements, hostname, styles) => {
+        const selfStyles = elements.filter(el => el.href.startsWith(hostname))
+
+        for (let i = 0; i < selfStyles.length; i += 1) {
+            const styleEl = document.createElement('style')
+            styleEl.textContent = styles[i]
+            selfStyles[i].parentNode.replaceChild(styleEl, selfStyles[i])
+        }
+    }, BLOG_HOST, styles)
 
     await page.$$eval('script:not([not-remove])', elements => {
         for (const element of elements) {
@@ -256,6 +282,7 @@ async function savePage(path, content) {
 }
 
 module.exports = {
+    minifyCss,
     buildMarkdown,
     copyAssets,
     createSiteMap,
