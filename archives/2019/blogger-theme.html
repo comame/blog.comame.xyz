@@ -20,7 +20,7 @@ ok -- &lt;img src='https://example.com/foo.png'&gt;&lt;/img&gt;
 ok -- &lt;img src='https://example.com/foo.png'/&gt;
 ng -- &lt;img src='https://example.com/foo.png'&gt;</code></pre>
 
-また、ファイルの先頭に決められた形式の記述をしなければなりません。Blogger の場合は次のようになります。
+<p>また、ファイルの先頭に決められた形式の記述をしなければなりません。Blogger の場合は次のようになります。</p>
 <pre><code>&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
 
 &lt;!DOCTYPE html&gt;
@@ -117,7 +117,7 @@ ng -- &lt;img src='https://example.com/foo.png'&gt;</code></pre>
 
 <p><code>b:eval</code>タグと<code>expr:</code>属性 (<a href='https://developer.mozilla.org/ja/docs/Learn/Getting_started_with_the_web/HTML_basics#Anatomy_of_an_HTML_element'>Attribute</a>) は特殊で難しい構文です。<code>eval:</code>属性は、HTML の属性にブログのデータを埋め込みたいときに使用します。例えば、ブログのホームページへのリンクは次のようなものになるでしょう。
 <pre><code>&lt;a expr:href="data:homepageUrl"&gt;ホームページ&lt;/a&gt;</code></pre>
-<code>b:eval</code>タグも同様の役割を持ちますが、これは属性ではなくタグです。</p>
+<p><code>b:eval</code>タグも同様の役割を持ちますが、これは属性ではなくタグです。</p>
 
 <p>制御タグと<code>b:eval</code>、<code>expr:</code>についての<a href='https://support.google.com/blogger/answer/46995'>ヘルプページはこちら</a>です。</p>
 

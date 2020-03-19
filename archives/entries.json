@@ -93,7 +93,7 @@
     "title": "Web ページの読み込みパフォーマンスを改善する",
     "date": "2019-04-23",
     "tags": [ "Web" ],
-    "type": "html"
+    "type": "md"
 }, {
     "entry": "migrate-to-conoha",
     "title": "comame.xyz を ConoHa に移した",

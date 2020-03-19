@@ -35,8 +35,8 @@ User=hoge
 Group=hoge
 
 [Install]
-WantedBy=multi-user.target</code></pre><code>$ systemctl start nodejs.service</code> でサービスを起動。<br />
-<code>$ systemctl enable nodejs.service</code> で OS の起動時にサービスを起動するよう設定。<br />
+WantedBy=multi-user.target</code></pre>
+<p><code>$ systemctl start nodejs.service</code> でサービスを起動。<code>$ systemctl enable nodejs.service</code> で OS の起動時にサービスを起動するよう設定。</p>
 <h3>Nginx から Node.js にリクエストを回す</h3><pre><code># /etc/nginx/sites-enabled/comame.xyz
 
 upstream node {
@@ -49,4 +49,4 @@ server {
     location / {
         proxy_pass http://node;
     }
-}</code></pre><h3>Certbot で電子証明書を取得</h3><p>コマンド叩くだけで電子証明書が取得できるの、本当にすごいよね。あとは Nginx 側で証明書のパスを指定するだけ。</p><code>$ certbot certonly --nginx<code></code></code>
+}</code></pre><h3>Certbot で電子証明書を取得</h3><p>コマンド叩くだけで電子証明書が取得できるの、本当にすごいよね。あとは Nginx 側で証明書のパスを指定するだけ。</p><p><code>$ certbot certonly --nginx<code></code></code></p>
