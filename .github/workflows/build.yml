@@ -52,7 +52,7 @@ jobs:
       run: |
         cd ${{ github.workspace }}
         echo "blog.comame.xyz" | cat > docs/CNAME
-        git config --local user.name "GitHib Actions"
+        git config --local user.name "GitHub Actions"
         git config --local user.email dev@comame.xyz
         git add docs
         git commit -m "Action: deploy" | exit 0
