@@ -60,8 +60,7 @@
 #content ul, #content ol {
     counter-reset: ol;
     list-style: none;
-    padding-left: 0;
-    text-indent: 1rem;
+    padding-left: 1rem;
 }
 #content ul > li::before {
     content: '- ';
