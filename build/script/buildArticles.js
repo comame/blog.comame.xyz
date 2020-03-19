@@ -71,6 +71,11 @@ async function crawl(path, page, crawledPathSet, host) {
             element.parentNode.removeChild(element)
         }
     })
+    await page.$$eval('*[component-place]', elements => {
+        for (const element of elements) {
+            element.parentNode.removeChild(element)
+        }
+    })
 
     const notfound = await page.$('#c-notfound')
     if (notfound) {
