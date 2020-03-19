@@ -18,6 +18,14 @@ router.initialize([{
     path: '/notfound',
     component: 'notfound'
 }, {
+    path: '/entries/:date/:entry.html',
+    for: 'history',
+    component: 'history'
+}, {
+    path: '/entries/:date/:entry.html',
+    for: 'source',
+    component: 'source'
+}, {
     notfound: '/notfound'
 }], {
     mode: 'history'

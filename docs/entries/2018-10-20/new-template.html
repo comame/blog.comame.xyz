@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ブログの新テンプレートが完成！ | blog.comame.xyz</title>
 
-    <style>:root {font-size: 16px;--main-color: black;--link-color: #00e;--visited-link-color: #a52a2a;--code-color: #efefef;--radius: 5px;}html {box-sizing: border-box;}@media screen and (min-width: 1000px) {:root {--content-width: 80vw;--image-width: 50vw;--block-code-radius: 5px;--block-code-width: var(--content-width);--block-code-padding: .5rem;}}@media screen and (min-width: 700px) {:root {--content-width: 80vw;--image-width: 50vw;--block-code-radius: 5px;--block-code-width: var(--content-width);--block-code-padding: .5rem;}}@media screen and (max-width: 700px) {:root {--content-width: 90vw;--image-width: 90vw;--block-code-radius: none;--block-code-width: var(100vw);--block-code-padding: .5rem calc((100vw - var(--content-width)) / 2);}}body {box-sizing: border-box;margin: 0;}header {position: sticky;top: 0;left: 0;height: 3rem;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);background: rgba(255, 255, 255, 0.95);padding: 0 calc((100vw - var(--content-width)) / 2);z-index: 1000;}header a {display: inline-block;line-height: 3rem;text-decoration: none;color: var(--main-color);}header a:visited {color: var(--main-color)}a {text-decoration: none;color: var(--link-color);}a:visited {color: var(--visited-link-color);}.entries {list-style: none;padding-left: 0;}.tag-list {list-style: none;display: inline;padding-left: 0;}.tag-list::before {content: '[';}.tag-list::after {content: ']';}.tag-list > li {display: inline;}.tag-list > li:not(:last-child)::after {content: ', ';}footer {margin: 3rem auto 1rem auto;text-align: center;}footer small {display: block;}</style>
+    <style>:root {font-size: 16px;--main-color: black;--link-color: #00e;--visited-link-color: #a52a2a;--code-color: #efefef;--radius: 5px;}html {box-sizing: border-box;}@media screen and (min-width: 1000px) {:root {--content-width: 80vw;--image-width: 50vw;--block-code-radius: 5px;--block-code-width: var(--content-width);--block-code-padding: .5rem;}}@media screen and (min-width: 700px) {:root {--content-width: 80vw;--image-width: 50vw;--block-code-radius: 5px;--block-code-width: var(--content-width);--block-code-padding: .5rem;}}@media screen and (max-width: 700px) {:root {--content-width: 90vw;--image-width: 90vw;--block-code-radius: none;--block-code-width: var(100vw);--block-code-padding: .5rem calc((100vw - var(--content-width)) / 2);}}body {box-sizing: border-box;margin: 0;}header {position: sticky;top: 0;left: 0;height: 3rem;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);background: rgba(255, 255, 255, 0.95);padding: 0 calc((100vw - var(--content-width)) / 2);z-index: 1000;}header a {display: inline-block;line-height: 3rem;text-decoration: none;color: var(--main-color);}header a:visited {color: var(--main-color)}a {text-decoration: none;color: var(--link-color);}a:visited {color: var(--visited-link-color);}.entries {list-style: none;padding-left: 0;}.tag-list {list-style: none;display: inline;padding-left: 0;}.tag-list::before {content: '[';}.tag-list::after {content: ']';}.tag-list > li {display: inline;}.tag-list > li:not(:last-child)::after {content: ', ';}footer {margin: 3rem auto 1rem auto;text-align: center;}footer small {display: block;}footer small > span:not(:last-child)::after {content: ' | ';}footer small > span[component-place] {display: none;}</style>
 <meta property="og:type" content="article"><meta property="og:url" content="http://localhost/entries/2018-10-20/new-template.html"><meta property="og:title" content="ブログの新テンプレートが完成！ | blog.comame.xyz"><meta property="og:site_name" content="blog.comame.xyz"><meta property="og:description" content="やっと Blogger 向けのテンプレートが完成しました！     サンプル     HTML も CSS も全て手書きです。Blogger のテンプレートは XML の単一ファイルに書かなくてはならない上に、公式ドキュメントが非常に乏しいので、本当に苦労しました。できる限..."><meta name="description" content="やっと Blogger 向けのテンプレートが完成しました！     サンプル     HTML も CSS も全て手書きです。Blogger のテンプレートは XML の単一ファイルに書かなくてはならない上に、公式ドキュメントが非常に乏しいので、本当に苦労しました。できる限..."><link rel="canonical" href="https://blog.comame.xyz/entries/2018-10-20/new-template.html"></head>
 
 <body>
@@ -19,10 +19,6 @@
         <div id="metadata">
             <h1 id="title">ブログの新テンプレートが完成！</h1>
             <time id="time">2018-10-20</time>
-            <div id="source-history">
-                <a id="source" target="_blank" rel="noopener" href="https://github.com/comame/blog.comame.xyz/blob/master/archives/2018/new-template.html">source</a>
-                <a id="history" target="_blank" rel="noopener" href="https://github.com/comame/blog.comame.xyz/commits/master/archives/2018/new-template.html">history</a>
-            </div>
             <ul id="tags" class="tag-list"><li><a href="/tags/Blog.html">Blog</a></li></ul>
         </div>
         <div id="content"><p>やっと Blogger 向けのテンプレートが完成しました！<br>
@@ -50,8 +46,19 @@
     </div>
 
     <footer>
-        <small><img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Thu, 19 Mar 2020 14:44:01 GMT"></small>
-        <small>Copyright 2020 <a href="https://comame.xyz">comame</a> | <a href="https://github.com/comame/blog.comame.xyz">GitHub</a> | <a href="/feed.xml">Feed</a></small>
+        <small>
+            <a href="https://github.com/comame/blog.comame.xyz" target="_blank" rel="noopener">
+                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Thu, 19 Mar 2020 15:05:41 GMT">
+            </a>
+        </small>
+        <small>
+            <span>Copyright 2020 <a href="https://comame.xyz">comame</a></span>
+            
+            
+            <span component="source" for="source"><a id="source" target="_blank" rel="noopener" href="https://github.com/comame/blog.comame.xyz/blob/master/archives/2018/new-template.html">source</a></span>
+            <span component="history" for="history"><a id="history" target="_blank" rel="noopener" href="https://github.com/comame/blog.comame.xyz/commits/master/archives/2018/new-template.html">history</a></span>
+            <span><a href="/feed.xml">Feed</a></span>
+        </small>
     </footer>
 
     
