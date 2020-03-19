@@ -208,6 +208,11 @@ async function crawl(path, page, crawledPathSet) {
     }
     crawledPathSet.add(path)
 
+    page.on('console', consoleMessage => {
+        if (consoleMessage.type() != 'error') return
+        throw consoleMessage.text()
+    })
+
     await page.goto(BLOG_HOST + '/' + path)
 
     await page.waitForSelector('meta[name=x-render-complete]')
