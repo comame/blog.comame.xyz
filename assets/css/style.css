@@ -12,19 +12,7 @@ html {
     box-sizing: border-box;
 }
 
-/* Desktop */
-@media screen and (min-width: 1000px) {
-    :root {
-        --content-width: 80vw;
-        --image-width: 50vw;
-
-        --block-code-radius: 5px;
-        --block-code-width: var(--content-width);
-        --block-code-padding: .5rem;
-    }
-}
-
-/* Tablet */
+/* Desktop, Tablet */
 @media screen and (min-width: 700px) {
     :root {
         --content-width: 80vw;
