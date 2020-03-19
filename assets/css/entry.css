@@ -1,6 +1,10 @@
 #metadata {
     margin-bottom: 3rem;
+    margin-right: auto;
+    margin-left: auto;
+    width: var(--content-width);
 }
+
 #metadata h1 {
     font-size: 1.5rem;
 }
@@ -16,6 +20,11 @@
 
 #content {
     word-break: break-all;
+}
+#content > * {
+    margin-right: auto;
+    margin-left: auto;
+    width: var(--content-width);
 }
 #content p {
     text-indent: .5rem;
@@ -35,8 +44,9 @@
     padding: 0.5rem;
     white-space: pre;
     overflow-x: scroll;
-    border-radius: var(--radius);
+    border-radius: var(--block-code-radius);
     background: var(--code-color);
+    width: var(--block-code-width);
 }
 #content pre > code {
     padding: 0;
@@ -63,6 +73,9 @@
 
 #share {
     margin-top: 3rem;
+    width: var(--content-width);
+    margin-right: auto;
+    margin-left: auto;
 }
 #share > img {
     margin-right: 2rem;
