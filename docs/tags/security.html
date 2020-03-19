@@ -5,6 +5,7 @@
 
     <style>:root {
     font-size: 16px;
+
     --main-color: black;
     --link-color: #00e;
     --visited-link-color: #a52a2a;
@@ -12,11 +13,29 @@
     --radius: 5px;
 }
 
+html {
+    box-sizing: border-box;
+}
+
 /* Desktop */
 @media screen and (min-width: 1000px) {
     :root {
         --content-width: 80vw;
         --image-width: 50vw;
+
+        --block-code-radius: 5px;
+        --block-code-width: var(--content-width);
+    }
+}
+
+/* Tablet */
+@media screen and (min-width: 700px) {
+    :root {
+        --content-width: 80vw;
+        --image-width: 50vw;
+
+        --block-code-radius: 5px;
+        --block-code-width: var(--content-width);
     }
 }
 
@@ -25,6 +44,9 @@
     :root {
         --content-width: 90vw;
         --image-width: 90vw;
+
+        --block-code-radius: none;
+        --block-code-width: var(100vw);
     }
 }
 
@@ -40,6 +62,7 @@ header {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     background: rgba(255, 255, 255, 0.95);
     padding: 0 calc((100vw - var(--content-width)) / 2);
+    z-index: 1000;
 }
 header a {
     display: inline-block;
@@ -56,10 +79,6 @@ a {
 }
 a:visited {
     color: var(--visited-link-color);
-}
-*[component] {
-    width: var(--content-width);
-    margin: 0 auto;
 }
 .entries {
     list-style: none;
@@ -105,7 +124,12 @@ footer small {
     
     
     <div component="tag" id="c-tag">
-        <style>.entries > li {
+        <style>#c-home, #c-tag {
+    width: var(--content-width);
+    margin: 0 auto;
+}
+
+.entries > li {
     margin-bottom: .5rem;
 }
 .entries > li::before {
@@ -121,7 +145,7 @@ footer small {
     <h2>security</h2><ul class="entries"><li><time>2019-10-03</time><a class="entry" href="/entries/2019-10-03/letsencrypt-wildcard-error.html">Let's Encrypt (Certbot) でワイルドカード証明書を取得できないときの解決法</a><ul class="tag-list"><li><a href="/tags/security.html">security</a></li><li><a href="/tags/troubleshoot.html">troubleshoot</a></li><li><a href="/tags/server.html">server</a></li></ul></li><li><time>2019-09-26</time><a class="entry" href="/entries/2019-09-26/self-signed-certificate.html">OpenSSL で自己証明書を作成する方法</a><ul class="tag-list"><li><a href="/tags/security.html">security</a></li><li><a href="/tags/server.html">server</a></li></ul></li><li><time>2019-01-15</time><a class="entry" href="/entries/2019-01-15/usb-security-key.html">USB セキュリティキーを買った</a><ul class="tag-list"><li><a href="/tags/security.html">security</a></li></ul></li><li><time>2019-01-11</time><a class="entry" href="/entries/2019-01-11/8888-dns-over-tls.html">8.8.8.8 が DNS-over-TLS に対応したようです</a><ul class="tag-list"><li><a href="/tags/Google.html">Google</a></li><li><a href="/tags/security.html">security</a></li></ul></li><li><time>2018-12-18</time><a class="entry" href="/entries/2018-12-18/letsencrypt-wildcard.html">Let's Encrypt でワイルドカード証明書を発行してみたお話</a><ul class="tag-list"><li><a href="/tags/security.html">security</a></li><li><a href="/tags/server.html">server</a></li></ul></li></ul></div>
 
     <footer>
-        <small><img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Thu, 19 Mar 2020 04:41:50 GMT"></small>
+        <small><img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Thu, 19 Mar 2020 09:32:53 GMT"></small>
         <small>Copyright 2020 <a href="https://comame.xyz">comame</a> | <a href="https://github.com/comame/blog.comame.xyz">GitHub</a> | <a href="/feed.xml">Feed</a></small>
     </footer>
 

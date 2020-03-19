@@ -1,5 +1,6 @@
 :root {
     font-size: 16px;
+
     --main-color: black;
     --link-color: #00e;
     --visited-link-color: #a52a2a;
@@ -7,11 +8,29 @@
     --radius: 5px;
 }
 
+html {
+    box-sizing: border-box;
+}
+
 /* Desktop */
 @media screen and (min-width: 1000px) {
     :root {
         --content-width: 80vw;
         --image-width: 50vw;
+
+        --block-code-radius: 5px;
+        --block-code-width: var(--content-width);
+    }
+}
+
+/* Tablet */
+@media screen and (min-width: 700px) {
+    :root {
+        --content-width: 80vw;
+        --image-width: 50vw;
+
+        --block-code-radius: 5px;
+        --block-code-width: var(--content-width);
     }
 }
 
@@ -20,6 +39,9 @@
     :root {
         --content-width: 90vw;
         --image-width: 90vw;
+
+        --block-code-radius: none;
+        --block-code-width: var(100vw);
     }
 }
 
@@ -35,6 +57,7 @@ header {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     background: rgba(255, 255, 255, 0.95);
     padding: 0 calc((100vw - var(--content-width)) / 2);
+    z-index: 1000;
 }
 header a {
     display: inline-block;
@@ -51,10 +74,6 @@ a {
 }
 a:visited {
     color: var(--visited-link-color);
-}
-*[component] {
-    width: var(--content-width);
-    margin: 0 auto;
 }
 .entries {
     list-style: none;
