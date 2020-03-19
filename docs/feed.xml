@@ -237,7 +237,7 @@ ok -- &lt;img src='https://example.com/foo.png'&gt;&lt;/img&gt;
 ok -- &lt;img src='https://example.com/foo.png'/&gt;
 ng -- &lt;img src='https://example.com/foo.png'&gt;&lt;/code&gt;&lt;/pre&gt;
 
-また、ファイルの先頭に決められた形式の記述をしなければなりません。Blogger の場合は次のようになります。
+&lt;p&gt;また、ファイルの先頭に決められた形式の記述をしなければなりません。Blogger の場合は次のようになります。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
 
 &lt;!DOCTYPE html&gt;
@@ -334,7 +334,7 @@ ng -- &lt;img src='https://example.com/foo.png'&gt;&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;code&gt;b:eval&lt;/code&gt;タグと&lt;code&gt;expr:&lt;/code&gt;属性 (&lt;a href='https://developer.mozilla.org/ja/docs/Learn/Getting_started_with_the_web/HTML_basics#Anatomy_of_an_HTML_element'&gt;Attribute&lt;/a&gt;) は特殊で難しい構文です。&lt;code&gt;eval:&lt;/code&gt;属性は、HTML の属性にブログのデータを埋め込みたいときに使用します。例えば、ブログのホームページへのリンクは次のようなものになるでしょう。
 &lt;pre&gt;&lt;code&gt;&lt;a expr:href="data:homepageUrl"&gt;ホームページ&lt;/a&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;code&gt;b:eval&lt;/code&gt;タグも同様の役割を持ちますが、これは属性ではなくタグです。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;b:eval&lt;/code&gt;タグも同様の役割を持ちますが、これは属性ではなくタグです。&lt;/p&gt;
 
 &lt;p&gt;制御タグと&lt;code&gt;b:eval&lt;/code&gt;、&lt;code&gt;expr:&lt;/code&gt;についての&lt;a href='https://support.google.com/blogger/answer/46995'&gt;ヘルプページはこちら&lt;/a&gt;です。&lt;/p&gt;
 
@@ -442,7 +442,7 @@ ng -- &lt;img src='https://example.com/foo.png'&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;今後どうなるか&lt;/h2&gt;
 &lt;p&gt;Chrome Canary 80.0.3955.4 ではこの問題が解決されていることを確認できました。今後のアップデートで修正されると思われます。&lt;/p&gt;
 
-&lt;a href='https://bugs.chromium.org/p/chromium/issues/detail?id=993692'&gt;Issue Tracker&lt;/a&gt;
+&lt;p&gt;&lt;a href='https://bugs.chromium.org/p/chromium/issues/detail?id=993692'&gt;Issue Tracker&lt;/a&gt;&lt;/p&gt;
 </content>
     </entry>
     
@@ -518,7 +518,7 @@ ng -- &lt;img src='https://example.com/foo.png'&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;解決方法&lt;/h2&gt;
 &lt;p&gt;ACME v2 のエンドポイントを直接指定してやれば良い。
 &lt;pre&gt;&lt;code&gt;$ certbot certonly --server https://acme-v02.api.letsencrypt.org/directory&lt;/code&gt;&lt;/pre&gt;
-Let's Encrypt のエンドポイントは&lt;a href='https://letsencrypt.org/ja/docs/acme-protocol-updates/'&gt;このドキュメント&lt;/a&gt;に記載されている。&lt;/p&gt;
+&lt;p&gt;Let's Encrypt のエンドポイントは&lt;a href='https://letsencrypt.org/ja/docs/acme-protocol-updates/'&gt;このドキュメント&lt;/a&gt;に記載されている。&lt;/p&gt;
 </content>
     </entry>
     
@@ -672,7 +672,7 @@ AdSense の申請通るといいな&lt;/p&gt;
 &lt;p&gt;インストールスクリプトを覗いてみたところ、どうやら自動的に Service を作成してくれるらしい。&lt;/p&gt;
 
 &lt;h2&gt;ドキュメント&lt;/h2&gt;
-&lt;a href='https://github.com/moby/moby/blob/master/docs/rootless.md'&gt;https://github.com/moby/moby/blob/master/docs/rootless.md&lt;/a&gt;
+&lt;p&gt;&lt;a href='https://github.com/moby/moby/blob/master/docs/rootless.md'&gt;https://github.com/moby/moby/blob/master/docs/rootless.md&lt;/a&gt;&lt;/p&gt;
 </content>
     </entry>
     
@@ -681,23 +681,22 @@ AdSense の申請通るといいな&lt;/p&gt;
       <link rel='alternate' href='https://blog.comame.xyz/entries/2019-07-11/migrate-to-conoha.html' />
       <id>https://blog.comame.xyz/entries/2019-07-11/migrate-to-conoha.html</id>
       <updated>2019-07-11T00:00:00Z</updated>
-      <content type='html'>このはちゃんかわいい
+      <content type='html'>&lt;p&gt;このはちゃんかわいい&lt;/p&gt;
 
 
 &lt;h2&gt;Docker&lt;/h2&gt;
 
-今回は、Web サーバを Docker でコンテナに包んでみました。デプロイが圧倒的に簡単になりました。&lt;br&gt;
-今まではマネージドサービスと自分でサーバを管理するのとの間で振り子のように動いていましたが、これからは移動も楽になる気がします。
+&lt;p&gt;今回は、Web サーバを Docker でコンテナに包んでみました。デプロイが圧倒的に簡単になりました。今まではマネージドサービスと自分でサーバを管理するのとの間で振り子のように動いていましたが、これからは移動も楽になる気がします。&lt;/p&gt;
 
 
 &lt;h2&gt;速度&lt;/h2&gt;
 
-今までは Firebase Hosting の US リージョンに置いていたため、RTT が 300 ms くらいありました。流石に堪えられないなーと思っていたのが ConoHa に移した大きな理由の一つです。ConoHa は東京にリージョンがあるので、とてもはやいです (小並感)。
+&lt;p&gt;今までは Firebase Hosting の US リージョンに置いていたため、RTT が 300 ms くらいありました。流石に堪えられないなーと思っていたのが ConoHa に移した大きな理由の一つです。ConoHa は東京にリージョンがあるので、とてもはやいです (小並感)。&lt;/p&gt;
 
 
 &lt;h2&gt;開発のしやすさ&lt;/h2&gt;
 
-今回は Nginx もコンテナに閉じ込めたので、リモートマシンでも完全に同じ環境でサーバを起動できるようになりました。これにより、今まではサーバにアップロードしないと確認できなかったようなこと (Secure Context で動く API とか) もローカル環境で手軽にできるようになりました。
+&lt;p&gt;今回は Nginx もコンテナに閉じ込めたので、リモートマシンでも完全に同じ環境でサーバを起動できるようになりました。これにより、今まではサーバにアップロードしないと確認できなかったようなこと (Secure Context で動く API とか) もローカル環境で手軽にできるようになりました。&lt;/p&gt;
 
 &lt;h2&gt;改善したい点&lt;/h2&gt;
 
@@ -708,7 +707,7 @@ AdSense の申請通るといいな&lt;/p&gt;
 
 
 &lt;h2&gt;&lt;/h2&gt;
-このはちゃんかわいい
+&lt;p&gt;このはちゃんかわいい&lt;/p&gt;
 </content>
     </entry>
     
@@ -717,84 +716,64 @@ AdSense の申請通るといいな&lt;/p&gt;
       <link rel='alternate' href='https://blog.comame.xyz/entries/2019-04-23/improve-web-performance.html' />
       <id>https://blog.comame.xyz/entries/2019-04-23/improve-web-performance.html</id>
       <updated>2019-04-23T00:00:00Z</updated>
-      <content type='html'>&lt;h2&gt;
-    TL;DR&lt;/h2&gt;
-    &lt;ol&gt;
-    &lt;li&gt;レンダリングブロッキング要素を減らす&lt;ol&gt;
-    &lt;li tabbing="1"&gt;&lt;script&gt;&lt;/li&gt;
-    &lt;li tabbing="1"&gt;&lt;link rel="stylesheet"&gt;&lt;/li&gt;
-    &lt;/ol&gt;
-    &lt;/li&gt;
-    &lt;li&gt;Web フォントのロードを制御する&lt;/li&gt;
-    &lt;li&gt;画像を最適化する&lt;/li&gt;
-    &lt;li&gt;地理的に近い場所にサーバを置く&lt;/li&gt;
-    &lt;/ol&gt;
-    &lt;h2&gt;
-    レンダリングブロッキング要素を減らす&lt;/h2&gt;
-    ブラウザのレンダラは、HTML を上から順に (ファイルに記述してある順に) 解釈して DOM を構築します。途中で JavaScript や CSS が埋め込まれている場合は、スクリプトの実行やスタイルの計算が終わるまで DOM の構築は中断されます。これをレンダリングブロッキングと呼びます。&lt;br /&gt;
-    &lt;h3&gt;
-    &lt;script&gt;&lt;/h3&gt;
-    最も効果的な対処法は、&lt;code&gt;async&lt;/code&gt;属性をつけることです。&lt;code&gt;async&lt;/code&gt;属性が付与されたスクリプトは、DOM の構築を妨げません。特に、外部リソースを取得するような場合に効果が発揮されます。&lt;br /&gt;
-    一方で、複数の&lt;code&gt;&lt;script&gt;&lt;/code&gt;タグにそれぞれ&lt;code&gt;async&lt;/code&gt;属性が付与されていた場合、実行順序が保証されないことに注意が必要です。&lt;code&gt;HTMLScriptElement.onload&lt;/code&gt; イベントを活用するのが良いでしょう。&lt;br /&gt;
-    &lt;h3&gt;
-    &lt;link rel="stylesheet"&gt;&lt;/h3&gt;
-    &lt;code&gt;&lt;script&gt;&lt;/code&gt;タグの場合は&lt;code&gt;async&lt;/code&gt;属性をつけるだけで済みましたね。しかし、&lt;code&gt;&lt;link&gt;&lt;/code&gt; タグには非同期に読み込ませるような属性は存在しません。そのため、JavaScript を使用して非同期に読み込ませるような処理を書くことになります。&lt;br /&gt;
-    &lt;pre&gt;&lt;code&gt;&lt;head&gt;
-     &lt;noscript id="async-styles"&gt;
-      &lt;link rel="stylesheet" href="style.css"&gt;
-     &lt;/noscript&gt;
-     &lt;script&gt;
-      window.requestAnimationFrame(() =&gt; {
-       document.head.innerHTML +=
-        document.getElementById('async-styles').textContent;
-      });
-     &lt;/script&gt;
-    &lt;/head&gt;&lt;/code&gt;&lt;/pre&gt;
-    あるいは、&lt;code&gt;&lt;style&gt;&lt;/code&gt; タグを使用して HTML に埋め込んでしまうのも有効です。ただし、再利用性が低いこと、Contents Security Policy との相性が悪いことに注意が必要です。&lt;br /&gt;
-    &lt;br /&gt;
-    実際のところ、レンダリングブロックする要素を減らすだけでも相当な効果が見込めます。適切にレンダリングブロックを制御した場合、リソースのダウンロードがすべて完了していなくとも必要最低限の要素だけ表示させることができます。&lt;br /&gt;
-    一方で、JavaScript の実行が必須な Web アプリケーションの場合、表示されているのに操作できない時間が発生することになります。このような場合は、ローディングアニメーションを表示するか、あるいは意図的にレンダリングブロックを発生させるという手段も選択肢となり得るでしょう。&lt;br /&gt;
-    &lt;h2&gt;
-    Web フォントのロードを制御する&lt;/h2&gt;
-    Web フォントというのはとても便利なものです。導入が簡単にもかかわらず、Web ページの印象を大きく変えてくれます。&lt;br /&gt;
-    しかし、無頓着に Web フォントを使うのは考えものです。ネットワークの速度が遅い環境では、Web フォントのロードが終わるまで文字が表示されないかもしれません。(みなさんも経験ありませんか？) 酷い場合にはユーザーを5秒以上待たせてしまうこともあります。&lt;br /&gt;
-    &lt;br /&gt;
-    これは CSS ファイルにほんの数行付け足すだけで解決できます。&lt;br /&gt;
-    &lt;pre&gt;&lt;code&gt;@font-face {
-     /* ... */
-     font-display: swap;
-    }&lt;/code&gt;&lt;/pre&gt;
-    この 1 行を付け足すだけで、ブラウザは Web フォントがロードされるまでは、オフラインで使用可能な他のフォントで代わりに表示してくれます！&lt;br /&gt;
-    &lt;h2&gt;
-    画像を最適化する&lt;/h2&gt;
-    Web ページの平均サイズはどんどん巨大化しています。そして、そのうちの大部分を画像が占めています。&lt;br /&gt;
-    画像のファイルサイズを少しでも減らすことができれば、きっともう少しページの読み込みが早くなることでしょう。&lt;br /&gt;
-    WebP など最新のフォーマットを有効活用しましょう。フォーマットに気を配るだけで、ファイルサイズを大幅に削減できます。&lt;br /&gt;
-    &lt;code&gt;&lt;picture&gt;&lt;/code&gt;タグを使って複数のフォーマットの画像を選択できるようにすれば、最新のフォーマットに対応していないようなブラウザでも正常に画像を表示させることができます。&lt;br /&gt;
-    &lt;h2&gt;
-    最後に&lt;/h2&gt;
-    これらの対策を施したら、最適化の効果の程を確かめてみましょう。&lt;br /&gt;
-    Chrome ブラウザを使用しているのであれば、DevTools の Audits タブでパフォーマンスを調査できます。&lt;br /&gt;
-    また、&lt;a href="https://developers.google.com/speed/pagespeed/insights/?hl=ja" rel="noopener" target="_blank"&gt;PageSpeed Insights&lt;/a&gt; を使用するのもおすすめです。&lt;br /&gt;
-    &lt;br /&gt;
-    ここに紹介した以外にもたくさんの高速化の手法があります。調べてみると良いでしょう。&lt;br /&gt;
-    &lt;ul&gt;
-    &lt;li&gt;Resource Hints&lt;/li&gt;
-    &lt;li&gt;Service Worker + Cache API&lt;/li&gt;
-    &lt;li&gt;Lazy Load (Intersection Observer v2 とかいい感じに使えそう)&lt;/li&gt;
-    &lt;li&gt;レイアウトを静的に指定する&lt;/li&gt;
-    &lt;li&gt;AMP (Accelerated Mobile Pages)&lt;/li&gt;
-    &lt;li&gt;SSR (Server Side Rendering)&lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;h2&gt;2019/07/04 追記&lt;/h2&gt;
-    上にメモした Lazy Loading ですが、Chrome に&lt;code&gt;loading&lt;/code&gt;属性が追加されました。まだ実用段階ではなさそうですが、注目していきたいです。
-
-    &lt;h2&gt;2019/07/10 また追記&lt;/h2&gt;
-    今まで Google Compute Engine の US リージョンに置いていましたが、ConoHa の東京リージョンに置くようにしたらめちゃくちゃ速度が改善しました。&lt;br&gt;
-    地理的な要因も見過ごせませんね。
-
-    &lt;!-- スタイルを確定させる --&gt;
+      <content type='html'>&lt;h2&gt;TL;DR&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;レンダリングブロッキング要素を減らす&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;&lt;script&gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&lt;link rel=&quot;stylesheet&quot;&gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;Web フォントのロードを制御する&lt;/li&gt;
+&lt;li&gt;画像を最適化する&lt;/li&gt;
+&lt;li&gt;地理的に近い場所にサーバを置く&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;レンダリングブロッキング要素を減らす&lt;/h2&gt;
+&lt;p&gt;ブラウザのレンダラは、HTML を上から順に (ファイルに記述してある順に) 解釈して DOM を構築します。途中で JavaScript や CSS が埋め込まれている場合は、スクリプトの実行やスタイルの計算が終わるまで DOM の構築は中断されます。これをレンダリングブロッキングと呼びます。&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;&lt;script&gt;&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;最も効果的な対処法は、&lt;code&gt;async&lt;/code&gt; 属性をつけることです。&lt;code&gt;async&lt;/code&gt; 属性が付与されたスクリプトは、DOM の構築を妨げません。特に、外部リソースを取得するような場合に効果が発揮されます。一方で、複数の &lt;code&gt;&lt;script&gt;&lt;/code&gt; タグにそれぞれ &lt;code&gt;async&lt;/code&gt; 属性が付与されていた場合、実行順序が保証されないことに注意が必要です。&lt;code&gt;HTMLScriptElement.onload&lt;/code&gt; イベントを活用するのが良いでしょう。&lt;/p&gt;
+&lt;h3&gt;&lt;code&gt;&lt;link rel=&quot;stylesheet&quot;&gt;&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;&lt;script&gt;&lt;/code&gt; タグの場合は &lt;code&gt;async&lt;/code&gt; 属性をつけるだけで済みましたね。しかし、&lt;code&gt;&lt;link&gt;&lt;/code&gt; タグには非同期に読み込ませるような属性は存在しません。そのため、JavaScript を使用して非同期に読み込ませるような処理を書くことになります。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&lt;head&gt;
+  &lt;noscript id=&quot;async-styles&quot;&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+  &lt;/noscript&gt;
+  &lt;script&gt;
+  window.requestAnimationFrame(() =&gt; {
+    document.head.innerHTML +=
+    document.getElementById(&#39;async-styles&#39;).textContent;
+  });
+  &lt;/script&gt;
+&lt;/head&gt;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;あるいは、&lt;code&gt;&lt;style&gt;&lt;/code&gt; タグを使用して HTML に埋め込んでしまうのも有効です。ただし、再利用性が低いこと、Contents Security Policy との相性が悪いことに注意が必要です。&lt;/p&gt;
+&lt;p&gt;実際のところ、レンダリングブロックする要素を減らすだけでも相当な効果が見込めます。適切にレンダリングブロックを制御した場合、リソースのダウンロードがすべて完了していなくとも必要最低限の要素だけ表示させることができます。&lt;/p&gt;
+&lt;p&gt;一方で、JavaScript の実行が必須な Web アプリケーションの場合、表示されているのに操作できない時間が発生することになります。このような場合は、ローディングアニメーションを表示するか、あるいは意図的にレンダリングブロックを発生させるという手段も選択肢となり得るでしょう。&lt;/p&gt;
+&lt;h2&gt;Web フォントのロードを制御する&lt;/h2&gt;
+&lt;p&gt;Web フォントというのはとても便利なものです。導入が簡単にもかかわらず、Web ページの印象を大きく変えてくれます。&lt;/p&gt;
+&lt;p&gt;しかし、無頓着に Web フォントを使うのは考えものです。ネットワークの速度が遅い環境では、Web フォントのロードが終わるまで文字が表示されないかもしれません。(みなさんも経験ありませんか？) 酷い場合にはユーザーを5秒以上待たせてしまうこともあります。&lt;/p&gt;
+&lt;p&gt;これは CSS ファイルにほんの数行付け足すだけで解決できます。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@font-face {
+  /* ... */
+  font-display: swap;
+}&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;この 1 行を付け足すだけで、ブラウザは Web フォントがロードされるまでは、オフラインで使用可能な他のフォントで代わりに表示してくれます！&lt;/p&gt;
+&lt;h2&gt;画像を最適化する&lt;/h2&gt;
+&lt;p&gt;Web ページの平均サイズはどんどん巨大化しています。そして、そのうちの大部分を画像が占めています。画像のファイルサイズを少しでも減らすことができれば、きっともう少しページの読み込みが早くなることでしょう。&lt;/p&gt;
+&lt;p&gt;WebP など最新のフォーマットを有効活用しましょう。フォーマットに気を配るだけで、ファイルサイズを大幅に削減できます。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&lt;picture&gt;&lt;/code&gt; タグを使って複数のフォーマットの画像を選択できるようにすれば、最新のフォーマットに対応していないようなブラウザでも正常に画像を表示させることができます。&lt;/p&gt;
+&lt;h2&gt;最後に&gt;&lt;/h2&gt;
+&lt;p&gt;これらの対策を施したら、最適化の効果の程を確かめてみましょう。Chrome ブラウザを使用しているのであれば、DevTools の Audits タブでパフォーマンスを調査できます。&lt;/p&gt;
+&lt;p&gt;また、&lt;a href=https://developers.google.com/speed/pagespeed/insights/?hl=ja target='_blank' rel='noopener'&gt;PageSpeed Insights&lt;/a&gt; を使用するのもおすすめです。&lt;/p&gt;
+&lt;p&gt;ここに紹介した以外にもたくさんの高速化の手法があります。調べてみると良いでしょう。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Resource Hints&lt;/li&gt;
+&lt;li&gt;Service Worker + Cache API&lt;/li&gt;
+&lt;li&gt;Lazy Load (Intersection Observer v2 とかいい感じに使えそう)&lt;/li&gt;
+&lt;li&gt;レイアウトを静的に指定する&lt;/li&gt;
+&lt;li&gt;AMP (Accelerated Mobile Pages)&lt;/li&gt;
+&lt;li&gt;SSR (Server Side Rendering)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;2019/07/04 追記&lt;/h2&gt;
+&lt;p&gt;上にメモした Lazy Loading ですが、Chrome に &lt;code&gt;loading&lt;/code&gt; 属性が追加されました。まだ実用段階ではなさそうですが、注目していきたいです。&lt;/p&gt;
+&lt;h2&gt;2019/07/10 また追記&lt;/h2&gt;
+&lt;p&gt;今まで Google Compute Engine の US リージョンに置いていましたが、ConoHa の東京リージョンに置くようにしたらめちゃくちゃ速度が改善しました。地理的な要因も見過ごせませんね。&lt;/p&gt;
 </content>
     </entry>
     
@@ -803,13 +782,13 @@ AdSense の申請通るといいな&lt;/p&gt;
       <link rel='alternate' href='https://blog.comame.xyz/entries/2019-04-22/safari-bookmark-import.html' />
       <id>https://blog.comame.xyz/entries/2019-04-22/safari-bookmark-import.html</id>
       <updated>2019-04-22T00:00:00Z</updated>
-      <content type='html'>現在、macOS 10.14 Mojave において、Safari のブックマークを Chrome にインポートできない問題が発生しているようです。&lt;br /&gt;
+      <content type='html'>&lt;p&gt;現在、macOS 10.14 Mojave において、Safari のブックマークを Chrome にインポートできない問題が発生しているようです。&lt;/p&gt;
 &lt;h2&gt;
 問題が発生しうる環境&lt;/h2&gt;
-macOS 10.14 Mojave がインストールされたすべてのコンピュータ&lt;br /&gt;
+&lt;p&gt;macOS 10.14 Mojave がインストールされたすべてのコンピュータ&lt;/p&gt;
 &lt;h2&gt;
 現象の回避方法&lt;/h2&gt;
-HTML でブックマークを書き出し、Chrome にインポートする。&lt;br /&gt;
+&lt;p&gt;HTML でブックマークを書き出し、Chrome にインポートする。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Safari を開き、「ファイル」&gt;「ブックマークの書き出し」を実行してください。&lt;/li&gt;
 &lt;li&gt;Chrome の設定画面を開いてください。&lt;/li&gt;
@@ -846,11 +825,13 @@ Issue 850225: Mojave: Review importers from other browsers&lt;/div&gt;
       <link rel='alternate' href='https://blog.comame.xyz/entries/2019-03-12/macbook-pro.html' />
       <id>https://blog.comame.xyz/entries/2019-03-12/macbook-pro.html</id>
       <updated>2019-03-12T00:00:00Z</updated>
-      <content type='html'>&lt;b&gt;やったぜ！！！！！！！！！！！&lt;/b&gt;&lt;br /&gt;
-&lt;br /&gt;
-&lt;br /&gt;
-これで Windows, Mac, Chrome OS が揃いました。&lt;br /&gt;
+      <content type='html'>&lt;p&gt;
+&lt;b&gt;やったぜ！！！！！！！！！！！&lt;/b&gt;
+
+
+これで Windows, Mac, Chrome OS が揃いました。
 もうちょっと使ってみてからそのうちきちんとしたレビューを書くかもしれません。おそらく。きっと。
+&lt;/p&gt;
 </content>
     </entry>
     
@@ -1146,8 +1127,8 @@ User=hoge
 Group=hoge
 
 [Install]
-WantedBy=multi-user.target&lt;/code&gt;&lt;/pre&gt;&lt;code&gt;$ systemctl start nodejs.service&lt;/code&gt; でサービスを起動。&lt;br /&gt;
-&lt;code&gt;$ systemctl enable nodejs.service&lt;/code&gt; で OS の起動時にサービスを起動するよう設定。&lt;br /&gt;
+WantedBy=multi-user.target&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;$ systemctl start nodejs.service&lt;/code&gt; でサービスを起動。&lt;code&gt;$ systemctl enable nodejs.service&lt;/code&gt; で OS の起動時にサービスを起動するよう設定。&lt;/p&gt;
 &lt;h3&gt;Nginx から Node.js にリクエストを回す&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;# /etc/nginx/sites-enabled/comame.xyz
 
 upstream node {
@@ -1160,7 +1141,7 @@ server {
     location / {
         proxy_pass http://node;
     }
-}&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;Certbot で電子証明書を取得&lt;/h3&gt;&lt;p&gt;コマンド叩くだけで電子証明書が取得できるの、本当にすごいよね。あとは Nginx 側で証明書のパスを指定するだけ。&lt;/p&gt;&lt;code&gt;$ certbot certonly --nginx&lt;code&gt;&lt;/code&gt;&lt;/code&gt;
+}&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;Certbot で電子証明書を取得&lt;/h3&gt;&lt;p&gt;コマンド叩くだけで電子証明書が取得できるの、本当にすごいよね。あとは Nginx 側で証明書のパスを指定するだけ。&lt;/p&gt;&lt;p&gt;&lt;code&gt;$ certbot certonly --nginx&lt;code&gt;&lt;/code&gt;&lt;/code&gt;&lt;/p&gt;
 </content>
     </entry>
     
@@ -1172,11 +1153,11 @@ server {
       <content type='html'>&lt;p&gt;&lt;a href="https://productforums.google.com/forum/#!forum/gmail-ja" target="_blank" rel="noopener"&gt;Gmail ヘルプフォーラム&lt;/a&gt; で回答していると、それなりの頻度で次のような質問が届きます。&lt;/p&gt;&lt;blockquote&gt;ピリオドの有無が違うだけのメールアドレス宛のメールが、私にも届いています。これは他人宛のものではないのですか？&lt;/blockquote&gt;&lt;p&gt;Gmail の仕様では、@ より左側にあるピリオドの有無は無視されるようになっています。この仕様について、実験を交えて少し詳しく解説します。&lt;/p&gt;&lt;h2&gt;どのような仕様になっているの？&lt;/h2&gt;&lt;p&gt;以下のメールアドレスは、全て同じアカウントのメールアドレスとして扱われます。&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;i&gt;example@gmail.com&lt;/i&gt;&lt;/li&gt;
     &lt;li&gt;&lt;i&gt;exam.ple@gmail.com&lt;/i&gt;&lt;/li&gt;
     &lt;li&gt;&lt;i&gt;e.x.a.m.p.l.e@gmail.com&lt;/i&gt;&lt;/li&gt;
-    &lt;/ul&gt;&lt;h2&gt;他の人に届くことはないのか？&lt;/h2&gt;&lt;p&gt;A. ありません。&lt;/p&gt;&lt;h3&gt;実験&lt;/h3&gt;&lt;p&gt;では、実験をしてみましょう。まずは、&lt;a href="https://gmail.com" target="_blank" rel="noopener"&gt;Gmail&lt;/a&gt; にアクセスし、新規メール作成ダイアログを開いてください。&lt;/p&gt;&lt;ol&gt;&lt;li&gt;ご自身の Gmail アドレスに適当にピリオドを挟んで送信してみる&lt;br /&gt;
+    &lt;/ul&gt;&lt;h2&gt;他の人に届くことはないのか？&lt;/h2&gt;&lt;p&gt;A. ありません。&lt;/p&gt;&lt;h3&gt;実験&lt;/h3&gt;&lt;p&gt;では、実験をしてみましょう。まずは、&lt;a href="https://gmail.com" target="_blank" rel="noopener"&gt;Gmail&lt;/a&gt; にアクセスし、新規メール作成ダイアログを開いてください。&lt;/p&gt;&lt;ol&gt;&lt;li&gt;ご自身の Gmail アドレスに適当にピリオドを挟んで送信してみる
     例: &lt;i&gt;example@gmail.com&lt;/i&gt; → &lt;i&gt;exam.ple@gmail.com&lt;/i&gt;&lt;/li&gt;
-    &lt;li&gt;ご自身の Gmail アドレスから適当にピリオドを外して送信してみる&lt;br /&gt;
+    &lt;li&gt;ご自身の Gmail アドレスから適当にピリオドを外して送信してみる
     例: &lt;i&gt;your.address@gmail.com&lt;/i&gt; → &lt;i&gt;youraddress@gmail.com&lt;/i&gt;&lt;/li&gt;
-    &lt;/ol&gt;&lt;h3&gt;解説&lt;/h3&gt;&lt;p&gt;手順 1 と 2 どちらの場合も、自分の受信トレイにメールが届いたはずです。&lt;br /&gt;
+    &lt;/ol&gt;&lt;h3&gt;解説&lt;/h3&gt;&lt;p&gt;手順 1 と 2 どちらの場合も、自分の受信トレイにメールが届いたはずです。
     Gmail では、@ より左側にあるピリオドは無視され、全て同じアカウントのメールアドレスとして扱われます。つまり、&lt;b&gt;ピリオドがあろうがなかろうが、全て同じ人に届く&lt;/b&gt;ということがわかります。&lt;/p&gt;&lt;h2&gt;他の人が使っている可能性は？&lt;/h2&gt;&lt;p&gt;A. ありません。&lt;/p&gt;&lt;h3&gt;実験&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;Google アカウントからログアウトする&lt;/li&gt;
     &lt;li&gt;再び&lt;a href="https://accounts.google.com/signin" target="_blank" rel="noopener"&gt;ログイン画面&lt;/a&gt;を開く&lt;/li&gt;
     &lt;li&gt;普段ログインしているメールアドレスに、適当にピリオドを挟んでログインしてみる&lt;/li&gt;
@@ -1185,9 +1166,10 @@ server {
     &lt;li&gt;Gmail アドレスの入力欄に、普段ログイン時に使用している Gmail アドレスを入力し、アカウントを作成しようとしてみる&lt;/li&gt;
     &lt;li&gt;普段ログイン時に使用している Gmail アドレスに適当にピリオドを挟んで入力してみる&lt;/li&gt;
     &lt;li&gt;普段ログイン時に使用している Gmail アドレスから適当にピリオドを外して入力してみる&lt;/li&gt;
-    &lt;/ol&gt;&lt;h3&gt;解説&lt;/h3&gt;&lt;p&gt;手順 3 と 4 どちらでも、ご自身のアカウントにログインできることが確認できたはずです。&lt;br /&gt;
-    また、手順 6, 7, 8 では全て「すでに使用されています」と警告が表示されたはずです。&lt;br /&gt;
-    つまり、&lt;b&gt;ピリオドの有無が異なるだけの Gmail アドレスは、同一のアカウントとして扱われる&lt;/b&gt;ということがわかります。同一のアカウントなわけですから、他人が使用している可能性はありません。&lt;/p&gt;&lt;h2&gt;まとめ&lt;/h2&gt;以上より、Gmail では @ より左側にあるピリオドの有無は無視され、同一のアカウント・宛先として扱われていることがわかります。&lt;br /&gt;
+    &lt;/ol&gt;&lt;h3&gt;解説&lt;/h3&gt;&lt;p&gt;手順 3 と 4 どちらでも、ご自身のアカウントにログインできることが確認できたはずです。
+    また、手順 6, 7, 8 では全て「すでに使用されています」と警告が表示されたはずです。
+    つまり、&lt;b&gt;ピリオドの有無が異なるだけの Gmail アドレスは、同一のアカウントとして扱われる&lt;/b&gt;ということがわかります。同一のアカウントなわけですから、他人が使用している可能性はありません。&lt;/p&gt;&lt;h2&gt;まとめ&lt;/h2&gt;
+    &lt;p&gt;以上より、Gmail では @ より左側にあるピリオドの有無は無視され、同一のアカウント・宛先として扱われていることがわかります。&lt;/p&gt;
 </content>
     </entry>
     
@@ -1196,7 +1178,7 @@ server {
       <link rel='alternate' href='https://blog.comame.xyz/entries/2018-07-27/stop-gmail-followup.html' />
       <id>https://blog.comame.xyz/entries/2018-07-27/stop-gmail-followup.html</id>
       <updated>2018-07-27T00:00:00Z</updated>
-      <content type='html'>&lt;p&gt;新デザインの Gmail には、返信し忘れたメールや対応が必要なメールを判別し、受信トレイの先頭に表示してくれる機能が追加されました。&lt;br /&gt;
+      <content type='html'>&lt;p&gt;新デザインの Gmail には、返信し忘れたメールや対応が必要なメールを判別し、受信トレイの先頭に表示してくれる機能が追加されました。
     このフォローアップ機能は便利ですが、一方で不要な方もいるでしょう。この機能を停止する方法を紹介します。&lt;/p&gt;&lt;h2&gt;モバイル&lt;/h2&gt;&lt;ol&gt;&lt;li&gt;Gmail アプリを開く&lt;/li&gt;
     &lt;li&gt;左上のメニューアイコンをタップして、サイドバーを開く&lt;/li&gt;
     &lt;li&gt;最下部の「設定」を開き、フォローアップ機能を停止したいアカウントを選択する&lt;/li&gt;
@@ -1215,17 +1197,17 @@ server {
       <link rel='alternate' href='https://blog.comame.xyz/entries/2018-04-30/31daysofkotlin.html' />
       <id>https://blog.comame.xyz/entries/2018-04-30/31daysofkotlin.html</id>
       <updated>2018-04-30T00:00:00Z</updated>
-      <content type='html'>&lt;p&gt;この記事は、&lt;a href="https://twitter.com/androiddev" rel="noopener" target="_blank"&gt;@AndroidDev&lt;/a&gt; による &lt;a href="https://medium.com/google-developers/31daysofkotlin-week-1-recap-fbd5a622ef86" target="_blank" rel="noopener"&gt;#31DaysOfKotlin — Week 1 Recap&lt;/a&gt; を&lt;strong&gt;勝手に&lt;/strong&gt;日本語訳したものです。&lt;br /&gt;
-    基本的な文法からちょっとした TIPS まで様々なことが紹介されているので、知らないものがあったらぜひ使ってみてください。&lt;/p&gt;&lt;h2&gt;Day 1: Elvis Operator (エルビス演算子)&lt;/h2&gt;&lt;p&gt;Null チェックをよりスマートにするには、エルビス演算子を使ってみましょう。&lt;br /&gt;
-    Null を別の値に置き換えたり、あるいは&lt;code&gt;return&lt;/code&gt;したりもできます！&lt;br /&gt;
+      <content type='html'>&lt;p&gt;この記事は、&lt;a href="https://twitter.com/androiddev" rel="noopener" target="_blank"&gt;@AndroidDev&lt;/a&gt; による &lt;a href="https://medium.com/google-developers/31daysofkotlin-week-1-recap-fbd5a622ef86" target="_blank" rel="noopener"&gt;#31DaysOfKotlin — Week 1 Recap&lt;/a&gt; を&lt;strong&gt;勝手に&lt;/strong&gt;日本語訳したものです。
+    基本的な文法からちょっとした TIPS まで様々なことが紹介されているので、知らないものがあったらぜひ使ってみてください。&lt;/p&gt;&lt;h2&gt;Day 1: Elvis Operator (エルビス演算子)&lt;/h2&gt;&lt;p&gt;Null チェックをよりスマートにするには、エルビス演算子を使ってみましょう。
+    Null を別の値に置き換えたり、あるいは&lt;code&gt;return&lt;/code&gt;したりもできます！
     Docs: &lt;a href="https://kotlinlang.org/docs/reference/null-safety.html#elvis-operator" target="_blank" rel="noopener"&gt;Elvis Operator&lt;/a&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;val name: String = person.name ?: “unknown”
-    val age = person.age ?: return&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;&lt;a class="name" name="day2"&gt;&lt;/a&gt;Day 2: String Templates (文字列テンプレート)&lt;/h2&gt;&lt;p&gt;文字列に変数を埋め込むには、変数名の前に&lt;code&gt;$&lt;/code&gt;を入れましょう。&lt;br /&gt;
-    式を入れるには&lt;code&gt;${expression}&lt;/code&gt;のようにしてください。&lt;br /&gt;
+    val age = person.age ?: return&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;&lt;a class="name" name="day2"&gt;&lt;/a&gt;Day 2: String Templates (文字列テンプレート)&lt;/h2&gt;&lt;p&gt;文字列に変数を埋め込むには、変数名の前に&lt;code&gt;$&lt;/code&gt;を入れましょう。
+    式を入れるには&lt;code&gt;${expression}&lt;/code&gt;のようにしてください。
     Docs: &lt;a href="https://kotlinlang.org/docs/reference/basic-types.html#string-templates" target="_blank" rel="noopener"&gt;String Templates&lt;/a&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;val language = “Kotlin”
 
     // “Kotlin has 6 characters”
-    val text = “$language has ${language.length} characters”&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;Day 3: Destructing Declarations (分解宣言)&lt;/h2&gt;&lt;p&gt;&lt;a href="https://github.com/android/kotlin-extensions" target="_blank" rel="noopener"&gt;Android KTX&lt;/a&gt; では、色の成分値を割り当てるのに分解宣言を使用します。&lt;br /&gt;
-    自作のクラス内で分割代入を使用できますし、既存のクラスを拡張して追加することも可能です。(&lt;a href="http://sys1yagi.hatenablog.com/entry/2016/06/05/171132" target="_blank" rel="noopener"&gt;日本語名称について参考にした記事&lt;/a&gt;)&lt;br /&gt;
+    val text = “$language has ${language.length} characters”&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;Day 3: Destructing Declarations (分解宣言)&lt;/h2&gt;&lt;p&gt;&lt;a href="https://github.com/android/kotlin-extensions" target="_blank" rel="noopener"&gt;Android KTX&lt;/a&gt; では、色の成分値を割り当てるのに分解宣言を使用します。
+    自作のクラス内で分割代入を使用できますし、既存のクラスを拡張して追加することも可能です。(&lt;a href="http://sys1yagi.hatenablog.com/entry/2016/06/05/171132" target="_blank" rel="noopener"&gt;日本語名称について参考にした記事&lt;/a&gt;)
     Docs: &lt;a href="https://kotlinlang.org/docs/reference/multi-declarations.html" target="_blank" rel="noopener"&gt;Destructing Declarations&lt;/a&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;// 色要素
     val (red, green, blue) = color
 
@@ -1233,8 +1215,8 @@ server {
     val (left, top, right, bottom) = rect
 
     // 座標
-    val (x, y) = point&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;&lt;a class="name" name="day4"&gt;&lt;/a&gt;Day 4: When Expression (When 式)&lt;/h2&gt;&lt;p&gt;条件分岐をよりよく書くには&lt;code&gt;when&lt;/code&gt;式を使ってみましょう。&lt;br /&gt;
-    Kotlin の&lt;code&gt;when&lt;/code&gt;式は、文字列リテラルや Enum、Range など何にでも使用できます！任意の関数を呼ぶことも可能です。&lt;br /&gt;
+    val (x, y) = point&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;&lt;a class="name" name="day4"&gt;&lt;/a&gt;Day 4: When Expression (When 式)&lt;/h2&gt;&lt;p&gt;条件分岐をよりよく書くには&lt;code&gt;when&lt;/code&gt;式を使ってみましょう。
+    Kotlin の&lt;code&gt;when&lt;/code&gt;式は、文字列リテラルや Enum、Range など何にでも使用できます！任意の関数を呼ぶことも可能です。
     Docs: &lt;a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/control-flow.html#when-expression" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/control-flow.html#when-expression"&gt;When&lt;/a&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;class Train(val cargo: Number?) {
         override fun toString(): String {
             return when (cargo) {
@@ -1245,7 +1227,7 @@ server {
                 else -&gt; "$cargo"
             }
         }
-    }&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;Day 5: For loops, range expressions and destructing (For ループと Range、分解宣言)&lt;/h2&gt;&lt;p&gt;&lt;code&gt;for&lt;/code&gt;ループは Kotlin の Range や分解宣言を使うと便利です。&lt;br /&gt;
+    }&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;Day 5: For loops, range expressions and destructing (For ループと Range、分解宣言)&lt;/h2&gt;&lt;p&gt;&lt;code&gt;for&lt;/code&gt;ループは Kotlin の Range や分解宣言を使うと便利です。
     Docs: &lt;a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/ranges.html" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/ranges.html"&gt;Ranges&lt;/a&gt;, &lt;a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/multi-declarations.html#destructuring-declarations" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/multi-declarations.html#destructuring-declarations"&gt;Destructuring&lt;/a&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;// 1 から 100　まで
     for(i in 1..100) {…}
 
@@ -1261,7 +1243,7 @@ server {
 
     // Map の要素を分解宣言で取り出す
     val map = mapOf(1 to “one”, 2 to “two”)
-    for( (key, value) in map){…}&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;&lt;a class="name" name="day6"&gt;&lt;/a&gt;Day 6: Properties (プロパティ)&lt;/h2&gt;&lt;p&gt;Kotlin では、クラスのプロパティのゲッターとセッターが自動生成されます。必要に応じてカスタマイズすることも可能です。&lt;br /&gt;
+    for( (key, value) in map){…}&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;&lt;a class="name" name="day6"&gt;&lt;/a&gt;Day 6: Properties (プロパティ)&lt;/h2&gt;&lt;p&gt;Kotlin では、クラスのプロパティのゲッターとセッターが自動生成されます。必要に応じてカスタマイズすることも可能です。
     Docs: &lt;a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/properties.html" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/properties.html"&gt;Properties&lt;/a&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;class User {
         // properties
         val id: String = “” // 変更禁止。ゲッターのみ
@@ -1277,7 +1259,7 @@ server {
               // “field” = 自動生成されるバッキングフィールド
               if(isEmailValid(value)) field = value
           }
-    }&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;Day 7: Data Classes and equality (データクラスと等価性)&lt;/h2&gt;&lt;p&gt;データの保持だけが目的であれば、データクラスを使ってみましょう。構造的等価性 (Structual Equality) をチェックする&lt;code&gt;equals()&lt;/code&gt;や&lt;code&gt;hashCode()&lt;/code&gt;,&lt;code&gt;toString()&lt;/code&gt;,&lt;code&gt;copy()&lt;/code&gt;などの関数が自動生成されます。&lt;br /&gt;
+    }&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;Day 7: Data Classes and equality (データクラスと等価性)&lt;/h2&gt;&lt;p&gt;データの保持だけが目的であれば、データクラスを使ってみましょう。構造的等価性 (Structual Equality) をチェックする&lt;code&gt;equals()&lt;/code&gt;や&lt;code&gt;hashCode()&lt;/code&gt;,&lt;code&gt;toString()&lt;/code&gt;,&lt;code&gt;copy()&lt;/code&gt;などの関数が自動生成されます。
     Docs: &lt;a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/data-classes.html#data-classes" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/data-classes.html#data-classes"&gt;Data Classes&lt;/a&gt;, &lt;a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/equality.html" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/equality.html"&gt;Equality&lt;/a&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;data class User(
         val name: String,
         val email: String,
@@ -1301,10 +1283,10 @@ server {
       <link rel='alternate' href='https://blog.comame.xyz/entries/2018-04-26/new-design-gmail-released.html' />
       <id>https://blog.comame.xyz/entries/2018-04-26/new-design-gmail-released.html</id>
       <updated>2018-04-26T00:00:00Z</updated>
-      <content type='html'>&lt;p&gt;新しいデザインの Gmail が、昨日リリースされました！マテリアルデザインが適用されたほか、カレンダーや ToDo リストが使いやすくなっているようです。&lt;br /&gt;
-    &lt;a href="https://japan.googleblog.com/2018/04/gmail.html" target="_blank" rel="noopener"&gt;新しい Gmail をお試しください。- Google Japan Blog&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;変更点&lt;/h2&gt;&lt;h3&gt;スヌーズ機能が追加された&lt;/h3&gt;&lt;p&gt;この機能は &lt;a href="https://inbox.google.com" target="_blank" rel="noopener"&gt;Inbox by Gmail&lt;/a&gt; からの逆輸入ですね。メールを一旦受信トレイから非表示 (アーカイブ) にし、指定した日付に再び受信トレイに戻す機能です。&lt;/p&gt;&lt;h3&gt;メールに対しての操作が簡単になった&lt;/h3&gt;&lt;p&gt;これまた Inbox からの逆輸入です。メールの一覧画面から、今までより簡単にアーカイブ、削除、移動などの操作が行えるようになりました。マウスカーソルをメールに合わせると、下の画像のようなアイコンが表示されます。&lt;/p&gt;&lt;img src="https://2.bp.blogspot.com/-IMmNaD33EcI/W8oUwVKCbcI/AAAAAAABAYQ/QaRXXsRJrnMRb8beuxaGIDIvLjY2fDXxACLcBGAs/s1600/%25E3%2582%25B3%25E3%2583%25A1%25E3%2583%25B3%25E3%2583%2588.png"/&gt;&lt;br /&gt;
+      <content type='html'>&lt;p&gt;新しいデザインの Gmail が、昨日リリースされました！マテリアルデザインが適用されたほか、カレンダーや ToDo リストが使いやすくなっているようです。
+    &lt;a href="https://japan.googleblog.com/2018/04/gmail.html" target="_blank" rel="noopener"&gt;新しい Gmail をお試しください。- Google Japan Blog&lt;/a&gt;&lt;/p&gt;&lt;h2&gt;変更点&lt;/h2&gt;&lt;h3&gt;スヌーズ機能が追加された&lt;/h3&gt;&lt;p&gt;この機能は &lt;a href="https://inbox.google.com" target="_blank" rel="noopener"&gt;Inbox by Gmail&lt;/a&gt; からの逆輸入ですね。メールを一旦受信トレイから非表示 (アーカイブ) にし、指定した日付に再び受信トレイに戻す機能です。&lt;/p&gt;&lt;h3&gt;メールに対しての操作が簡単になった&lt;/h3&gt;&lt;p&gt;これまた Inbox からの逆輸入です。メールの一覧画面から、今までより簡単にアーカイブ、削除、移動などの操作が行えるようになりました。マウスカーソルをメールに合わせると、下の画像のようなアイコンが表示されます。&lt;/p&gt;&lt;img src="https://2.bp.blogspot.com/-IMmNaD33EcI/W8oUwVKCbcI/AAAAAAABAYQ/QaRXXsRJrnMRb8beuxaGIDIvLjY2fDXxACLcBGAs/s1600/%25E3%2582%25B3%25E3%2583%25A1%25E3%2583%25B3%25E3%2583%2588.png"/&gt;
     &lt;h3&gt;添付ファイルが見やすくなった&lt;/h3&gt;&lt;p&gt;メールに添付ファイルがある場合、メールの一覧画面に今までよりわかりやすく表示されるようになりました。1つ面白いのが、Google ドキュメントのファイルでも添付ファイルとして表示される点です。これらのファイルは、Gmail 以外から見るとただの URL としてしか表示されません。Google だからこその連携といえますね。&lt;/p&gt;
-    &lt;h3&gt;Keep やカレンダー、ToDo リストがサイドバーに表示されるようになった&lt;/h3&gt;&lt;p&gt;Google Keep や Google カレンダー、ToDo リストが画面の右側に常駐するようになりました。これらの機能をよく使う人にとっては、アクセスがかなり楽になると思います。&lt;/p&gt;&lt;h3&gt;ローディングアニメーションがちょっとおしゃれになった&lt;/h3&gt;&lt;p&gt;小さな変更点ですが、個人的にはかなり気に入っています。ロード時に表示される Gmail アイコンの封筒が スルッ とアニメーションするようになりました。&lt;/p&gt;&lt;img src="https://4.bp.blogspot.com/-48suJpjRAe4/W8c80H2uGQI/AAAAAAABAXA/BcDabZoczOYidXo8f0ACvP3g1CyOKiAQgCLcBGAs/s1600/ezgif-1-51157c01d8.gif"&gt;&lt;br /&gt;
+    &lt;h3&gt;Keep やカレンダー、ToDo リストがサイドバーに表示されるようになった&lt;/h3&gt;&lt;p&gt;Google Keep や Google カレンダー、ToDo リストが画面の右側に常駐するようになりました。これらの機能をよく使う人にとっては、アクセスがかなり楽になると思います。&lt;/p&gt;&lt;h3&gt;ローディングアニメーションがちょっとおしゃれになった&lt;/h3&gt;&lt;p&gt;小さな変更点ですが、個人的にはかなり気に入っています。ロード時に表示される Gmail アイコンの封筒が スルッ とアニメーションするようになりました。&lt;/p&gt;&lt;img src="https://4.bp.blogspot.com/-48suJpjRAe4/W8c80H2uGQI/AAAAAAABAXA/BcDabZoczOYidXo8f0ACvP3g1CyOKiAQgCLcBGAs/s1600/ezgif-1-51157c01d8.gif"&gt;
     &lt;h2&gt;移行方法&lt;/h2&gt;&lt;p&gt;受信トレイの右上に表示されている歯車アイコンをクリックし、「新しい Gmail を試す」を選択してください。新デザインに切り替えたあとでも、同様の手順でいつでも従来のデザインに戻すことができます。&lt;/p&gt;&lt;h2&gt;感想&lt;/h2&gt;&lt;p&gt;今回のアップデートは、Inbox からの逆輸入が多かったように思います。どれも使いやすい機能ですので、ぜひアップデートしてみてください。&lt;/p&gt;
 </content>
     </entry>

@@ -4,7 +4,7 @@
     <title>Web ページの読み込みパフォーマンスを改善する | blog.comame.xyz</title>
 
     <style>:root {font-size: 16px;--main-color: black;--link-color: #00e;--visited-link-color: #a52a2a;--code-color: #efefef;--radius: 5px;}html {box-sizing: border-box;}@media screen and (min-width: 700px) {:root {--content-width: 80vw;--image-width: 50vw;--block-code-radius: 5px;--block-code-width: var(--content-width);--block-code-padding: .5rem;}}@media screen and (max-width: 700px) {:root {--content-width: 90vw;--image-width: 90vw;--block-code-radius: none;--block-code-width: var(100vw);--block-code-padding: .5rem calc((100vw - var(--content-width)) / 2);}}body {box-sizing: border-box;margin: 0;}header {position: sticky;top: 0;left: 0;height: 3rem;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);background: rgba(255, 255, 255, 0.95);padding: 0 calc((100vw - var(--content-width)) / 2);z-index: 1000;}header a {display: inline-block;line-height: 3rem;text-decoration: none;color: var(--main-color);}header a:visited {color: var(--main-color)}a {text-decoration: none;color: var(--link-color);}a:visited {color: var(--visited-link-color);}.entries {list-style: none;padding-left: 0;}.tag-list {list-style: none;display: inline;padding-left: 0;}.tag-list::before {content: '[';}.tag-list::after {content: ']';}.tag-list > li {display: inline;}.tag-list > li:not(:last-child)::after {content: ', ';}footer {margin: 3rem auto 1rem auto;text-align: center;}footer small {display: block;}footer small > span:not(:last-child)::after {content: ' | ';}</style>
-<meta property="og:type" content="article"><meta property="og:url" content="http://localhost/entries/2019-04-23/improve-web-performance.html"><meta property="og:title" content="Web ページの読み込みパフォーマンスを改善する | blog.comame.xyz"><meta property="og:site_name" content="blog.comame.xyz"><meta property="og:description" content=" レンダリングブロッキング要素を減らす     <script>     <link rel=&quot;stylesheet&quot;>               Web フォントのロードを制御する     画像を最適化する     地理的に近い場所にサーバを置く            ..."><meta name="description" content=" レンダリングブロッキング要素を減らす     <script>     <link rel=&quot;stylesheet&quot;>               Web フォントのロードを制御する     画像を最適化する     地理的に近い場所にサーバを置く            ..."><link rel="canonical" href="https://blog.comame.xyz/entries/2019-04-23/improve-web-performance.html"></head>
+<meta property="og:type" content="article"><meta property="og:url" content="http://localhost/entries/2019-04-23/improve-web-performance.html"><meta property="og:title" content="Web ページの読み込みパフォーマンスを改善する | blog.comame.xyz"><meta property="og:site_name" content="blog.comame.xyz"><meta property="og:description" content=" レンダリングブロッキング要素を減らす <script> <link rel=&quot;stylesheet&quot;>   Web フォントのロードを制御する 画像を最適化する 地理的に近い場所にサーバを置く   ブラウザのレンダラは、HTML を上から順に (ファイルに記述してある順に..."><meta name="description" content=" レンダリングブロッキング要素を減らす <script> <link rel=&quot;stylesheet&quot;>   Web フォントのロードを制御する 画像を最適化する 地理的に近い場所にサーバを置く   ブラウザのレンダラは、HTML を上から順に (ファイルに記述してある順に..."><link rel="canonical" href="https://blog.comame.xyz/entries/2019-04-23/improve-web-performance.html"></head>
 
 <body>
     <header>
@@ -21,84 +21,64 @@
             <time id="time">2019-04-23</time>
             <ul id="tags" class="tag-list"><li><a href="/tags/Web.html">Web</a></li></ul>
         </div>
-        <div id="content"><h2>
-    TL;DR</h2>
-    <ol>
-    <li>レンダリングブロッキング要素を減らす<ol>
-    <li tabbing="1">&lt;script&gt;</li>
-    <li tabbing="1">&lt;link rel="stylesheet"&gt;</li>
-    </ol>
-    </li>
-    <li>Web フォントのロードを制御する</li>
-    <li>画像を最適化する</li>
-    <li>地理的に近い場所にサーバを置く</li>
-    </ol>
-    <h2>
-    レンダリングブロッキング要素を減らす</h2>
-    ブラウザのレンダラは、HTML を上から順に (ファイルに記述してある順に) 解釈して DOM を構築します。途中で JavaScript や CSS が埋め込まれている場合は、スクリプトの実行やスタイルの計算が終わるまで DOM の構築は中断されます。これをレンダリングブロッキングと呼びます。<br>
-    <h3>
-    &lt;script&gt;</h3>
-    最も効果的な対処法は、<code>async</code>属性をつけることです。<code>async</code>属性が付与されたスクリプトは、DOM の構築を妨げません。特に、外部リソースを取得するような場合に効果が発揮されます。<br>
-    一方で、複数の<code>&lt;script&gt;</code>タグにそれぞれ<code>async</code>属性が付与されていた場合、実行順序が保証されないことに注意が必要です。<code>HTMLScriptElement.onload</code> イベントを活用するのが良いでしょう。<br>
-    <h3>
-    &lt;link rel="stylesheet"&gt;</h3>
-    <code>&lt;script&gt;</code>タグの場合は<code>async</code>属性をつけるだけで済みましたね。しかし、<code>&lt;link&gt;</code> タグには非同期に読み込ませるような属性は存在しません。そのため、JavaScript を使用して非同期に読み込ませるような処理を書くことになります。<br>
-    <pre><code>&lt;head&gt;
-     &lt;noscript id="async-styles"&gt;
-      &lt;link rel="stylesheet" href="style.css"&gt;
-     &lt;/noscript&gt;
-     &lt;script&gt;
-      window.requestAnimationFrame(() =&gt; {
-       document.head.innerHTML +=
-        document.getElementById('async-styles').textContent;
-      });
-     &lt;/script&gt;
-    &lt;/head&gt;</code></pre>
-    あるいは、<code>&lt;style&gt;</code> タグを使用して HTML に埋め込んでしまうのも有効です。ただし、再利用性が低いこと、Contents Security Policy との相性が悪いことに注意が必要です。<br>
-    <br>
-    実際のところ、レンダリングブロックする要素を減らすだけでも相当な効果が見込めます。適切にレンダリングブロックを制御した場合、リソースのダウンロードがすべて完了していなくとも必要最低限の要素だけ表示させることができます。<br>
-    一方で、JavaScript の実行が必須な Web アプリケーションの場合、表示されているのに操作できない時間が発生することになります。このような場合は、ローディングアニメーションを表示するか、あるいは意図的にレンダリングブロックを発生させるという手段も選択肢となり得るでしょう。<br>
-    <h2>
-    Web フォントのロードを制御する</h2>
-    Web フォントというのはとても便利なものです。導入が簡単にもかかわらず、Web ページの印象を大きく変えてくれます。<br>
-    しかし、無頓着に Web フォントを使うのは考えものです。ネットワークの速度が遅い環境では、Web フォントのロードが終わるまで文字が表示されないかもしれません。(みなさんも経験ありませんか？) 酷い場合にはユーザーを5秒以上待たせてしまうこともあります。<br>
-    <br>
-    これは CSS ファイルにほんの数行付け足すだけで解決できます。<br>
-    <pre><code>@font-face {
-     /* ... */
-     font-display: swap;
-    }</code></pre>
-    この 1 行を付け足すだけで、ブラウザは Web フォントがロードされるまでは、オフラインで使用可能な他のフォントで代わりに表示してくれます！<br>
-    <h2>
-    画像を最適化する</h2>
-    Web ページの平均サイズはどんどん巨大化しています。そして、そのうちの大部分を画像が占めています。<br>
-    画像のファイルサイズを少しでも減らすことができれば、きっともう少しページの読み込みが早くなることでしょう。<br>
-    WebP など最新のフォーマットを有効活用しましょう。フォーマットに気を配るだけで、ファイルサイズを大幅に削減できます。<br>
-    <code>&lt;picture&gt;</code>タグを使って複数のフォーマットの画像を選択できるようにすれば、最新のフォーマットに対応していないようなブラウザでも正常に画像を表示させることができます。<br>
-    <h2>
-    最後に</h2>
-    これらの対策を施したら、最適化の効果の程を確かめてみましょう。<br>
-    Chrome ブラウザを使用しているのであれば、DevTools の Audits タブでパフォーマンスを調査できます。<br>
-    また、<a href="https://developers.google.com/speed/pagespeed/insights/?hl=ja" rel="noopener" target="_blank">PageSpeed Insights</a> を使用するのもおすすめです。<br>
-    <br>
-    ここに紹介した以外にもたくさんの高速化の手法があります。調べてみると良いでしょう。<br>
-    <ul>
-    <li>Resource Hints</li>
-    <li>Service Worker + Cache API</li>
-    <li>Lazy Load (Intersection Observer v2 とかいい感じに使えそう)</li>
-    <li>レイアウトを静的に指定する</li>
-    <li>AMP (Accelerated Mobile Pages)</li>
-    <li>SSR (Server Side Rendering)</li>
-    </ul>
-
-    <h2>2019/07/04 追記</h2>
-    上にメモした Lazy Loading ですが、Chrome に<code>loading</code>属性が追加されました。まだ実用段階ではなさそうですが、注目していきたいです。
-
-    <h2>2019/07/10 また追記</h2>
-    今まで Google Compute Engine の US リージョンに置いていましたが、ConoHa の東京リージョンに置くようにしたらめちゃくちゃ速度が改善しました。<br>
-    地理的な要因も見過ごせませんね。
-
-    <!-- スタイルを確定させる -->
+        <div id="content"><h2>TL;DR</h2>
+<ol>
+<li>レンダリングブロッキング要素を減らす<ol>
+<li><code>&lt;script&gt;</code></li>
+<li><code>&lt;link rel="stylesheet"&gt;</code></li>
+</ol>
+</li>
+<li>Web フォントのロードを制御する</li>
+<li>画像を最適化する</li>
+<li>地理的に近い場所にサーバを置く</li>
+</ol>
+<h2>レンダリングブロッキング要素を減らす</h2>
+<p>ブラウザのレンダラは、HTML を上から順に (ファイルに記述してある順に) 解釈して DOM を構築します。途中で JavaScript や CSS が埋め込まれている場合は、スクリプトの実行やスタイルの計算が終わるまで DOM の構築は中断されます。これをレンダリングブロッキングと呼びます。</p>
+<h3><code>&lt;script&gt;</code></h3>
+<p>最も効果的な対処法は、<code>async</code> 属性をつけることです。<code>async</code> 属性が付与されたスクリプトは、DOM の構築を妨げません。特に、外部リソースを取得するような場合に効果が発揮されます。一方で、複数の <code>&lt;script&gt;</code> タグにそれぞれ <code>async</code> 属性が付与されていた場合、実行順序が保証されないことに注意が必要です。<code>HTMLScriptElement.onload</code> イベントを活用するのが良いでしょう。</p>
+<h3><code>&lt;link rel="stylesheet"&gt;</code></h3>
+<p><code>&lt;script&gt;</code> タグの場合は <code>async</code> 属性をつけるだけで済みましたね。しかし、<code>&lt;link&gt;</code> タグには非同期に読み込ませるような属性は存在しません。そのため、JavaScript を使用して非同期に読み込ませるような処理を書くことになります。</p>
+<pre><code>&lt;head&gt;
+  &lt;noscript id="async-styles"&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+  &lt;/noscript&gt;
+  &lt;script&gt;
+  window.requestAnimationFrame(() =&gt; {
+    document.head.innerHTML +=
+    document.getElementById('async-styles').textContent;
+  });
+  &lt;/script&gt;
+&lt;/head&gt;</code></pre><p>あるいは、<code>&lt;style&gt;</code> タグを使用して HTML に埋め込んでしまうのも有効です。ただし、再利用性が低いこと、Contents Security Policy との相性が悪いことに注意が必要です。</p>
+<p>実際のところ、レンダリングブロックする要素を減らすだけでも相当な効果が見込めます。適切にレンダリングブロックを制御した場合、リソースのダウンロードがすべて完了していなくとも必要最低限の要素だけ表示させることができます。</p>
+<p>一方で、JavaScript の実行が必須な Web アプリケーションの場合、表示されているのに操作できない時間が発生することになります。このような場合は、ローディングアニメーションを表示するか、あるいは意図的にレンダリングブロックを発生させるという手段も選択肢となり得るでしょう。</p>
+<h2>Web フォントのロードを制御する</h2>
+<p>Web フォントというのはとても便利なものです。導入が簡単にもかかわらず、Web ページの印象を大きく変えてくれます。</p>
+<p>しかし、無頓着に Web フォントを使うのは考えものです。ネットワークの速度が遅い環境では、Web フォントのロードが終わるまで文字が表示されないかもしれません。(みなさんも経験ありませんか？) 酷い場合にはユーザーを5秒以上待たせてしまうこともあります。</p>
+<p>これは CSS ファイルにほんの数行付け足すだけで解決できます。</p>
+<pre><code>@font-face {
+  /* ... */
+  font-display: swap;
+}</code></pre><p>この 1 行を付け足すだけで、ブラウザは Web フォントがロードされるまでは、オフラインで使用可能な他のフォントで代わりに表示してくれます！</p>
+<h2>画像を最適化する</h2>
+<p>Web ページの平均サイズはどんどん巨大化しています。そして、そのうちの大部分を画像が占めています。画像のファイルサイズを少しでも減らすことができれば、きっともう少しページの読み込みが早くなることでしょう。</p>
+<p>WebP など最新のフォーマットを有効活用しましょう。フォーマットに気を配るだけで、ファイルサイズを大幅に削減できます。</p>
+<p><code>&lt;picture&gt;</code> タグを使って複数のフォーマットの画像を選択できるようにすれば、最新のフォーマットに対応していないようなブラウザでも正常に画像を表示させることができます。</p>
+<h2>最後に&gt;</h2>
+<p>これらの対策を施したら、最適化の効果の程を確かめてみましょう。Chrome ブラウザを使用しているのであれば、DevTools の Audits タブでパフォーマンスを調査できます。</p>
+<p>また、<a href="https://developers.google.com/speed/pagespeed/insights/?hl=ja" target="_blank" rel="noopener">PageSpeed Insights</a> を使用するのもおすすめです。</p>
+<p>ここに紹介した以外にもたくさんの高速化の手法があります。調べてみると良いでしょう。</p>
+<ul>
+<li>Resource Hints</li>
+<li>Service Worker + Cache API</li>
+<li>Lazy Load (Intersection Observer v2 とかいい感じに使えそう)</li>
+<li>レイアウトを静的に指定する</li>
+<li>AMP (Accelerated Mobile Pages)</li>
+<li>SSR (Server Side Rendering)</li>
+</ul>
+<h2>2019/07/04 追記</h2>
+<p>上にメモした Lazy Loading ですが、Chrome に <code>loading</code> 属性が追加されました。まだ実用段階ではなさそうですが、注目していきたいです。</p>
+<h2>2019/07/10 また追記</h2>
+<p>今まで Google Compute Engine の US リージョンに置いていましたが、ConoHa の東京リージョンに置くようにしたらめちゃくちゃ速度が改善しました。地理的な要因も見過ごせませんね。</p>
 </div>
         <div id="share">
             <img alt="共有" src="/assets/icons/share.svg">
@@ -119,15 +99,15 @@
     <footer>
         <small>
             <a href="https://github.com/comame/blog.comame.xyz" target="_blank" rel="noopener">
-                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Thu, 19 Mar 2020 15:37:14 GMT">
+                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Thu, 19 Mar 2020 16:03:22 GMT">
             </a>
         </small>
         <small>
             <span>Copyright 2020 <a href="https://comame.xyz">comame</a></span>
             
             
-            <span component="source" for="source"><a id="source" target="_blank" rel="noopener" href="https://github.com/comame/blog.comame.xyz/blob/master/archives/2019/improve-web-performance.html">source</a></span>
-            <span component="history" for="history"><a id="history" target="_blank" rel="noopener" href="https://github.com/comame/blog.comame.xyz/commits/master/archives/2019/improve-web-performance.html">history</a></span>
+            <span component="source" for="source"><a id="source" target="_blank" rel="noopener" href="https://github.com/comame/blog.comame.xyz/blob/master/archives/2019/improve-web-performance.md">source</a></span>
+            <span component="history" for="history"><a id="history" target="_blank" rel="noopener" href="https://github.com/comame/blog.comame.xyz/commits/master/archives/2019/improve-web-performance.md">history</a></span>
             <span><a href="/feed.xml">Feed</a></span>
         </small>
     </footer>
