@@ -107,7 +107,7 @@ function generateOgp(description) {
         it.content = description
     })
 
-    const description = document.createElement('meta').with(it => {
+    const descriptionEl = document.createElement('meta').with(it => {
         it.name = 'description'
         it.content = description
     })
@@ -117,7 +117,7 @@ function generateOgp(description) {
     document.head.appendChild(title)
     document.head.appendChild(siteName)
     document.head.appendChild(property)
-    document.head.appendChild(description)
+    document.head.appendChild(descriptionEl)
 }
 
 function addCanonicalLink() {
