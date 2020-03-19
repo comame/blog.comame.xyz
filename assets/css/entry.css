@@ -41,7 +41,7 @@
     word-break: break-all;
 }
 #content pre {
-    padding: 0.5rem;
+    padding: var(--block-code-padding);
     white-space: pre;
     overflow-x: scroll;
     border-radius: var(--block-code-radius);
