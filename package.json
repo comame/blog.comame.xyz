@@ -4,7 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "docker run -v $(pwd):/files --rm comameito/puppeteer-nginx",
+    "start": "docker run -p 8080:80 -v $(pwd):/files --name blog-comame-xyz-server -d comameito/puppeteer-nginx sh -c \"service nginx start && while :; do sleep 10; done\"",
+    "stop": "docker rm -f blog-comame-xyz-server",
+    "build-markdown": "node -e \"require('./build').buildMarkdown(require('./archives/entries.json'))\""
   },
   "keywords": [],
   "author": "",
