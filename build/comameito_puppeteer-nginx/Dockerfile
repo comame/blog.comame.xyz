@@ -55,4 +55,8 @@ RUN apt install -y curl gnupg2 ca-certificates lsb-release && \
     apt update && apt install nginx
 COPY nginx.conf /etc/nginx/nginx.conf
 
+COPY start.sh /start.sh
+
+CMD [ "sh", "/start.sh" ]
+
 VOLUME /files
