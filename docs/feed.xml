@@ -1090,7 +1090,7 @@ Press Enter to Continue
       <id>https://blog.comame.xyz/entries/2018-08-19/ae-to-ce.html</id>
       <updated>2018-08-19T00:00:00Z</updated>
       <content type='html'>&lt;p&gt;今まで Google App Engine Node.js Standard Environment (GAE/Node.js SE) で動かしていた &lt;a href="https://comame.xyz/" target="_blank" rel="noopener"&gt;comame.xyz&lt;/a&gt; を、Compute Engine に移しました。&lt;/p&gt;&lt;h2&gt;理由&lt;/h2&gt;&lt;p&gt;Nginx をいじってたら楽しくなってきちゃったから。&lt;/p&gt;&lt;h2&gt;感想&lt;/h2&gt;&lt;ul&gt;    &lt;li&gt;予想を遥かに上回るレベルで楽だった&lt;/li&gt;
-    &lt;li&gt;環境依存するコードをほぼ書かなくて済むので、GAE/Node.js SE&nbsp;はいいぞ&lt;/li&gt;
+    &lt;li&gt;環境依存するコードをほぼ書かなくて済むので、GAE/Node.js SE はいいぞ&lt;/li&gt;
     &lt;li&gt;Nginx 楽しい&lt;/li&gt;
     &lt;li&gt;Certbot (Let's Encrypt) すごい楽&lt;/li&gt;
 &lt;/ul&gt;&lt;h2&gt;環境&lt;/h2&gt;&lt;ul&gt;    &lt;li&gt;Google Compute Engine / f1-micro&lt;/li&gt;
@@ -1196,7 +1196,7 @@ server {
       <link rel='alternate' href='https://blog.comame.xyz/entries/2018-04-30/31daysofkotlin.html' />
       <id>https://blog.comame.xyz/entries/2018-04-30/31daysofkotlin.html</id>
       <updated>2018-04-30T00:00:00Z</updated>
-      <content type='html'>&lt;p&gt;この記事は、&lt;a href="https://twitter.com/androiddev" rel="noopener" target="_blank"&gt;@AndroidDev&lt;/a&gt;&nbsp;による&nbsp;&lt;a href="https://medium.com/google-developers/31daysofkotlin-week-1-recap-fbd5a622ef86" target="_blank" rel="noopener"&gt;#31DaysOfKotlin — Week 1 Recap&lt;/a&gt;&nbsp;を&lt;strong&gt;勝手に&lt;/strong&gt;日本語訳したものです。
+      <content type='html'>&lt;p&gt;この記事は、&lt;a href="https://twitter.com/androiddev" rel="noopener" target="_blank"&gt;@AndroidDev&lt;/a&gt; による&nbsp;&lt;a href="https://medium.com/google-developers/31daysofkotlin-week-1-recap-fbd5a622ef86" target="_blank" rel="noopener"&gt;#31DaysOfKotlin — Week 1 Recap&lt;/a&gt;&nbsp;を&lt;strong&gt;勝手に&lt;/strong&gt;日本語訳したものです。
     基本的な文法からちょっとした TIPS まで様々なことが紹介されているので、知らないものがあったらぜひ使ってみてください。&lt;/p&gt;&lt;h2&gt;Day 1: Elvis Operator (エルビス演算子)&lt;/h2&gt;&lt;p&gt;Null チェックをよりスマートにするには、エルビス演算子を使ってみましょう。
     Null を別の値に置き換えたり、あるいは&lt;code&gt;return&lt;/code&gt;したりもできます！
     Docs: &lt;a href="https://kotlinlang.org/docs/reference/null-safety.html#elvis-operator" target="_blank" rel="noopener"&gt;Elvis Operator&lt;/a&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;val name: String = person.name ?: “unknown”
