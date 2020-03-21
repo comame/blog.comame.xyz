@@ -1,5 +1,7 @@
 let coping = false;
-document.querySelectorAll("#share a")[2].addEventListener("click", function() {
+const button = document.querySelectorAll("#share a")[2]
+
+if (button) button.addEventListener("click", function() {
     if (coping) return;
     coping = true;
     const tmp = document.createElement("div");

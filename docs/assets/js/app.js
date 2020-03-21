@@ -89,8 +89,30 @@ async function getEntries() {
 
 async function getEntry(entryObj) {
     const year = entryObj.date.split('-')[0]
-    const res = await fetch(`/archives/${year}/${entryObj.entry}.html`)
-    return await res.text()
+    const res = await fetch(`/archives/${year}/${entryObj.entry}.${entryObj.type}`)
+    const text = await res.text()
+
+    if (entryObj.type == 'html') {
+        return text
+    } else if (entryObj.type == 'md') {
+        const renderer = new marked.Renderer()
+        renderer.link = function(href, title, text) {
+            if (
+                href.startsWith('http://') ||
+                href.startsWith('https://') ||
+                href.startsWith('//')
+            ) {
+                return `<a href=${href} target='_blank' rel='noopener'>${text}</a>`
+            } else {
+                return `<a href=${href}>${text}</a>`
+            }
+        }
+
+        return marked(text, {
+            headerIds: false,
+            renderer
+        })
+    }
 }
 
 function generateOgp(description) {
