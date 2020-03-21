@@ -1196,7 +1196,7 @@ server {
       <link rel='alternate' href='https://blog.comame.xyz/entries/2018-04-30/31daysofkotlin.html' />
       <id>https://blog.comame.xyz/entries/2018-04-30/31daysofkotlin.html</id>
       <updated>2018-04-30T00:00:00Z</updated>
-      <content type='html'>&lt;p&gt;この記事は、&lt;a href="https://twitter.com/androiddev" rel="noopener" target="_blank"&gt;@AndroidDev&lt;/a&gt; による&nbsp;&lt;a href="https://medium.com/google-developers/31daysofkotlin-week-1-recap-fbd5a622ef86" target="_blank" rel="noopener"&gt;#31DaysOfKotlin — Week 1 Recap&lt;/a&gt;&nbsp;を&lt;strong&gt;勝手に&lt;/strong&gt;日本語訳したものです。
+      <content type='html'>&lt;p&gt;この記事は、&lt;a href="https://twitter.com/androiddev" rel="noopener" target="_blank"&gt;@AndroidDev&lt;/a&gt; による &lt;a href="https://medium.com/google-developers/31daysofkotlin-week-1-recap-fbd5a622ef86" target="_blank" rel="noopener"&gt;#31DaysOfKotlin — Week 1 Recap&lt;/a&gt; を&lt;strong&gt;勝手に&lt;/strong&gt;日本語訳したものです。
     基本的な文法からちょっとした TIPS まで様々なことが紹介されているので、知らないものがあったらぜひ使ってみてください。&lt;/p&gt;&lt;h2&gt;Day 1: Elvis Operator (エルビス演算子)&lt;/h2&gt;&lt;p&gt;Null チェックをよりスマートにするには、エルビス演算子を使ってみましょう。
     Null を別の値に置き換えたり、あるいは&lt;code&gt;return&lt;/code&gt;したりもできます！
     Docs: &lt;a href="https://kotlinlang.org/docs/reference/null-safety.html#elvis-operator" target="_blank" rel="noopener"&gt;Elvis Operator&lt;/a&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;val name: String = person.name ?: “unknown”
@@ -1216,7 +1216,7 @@ server {
     // 座標
     val (x, y) = point&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;&lt;a class="name" name="day4"&gt;&lt;/a&gt;Day 4: When Expression (When 式)&lt;/h2&gt;&lt;p&gt;条件分岐をよりよく書くには&lt;code&gt;when&lt;/code&gt;式を使ってみましょう。
     Kotlin の&lt;code&gt;when&lt;/code&gt;式は、文字列リテラルや Enum、Range など何にでも使用できます！任意の関数を呼ぶことも可能です。
-    Docs:&nbsp;&lt;a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/control-flow.html#when-expression" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/control-flow.html#when-expression"&gt;When&lt;/a&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;class Train(val cargo: Number?) {
+    Docs: &lt;a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/control-flow.html#when-expression" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/control-flow.html#when-expression"&gt;When&lt;/a&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;class Train(val cargo: Number?) {
         override fun toString(): String {
             return when (cargo) {
                 null, 0 -&gt; "empty"
@@ -1227,7 +1227,7 @@ server {
             }
         }
     }&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;Day 5: For loops, range expressions and destructing (For ループと Range、分解宣言)&lt;/h2&gt;&lt;p&gt;&lt;code&gt;for&lt;/code&gt;ループは Kotlin の Range や分解宣言を使うと便利です。
-    Docs:&nbsp;&lt;a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/ranges.html" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/ranges.html"&gt;Ranges&lt;/a&gt;,&nbsp;&lt;a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/multi-declarations.html#destructuring-declarations" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/multi-declarations.html#destructuring-declarations"&gt;Destructuring&lt;/a&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;// 1 から 100　まで
+    Docs: &lt;a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/ranges.html" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/ranges.html"&gt;Ranges&lt;/a&gt;, &lt;a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/multi-declarations.html#destructuring-declarations" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/multi-declarations.html#destructuring-declarations"&gt;Destructuring&lt;/a&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;// 1 から 100　まで
     for(i in 1..100) {…}
 
     // 1 から 100 まで降順
@@ -1243,7 +1243,7 @@ server {
     // Map の要素を分解宣言で取り出す
     val map = mapOf(1 to “one”, 2 to “two”)
     for( (key, value) in map){…}&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;&lt;a class="name" name="day6"&gt;&lt;/a&gt;Day 6: Properties (プロパティ)&lt;/h2&gt;&lt;p&gt;Kotlin では、クラスのプロパティのゲッターとセッターが自動生成されます。必要に応じてカスタマイズすることも可能です。
-    Docs:&nbsp;&lt;a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/properties.html" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/properties.html"&gt;Properties&lt;/a&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;class User {
+    Docs: &lt;a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/properties.html" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/properties.html"&gt;Properties&lt;/a&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;class User {
         // properties
         val id: String = “” // 変更禁止。ゲッターのみ
 
@@ -1259,7 +1259,7 @@ server {
               if(isEmailValid(value)) field = value
           }
     }&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;Day 7: Data Classes and equality (データクラスと等価性)&lt;/h2&gt;&lt;p&gt;データの保持だけが目的であれば、データクラスを使ってみましょう。構造的等価性 (Structual Equality) をチェックする&lt;code&gt;equals()&lt;/code&gt;や&lt;code&gt;hashCode()&lt;/code&gt;,&lt;code&gt;toString()&lt;/code&gt;,&lt;code&gt;copy()&lt;/code&gt;などの関数が自動生成されます。
-    Docs:&nbsp;&lt;a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/data-classes.html#data-classes" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/data-classes.html#data-classes"&gt;Data Classes&lt;/a&gt;,&nbsp;&lt;a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/equality.html" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/equality.html"&gt;Equality&lt;/a&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;data class User(
+    Docs: &lt;a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/data-classes.html#data-classes" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/data-classes.html#data-classes"&gt;Data Classes&lt;/a&gt;, &lt;a class="markup--anchor markup--p-anchor" href="https://kotlinlang.org/docs/reference/equality.html" target="_blank" rel="nofollow noopener" data-href="https://kotlinlang.org/docs/reference/equality.html"&gt;Equality&lt;/a&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;data class User(
         val name: String,
         val email: String,
         val address: Address,
