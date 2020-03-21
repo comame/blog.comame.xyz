@@ -15,3 +15,6 @@
 .entries a.entry {
     margin-right: 1rem;
 }
+*[component-place] {
+    display: none;
+}
