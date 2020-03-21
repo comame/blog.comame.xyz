@@ -5,8 +5,7 @@
   "main": "app.js",
   "scripts": {
     "build": "docker run -v $(pwd):/files --rm comameito/puppeteer-nginx",
-    "start": "docker run -p 8080:80 -v $(pwd):/files:ro -it --rm comameito/puppeteer-nginx sh -c \"service nginx start && sh\"",
-    "build-markdown": "node -e \"require('./build').buildMarkdown(require('./archives/entries.json'))\""
+    "start": "docker run -p 8080:80 -v $(pwd):/files:ro -it --rm comameito/puppeteer-nginx sh -c \"service nginx start && sh\""
   },
   "keywords": [],
   "author": "",
