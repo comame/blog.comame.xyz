@@ -38,6 +38,14 @@ async function crawl(path, page, crawledPathSet, host) {
     await page.goto(host + '/' + path)
 
     await page.waitForSelector('meta[name=x-render-complete]')
+
+    const notfound = await page.$('#c-notfound')
+    if (notfound) {
+        crawledPathSet.delete(path)
+        console.log(`  not found`)
+        return
+    }
+
     await page.$eval('meta[name=x-render-complete]', element => {
         element.parentNode.removeChild(element)
     })
@@ -79,14 +87,7 @@ async function crawl(path, page, crawledPathSet, host) {
         }
     })
 
-    const notfound = await page.$('#c-notfound')
-    if (notfound) {
-        crawledPathSet.delete(path)
-        console.log(`  not found`)
-        return
-    } else {
-        await savePage(path, await page.content())
-    }
+    await savePage(path, await page.content())
 
     const crawlLinks = await page.$$eval('a', (elements, host) => {
         return elements.filter(el => el.href.startsWith(host)).map(el => el.href)
