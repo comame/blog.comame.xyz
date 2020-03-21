@@ -25,7 +25,7 @@ async function main() {
     await buildArticles(crawledPageSets, BLOG_HOST).catch(handleError)
 
     await createSiteMap(Array.from(crawledPageSets.values())).catch(handleError)
-    // await createFeed(entries).catch(handleError)
+    await createFeed(entries).catch(handleError)
 
     process.exit(0)
 }

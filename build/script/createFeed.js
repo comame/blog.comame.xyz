@@ -1,7 +1,27 @@
+const puppeteer = require('puppeteer')
 const fs = require('fs').promises
-const { archivesDir, destinationDir } = require('./dir')
+const { destinationDir } = require('./dir')
 
 async function createFeed(entries) {
+    const browser =  await puppeteer.launch({
+        headless: true,
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox'
+        ]
+    })
+
+    try {
+        const page = await browser.newPage()
+        await generate(entries, page)
+    } catch (err) {
+        throw err
+    } finally {
+        await browser.close()
+    }
+}
+
+async function generate(entries, page) {
     const items = []
 
     const base = (updated, items) => `
@@ -42,10 +62,12 @@ async function createFeed(entries) {
         const date = entry.date
         const link = 'https://blog.comame.xyz/entries/' + date + '/' + entry.entry + '.html'
 
-        const year = date.split('-')[0]
-        const htmlContent = await fs.readFile(archivesDir + '/' + year + '/' + entry.entry + '.html', {
-            encoding: 'utf8'
-        })
+        const url = 'file:' + destinationDir + '/entries/' + date + '/' + entry.entry + '.html'
+        console.log(url)
+        await page.goto(url)
+
+        const htmlContent = await page.$eval('#content', el => el.innerHTML )
+
         items.push(item(title, link, date, htmlContent))
     }
 
