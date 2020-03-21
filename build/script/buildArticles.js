@@ -15,6 +15,8 @@ async function buildArticles(crawledPageSets, host) {
     try {
         const page = await browser.newPage()
         await crawl('', page, crawledPageSets, host)
+    } catch (err) {
+        throw err
     } finally {
         await browser.close()
     }
