@@ -27,6 +27,7 @@
 <li>Puppeteer でスクリプト実行後のページを保存する</li>
 <li>記事データを読み、サイトマップやフィードを書き出す</li>
 </ol>
+<p>理念として、ビルドをする前でも完全なページが閲覧できるようにすることを目指した。</p>
 <h2>記事データ</h2>
 <ul>
 <li><a href="https://github.com/comame/blog.comame.xyz/blob/master/archives/entries.json" target="_blank" rel="noopener">archives/entries.json</a></li>
@@ -60,6 +61,7 @@
 <h3><code>buildMarkdown()</code></h3>
 <p><a href="https://www.npmjs.com/package/markdown-it" target="_blank" rel="noopener">markdown-it</a> を使って、Markdown で書かれた記事を HTML に変換する。</p>
 <p>[追記] API がよりシンプルで、カスタマイズが簡単な <a href="https://www.npmjs.com/package/marked" target="_blank" rel="noopener">marked</a> を使うように変更した。それにより、外部リンクは新しいタブで開くようにした。</p>
+<p>[追記] 静的ビルド前でも完全なページが表示できるよう、Markdowm のビルドをフロントエンドに移動した。</p>
 <h3><code>copyAssets()</code></h3>
 <p><code>assets/</code> を再帰的に潜っていって、画像や CSS、JavaScript などのファイルをそのままコピーする。</p>
 <h3><code>crawl()</code></h3>
@@ -71,6 +73,7 @@
 <p><code>crawl()</code> で作成した保存済みページの URL のセットから、サイトマップを書き出した。今回は URL を列挙しただけのテキストファイルにした。</p>
 <h3><code>createFeed()</code></h3>
 <p><code>entries.json</code> から、Atom のフィードを生成する。</p>
+<p>[追記] Markdown のビルドが移動した影響で、Puppeteer を使って記事の内容を拾うようにした。</p>
 <h2>GitHub Actions</h2>
 <ul>
 <li><a href="https://github.com/comame/blog.comame.xyz/blob/master/.github/workflows/build.yml" target="_blank" rel="noopener">.github/workflows/build.yml</a></li>
@@ -98,7 +101,7 @@
     <footer>
         <small>
             <a href="https://github.com/comame/blog.comame.xyz" target="_blank" rel="noopener">
-                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Sat, 21 Mar 2020 09:19:26 GMT">
+                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Sat, 21 Mar 2020 09:25:40 GMT">
             </a>
         </small>
         <small>

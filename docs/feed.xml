@@ -19,6 +19,7 @@
 &lt;li&gt;Puppeteer でスクリプト実行後のページを保存する&lt;/li&gt;
 &lt;li&gt;記事データを読み、サイトマップやフィードを書き出す&lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;理念として、ビルドをする前でも完全なページが閲覧できるようにすることを目指した。&lt;/p&gt;
 &lt;h2&gt;記事データ&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://github.com/comame/blog.comame.xyz/blob/master/archives/entries.json" target="_blank" rel="noopener"&gt;archives/entries.json&lt;/a&gt;&lt;/li&gt;
@@ -52,6 +53,7 @@
 &lt;h3&gt;&lt;code&gt;buildMarkdown()&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;a href="https://www.npmjs.com/package/markdown-it" target="_blank" rel="noopener"&gt;markdown-it&lt;/a&gt; を使って、Markdown で書かれた記事を HTML に変換する。&lt;/p&gt;
 &lt;p&gt;[追記] API がよりシンプルで、カスタマイズが簡単な &lt;a href="https://www.npmjs.com/package/marked" target="_blank" rel="noopener"&gt;marked&lt;/a&gt; を使うように変更した。それにより、外部リンクは新しいタブで開くようにした。&lt;/p&gt;
+&lt;p&gt;[追記] 静的ビルド前でも完全なページが表示できるよう、Markdowm のビルドをフロントエンドに移動した。&lt;/p&gt;
 &lt;h3&gt;&lt;code&gt;copyAssets()&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;assets/&lt;/code&gt; を再帰的に潜っていって、画像や CSS、JavaScript などのファイルをそのままコピーする。&lt;/p&gt;
 &lt;h3&gt;&lt;code&gt;crawl()&lt;/code&gt;&lt;/h3&gt;
@@ -63,6 +65,7 @@
 &lt;p&gt;&lt;code&gt;crawl()&lt;/code&gt; で作成した保存済みページの URL のセットから、サイトマップを書き出した。今回は URL を列挙しただけのテキストファイルにした。&lt;/p&gt;
 &lt;h3&gt;&lt;code&gt;createFeed()&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;entries.json&lt;/code&gt; から、Atom のフィードを生成する。&lt;/p&gt;
+&lt;p&gt;[追記] Markdown のビルドが移動した影響で、Puppeteer を使って記事の内容を拾うようにした。&lt;/p&gt;
 &lt;h2&gt;GitHub Actions&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://github.com/comame/blog.comame.xyz/blob/master/.github/workflows/build.yml" target="_blank" rel="noopener"&gt;.github/workflows/build.yml&lt;/a&gt;&lt;/li&gt;
