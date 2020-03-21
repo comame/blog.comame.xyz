@@ -6,11 +6,7 @@
 }
 
 #metadata h1 {
-    font-size: 1.5rem;
-}
-
-#source-history {
-    display:inline;
+    font-size: var(--h1-size);
 }
 
 #tags {
@@ -31,7 +27,10 @@
 }
 #content h2 {
     margin-top: 2rem;
-    font-size: 1.3rem;
+    font-size: var(--h2-size);
+}
+#content h3 {
+    font-size: var(--h3-size);
 }
 #content code {
     background: var(--code-color);
