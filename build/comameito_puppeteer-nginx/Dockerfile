@@ -56,7 +56,8 @@ RUN apt install -y curl gnupg2 ca-certificates lsb-release && \
 COPY nginx.conf /etc/nginx/nginx.conf
 
 COPY start.sh /start.sh
+RUN chmod 700 /start.sh
 
-CMD [ "sh", "/start.sh" ]
+ENTRYPOINT [ "/start.sh" ]
 
 VOLUME /files
