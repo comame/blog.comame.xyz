@@ -195,7 +195,7 @@ async function homePage() {
 
             const time = document.createElement('time').with(it => {
                 it.datetime = date
-                it.textContent = date
+                it.textContent = date.split('-').slice(1).join('-')
             })
             const a = document.createElement('a').with(it => {
                 it.classList.add('entry')
