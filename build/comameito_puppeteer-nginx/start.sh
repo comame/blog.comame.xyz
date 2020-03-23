@@ -3,7 +3,7 @@
 service nginx start
 
 if [ "$1" = "serve" ]; then
-    read -p "Press any key to terminate: " tmp
+    read -p "Press Enter to terminate: " tmp
     exit 0
 fi
 
