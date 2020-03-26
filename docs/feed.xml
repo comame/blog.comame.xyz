@@ -5,9 +5,33 @@
       <link rel='alternate' href='https://blog.comame.xyz/' />
       <link rel='self' href='https://blog.comame.xyz/feed.xml' />
       <author><name>comame</name></author>
-      <updated>2020-03-11T00:00:00Z</updated>
+      <updated>2020-03-26T00:00:00Z</updated>
 
       
+    <entry>
+      <title>WSL2 のサーバをネットワークに公開する</title>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-03-26/wsl2-publish-server.html' />
+      <id>https://blog.comame.xyz/entries/2020-03-26/wsl2-publish-server.html</id>
+      <updated>2020-03-26T00:00:00Z</updated>
+      <content type='html'>&lt;p&gt;Hyper-V の NAT をこねくり回そうとしたけれども、うまくいかなかった。&lt;code&gt;netsh&lt;/code&gt; コマンドを使うことで、簡単にポート変換ができる。&lt;/p&gt;
+&lt;h2&gt;Workaround&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://github.com/microsoft/WSL/issues/4150#issuecomment-504209723" target="_blank" rel="noopener"&gt;Issue #4150 microsoft/WSL | GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# PowerShell (Administrator)
+
+&gt; netsh interface portproxy add v4tov4 \
+    listenport=&lt;External Port&gt; \
+    listenaddress=&lt;External Address&gt; \
+    connectport=&lt;Internal Port&gt; \
+    connectaddress=&lt;Internal Address&gt;&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;connectaddress&lt;/h3&gt;
+&lt;p&gt;WSL2 に割り当てられた内部 IP を指定する必要がある。WSL2 内で&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# bash (WSL2)
+
+$ ifconfig eth0 | grep inet&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;を叩くと取得できる。&lt;/p&gt;
+&lt;h2&gt;Netsh interface portproxy&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://docs.microsoft.com/ja-jp/windows-server/networking/technologies/netsh/netsh-interface-portproxy" target="_blank" rel="noopener"&gt;Netsh interface portproxy コマンド | Microsoft Docs&lt;/a&gt;&lt;/p&gt;
+</content>
+    </entry>
+    
     <entry>
       <title>ブログシステムを新しくした (技術面)</title>
       <link rel='alternate' href='https://blog.comame.xyz/entries/2020-03-11/blog-tech.html' />

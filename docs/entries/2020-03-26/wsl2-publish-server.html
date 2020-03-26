@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="ja"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rootless Docker のインストール方法 | blog.comame.xyz</title>
+    <title>WSL2 のサーバをネットワークに公開する | blog.comame.xyz</title>
 
     <style>:root {--background-color: white;--header-background-color: rgba(255, 255, 255, 0.95);--main-color: black;--link-color: #00e;--visited-link-color: #a52a2a;--code-color: #efefef;--share-logo-filter: none;font-size: 16px;--radius: 5px;}@media (prefers-color-scheme: light) {:root {--background-color: white;--header-background-color: rgba(255, 255, 255, 0.95);--main-color: black;--link-color: #00e;--visited-link-color: #a52a2a;--code-color: #efefef;--share-logo-filter: none;}}@media (prefers-color-scheme: dark) {:root {--background-color: #0a0a0a;--header-background-color: rgba(30, 30, 30, 0.85);--main-color: #bebebe;--link-color: #8b8bf9;--visited-link-color: #c77676;--code-color: #333333;--share-logo-filter: invert(80%);}}@media screen and (min-width: 700px) {:root {--content-width: 80vw;--image-width: 50vw;--h1-size: 1.5rem;--h2-size: 1.3rem;--h3-size: 1.1rem;--block-code-radius: 5px;--block-code-width: var(--content-width);--block-code-padding: .5rem;}}@media screen and (max-width: 700px) {:root {--content-width: 90vw;--image-width: 90vw;--h1-size: 1.2rem;--h2-size: 1.2rem;--h3-size: 1.1rem;--block-code-radius: none;--block-code-width: var(100vw);--block-code-padding: .5rem calc((100vw - var(--content-width)) / 2);}}html {background-color: var(--background-color);color: var(--main-color);box-sizing: border-box;}body {box-sizing: border-box;margin: 0;}header {position: sticky;top: 0;left: 0;height: 3rem;box-shadow: 0 5px 15px rgba(3, 3, 3, 0.05);background: var(--header-background-color);padding: 0 calc((100vw - var(--content-width)) / 2);z-index: 1000;}header a {display: inline-block;line-height: 3rem;text-decoration: none;color: var(--main-color);}header a:visited {color: var(--main-color)}a {text-decoration: none;color: var(--link-color);}a:visited {color: var(--visited-link-color);}.entries {list-style: none;padding-left: 0;}.tag-list {list-style: none;display: inline;padding-left: 0;}.tag-list::before {content: '[';}.tag-list::after {content: ']';}.tag-list > li {display: inline;}.tag-list > li:not(:last-child)::after {content: ', ';}footer {margin: 3rem auto 1rem auto;text-align: center;}footer small {display: block;}footer small > span:not(:last-child)::after {content: ' | ';}</style>
-<meta property="og:type" content="article"><meta property="og:url" content="http://localhost/entries/2019-09-13/install-rootless-docker.html"><meta property="og:title" content="Rootless Docker のインストール方法 | blog.comame.xyz"><meta property="og:site_name" content="blog.comame.xyz"><meta property="og:description" content="今更感は否めないが、備忘録も兼ねて https://get.docker.com/rootlessからシェルスクリプトをダウンロードする 実行する $HOME/bin/dockerd-rootless.sh --experimental --storage-driver v..."><meta name="description" content="今更感は否めないが、備忘録も兼ねて https://get.docker.com/rootlessからシェルスクリプトをダウンロードする 実行する $HOME/bin/dockerd-rootless.sh --experimental --storage-driver v..."><link rel="canonical" href="https://blog.comame.xyz/entries/2019-09-13/install-rootless-docker.html"></head>
+<meta property="og:type" content="article"><meta property="og:url" content="http://localhost/entries/2020-03-26/wsl2-publish-server.html"><meta property="og:title" content="WSL2 のサーバをネットワークに公開する | blog.comame.xyz"><meta property="og:site_name" content="blog.comame.xyz"><meta property="og:description" content="Hyper-V の NAT をこねくり回そうとしたけれども、うまくいかなかった。netsh コマンドを使うことで、簡単にポート変換ができる。  Issue #4150 microsoft/WSL | GitHub # PowerShell (Administrator)  ..."><meta name="description" content="Hyper-V の NAT をこねくり回そうとしたけれども、うまくいかなかった。netsh コマンドを使うことで、簡単にポート変換ができる。  Issue #4150 microsoft/WSL | GitHub # PowerShell (Administrator)  ..."><link rel="canonical" href="https://blog.comame.xyz/entries/2020-03-26/wsl2-publish-server.html"></head>
 
 <body>
     <header>
@@ -17,33 +17,33 @@
     
     <div component="entry" id="c-entry">
         <div id="metadata">
-            <h1 id="title">Rootless Docker のインストール方法</h1>
-            <time id="time">2019-09-13</time>
-            <ul id="tags" class="tag-list"><li><a href="/tags/server.html">server</a></li><li><a href="/tags/Docker.html">Docker</a></li></ul>
+            <h1 id="title">WSL2 のサーバをネットワークに公開する</h1>
+            <time id="time">2020-03-26</time>
+            <ul id="tags" class="tag-list"><li><a href="/tags/Windows.html">Windows</a></li><li><a href="/tags/server.html">server</a></li></ul>
         </div>
-        <div id="content"><p>今更感は否めないが、備忘録も兼ねて</p>
+        <div id="content"><p>Hyper-V の NAT をこねくり回そうとしたけれども、うまくいかなかった。<code>netsh</code> コマンドを使うことで、簡単にポート変換ができる。</p>
+<h2>Workaround</h2>
+<p><a href="https://github.com/microsoft/WSL/issues/4150#issuecomment-504209723" target="_blank" rel="noopener">Issue #4150 microsoft/WSL | GitHub</a></p>
+<pre><code># PowerShell (Administrator)
 
-<h2>手順</h2>
+&gt; netsh interface portproxy add v4tov4 \
+    listenport=&lt;External Port&gt; \
+    listenaddress=&lt;External Address&gt; \
+    connectport=&lt;Internal Port&gt; \
+    connectaddress=&lt;Internal Address&gt;</code></pre><h3>connectaddress</h3>
+<p>WSL2 に割り当てられた内部 IP を指定する必要がある。WSL2 内で</p>
+<pre><code># bash (WSL2)
 
-<ol>
-<li><code>https://get.docker.com/rootless</code>からシェルスクリプトをダウンロードする</li>
-<li>実行する</li>
-<li><code>$HOME/bin/dockerd-rootless.sh --experimental --storage-driver vfs</code>を実行する
-</li></ol>
-
-<h2>補足</h2>
-
-<p>インストールスクリプトを覗いてみたところ、どうやら自動的に Service を作成してくれるらしい。</p>
-
-<h2>ドキュメント</h2>
-<p><a href="https://github.com/moby/moby/blob/master/docs/rootless.md">https://github.com/moby/moby/blob/master/docs/rootless.md</a></p>
+$ ifconfig eth0 | grep inet</code></pre><p>を叩くと取得できる。</p>
+<h2>Netsh interface portproxy</h2>
+<p><a href="https://docs.microsoft.com/ja-jp/windows-server/networking/technologies/netsh/netsh-interface-portproxy" target="_blank" rel="noopener">Netsh interface portproxy コマンド | Microsoft Docs</a></p>
 </div>
         <div id="share">
             <img alt="共有" src="/assets/icons/share.svg">
-            <a rel="noopener" target="_blank" title="Twitter で共有" href="https://twitter.com/intent/tweet?text=Rootless%20Docker%20%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%96%B9%E6%B3%95%0a&amp;url=https%3A%2F%2Fblog.comame.xyz%2Fentries%2F2019-09-13%2Finstall-rootless-docker.html&amp;related=comameito">
+            <a rel="noopener" target="_blank" title="Twitter で共有" href="https://twitter.com/intent/tweet?text=WSL2%20%E3%81%AE%E3%82%B5%E3%83%BC%E3%83%90%E3%82%92%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%E3%81%AB%E5%85%AC%E9%96%8B%E3%81%99%E3%82%8B%0a&amp;url=https%3A%2F%2Fblog.comame.xyz%2Fentries%2F2020-03-26%2Fwsl2-publish-server.html&amp;related=comameito">
                 <img alt="Twitter で共有" src="/assets/icons/twitter_logo.svg">
             </a>
-            <a rel="noopener" target="_blank" title="Facebook で共有" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.comame.xyz%2Fentries%2F2019-09-13%2Finstall-rootless-docker.html">
+            <a rel="noopener" target="_blank" title="Facebook で共有" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.comame.xyz%2Fentries%2F2020-03-26%2Fwsl2-publish-server.html">
                 <img alt="Facebook で共有" src="/assets/icons/facebook_logo.svg">
             </a>
             <a title="URL をコピー">
@@ -57,15 +57,15 @@
     <footer>
         <small>
             <a href="https://github.com/comame/blog.comame.xyz" target="_blank" rel="noopener">
-                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Thu, 26 Mar 2020 19:08:32 GMT">
+                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Thu, 26 Mar 2020 19:08:27 GMT">
             </a>
         </small>
         <small>
             <span>Copyright 2020 <a href="https://comame.xyz">comame</a></span>
             
             
-            <span component="source" for="source"><a id="source" target="_blank" rel="noopener" href="https://github.com/comame/blog.comame.xyz/blob/master/archives/2019/install-rootless-docker.html">source</a></span>
-            <span component="history" for="history"><a id="history" target="_blank" rel="noopener" href="https://github.com/comame/blog.comame.xyz/commits/master/archives/2019/install-rootless-docker.html">history</a></span>
+            <span component="source" for="source"><a id="source" target="_blank" rel="noopener" href="https://github.com/comame/blog.comame.xyz/blob/master/archives/2020/wsl2-publish-server.md">source</a></span>
+            <span component="history" for="history"><a id="history" target="_blank" rel="noopener" href="https://github.com/comame/blog.comame.xyz/commits/master/archives/2020/wsl2-publish-server.md">history</a></span>
             <span><a href="/feed.xml">Feed</a></span>
         </small>
     </footer>
