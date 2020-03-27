@@ -7,7 +7,7 @@ on:
       - .github/**
       - '!.github/workflows/build.yml'
       - docs/**
-      - build/comameito_puppeteer-nginx/**
+      - build/comameito_blog-builder/**
       - .gitignore
       - README.md
   pull_request:
@@ -16,7 +16,7 @@ on:
       - docs/**
       - .github/**
       - '!.github/workflows/build.yml'
-      - build/comameito_puppeteer-nginx/**
+      - build/comameito_blog-builder/**
       - .gitignore
       - README.md
 
@@ -34,8 +34,8 @@ jobs:
         rm -r docs
         mkdir docs
 
-        echo "Downloading image comameito/puppeteer-nginx"
-        docker pull -q comameito/puppeteer-nginx
+        echo "Downloading image comameito/blog-builder"
+        docker pull -q comameito/blog-builder
         echo "Starting build"
         npm run build
 

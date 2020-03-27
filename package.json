@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build": "docker run -v $(pwd):/files --rm comameito/puppeteer-nginx",
-    "start": "docker run -v $(pwd):/files:ro -p 8080:80 -it --rm comameito/puppeteer-nginx serve"
+    "build": "docker run -v $(pwd):/files --rm comameito/blog-builder",
+    "start": "docker run -v $(pwd):/files:ro -p 8080:80 -it --rm comameito/blog-builder serve"
   },
   "keywords": [],
   "author": "",
