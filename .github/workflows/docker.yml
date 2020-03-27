@@ -4,12 +4,12 @@ on:
   push:
     branches: [ master ]
     paths:
-      - build/comameito_puppeteer-nginx/**
+      - build/comameito_blog-builder/**
       - .github/workflows/docker.yml
   pull_request:
     branches: [ master ]
     paths:
-      - build/comameito_puppeteer-nginx/**
+      - build/comameito_blog-builder/**
       - .github/workflows/docker.yml
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
 
     - name: Docker
       run: |
-        cd ${{ github.workspace }}/build/comameito_puppeteer-nginx
-        docker build --tag comameito/puppeteer-nginx .
+        cd ${{ github.workspace }}/build/comameito_blog-builder
+        docker build --tag comameito/blog-builder .
         docker login -u comameito -p ${{ secrets.DOCKER_PASSWORD }}
-        docker push comameito/puppeteer-nginx
+        docker push comameito/blog-builder
