@@ -5,9 +5,133 @@
       <link rel='alternate' href='https://blog.comame.xyz/' />
       <link rel='self' href='https://blog.comame.xyz/feed.xml' />
       <author><name>comame</name></author>
-      <updated>2020-03-26T00:00:00Z</updated>
+      <updated>2020-05-04T00:00:00Z</updated>
 
       
+    <entry>
+      <title>PubSubHubbub について</title>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-05-04/websub.html' />
+      <id>https://blog.comame.xyz/entries/2020-05-04/websub.html</id>
+      <updated>2020-05-04T00:00:00Z</updated>
+      <content type='html'>&lt;p&gt;この記事は、&lt;a href="https://pubsubhubbub.appspot.com" target="_blank" rel="noopener"&gt;pubsubhubbub.appspot.com&lt;/a&gt; で Subscribe した時の挙動について書く。&lt;/p&gt;
+&lt;p&gt;pubsubhubbub.appspot.com は &lt;a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html" target="_blank" rel="noopener"&gt;PubSubHubbub Core 0.4&lt;/a&gt; と Permanent subscriptions を除く &lt;a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.3.html" target="_blank" rel="noopener"&gt;PubSubHubbub Core 0.3&lt;/a&gt; に従っている。&lt;/p&gt;
+&lt;p&gt;PubSubHubbub とは、大まかに纏めれば Webhook の挙動を標準化したものである。現在は W3C によって &lt;a href="https://w3c.github.io/websub/" target="_blank" rel="noopener"&gt;WebSub&lt;/a&gt; として公開されている。WebSub は PubSubHubbub Core 0.4 と概ね同じだと思われる (あまり読み込んでいない)。&lt;/p&gt;
+&lt;h2&gt;PubSubHubbub Core 0.4&lt;/h2&gt;
+&lt;p&gt;仕様を正確に翻訳したものではない。実装する際には元の仕様を参照することをおすすめする。&lt;/p&gt;
+&lt;h3&gt;用語&lt;/h3&gt;
+&lt;dl&gt;
+    &lt;dt&gt;Topic&lt;/dt&gt;
+    &lt;dd&gt;HTTP の URL。変更を購読するリソースを一意に表す。&lt;/dd&gt;
+    &lt;dt&gt;Hub&lt;/dt&gt;
+    &lt;dd&gt;PubSubHubbub の Subscribing と Publishing をどちらも実装するサーバ。&lt;/dd&gt;
+    &lt;dt&gt;Subscriber&lt;/dt&gt;
+    &lt;dd&gt;Topic の更新を受け取るエンティティ。&lt;/dd&gt;
+    &lt;dt&gt;Subscription&lt;/dt&gt;
+    &lt;dd&gt;Topic とその更新通知を受け取る Subscriber の一意な関係。Topic URL と Subscriber Callback URL をキーとする。&lt;/dd&gt;
+    &lt;dt&gt;Subscriber Callback URL&lt;/dt&gt;
+    &lt;dd&gt;Subscriber が通知を受け取る URL。&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;参照: &lt;a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.2" target="_blank" rel="noopener"&gt;2. Definitions&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Subscribing&lt;/h3&gt;
+&lt;p&gt;購読を登録するとき、次のような流れとなる。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Subscriber が Hub に Subscription Request を送信する&lt;/li&gt;
+&lt;li&gt;Hub が Subscription Request を検証する (OPTIONAL)&lt;/li&gt;
+&lt;li&gt;Hub が Subscriber に Verificatin Request を送信する&lt;/li&gt;
+&lt;li&gt;Subscriber が Hub に Verification Response を返す&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;参照: &lt;a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5" target="_blank" rel="noopener"&gt;5. Subscribing and Unsubscribing&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Subscription Request&lt;/h3&gt;
+&lt;p&gt;以下のパラメータを &lt;code&gt;Content-Type: application/x-www-form-urlencoded&lt;/code&gt; で POST する。&lt;/p&gt;
+&lt;dl&gt;
+    &lt;dt&gt;hub.callback&lt;/dt&gt;
+    &lt;dd&gt;REQUIRED. Subscriber Callback URL。配信通知はこの URL に対して POST される。クエリパラメータは保持される (&lt;a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5.1.1" rel="noopener" target="_blank"&gt;5.1.1. Subscription Parameter Details&lt;/a&gt;)。&lt;/dd&gt;
+    &lt;dt&gt;hub.mode&lt;/dt&gt;
+    &lt;dd&gt;REQUIRED. &lt;code&gt;subscribe&lt;/code&gt; あるいは &lt;code&gt;unsubscribe&lt;/code&gt; のいずれかの値をとる。&lt;/dd&gt;
+    &lt;dt&gt;hub.topic&lt;/dt&gt;
+    &lt;dd&gt;REQUIRED. 購読する Topic の URL。&lt;/dd&gt;
+    &lt;dt&gt;hub.lease_seconds&lt;/dt&gt;
+    &lt;dd&gt;OPTIONAL. 購読の有効な時間 (秒)。Hub はこの値に従ってもよいし、従わなくともよい。&lt;code&gt;hub.mode&lt;/code&gt; が &lt;code&gt;unsubscribe&lt;/code&gt; の場合は無視される。&lt;/dd&gt;
+    &lt;dt&gt;hub.secret&lt;/dt&gt;
+    &lt;dd&gt;OPTIONAL. 後に Subscriber が更新通知を検証できるようにするための値。詳しくは後述。&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;既に有効な Subscription がある場合、Hub は Subscription を更新する。Subscription の確認に失敗した場合は、以前の購読状態を継続する。&lt;/p&gt;
+&lt;p&gt;参照: &lt;a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5.1" target="_blank" rel="noopener"&gt;5.1. Subscriber Sends Subscription Request&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Subscription Response&lt;/h3&gt;
+&lt;p&gt;Hub は HTTP &lt;code&gt;202 Accepted&lt;/code&gt; によって、Subscription Request が検証され、確認されることを示す。エラーが発生した場合、Hub は 4xx または 5xx を返す。&lt;/p&gt;
+&lt;p&gt;参照: &lt;a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5.1.2" target="_blank" rel="noopener"&gt;5.1.2. Subscription Response Details&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Verification Request&lt;/h3&gt;
+&lt;p&gt;Subscription Request が正しいものかを確認するため、Hub は Subscriber Callback URL に以下のクエリパラメータとともに GET リクエストを送信する。&lt;/p&gt;
+&lt;dl&gt;
+    &lt;dt&gt;hub.mode&lt;/dt&gt;
+    &lt;dd&gt;REQUIRED. Subscription Request に指定した値と同じ値を示す。&lt;/dd&gt;
+    &lt;dt&gt;hub.topic&lt;/dt&gt;
+    &lt;dd&gt;REQUIRED. Subscription Request に指定した値と同じ値を示す。&lt;/dd&gt;
+    &lt;dt&gt;hub.challenge&lt;/dt&gt;
+    &lt;dd&gt;REQUIRED. Hub によって生成されたランダムな文字列。Subscriber はこの値をレスポンスとして返すことにより、Subscription を確認する。&lt;/dd&gt;
+    &lt;dt&gt;hub.lease_seconds&lt;/dt&gt;
+    &lt;dd&gt;REQUIRED/OPTIONAL. &lt;code&gt;hub.mode&lt;/code&gt; が &lt;code&gt;subscribe&lt;/code&gt; の場合、REQUIRED となる。Hub によって決定された購読の有効な時間 (秒) を表す。&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;参照: &lt;a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5.3" target="_blank" rel="noopener"&gt;5.3. Hub Verifies Intent of the Subscriber&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;リクエストされた内容が正しい場合、Subscriber は &lt;code&gt;hub.challenge&lt;/code&gt; の値をレスポンスボディに含め、2xx を返す。リクエストされた内容が正しくない場合、Subscriber は 404 を返す。&lt;/p&gt;
+&lt;p&gt;その他のステータスコードを返した場合、またはレスポンスボディが &lt;code&gt;hub.challenge&lt;/code&gt; の値と異なる場合、確認は失敗する。&lt;/p&gt;
+&lt;p&gt;参照: &lt;a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5.3.1" target="_blank" rel="noopener"&gt;5.3.1. Verification Details&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;更新の通知&lt;/h3&gt;
+&lt;p&gt;コンテンツが更新された時、Hub は Subscriber Callback URL に POST リクエストを送信する。&lt;/p&gt;
+&lt;p&gt;リクエストを受け取ったとき、Subscriber は 2xx を返さなければならない。それ以外のステータスコードを返した場合、通知は失敗したとみなされる (リダイレクトも機能しない)。2xx のレスポンスはあくまで正常に通知を受け取ったことを表すのみであり、通知の内容が正しいことを示すものではない。&lt;/p&gt;
+&lt;p&gt;リクエストには、RFC5988 に規定される &lt;a href="https://tools.ietf.org/html/rfc5988" target="_blank" rel="noopener"&gt;Link Header&lt;/a&gt; が付与される。&lt;code&gt;rel=hub&lt;/code&gt; には Hub の URL を、&lt;code&gt;rel=self&lt;/code&gt; には Topic の URL が指定される。&lt;/p&gt;
+&lt;p&gt;参照: &lt;a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#contentdistribution" target="_blank" rel="noopener"&gt;7. Content Distribution&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;検証可能な更新の通知&lt;/h3&gt;
+&lt;p&gt;Subscription Request に &lt;code&gt;hub.secret&lt;/code&gt; を含めた場合、Hub はペイロードの HMAC 署名をヘッダに付与する。署名は 40 バイトの 16 進数表示である。ヘッダの形式は次のようになる。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;X-Hub-Signature: sha1=&lt;signature&gt;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;これにより、通知の内容が第三者に偽造されたものではないことを確認できる。&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#authednotify" target="_blank" rel="noopener"&gt;8. Authenticated Content Distribution&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;PubSubHubbub Core 0.3 による追加事項&lt;/h2&gt;
+&lt;h3&gt;Subscription Request&lt;/h3&gt;
+&lt;p&gt;以下のパラメータが追加される。&lt;/p&gt;
+&lt;dl&gt;
+    &lt;dt&gt;hub.verify&lt;/dt&gt;
+    &lt;dd&gt;REQUIRED. Subscriber が Subscription を確認する方法を指定する。&lt;code&gt;sync&lt;/code&gt; あるいは &lt;code&gt;async&lt;/code&gt; のいずれの値をとる。&lt;/dd&gt;
+    &lt;dt&gt;hub.verify_token&lt;/dt&gt;
+    &lt;dd&gt;OPTIONAL. 指定した場合、Hub はこの値を Verification Request のクエリパラメータに付与する。&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;参考: &lt;a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.3.html#anchor5" target="_blank" rel="noopener"&gt;6.1.  Subscriber Sends Subscription Request&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;Verification Request&lt;/h3&gt;
+&lt;p&gt;以下のクエリパラメータが追加される。&lt;/p&gt;
+&lt;dl&gt;
+    &lt;dt&gt;hub.verify_token&lt;/dt&gt;
+    &lt;dd&gt;OPTIONAL. Subscription Request に指定した値をそのまま含む。&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;以下のパラメータが変更される。&lt;/p&gt;
+&lt;dl&gt;
+    &lt;dt&gt;hub.lease_seconds&lt;/dt&gt;
+    &lt;dd&gt;OPTIONAL/REQUIRED. 値が含まれていた場合の挙動は PubSubHubbub Core 0.4 と同一である。値が含まれない場合、後述するように Subscription の更新の挙動が変わる。&lt;/dd&gt;
+&lt;/dl&gt;
+
+&lt;p&gt;参照: &lt;a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.3.html#verifysub" target="_blank" rel="noopener"&gt;6.2.  Hub Verifies Intent of the Subscriber&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;自動的な Subscription の更新&lt;/h3&gt;
+&lt;p&gt;注意: pubsubhubbub.appspot.com では非対応である。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;hub.lease_seconds&lt;/code&gt; が経過する前に、Hub は自動的に Subscription の確認を行う。&lt;/p&gt;
+&lt;p&gt;参照: &lt;a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.3.html#autorefresh" target="_blank" rel="noopener"&gt;6.3 Automatic Subscription Refresh&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;pubsubhubbub.appspot.com の挙動&lt;/h2&gt;
+&lt;p&gt;筆者が自分の環境で確認したものである。仕様に定められた挙動ではないため、将来的に変更される可能性もある。&lt;/p&gt;
+&lt;h3&gt;Subscription Request の宛先&lt;/h3&gt;
+&lt;p&gt;送信先は &lt;code&gt;https://pubsubhubbub.appspot.com/subscribe&lt;/code&gt; である。&lt;/p&gt;
+&lt;h3&gt;Subscription Response のステータスコード&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;hub.verify&lt;/code&gt; が &lt;code&gt;sync&lt;/code&gt; の場合、正常に Subscription Request が受理されたときは 204 No Content を返す。&lt;/p&gt;
+&lt;h3&gt;Permanent Subscription の非対応&lt;/h3&gt;
+&lt;p&gt;PubSubHubbub Core 0.3 の 6.3 Automatic Subscription Refresh には対応しない。Subscriber は hub.lease_seconds が経過する前に再び Subscription Request を行う必要がある。&lt;/p&gt;
+&lt;h2&gt;補足&lt;/h2&gt;
+&lt;p&gt;pubsubhubbub.appspot.com は PubSubHubbub Core 0.4 に加えて PubSubHubbub Core 0.3 も参照するが、Permanent Subscription には非対応であるため、実用上は &lt;code&gt;hub.verify_token&lt;/code&gt; が追加されることにだけ注意すれば良いと思われる。大抵の場合は &lt;code&gt;hub.verify&lt;/code&gt; を &lt;code&gt;sync&lt;/code&gt; として問題ないであろう。&lt;/p&gt;
+&lt;h2&gt;経緯 (余談)&lt;/h2&gt;
+&lt;p&gt;YouTube Data API v3 について調べていたのだが、Search: list (100 Units/Request) をむやみに叩くとすぐに制限 (10,000 Units/Day) に達してしまう。特定のチャンネルのアップデートを素早く受け取るために、&lt;a href="https://developers.google.com/youtube/v3/guides/push_notifications" target="_blank" rel="noopener"&gt;PubSubHubbub をサポート&lt;/a&gt;していた。&lt;/p&gt;
+</content>
+    </entry>
+    
     <entry>
       <title>WSL2 のサーバをネットワークに公開する</title>
       <link rel='alternate' href='https://blog.comame.xyz/entries/2020-03-26/wsl2-publish-server.html' />
