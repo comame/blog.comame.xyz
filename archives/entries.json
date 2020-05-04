@@ -196,4 +196,10 @@
     "date": "2020-03-26",
     "tags": [ "Windows", "server" ],
     "type": "md"
+}, {
+    "entry": "websub",
+    "title": "PubSubHubbub について",
+    "date": "2020-05-04",
+    "tags": [ "Web" ],
+    "type": "md"
 }]
