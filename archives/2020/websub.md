@@ -97,7 +97,7 @@ Subscription Request が正しいものかを確認するため、Hub は Subscr
 
 ### 検証可能な更新の通知
 
-Subscription Request に `hub.secret` を含めた場合、Hub はペイロードの HMAC 署名をヘッダに付与する。署名は 40 バイトの 16 進数表示である。ヘッダの形式は次のようになる。
+Subscription Request に `hub.secret` を含めた場合、Hub はペイロードの HMAC 署名をヘッダに付与する。署名は 40 バイトの 16 進数表示の SHA-1 である。ヘッダの形式は次のようになる。
 
 ```
 X-Hub-Signature: sha1=<signature>
