@@ -2,7 +2,7 @@
 
 pubsubhubbub.appspot.com は [PubSubHubbub Core 0.4](https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html) と Permanent subscriptions を除く [PubSubHubbub Core 0.3](https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.3.html) に従っている。
 
-PubSubHubbub とは、大まかに纏めれば Webhook の挙動を標準化したものである。現在は W3C によって [WebSub](https://w3c.github.io/websub/) として公開されている。WebSub は PubSubHubbub Core 0.4 と概ね同じだと思われる (あまり読み込んでいない)。
+PubSubHubbub とは、Subscriber 側から見た場合は Webhook である。現在は W3C によって [WebSub](https://w3c.github.io/websub/) として公開されている。WebSub は PubSubHubbub Core 0.4 と概ね同じだと思われる (あまり読み込んでいない)。
 
 ## PubSubHubbub Core 0.4
 
@@ -109,6 +109,12 @@ X-Hub-Signature: sha1=<signature>
 
 ## PubSubHubbub Core 0.3 による追加事項
 
+### メッセージの形式
+
+更新の通知は [Atom](https://tools.ietf.org/html/rfc4287) あるいは [RSS](https://www.rssboard.org/rss-specification) の形式である。
+
+参照: [4.  Atom Details](https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.3.html#anchor4)
+
 ### Subscription Request
 
 以下のパラメータが追加される。
@@ -163,9 +169,15 @@ X-Hub-Signature: sha1=<signature>
 
 PubSubHubbub Core 0.3 の 6.3 Automatic Subscription Refresh には対応しない。Subscriber は hub.lease_seconds が経過する前に再び Subscription Request を行う必要がある。
 
-## 補足
+## 補足・考察
 
 pubsubhubbub.appspot.com は PubSubHubbub Core 0.4 に加えて PubSubHubbub Core 0.3 も参照するが、Permanent Subscription には非対応であるため、実用上は `hub.verify_token` が追加されることにだけ注意すれば良いと思われる。大抵の場合は `hub.verify` を `sync` として問題ないであろう。
+
+PubSubHubbub Core 0.3 では更新通知のメッセージ形式が Atom または RSS と規定されているが、PubSubHubbub Core 0.4 および WebSub では撤廃されている。これにより、より汎用性の高いプロトコルを目指したと思われる。
+
+また、新しいバージョンでは `hub.verify_token` も撤廃されている。このプロパティによって Verification Request を検証できるというメリットがあったが、これは Subscriber Callback URL に独自のクエリパラメータを付与することで代替できる。あるいは、第三者によって意図しない Subscription を登録されたとしても、更新通知を処理するかどうかは変わらず Subscriber の判断によるため、仕様から削除されたのかもしれない。
+
+Automatic Subscription Refresh の撤廃は、より簡単な Webhook の登録を目指すという観点からは悪手であろう。一方、PubSubHubbub はそもそも RSS や Atom フィードのリアルタイム化を目指したものであること ([Wikipedia](https://ja.wikipedia.org/wiki/WebSub) を参照のこと) を踏まえれば妥当であるともいえる。もし Subscriber が Subscription の更新を忘れてしまったとしても、最新の更新情報は元のリソースを参照することで簡単に取得できるからである。
 
 ## 経緯 (余談)
 
