@@ -93,7 +93,7 @@
 <p>リクエストには、RFC5988 に規定される <a href="https://tools.ietf.org/html/rfc5988" target="_blank" rel="noopener">Link Header</a> が付与される。<code>rel=hub</code> には Hub の URL を、<code>rel=self</code> には Topic の URL が指定される。</p>
 <p>参照: <a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#contentdistribution" target="_blank" rel="noopener">7. Content Distribution</a></p>
 <h3>検証可能な更新の通知</h3>
-<p>Subscription Request に <code>hub.secret</code> を含めた場合、Hub はペイロードの HMAC 署名をヘッダに付与する。署名は 40 バイトの 16 進数表示である。ヘッダの形式は次のようになる。</p>
+<p>Subscription Request に <code>hub.secret</code> を含めた場合、Hub はペイロードの HMAC 署名をヘッダに付与する。署名は 40 バイトの 16 進数表示の SHA-1 である。ヘッダの形式は次のようになる。</p>
 <pre><code>X-Hub-Signature: sha1=&lt;signature&gt;</code></pre><p>これにより、通知の内容が第三者に偽造されたものではないことを確認できる。</p>
 <p><a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#authednotify" target="_blank" rel="noopener">8. Authenticated Content Distribution</a></p>
 <h2>PubSubHubbub Core 0.3 による追加事項</h2>
@@ -157,7 +157,7 @@
     <footer>
         <small>
             <a href="https://github.com/comame/blog.comame.xyz" target="_blank" rel="noopener">
-                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Mon, 04 May 2020 14:23:03 GMT">
+                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Tue, 05 May 2020 06:27:09 GMT">
             </a>
         </small>
         <small>

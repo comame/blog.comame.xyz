@@ -85,7 +85,7 @@
 &lt;p&gt;リクエストには、RFC5988 に規定される &lt;a href="https://tools.ietf.org/html/rfc5988" target="_blank" rel="noopener"&gt;Link Header&lt;/a&gt; が付与される。&lt;code&gt;rel=hub&lt;/code&gt; には Hub の URL を、&lt;code&gt;rel=self&lt;/code&gt; には Topic の URL が指定される。&lt;/p&gt;
 &lt;p&gt;参照: &lt;a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#contentdistribution" target="_blank" rel="noopener"&gt;7. Content Distribution&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;検証可能な更新の通知&lt;/h3&gt;
-&lt;p&gt;Subscription Request に &lt;code&gt;hub.secret&lt;/code&gt; を含めた場合、Hub はペイロードの HMAC 署名をヘッダに付与する。署名は 40 バイトの 16 進数表示である。ヘッダの形式は次のようになる。&lt;/p&gt;
+&lt;p&gt;Subscription Request に &lt;code&gt;hub.secret&lt;/code&gt; を含めた場合、Hub はペイロードの HMAC 署名をヘッダに付与する。署名は 40 バイトの 16 進数表示の SHA-1 である。ヘッダの形式は次のようになる。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;X-Hub-Signature: sha1=&lt;signature&gt;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;これにより、通知の内容が第三者に偽造されたものではないことを確認できる。&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#authednotify" target="_blank" rel="noopener"&gt;8. Authenticated Content Distribution&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;PubSubHubbub Core 0.3 による追加事項&lt;/h2&gt;
