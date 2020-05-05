@@ -23,7 +23,7 @@
         </div>
         <div id="content"><p>この記事は、<a href="https://pubsubhubbub.appspot.com" target="_blank" rel="noopener">pubsubhubbub.appspot.com</a> で Subscribe した時の挙動について書く。</p>
 <p>pubsubhubbub.appspot.com は <a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html" target="_blank" rel="noopener">PubSubHubbub Core 0.4</a> と Permanent subscriptions を除く <a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.3.html" target="_blank" rel="noopener">PubSubHubbub Core 0.3</a> に従っている。</p>
-<p>PubSubHubbub とは、大まかに纏めれば Webhook の挙動を標準化したものである。現在は W3C によって <a href="https://w3c.github.io/websub/" target="_blank" rel="noopener">WebSub</a> として公開されている。WebSub は PubSubHubbub Core 0.4 と概ね同じだと思われる (あまり読み込んでいない)。</p>
+<p>PubSubHubbub とは、Subscriber 側から見た場合は Webhook である。現在は W3C によって <a href="https://w3c.github.io/websub/" target="_blank" rel="noopener">WebSub</a> として公開されている。WebSub は PubSubHubbub Core 0.4 と概ね同じだと思われる (あまり読み込んでいない)。</p>
 <h2>PubSubHubbub Core 0.4</h2>
 <p>仕様を正確に翻訳したものではない。実装する際には元の仕様を参照することをおすすめする。</p>
 <h3>用語</h3>
@@ -97,6 +97,9 @@
 <pre><code>X-Hub-Signature: sha1=&lt;signature&gt;</code></pre><p>これにより、通知の内容が第三者に偽造されたものではないことを確認できる。</p>
 <p><a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#authednotify" target="_blank" rel="noopener">8. Authenticated Content Distribution</a></p>
 <h2>PubSubHubbub Core 0.3 による追加事項</h2>
+<h3>メッセージの形式</h3>
+<p>更新の通知は <a href="https://tools.ietf.org/html/rfc4287" target="_blank" rel="noopener">Atom</a> あるいは <a href="https://www.rssboard.org/rss-specification" target="_blank" rel="noopener">RSS</a> の形式である。</p>
+<p>参照: <a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.3.html#anchor4" target="_blank" rel="noopener">4.  Atom Details</a></p>
 <h3>Subscription Request</h3>
 <p>以下のパラメータが追加される。</p>
 <dl>
@@ -133,8 +136,11 @@
 <p><code>hub.verify</code> が <code>sync</code> の場合、正常に Subscription Request が受理されたときは 204 No Content を返す。</p>
 <h3>Permanent Subscription の非対応</h3>
 <p>PubSubHubbub Core 0.3 の 6.3 Automatic Subscription Refresh には対応しない。Subscriber は hub.lease_seconds が経過する前に再び Subscription Request を行う必要がある。</p>
-<h2>補足</h2>
+<h2>補足・考察</h2>
 <p>pubsubhubbub.appspot.com は PubSubHubbub Core 0.4 に加えて PubSubHubbub Core 0.3 も参照するが、Permanent Subscription には非対応であるため、実用上は <code>hub.verify_token</code> が追加されることにだけ注意すれば良いと思われる。大抵の場合は <code>hub.verify</code> を <code>sync</code> として問題ないであろう。</p>
+<p>PubSubHubbub Core 0.3 では更新通知のメッセージ形式が Atom または RSS と規定されているが、PubSubHubbub Core 0.4 および WebSub では撤廃されている。これにより、より汎用性の高いプロトコルを目指したと思われる。</p>
+<p>また、新しいバージョンでは <code>hub.verify_token</code> も撤廃されている。このプロパティによって Verification Request を検証できるというメリットがあったが、これは Subscriber Callback URL に独自のクエリパラメータを付与することで代替できる。あるいは、第三者によって意図しない Subscription を登録されたとしても、更新通知を処理するかどうかは変わらず Subscriber の判断によるため、仕様から削除されたのかもしれない。</p>
+<p>Automatic Subscription Refresh の撤廃は、より簡単な Webhook の登録を目指すという観点からは悪手であろう。一方、PubSubHubbub はそもそも RSS や Atom フィードのリアルタイム化を目指したものであること (<a href="https://ja.wikipedia.org/wiki/WebSub" target="_blank" rel="noopener">Wikipedia</a> を参照のこと) を踏まえれば妥当であるともいえる。もし Subscriber が Subscription の更新を忘れてしまったとしても、最新の更新情報は元のリソースを参照することで簡単に取得できるからである。</p>
 <h2>経緯 (余談)</h2>
 <p>YouTube Data API v3 について調べていたのだが、Search: list (100 Units/Request) をむやみに叩くとすぐに制限 (10,000 Units/Day) に達してしまう。特定のチャンネルのアップデートを素早く受け取るために、<a href="https://developers.google.com/youtube/v3/guides/push_notifications" target="_blank" rel="noopener">PubSubHubbub をサポート</a>していた。</p>
 </div>
@@ -157,7 +163,7 @@
     <footer>
         <small>
             <a href="https://github.com/comame/blog.comame.xyz" target="_blank" rel="noopener">
-                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Tue, 05 May 2020 06:27:09 GMT">
+                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Tue, 05 May 2020 07:21:09 GMT">
             </a>
         </small>
         <small>
