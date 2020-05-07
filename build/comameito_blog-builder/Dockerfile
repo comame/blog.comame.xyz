@@ -1,5 +1,7 @@
 FROM ubuntu
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 # Install Puppeteer dependencies
 RUN apt update && \
     apt install -y \
