@@ -202,4 +202,10 @@
     "date": "2020-05-04",
     "tags": [ "Web" ],
     "type": "md"
+}, {
+    "entry": "cannot-connect-house-server",
+    "title": "Windows で動くおうちサーバにアクセスできなかった問題",
+    "date": "2020-05-17",
+    "tags": [ "server" , "troubleshoot" ],
+    "type": "md"
 }]
