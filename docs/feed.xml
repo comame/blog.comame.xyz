@@ -5,9 +5,48 @@
       <link rel='alternate' href='https://blog.comame.xyz/' />
       <link rel='self' href='https://blog.comame.xyz/feed.xml' />
       <author><name>comame</name></author>
-      <updated>2020-05-04T00:00:00Z</updated>
+      <updated>2020-05-17T00:00:00Z</updated>
 
       
+    <entry>
+      <title>Windows で動くおうちサーバにアクセスできなかった問題</title>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-05-17/cannot-connect-house-server.html' />
+      <id>https://blog.comame.xyz/entries/2020-05-17/cannot-connect-house-server.html</id>
+      <updated>2020-05-17T00:00:00Z</updated>
+      <content type='html'>&lt;h2&gt;端的に&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;「プライベート」ネットワークとして接続する&lt;/li&gt;
+&lt;li&gt;ファイアウォールを確認する&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;環境&lt;/h2&gt;
+&lt;h3&gt;ネットワーク&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;+--------------------+
+|       Router       |
+|   192.168.0.1/24   |
++--------------------+
+           |
+           |---------------------------|
+           |                           |
++--------------------+      +--------------------+
+|       Windows      |      |       Android      |
+|     192.168.0.2    |      |     192.168.0.3    |
++--------------------+      +--------------------+&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;HTTP サーバ&lt;/h3&gt;
+&lt;p&gt;Windows で 8080 番ポートで待ち受け。&lt;/p&gt;
+&lt;h2&gt;発生した問題&lt;/h2&gt;
+&lt;p&gt;Windows マシンで動かしているサーバに、自宅内の他の端末からアクセスできなかった&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Windows から &lt;code&gt;curl http://localhost:8080&lt;/code&gt; は問題なし&lt;/li&gt;
+&lt;li&gt;Windows から &lt;code&gt;curl http://192.168.0.2:8080&lt;/code&gt; は問題なし&lt;/li&gt;
+&lt;li&gt;Android から Chrome で &lt;a href="http://192.168.0.2:8080" target="_blank" rel="noopener"&gt;http://192.168.0.2:8080&lt;/a&gt; を開こうとすると&lt;code&gt;ERR_CONNECTION_REFUSED&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;原因と対処&lt;/h2&gt;
+&lt;h3&gt;Windows ファイアウォール&lt;/h3&gt;
+&lt;p&gt;8080 番ポートへのアクセスが許可されていなかった。「受信の規則」に「TCP 8080番ポート」のアクセス許可を追加した。自宅のネットワークからのみアクセスできるようにするため、リモートアドレスは 192.168.0.1/24 のみとした。&lt;/p&gt;
+&lt;h3&gt;ネットワーク プロフィール&lt;/h3&gt;
+&lt;p&gt;ネットワークプロフィールが「パブリック」になっていた。Wi-Fi 設定から「プライベート」に変更した。&lt;/p&gt;
+</content>
+    </entry>
+    
     <entry>
       <title>PubSubHubbub について</title>
       <link rel='alternate' href='https://blog.comame.xyz/entries/2020-05-04/websub.html' />
