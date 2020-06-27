@@ -208,4 +208,10 @@
     "date": "2020-05-17",
     "tags": [ "server" , "troubleshoot" ],
     "type": "md"
+}, {
+    "entry": "create-kotlin-project",
+    "title": "Kotlin プロジェクトを作成する",
+    "date": "2020-06-28",
+    "tags": [ "Kotlin", "note" ],
+    "type": "md"
 }]
