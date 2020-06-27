@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="ja"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Windows 10 の ssh で Permission refusedが出る問題 | blog.comame.xyz</title>
+    <title>Kotlin プロジェクトを作成する | blog.comame.xyz</title>
 
     <style>:root {--background-color: white;--header-background-color: rgba(255, 255, 255, 0.95);--main-color: black;--link-color: #00e;--visited-link-color: #a52a2a;--code-color: #efefef;--share-logo-filter: none;font-size: 16px;--radius: 5px;}@media (prefers-color-scheme: light) {:root {--background-color: white;--header-background-color: rgba(255, 255, 255, 0.95);--main-color: black;--link-color: #00e;--visited-link-color: #a52a2a;--code-color: #efefef;--share-logo-filter: none;}}@media (prefers-color-scheme: dark) {:root {--background-color: #0a0a0a;--header-background-color: rgba(30, 30, 30, 0.85);--main-color: #bebebe;--link-color: #8b8bf9;--visited-link-color: #c77676;--code-color: #333333;--share-logo-filter: invert(80%);}}@media screen and (min-width: 700px) {:root {--content-width: 80vw;--image-width: 50vw;--h1-size: 1.5rem;--h2-size: 1.3rem;--h3-size: 1.1rem;--block-code-radius: 5px;--block-code-width: var(--content-width);--block-code-padding: .5rem;}}@media screen and (max-width: 700px) {:root {--content-width: 90vw;--image-width: 90vw;--h1-size: 1.2rem;--h2-size: 1.2rem;--h3-size: 1.1rem;--block-code-radius: none;--block-code-width: var(100vw);--block-code-padding: .5rem calc((100vw - var(--content-width)) / 2);}}html {background-color: var(--background-color);color: var(--main-color);box-sizing: border-box;}body {box-sizing: border-box;margin: 0;}header {position: sticky;top: 0;left: 0;height: 3rem;box-shadow: 0 5px 15px rgba(3, 3, 3, 0.05);background: var(--header-background-color);padding: 0 calc((100vw - var(--content-width)) / 2);z-index: 1000;}header a {display: inline-block;line-height: 3rem;text-decoration: none;color: var(--main-color);}header a:visited {color: var(--main-color)}a {text-decoration: none;color: var(--link-color);}a:visited {color: var(--visited-link-color);}.entries {list-style: none;padding-left: 0;}.tag-list {list-style: none;display: inline;padding-left: 0;}.tag-list::before {content: '[';}.tag-list::after {content: ']';}.tag-list > li {display: inline;}.tag-list > li:not(:last-child)::after {content: ', ';}footer {margin: 3rem auto 1rem auto;text-align: center;}footer small {display: block;}footer small > span:not(:last-child)::after {content: ' | ';}</style>
-<meta property="og:type" content="article"><meta property="og:url" content="http://localhost/entries/2020-02-19/windows-ssh-error.html"><meta property="og:title" content="Windows 10 の ssh で Permission refusedが出る問題 | blog.comame.xyz"><meta property="og:site_name" content="blog.comame.xyz"><meta property="og:description" content=" ssh-agent を有効にして、ssh-add する。 Set-Service -Name ssh-agent -StartupType Manual Start-Service ssh-agent  ssh-add ~/.ssh/id_rsa   Win10でssh-..."><meta name="description" content=" ssh-agent を有効にして、ssh-add する。 Set-Service -Name ssh-agent -StartupType Manual Start-Service ssh-agent  ssh-add ~/.ssh/id_rsa   Win10でssh-..."><link rel="canonical" href="https://blog.comame.xyz/entries/2020-02-19/windows-ssh-error.html"></head>
+<meta property="og:type" content="article"><meta property="og:url" content="http://localhost/entries/2020-06-28/create-kotlin-project.html"><meta property="og:title" content="Kotlin プロジェクトを作成する | blog.comame.xyz"><meta property="og:site_name" content="blog.comame.xyz"><meta property="og:description" content="Gradle 周りの設定の備忘録。  Gradle Wrapper を準備する。 $ gradle wrapper gradle jar で実行可能な Jar ファイルを吐けるようにする。 // build.gradle.kts    plugins { +   appli..."><meta name="description" content="Gradle 周りの設定の備忘録。  Gradle Wrapper を準備する。 $ gradle wrapper gradle jar で実行可能な Jar ファイルを吐けるようにする。 // build.gradle.kts    plugins { +   appli..."><link rel="canonical" href="https://blog.comame.xyz/entries/2020-06-28/create-kotlin-project.html"></head>
 
 <body>
     <header>
@@ -17,26 +17,40 @@
     
     <div component="entry" id="c-entry">
         <div id="metadata">
-            <h1 id="title">Windows 10 の ssh で Permission refusedが出る問題</h1>
-            <time id="time">2020-02-19</time>
-            <ul id="tags" class="tag-list"><li><a href="/tags/troubleshoot.html">troubleshoot</a></li><li><a href="/tags/Windows.html">Windows</a></li></ul>
+            <h1 id="title">Kotlin プロジェクトを作成する</h1>
+            <time id="time">2020-06-28</time>
+            <ul id="tags" class="tag-list"><li><a href="/tags/Kotlin.html">Kotlin</a></li><li><a href="/tags/note.html">note</a></li></ul>
         </div>
-        <div id="content"><h2>対処法</h2>
-<p>ssh-agent を有効にして、ssh-add する。</p>
-<pre><code>Set-Service -Name ssh-agent -StartupType Manual
-Start-Service ssh-agent
+        <div id="content"><p>Gradle 周りの設定の備忘録。</p>
+<h2>Gradle Wrapper</h2>
+<p>Gradle Wrapper を準備する。</p>
+<pre><code>$ gradle wrapper</code></pre><h2>ビルド設定</h2>
+<p><code>gradle jar</code> で実行可能な Jar ファイルを吐けるようにする。</p>
+<pre><code>// build.gradle.kts
 
-ssh-add ~/.ssh/id_rsa</code></pre>
+  plugins {
++   application
+  }
 
-<h2>参考</h2>
-<p><a href="https://qiita.com/yuta0801/items/d65f1fc3115773861283">Win10でssh-addがError connecting to agent: No such file or directory - Qiita</a></p>
++ application {
++     mainClassName = "xyz.comame.project.MainKt"
++ }
+
++ val jar by tasks.getting(Jar::class) {
++     manifest {
++         attributes["Main-Class"] = "xyz.comame.project.MainKt"
++     }
++ }</code></pre><h2>ソースコード</h2>
+<p><code>src/main/kotlin/xyz/comame/project/</code> に置く。</p>
+<h2>最後に</h2>
+<p>正直よく分かっていない。<code>gradle init</code> を試してみたら、実はこれでもプロジェクト設定をしてくれるらしい。</p>
 </div>
         <div id="share">
             <img alt="共有" src="/assets/icons/share.svg">
-            <a rel="noopener" target="_blank" title="Twitter で共有" href="https://twitter.com/intent/tweet?text=Windows%2010%20%E3%81%AE%20ssh%20%E3%81%A7%20Permission%20refused%E3%81%8C%E5%87%BA%E3%82%8B%E5%95%8F%E9%A1%8C%0a&amp;url=https%3A%2F%2Fblog.comame.xyz%2Fentries%2F2020-02-19%2Fwindows-ssh-error.html&amp;related=comameito">
+            <a rel="noopener" target="_blank" title="Twitter で共有" href="https://twitter.com/intent/tweet?text=Kotlin%20%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B%0a&amp;url=https%3A%2F%2Fblog.comame.xyz%2Fentries%2F2020-06-28%2Fcreate-kotlin-project.html&amp;related=comameito">
                 <img alt="Twitter で共有" src="/assets/icons/twitter_logo.svg">
             </a>
-            <a rel="noopener" target="_blank" title="Facebook で共有" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.comame.xyz%2Fentries%2F2020-02-19%2Fwindows-ssh-error.html">
+            <a rel="noopener" target="_blank" title="Facebook で共有" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.comame.xyz%2Fentries%2F2020-06-28%2Fcreate-kotlin-project.html">
                 <img alt="Facebook で共有" src="/assets/icons/facebook_logo.svg">
             </a>
             <a title="URL をコピー">
@@ -50,15 +64,15 @@ ssh-add ~/.ssh/id_rsa</code></pre>
     <footer>
         <small>
             <a href="https://github.com/comame/blog.comame.xyz" target="_blank" rel="noopener">
-                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Sat, 27 Jun 2020 19:14:43 GMT">
+                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Sat, 27 Jun 2020 19:14:41 GMT">
             </a>
         </small>
         <small>
             <span>Copyright 2020 <a href="https://comame.xyz">comame</a></span>
             
             
-            <span component="source" for="source"><a id="source" target="_blank" rel="noopener" href="https://github.com/comame/blog.comame.xyz/blob/master/archives/2020/windows-ssh-error.html">source</a></span>
-            <span component="history" for="history"><a id="history" target="_blank" rel="noopener" href="https://github.com/comame/blog.comame.xyz/commits/master/archives/2020/windows-ssh-error.html">history</a></span>
+            <span component="source" for="source"><a id="source" target="_blank" rel="noopener" href="https://github.com/comame/blog.comame.xyz/blob/master/archives/2020/create-kotlin-project.md">source</a></span>
+            <span component="history" for="history"><a id="history" target="_blank" rel="noopener" href="https://github.com/comame/blog.comame.xyz/commits/master/archives/2020/create-kotlin-project.md">history</a></span>
             <span><a href="/feed.xml">Feed</a></span>
         </small>
     </footer>

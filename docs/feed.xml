@@ -5,9 +5,40 @@
       <link rel='alternate' href='https://blog.comame.xyz/' />
       <link rel='self' href='https://blog.comame.xyz/feed.xml' />
       <author><name>comame</name></author>
-      <updated>2020-05-17T00:00:00Z</updated>
+      <updated>2020-06-28T00:00:00Z</updated>
 
       
+    <entry>
+      <title>Kotlin プロジェクトを作成する</title>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-06-28/create-kotlin-project.html' />
+      <id>https://blog.comame.xyz/entries/2020-06-28/create-kotlin-project.html</id>
+      <updated>2020-06-28T00:00:00Z</updated>
+      <content type='html'>&lt;p&gt;Gradle 周りの設定の備忘録。&lt;/p&gt;
+&lt;h2&gt;Gradle Wrapper&lt;/h2&gt;
+&lt;p&gt;Gradle Wrapper を準備する。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ gradle wrapper&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;ビルド設定&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;gradle jar&lt;/code&gt; で実行可能な Jar ファイルを吐けるようにする。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// build.gradle.kts
+
+  plugins {
++   application
+  }
+
++ application {
++     mainClassName = "xyz.comame.project.MainKt"
++ }
+
++ val jar by tasks.getting(Jar::class) {
++     manifest {
++         attributes["Main-Class"] = "xyz.comame.project.MainKt"
++     }
++ }&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;ソースコード&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;src/main/kotlin/xyz/comame/project/&lt;/code&gt; に置く。&lt;/p&gt;
+&lt;h2&gt;最後に&lt;/h2&gt;
+&lt;p&gt;正直よく分かっていない。&lt;code&gt;gradle init&lt;/code&gt; を試してみたら、実はこれでもプロジェクト設定をしてくれるらしい。&lt;/p&gt;
+</content>
+    </entry>
+    
     <entry>
       <title>Windows で動くおうちサーバにアクセスできなかった問題</title>
       <link rel='alternate' href='https://blog.comame.xyz/entries/2020-05-17/cannot-connect-house-server.html' />
