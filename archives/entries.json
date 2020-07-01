@@ -214,4 +214,10 @@
     "date": "2020-06-28",
     "tags": [ "Kotlin", "note" ],
     "type": "md"
+}, {
+    "entry": "improve-perforcmance-docker-build-gradle",
+    "title": "Docker を使用したGradle のビルドを高速化する",
+    "date": "2020-07-02",
+    "tags": [ "Kotlin", "note" ],
+    "type": "md"
 }]

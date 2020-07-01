@@ -5,9 +5,63 @@
       <link rel='alternate' href='https://blog.comame.xyz/' />
       <link rel='self' href='https://blog.comame.xyz/feed.xml' />
       <author><name>comame</name></author>
-      <updated>2020-06-28T00:00:00Z</updated>
+      <updated>2020-07-02T00:00:00Z</updated>
 
       
+    <entry>
+      <title>Docker を使用したGradle のビルドを高速化する</title>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-07-02/improve-perforcmance-docker-build-gradle.html' />
+      <id>https://blog.comame.xyz/entries/2020-07-02/improve-perforcmance-docker-build-gradle.html</id>
+      <updated>2020-07-02T00:00:00Z</updated>
+      <content type='html'>&lt;h2&gt;問題&lt;/h2&gt;
+&lt;p&gt;Docker で &lt;code&gt;gradle build&lt;/code&gt; を実行すると、&lt;code&gt;Starting a Gradle Daemon&lt;/code&gt; で1分近くかかってしまう。&lt;/p&gt;
+&lt;h2&gt;解決法&lt;/h2&gt;
+&lt;p&gt;適当に &lt;code&gt;gradle clean&lt;/code&gt; などをあらかじめ実行しておく&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  # Dockerfile
+
+  FROM gradle
+
+  COPY build.gradle.kt build.gradle.kt
+
++ RUN gradle clean
+
+  COPY src src
+  RUN gradle build
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Daemon 起動中の出力を見る限り、依存関係計算のダウンロード、&lt;code&gt;build.gradle.kt&lt;/code&gt; のコンパイルに時間がかかっているように見える。一度 &lt;code&gt;gradle clean&lt;/code&gt; を実行することによって、&lt;code&gt;gradle build&lt;/code&gt; の実行時にはそれらを回避できる。また、&lt;code&gt;src/&lt;/code&gt; 以下を変更しただけの場合 &lt;code&gt;RUN gradle clean&lt;/code&gt; はキャッシュが利用できるため、初回ビルドより後では高速にビルドできる。&lt;/p&gt;
+&lt;h2&gt;測定&lt;/h2&gt;
+&lt;p&gt;簡単な Hello, world! コードで検証した。次に記載するファイル以外は IntelliJ IDEA で生成されたものをそのまま使用した。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# src/main/kotlin/xyz/comame/test/Main.kt
+
+package xyz.comame.test
+
+fun main() {
+    println("Hello,world!")
+}&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;# Dockerfile
+
+FROM gradle
+
+RUN useradd -m user
+USER user
+WORKDIR /home/user
+
+COPY gradle.properties gradle.properties
+COPY settings.gradle.kts settings.gradle.kts
+COPY build.gradle.kts build.gradle.kts
+
+RUN gradle clean
+
+COPY src src
+RUN gradle build&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;初回ビルド&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;RUN gradle clean&lt;/code&gt; を追加した場合、&lt;code&gt;RUN gradle clean&lt;/code&gt; は 49 秒、&lt;code&gt;RUN gradle build&lt;/code&gt; は 18 秒かかった。一方、追加しなかった場合、&lt;code&gt;RUN gradle build&lt;/code&gt; は 56 秒かかった。&lt;/p&gt;
+&lt;h3&gt;2 回目のビルド&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;src/main/kotlin/xyz/comame/test/Main.kt&lt;/code&gt; の Hello, world! の文字列を変更して再度ビルドした。&lt;code&gt;docker build&lt;/code&gt; のキャッシュは有効である。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;RUN gradle clean&lt;/code&gt; を追加した場合、&lt;code&gt;RUN gradle clean&lt;/code&gt; はキャッシュが使用され、&lt;code&gt;RUN gradle build&lt;/code&gt; は 18 秒かかった。一方、追加しなかった場合、&lt;code&gt;RUN gradle build&lt;/code&gt; は 1 分 3 秒かかった。&lt;/p&gt;
+&lt;p&gt;複数回測定を繰り返した場合でも、上記とおおむね同様の結果を得られた。&lt;/p&gt;
+&lt;h2&gt;考慮事項&lt;/h2&gt;
+&lt;p&gt;Dockerfile に &lt;code&gt;USER root&lt;/code&gt; 、&lt;code&gt;WORKDIR /root&lt;/code&gt; を指定した場合、&lt;code&gt;RUN gradle build&lt;/code&gt; は高速化されなかった。&lt;code&gt;root&lt;/code&gt; ユーザーでは効果がないのか、&lt;code&gt;WORKDIR /root&lt;/code&gt; の場合に問題があるのか、あるいは他に原因があるのか、今回は未検証である。&lt;/p&gt;
+</content>
+    </entry>
+    
     <entry>
       <title>Kotlin プロジェクトを作成する</title>
       <link rel='alternate' href='https://blog.comame.xyz/entries/2020-06-28/create-kotlin-project.html' />
