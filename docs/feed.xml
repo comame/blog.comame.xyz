@@ -14,7 +14,7 @@
       <id>https://blog.comame.xyz/entries/2020-07-02/improve-perforcmance-docker-build-gradle.html</id>
       <updated>2020-07-02T00:00:00Z</updated>
       <content type='html'>&lt;h2&gt;問題&lt;/h2&gt;
-&lt;p&gt;Docker で &lt;code&gt;gradle build&lt;/code&gt; を実行すると、&lt;code&gt;Starting a Gradle Daemon&lt;/code&gt; で1分近くかかってしまう。&lt;/p&gt;
+&lt;p&gt;Docker で &lt;code&gt;gradle build&lt;/code&gt; を実行すると、&lt;code&gt;Starting a Gradle Daemon&lt;/code&gt; で 1 分近くかかってしまう。&lt;/p&gt;
 &lt;h2&gt;解決法&lt;/h2&gt;
 &lt;p&gt;適当に &lt;code&gt;gradle clean&lt;/code&gt; などをあらかじめ実行しておく&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;  # Dockerfile
