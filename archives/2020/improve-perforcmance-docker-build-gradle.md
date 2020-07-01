@@ -21,7 +21,7 @@ Docker で `gradle build` を実行すると、`Starting a Gradle Daemon` で 1 
 
 ```
 
-Daemon 起動中の出力を見る限り、依存関係計算のダウンロード、`build.gradle.kt` のコンパイルに時間がかかっているように見える。一度 `gradle clean` を実行することによって、`gradle build` の実行時にはそれらを回避できる。また、`src/` 以下を変更しただけの場合 `RUN gradle clean` はキャッシュが利用できるため、初回ビルドより後では高速にビルドできる。
+Daemon 起動中の出力を見る限り、依存関係の計算やダウンロード、`build.gradle.kt` のコンパイルに時間がかかっているように見える。一度 `gradle clean` を実行することによって、`gradle build` の実行時にはそれらを回避できる。また、`src/` 以下を変更しただけの場合 `RUN gradle clean` はキャッシュが利用できるため、初回ビルドより後では高速にビルドできる。
 
 
 ## 測定
