@@ -1,6 +1,6 @@
 ## 問題
 
-Docker で `gradle build` を実行すると、`Starting a Gradle Daemon` で1分近くかかってしまう。
+Docker で `gradle build` を実行すると、`Starting a Gradle Daemon` で 1 分近くかかってしまう。
 
 
 ## 解決法
