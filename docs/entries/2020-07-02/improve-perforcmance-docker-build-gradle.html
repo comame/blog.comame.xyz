@@ -35,7 +35,7 @@
 
   COPY src src
   RUN gradle build
-</code></pre><p>Daemon 起動中の出力を見る限り、依存関係計算のダウンロード、<code>build.gradle.kt</code> のコンパイルに時間がかかっているように見える。一度 <code>gradle clean</code> を実行することによって、<code>gradle build</code> の実行時にはそれらを回避できる。また、<code>src/</code> 以下を変更しただけの場合 <code>RUN gradle clean</code> はキャッシュが利用できるため、初回ビルドより後では高速にビルドできる。</p>
+</code></pre><p>Daemon 起動中の出力を見る限り、依存関係の計算やダウンロード、<code>build.gradle.kt</code> のコンパイルに時間がかかっているように見える。一度 <code>gradle clean</code> を実行することによって、<code>gradle build</code> の実行時にはそれらを回避できる。また、<code>src/</code> 以下を変更しただけの場合 <code>RUN gradle clean</code> はキャッシュが利用できるため、初回ビルドより後では高速にビルドできる。</p>
 <h2>測定</h2>
 <p>簡単な Hello, world! コードで検証した。次に記載するファイル以外は IntelliJ IDEA で生成されたものをそのまま使用した。</p>
 <pre><code># src/main/kotlin/xyz/comame/test/Main.kt
@@ -87,7 +87,7 @@ RUN gradle build</code></pre><h3>初回ビルド</h3>
     <footer>
         <small>
             <a href="https://github.com/comame/blog.comame.xyz" target="_blank" rel="noopener">
-                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Wed, 01 Jul 2020 19:41:37 GMT">
+                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Wed, 01 Jul 2020 19:43:33 GMT">
             </a>
         </small>
         <small>
