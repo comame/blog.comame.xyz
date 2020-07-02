@@ -68,6 +68,12 @@
     counter-increment: ol;
     content: counter(ol) '. ';
 }
+#content pre code.addition {
+    color: var(--code-addition-color);
+}
+#content pre code.deletion {
+    color: var(--code-deletion-color);
+}
 
 #share {
     margin-top: 3rem;

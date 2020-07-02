@@ -107,6 +107,18 @@ async function getEntry(entryObj) {
                 return `<a href=${href}>${text}</a>`
             }
         }
+        renderer.code = (code, info) => {
+            const lines = code.split(/\n/).map(it => {
+                if (info == 'diff' && it.startsWith('+ ')) {
+                    return `<code class='addition'>${it}</code>`
+                } else if (info == 'diff' && it.startsWith('- ')) {
+                    return `<code class='deletion'>${it}</code>`
+                } else {
+                    return `<code>${it}</code>`
+                }
+            })
+            return [ '<pre>', ...lines, '</pre>' ].join('\n')
+        }
 
         return marked(text, {
             headerIds: false,

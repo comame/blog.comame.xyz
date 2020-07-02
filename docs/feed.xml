@@ -17,41 +17,44 @@
 &lt;p&gt;Docker で &lt;code&gt;gradle build&lt;/code&gt; を実行すると、&lt;code&gt;Starting a Gradle Daemon&lt;/code&gt; で 1 分近くかかってしまう。&lt;/p&gt;
 &lt;h2&gt;解決法&lt;/h2&gt;
 &lt;p&gt;適当に &lt;code&gt;gradle clean&lt;/code&gt; などをあらかじめ実行しておく&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;  # Dockerfile
-
-  FROM gradle
-
-  COPY build.gradle.kt build.gradle.kt
-
-+ RUN gradle clean
-
-  COPY src src
-  RUN gradle build
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Daemon 起動中の出力を見る限り、依存関係の計算やダウンロード、&lt;code&gt;build.gradle.kt&lt;/code&gt; のコンパイルに時間がかかっているように見える。一度 &lt;code&gt;gradle clean&lt;/code&gt; を実行することによって、&lt;code&gt;gradle build&lt;/code&gt; の実行時にはそれらを回避できる。また、&lt;code&gt;src/&lt;/code&gt; 以下を変更しただけの場合 &lt;code&gt;RUN gradle clean&lt;/code&gt; はキャッシュが利用できるため、初回ビルドより後では高速にビルドできる。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;  # Dockerfile&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;  FROM gradle&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;  COPY build.gradle.kt build.gradle.kt&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code class="addition"&gt;+ RUN gradle clean&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;  COPY src src&lt;/code&gt;
+&lt;code&gt;  RUN gradle build&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;Daemon 起動中の出力を見る限り、依存関係の計算やダウンロード、&lt;code&gt;build.gradle.kt&lt;/code&gt; のコンパイルに時間がかかっているように見える。一度 &lt;code&gt;gradle clean&lt;/code&gt; を実行することによって、&lt;code&gt;gradle build&lt;/code&gt; の実行時にはそれらを回避できる。また、&lt;code&gt;src/&lt;/code&gt; 以下を変更しただけの場合 &lt;code&gt;RUN gradle clean&lt;/code&gt; はキャッシュが利用できるため、初回ビルドより後では高速にビルドできる。&lt;/p&gt;
 &lt;h2&gt;測定&lt;/h2&gt;
 &lt;p&gt;簡単な Hello, world! コードで検証した。次に記載するファイル以外は IntelliJ IDEA で生成されたものをそのまま使用した。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# src/main/kotlin/xyz/comame/test/Main.kt
-
-package xyz.comame.test
-
-fun main() {
-    println("Hello,world!")
-}&lt;/code&gt;&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;# Dockerfile
-
-FROM gradle
-
-RUN useradd -m user
-USER user
-WORKDIR /home/user
-
-COPY gradle.properties gradle.properties
-COPY settings.gradle.kts settings.gradle.kts
-COPY build.gradle.kts build.gradle.kts
-
-RUN gradle clean
-
-COPY src src
-RUN gradle build&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;初回ビルド&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;# src/main/kotlin/xyz/comame/test/Main.kt&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;package xyz.comame.test&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;fun main() {&lt;/code&gt;
+&lt;code&gt;    println("Hello,world!")&lt;/code&gt;
+&lt;code&gt;}&lt;/code&gt;
+&lt;/pre&gt;&lt;pre&gt;&lt;code&gt;# Dockerfile&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;FROM gradle&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;RUN useradd -m user&lt;/code&gt;
+&lt;code&gt;USER user&lt;/code&gt;
+&lt;code&gt;WORKDIR /home/user&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;COPY gradle.properties gradle.properties&lt;/code&gt;
+&lt;code&gt;COPY settings.gradle.kts settings.gradle.kts&lt;/code&gt;
+&lt;code&gt;COPY build.gradle.kts build.gradle.kts&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;RUN gradle clean&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;COPY src src&lt;/code&gt;
+&lt;code&gt;RUN gradle build&lt;/code&gt;
+&lt;/pre&gt;&lt;h3&gt;初回ビルド&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;RUN gradle clean&lt;/code&gt; を追加した場合、&lt;code&gt;RUN gradle clean&lt;/code&gt; は 49 秒、&lt;code&gt;RUN gradle build&lt;/code&gt; は 18 秒かかった。一方、追加しなかった場合、&lt;code&gt;RUN gradle build&lt;/code&gt; は 56 秒かかった。&lt;/p&gt;
 &lt;h3&gt;2 回目のビルド&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;src/main/kotlin/xyz/comame/test/Main.kt&lt;/code&gt; の Hello, world! の文字列を変更して再度ビルドした。&lt;code&gt;docker build&lt;/code&gt; のキャッシュは有効である。&lt;/p&gt;
@@ -70,23 +73,25 @@ RUN gradle build&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;初回ビルド&lt;/h3&gt;
       <content type='html'>&lt;p&gt;Gradle 周りの設定の備忘録。&lt;/p&gt;
 &lt;h2&gt;Gradle Wrapper&lt;/h2&gt;
 &lt;p&gt;Gradle Wrapper を準備する。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ gradle wrapper&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;ビルド設定&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;$ gradle wrapper&lt;/code&gt;
+&lt;/pre&gt;&lt;h2&gt;ビルド設定&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;gradle jar&lt;/code&gt; で実行可能な Jar ファイルを吐けるようにする。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;// build.gradle.kts
-
-  plugins {
-+   application
-  }
-
-+ application {
-+     mainClassName = "xyz.comame.project.MainKt"
-+ }
-
-+ val jar by tasks.getting(Jar::class) {
-+     manifest {
-+         attributes["Main-Class"] = "xyz.comame.project.MainKt"
-+     }
-+ }&lt;/code&gt;&lt;/pre&gt;&lt;h2&gt;ソースコード&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;// build.gradle.kts&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;  plugins {&lt;/code&gt;
+&lt;code class="addition"&gt;+   application&lt;/code&gt;
+&lt;code&gt;  }&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code class="addition"&gt;+ application {&lt;/code&gt;
+&lt;code class="addition"&gt;+     mainClassName = "xyz.comame.project.MainKt"&lt;/code&gt;
+&lt;code class="addition"&gt;+ }&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code class="addition"&gt;+ val jar by tasks.getting(Jar::class) {&lt;/code&gt;
+&lt;code class="addition"&gt;+     manifest {&lt;/code&gt;
+&lt;code class="addition"&gt;+         attributes["Main-Class"] = "xyz.comame.project.MainKt"&lt;/code&gt;
+&lt;code class="addition"&gt;+     }&lt;/code&gt;
+&lt;code class="addition"&gt;+ }&lt;/code&gt;
+&lt;/pre&gt;&lt;h2&gt;ソースコード&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;src/main/kotlin/xyz/comame/project/&lt;/code&gt; に置く。&lt;/p&gt;
 &lt;h2&gt;最後に&lt;/h2&gt;
 &lt;p&gt;正直よく分かっていない。&lt;code&gt;gradle init&lt;/code&gt; を試してみたら、実はこれでもプロジェクト設定をしてくれるらしい。&lt;/p&gt;
@@ -105,17 +110,18 @@ RUN gradle build&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;初回ビルド&lt;/h3&gt;
 &lt;/ul&gt;
 &lt;h2&gt;環境&lt;/h2&gt;
 &lt;h3&gt;ネットワーク&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;+--------------------+
-|       Router       |
-|   192.168.0.1/24   |
-+--------------------+
-           |
-           |---------------------------|
-           |                           |
-+--------------------+      +--------------------+
-|       Windows      |      |       Android      |
-|     192.168.0.2    |      |     192.168.0.3    |
-+--------------------+      +--------------------+&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;HTTP サーバ&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;+--------------------+&lt;/code&gt;
+&lt;code&gt;|       Router       |&lt;/code&gt;
+&lt;code&gt;|   192.168.0.1/24   |&lt;/code&gt;
+&lt;code&gt;+--------------------+&lt;/code&gt;
+&lt;code&gt;           |&lt;/code&gt;
+&lt;code&gt;           |---------------------------|&lt;/code&gt;
+&lt;code&gt;           |                           |&lt;/code&gt;
+&lt;code&gt;+--------------------+      +--------------------+&lt;/code&gt;
+&lt;code&gt;|       Windows      |      |       Android      |&lt;/code&gt;
+&lt;code&gt;|     192.168.0.2    |      |     192.168.0.3    |&lt;/code&gt;
+&lt;code&gt;+--------------------+      +--------------------+&lt;/code&gt;
+&lt;/pre&gt;&lt;h3&gt;HTTP サーバ&lt;/h3&gt;
 &lt;p&gt;Windows で 8080 番ポートで待ち受け。&lt;/p&gt;
 &lt;h2&gt;発生した問題&lt;/h2&gt;
 &lt;p&gt;Windows マシンで動かしているサーバに、自宅内の他の端末からアクセスできなかった&lt;/p&gt;
@@ -210,7 +216,8 @@ RUN gradle build&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;初回ビルド&lt;/h3&gt;
 &lt;p&gt;参照: &lt;a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#contentdistribution" target="_blank" rel="noopener"&gt;7. Content Distribution&lt;/a&gt;&lt;/p&gt;
 &lt;h3&gt;検証可能な更新の通知&lt;/h3&gt;
 &lt;p&gt;Subscription Request に &lt;code&gt;hub.secret&lt;/code&gt; を含めた場合、Hub はペイロードの HMAC 署名をヘッダに付与する。署名は 40 バイトの 16 進数表示の SHA-1 である。ヘッダの形式は次のようになる。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;X-Hub-Signature: sha1=&lt;signature&gt;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;これにより、通知の内容が第三者に偽造されたものではないことを確認できる。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;X-Hub-Signature: sha1=&lt;signature&gt;&lt;/signature&gt;&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;これにより、通知の内容が第三者に偽造されたものではないことを確認できる。&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#authednotify" target="_blank" rel="noopener"&gt;8. Authenticated Content Distribution&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;PubSubHubbub Core 0.3 による追加事項&lt;/h2&gt;
 &lt;h3&gt;メッセージの形式&lt;/h3&gt;
@@ -270,17 +277,19 @@ RUN gradle build&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;初回ビルド&lt;/h3&gt;
       <content type='html'>&lt;p&gt;Hyper-V の NAT をこねくり回そうとしたけれども、うまくいかなかった。&lt;code&gt;netsh&lt;/code&gt; コマンドを使うことで、簡単にポート変換ができる。&lt;/p&gt;
 &lt;h2&gt;Workaround&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://github.com/microsoft/WSL/issues/4150#issuecomment-504209723" target="_blank" rel="noopener"&gt;Issue #4150 microsoft/WSL | GitHub&lt;/a&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# PowerShell (Administrator)
-
-&gt; netsh interface portproxy add v4tov4 \
-    listenport=&lt;External Port&gt; \
-    listenaddress=&lt;External Address&gt; \
-    connectport=&lt;Internal Port&gt; \
-    connectaddress=&lt;Internal Address&gt;&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;connectaddress&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;# PowerShell (Administrator)&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;&gt; netsh interface portproxy add v4tov4 \&lt;/code&gt;
+&lt;code&gt;    listenport=&lt;external port=""&gt; \&lt;/external&gt;&lt;/code&gt;
+&lt;code&gt;    listenaddress=&lt;external address=""&gt; \&lt;/external&gt;&lt;/code&gt;
+&lt;code&gt;    connectport=&lt;internal port=""&gt; \&lt;/internal&gt;&lt;/code&gt;
+&lt;code&gt;    connectaddress=&lt;internal address=""&gt;&lt;/internal&gt;&lt;/code&gt;
+&lt;/pre&gt;&lt;h3&gt;connectaddress&lt;/h3&gt;
 &lt;p&gt;WSL2 に割り当てられた内部 IP を指定する必要がある。WSL2 内で&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# bash (WSL2)
-
-$ ifconfig eth0 | grep inet&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;を叩くと取得できる。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# bash (WSL2)&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;$ ifconfig eth0 | grep inet&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;を叩くと取得できる。&lt;/p&gt;
 &lt;h2&gt;Netsh interface portproxy&lt;/h2&gt;
 &lt;p&gt;&lt;a href="https://docs.microsoft.com/ja-jp/windows-server/networking/technologies/netsh/netsh-interface-portproxy" target="_blank" rel="noopener"&gt;Netsh interface portproxy コマンド | Microsoft Docs&lt;/a&gt;&lt;/p&gt;
 </content>
@@ -1013,27 +1022,24 @@ AdSense の申請通るといいな&lt;/p&gt;
 &lt;p&gt;最も効果的な対処法は、&lt;code&gt;async&lt;/code&gt; 属性をつけることです。&lt;code&gt;async&lt;/code&gt; 属性が付与されたスクリプトは、DOM の構築を妨げません。特に、外部リソースを取得するような場合に効果が発揮されます。一方で、複数の &lt;code&gt;&lt;script&gt;&lt;/code&gt; タグにそれぞれ &lt;code&gt;async&lt;/code&gt; 属性が付与されていた場合、実行順序が保証されないことに注意が必要です。&lt;code&gt;HTMLScriptElement.onload&lt;/code&gt; イベントを活用するのが良いでしょう。&lt;/p&gt;
 &lt;h3&gt;&lt;code&gt;&lt;link rel="stylesheet"&gt;&lt;/code&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;&lt;script&gt;&lt;/code&gt; タグの場合は &lt;code&gt;async&lt;/code&gt; 属性をつけるだけで済みましたね。しかし、&lt;code&gt;&lt;link&gt;&lt;/code&gt; タグには非同期に読み込ませるような属性は存在しません。そのため、JavaScript を使用して非同期に読み込ませるような処理を書くことになります。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&lt;head&gt;
-  &lt;noscript id="async-styles"&gt;
-  &lt;link rel="stylesheet" href="style.css"&gt;
-  &lt;/noscript&gt;
-  &lt;script&gt;
-  window.requestAnimationFrame(() =&gt; {
-    document.head.innerHTML +=
-    document.getElementById('async-styles').textContent;
-  });
-  &lt;/script&gt;
-&lt;/head&gt;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;あるいは、&lt;code&gt;&lt;style&gt;&lt;/code&gt; タグを使用して HTML に埋め込んでしまうのも有効です。ただし、再利用性が低いこと、Contents Security Policy との相性が悪いことに注意が必要です。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;  &lt;noscript id="async-styles"&gt;&lt;/code&gt;
+&lt;code&gt;  &lt;link rel="stylesheet" href="style.css"&gt;&lt;/code&gt;
+&lt;code&gt;  &lt;/noscript&gt;&lt;/code&gt;
+&lt;code&gt;  &lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;あるいは、&lt;code&gt;&lt;style&gt;&lt;/code&gt; タグを使用して HTML に埋め込んでしまうのも有効です。ただし、再利用性が低いこと、Contents Security Policy との相性が悪いことに注意が必要です。&lt;/p&gt;
 &lt;p&gt;実際のところ、レンダリングブロックする要素を減らすだけでも相当な効果が見込めます。適切にレンダリングブロックを制御した場合、リソースのダウンロードがすべて完了していなくとも必要最低限の要素だけ表示させることができます。&lt;/p&gt;
 &lt;p&gt;一方で、JavaScript の実行が必須な Web アプリケーションの場合、表示されているのに操作できない時間が発生することになります。このような場合は、ローディングアニメーションを表示するか、あるいは意図的にレンダリングブロックを発生させるという手段も選択肢となり得るでしょう。&lt;/p&gt;
 &lt;h2&gt;Web フォントのロードを制御する&lt;/h2&gt;
 &lt;p&gt;Web フォントというのはとても便利なものです。導入が簡単にもかかわらず、Web ページの印象を大きく変えてくれます。&lt;/p&gt;
 &lt;p&gt;しかし、無頓着に Web フォントを使うのは考えものです。ネットワークの速度が遅い環境では、Web フォントのロードが終わるまで文字が表示されないかもしれません。(みなさんも経験ありませんか？) 酷い場合にはユーザーを5秒以上待たせてしまうこともあります。&lt;/p&gt;
 &lt;p&gt;これは CSS ファイルにほんの数行付け足すだけで解決できます。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;@font-face {
-  /* ... */
-  font-display: swap;
-}&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;この 1 行を付け足すだけで、ブラウザは Web フォントがロードされるまでは、オフラインで使用可能な他のフォントで代わりに表示してくれます！&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@font-face {&lt;/code&gt;
+&lt;code&gt;  /* ... */&lt;/code&gt;
+&lt;code&gt;  font-display: swap;&lt;/code&gt;
+&lt;code&gt;}&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;この 1 行を付け足すだけで、ブラウザは Web フォントがロードされるまでは、オフラインで使用可能な他のフォントで代わりに表示してくれます！&lt;/p&gt;
 &lt;h2&gt;画像を最適化する&lt;/h2&gt;
 &lt;p&gt;Web ページの平均サイズはどんどん巨大化しています。そして、そのうちの大部分を画像が占めています。画像のファイルサイズを少しでも減らすことができれば、きっともう少しページの読み込みが早くなることでしょう。&lt;/p&gt;
 &lt;p&gt;WebP など最新のフォーマットを有効活用しましょう。フォーマットに気を配るだけで、ファイルサイズを大幅に削減できます。&lt;/p&gt;

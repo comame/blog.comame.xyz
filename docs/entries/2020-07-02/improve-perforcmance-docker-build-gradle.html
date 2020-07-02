@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docker を使用したGradle のビルドを高速化する | blog.comame.xyz</title>
 
-    <style>:root {--background-color: white;--header-background-color: rgba(255, 255, 255, 0.95);--main-color: black;--link-color: #00e;--visited-link-color: #a52a2a;--code-color: #efefef;--share-logo-filter: none;font-size: 16px;--radius: 5px;}@media (prefers-color-scheme: light) {:root {--background-color: white;--header-background-color: rgba(255, 255, 255, 0.95);--main-color: black;--link-color: #00e;--visited-link-color: #a52a2a;--code-color: #efefef;--share-logo-filter: none;}}@media (prefers-color-scheme: dark) {:root {--background-color: #0a0a0a;--header-background-color: rgba(30, 30, 30, 0.85);--main-color: #bebebe;--link-color: #8b8bf9;--visited-link-color: #c77676;--code-color: #333333;--share-logo-filter: invert(80%);}}@media screen and (min-width: 700px) {:root {--content-width: 80vw;--image-width: 50vw;--h1-size: 1.5rem;--h2-size: 1.3rem;--h3-size: 1.1rem;--block-code-radius: 5px;--block-code-width: var(--content-width);--block-code-padding: .5rem;}}@media screen and (max-width: 700px) {:root {--content-width: 90vw;--image-width: 90vw;--h1-size: 1.2rem;--h2-size: 1.2rem;--h3-size: 1.1rem;--block-code-radius: none;--block-code-width: var(100vw);--block-code-padding: .5rem calc((100vw - var(--content-width)) / 2);}}html {background-color: var(--background-color);color: var(--main-color);box-sizing: border-box;}body {box-sizing: border-box;margin: 0;}header {position: sticky;top: 0;left: 0;height: 3rem;box-shadow: 0 5px 15px rgba(3, 3, 3, 0.05);background: var(--header-background-color);padding: 0 calc((100vw - var(--content-width)) / 2);z-index: 1000;}header a {display: inline-block;line-height: 3rem;text-decoration: none;color: var(--main-color);}header a:visited {color: var(--main-color)}a {text-decoration: none;color: var(--link-color);}a:visited {color: var(--visited-link-color);}.entries {list-style: none;padding-left: 0;}.tag-list {list-style: none;display: inline;padding-left: 0;}.tag-list::before {content: '[';}.tag-list::after {content: ']';}.tag-list > li {display: inline;}.tag-list > li:not(:last-child)::after {content: ', ';}footer {margin: 3rem auto 1rem auto;text-align: center;}footer small {display: block;}footer small > span:not(:last-child)::after {content: ' | ';}</style>
+    <style>:root {--background-color: white;--header-background-color: rgba(255, 255, 255, 0.95);--main-color: black;--link-color: #00e;--visited-link-color: #a52a2a;--code-color: #efefef;--share-logo-filter: none;--code-addition-color: #06770b;--code-deletion-color: #bb001f;font-size: 16px;--radius: 5px;}@media (prefers-color-scheme: light) {:root {--background-color: white;--header-background-color: rgba(255, 255, 255, 0.95);--main-color: black;--link-color: #00e;--visited-link-color: #a52a2a;--code-color: #efefef;--share-logo-filter: none;--code-addition-color: #06770b;--code-deletion-color: #bb001f;}}@media (prefers-color-scheme: dark) {:root {--background-color: #0a0a0a;--header-background-color: rgba(30, 30, 30, 0.85);--main-color: #bebebe;--link-color: #8b8bf9;--visited-link-color: #c77676;--code-color: #333333;--share-logo-filter: invert(80%);--code-addition-color: #47b94c;--code-deletion-color: #f9758b;}}@media screen and (min-width: 700px) {:root {--content-width: 80vw;--image-width: 50vw;--h1-size: 1.5rem;--h2-size: 1.3rem;--h3-size: 1.1rem;--block-code-radius: 5px;--block-code-width: var(--content-width);--block-code-padding: .5rem;}}@media screen and (max-width: 700px) {:root {--content-width: 90vw;--image-width: 90vw;--h1-size: 1.2rem;--h2-size: 1.2rem;--h3-size: 1.1rem;--block-code-radius: none;--block-code-width: var(100vw);--block-code-padding: .5rem calc((100vw - var(--content-width)) / 2);}}html {background-color: var(--background-color);color: var(--main-color);box-sizing: border-box;}body {box-sizing: border-box;margin: 0;}header {position: sticky;top: 0;left: 0;height: 3rem;box-shadow: 0 5px 15px rgba(3, 3, 3, 0.05);background: var(--header-background-color);padding: 0 calc((100vw - var(--content-width)) / 2);z-index: 1000;}header a {display: inline-block;line-height: 3rem;text-decoration: none;color: var(--main-color);}header a:visited {color: var(--main-color)}a {text-decoration: none;color: var(--link-color);}a:visited {color: var(--visited-link-color);}.entries {list-style: none;padding-left: 0;}.tag-list {list-style: none;display: inline;padding-left: 0;}.tag-list::before {content: '[';}.tag-list::after {content: ']';}.tag-list > li {display: inline;}.tag-list > li:not(:last-child)::after {content: ', ';}footer {margin: 3rem auto 1rem auto;text-align: center;}footer small {display: block;}footer small > span:not(:last-child)::after {content: ' | ';}</style>
 <meta property="og:type" content="article"><meta property="og:url" content="http://localhost/entries/2020-07-02/improve-perforcmance-docker-build-gradle.html"><meta property="og:title" content="Docker を使用したGradle のビルドを高速化する | blog.comame.xyz"><meta property="og:site_name" content="blog.comame.xyz"><meta property="og:description" content=" Docker で gradle build を実行すると、Starting a Gradle Daemon で 1 分近くかかってしまう。  適当に gradle clean などをあらかじめ実行しておく   # Dockerfile    FROM gradle    ..."><meta name="description" content=" Docker で gradle build を実行すると、Starting a Gradle Daemon で 1 分近くかかってしまう。  適当に gradle clean などをあらかじめ実行しておく   # Dockerfile    FROM gradle    ..."><link rel="canonical" href="https://blog.comame.xyz/entries/2020-07-02/improve-perforcmance-docker-build-gradle.html"></head>
 
 <body>
@@ -25,41 +25,44 @@
 <p>Docker で <code>gradle build</code> を実行すると、<code>Starting a Gradle Daemon</code> で 1 分近くかかってしまう。</p>
 <h2>解決法</h2>
 <p>適当に <code>gradle clean</code> などをあらかじめ実行しておく</p>
-<pre><code>  # Dockerfile
-
-  FROM gradle
-
-  COPY build.gradle.kt build.gradle.kt
-
-+ RUN gradle clean
-
-  COPY src src
-  RUN gradle build
-</code></pre><p>Daemon 起動中の出力を見る限り、依存関係の計算やダウンロード、<code>build.gradle.kt</code> のコンパイルに時間がかかっているように見える。一度 <code>gradle clean</code> を実行することによって、<code>gradle build</code> の実行時にはそれらを回避できる。また、<code>src/</code> 以下を変更しただけの場合 <code>RUN gradle clean</code> はキャッシュが利用できるため、初回ビルドより後では高速にビルドできる。</p>
+<pre><code>  # Dockerfile</code>
+<code></code>
+<code>  FROM gradle</code>
+<code></code>
+<code>  COPY build.gradle.kt build.gradle.kt</code>
+<code></code>
+<code class="addition">+ RUN gradle clean</code>
+<code></code>
+<code>  COPY src src</code>
+<code>  RUN gradle build</code>
+<code></code>
+</pre><p>Daemon 起動中の出力を見る限り、依存関係の計算やダウンロード、<code>build.gradle.kt</code> のコンパイルに時間がかかっているように見える。一度 <code>gradle clean</code> を実行することによって、<code>gradle build</code> の実行時にはそれらを回避できる。また、<code>src/</code> 以下を変更しただけの場合 <code>RUN gradle clean</code> はキャッシュが利用できるため、初回ビルドより後では高速にビルドできる。</p>
 <h2>測定</h2>
 <p>簡単な Hello, world! コードで検証した。次に記載するファイル以外は IntelliJ IDEA で生成されたものをそのまま使用した。</p>
-<pre><code># src/main/kotlin/xyz/comame/test/Main.kt
-
-package xyz.comame.test
-
-fun main() {
-    println("Hello,world!")
-}</code></pre><pre><code># Dockerfile
-
-FROM gradle
-
-RUN useradd -m user
-USER user
-WORKDIR /home/user
-
-COPY gradle.properties gradle.properties
-COPY settings.gradle.kts settings.gradle.kts
-COPY build.gradle.kts build.gradle.kts
-
-RUN gradle clean
-
-COPY src src
-RUN gradle build</code></pre><h3>初回ビルド</h3>
+<pre><code># src/main/kotlin/xyz/comame/test/Main.kt</code>
+<code></code>
+<code>package xyz.comame.test</code>
+<code></code>
+<code>fun main() {</code>
+<code>    println("Hello,world!")</code>
+<code>}</code>
+</pre><pre><code># Dockerfile</code>
+<code></code>
+<code>FROM gradle</code>
+<code></code>
+<code>RUN useradd -m user</code>
+<code>USER user</code>
+<code>WORKDIR /home/user</code>
+<code></code>
+<code>COPY gradle.properties gradle.properties</code>
+<code>COPY settings.gradle.kts settings.gradle.kts</code>
+<code>COPY build.gradle.kts build.gradle.kts</code>
+<code></code>
+<code>RUN gradle clean</code>
+<code></code>
+<code>COPY src src</code>
+<code>RUN gradle build</code>
+</pre><h3>初回ビルド</h3>
 <p><code>RUN gradle clean</code> を追加した場合、<code>RUN gradle clean</code> は 49 秒、<code>RUN gradle build</code> は 18 秒かかった。一方、追加しなかった場合、<code>RUN gradle build</code> は 56 秒かかった。</p>
 <h3>2 回目のビルド</h3>
 <p><code>src/main/kotlin/xyz/comame/test/Main.kt</code> の Hello, world! の文字列を変更して再度ビルドした。<code>docker build</code> のキャッシュは有効である。</p>
@@ -80,14 +83,14 @@ RUN gradle build</code></pre><h3>初回ビルド</h3>
                 <img alt="URL をコピー" src="/assets/icons/link.svg">
             </a>
         </div>
-        <style>#metadata {margin-bottom: 3rem;margin-right: auto;margin-left: auto;width: var(--content-width);}#metadata h1 {font-size: var(--h1-size);}#tags {display: block;margin-top: .3rem;}#content {word-break: break-all;}#content > * {margin-right: auto;margin-left: auto;width: var(--content-width);}#content p {text-indent: .5rem;}#content h2 {margin-top: 2rem;font-size: var(--h2-size);}#content h3 {font-size: var(--h3-size);}#content code {background: var(--code-color);border-radius: var(--radius);font-family: monospace;padding: 2px 4px;word-break: break-all;}#content pre {padding: var(--block-code-padding);white-space: pre;overflow-x: scroll;border-radius: var(--block-code-radius);background: var(--code-color);width: var(--block-code-width);}#content pre > code {padding: 0;}#content img {display: block;width: var(--image-width);margin-right: auto;margin-left: auto;}#content ul, #content ol {counter-reset: ol;list-style: none;padding-left: 1rem;}#content ul > li::before {content: '- ';}#content ol > li::before {counter-increment: ol;content: counter(ol) '. ';}#share {margin-top: 3rem;width: var(--content-width);margin-right: auto;margin-left: auto;}#share > img {margin-right: 2rem;}#share a {margin-right: 1rem;}#share img {height: 2rem;width: 2rem;filter: var(--share-logo-filter);}</style>
+        <style>#metadata {margin-bottom: 3rem;margin-right: auto;margin-left: auto;width: var(--content-width);}#metadata h1 {font-size: var(--h1-size);}#tags {display: block;margin-top: .3rem;}#content {word-break: break-all;}#content > * {margin-right: auto;margin-left: auto;width: var(--content-width);}#content p {text-indent: .5rem;}#content h2 {margin-top: 2rem;font-size: var(--h2-size);}#content h3 {font-size: var(--h3-size);}#content code {background: var(--code-color);border-radius: var(--radius);font-family: monospace;padding: 2px 4px;word-break: break-all;}#content pre {padding: var(--block-code-padding);white-space: pre;overflow-x: scroll;border-radius: var(--block-code-radius);background: var(--code-color);width: var(--block-code-width);}#content pre > code {padding: 0;}#content img {display: block;width: var(--image-width);margin-right: auto;margin-left: auto;}#content ul, #content ol {counter-reset: ol;list-style: none;padding-left: 1rem;}#content ul > li::before {content: '- ';}#content ol > li::before {counter-increment: ol;content: counter(ol) '. ';}#content pre code.addition {color: var(--code-addition-color);}#content pre code.deletion {color: var(--code-deletion-color);}#share {margin-top: 3rem;width: var(--content-width);margin-right: auto;margin-left: auto;}#share > img {margin-right: 2rem;}#share a {margin-right: 1rem;}#share img {height: 2rem;width: 2rem;filter: var(--share-logo-filter);}</style>
         <script async="" not-remove="" src="/assets/js/url-copy.js"></script>
     </div>
 
     <footer>
         <small>
             <a href="https://github.com/comame/blog.comame.xyz" target="_blank" rel="noopener">
-                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Wed, 01 Jul 2020 19:43:33 GMT">
+                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Thu, 02 Jul 2020 07:07:15 GMT">
             </a>
         </small>
         <small>

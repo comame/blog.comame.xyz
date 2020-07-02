@@ -3,8 +3,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kotlin プロジェクトを作成する | blog.comame.xyz</title>
 
-    <style>:root {--background-color: white;--header-background-color: rgba(255, 255, 255, 0.95);--main-color: black;--link-color: #00e;--visited-link-color: #a52a2a;--code-color: #efefef;--share-logo-filter: none;font-size: 16px;--radius: 5px;}@media (prefers-color-scheme: light) {:root {--background-color: white;--header-background-color: rgba(255, 255, 255, 0.95);--main-color: black;--link-color: #00e;--visited-link-color: #a52a2a;--code-color: #efefef;--share-logo-filter: none;}}@media (prefers-color-scheme: dark) {:root {--background-color: #0a0a0a;--header-background-color: rgba(30, 30, 30, 0.85);--main-color: #bebebe;--link-color: #8b8bf9;--visited-link-color: #c77676;--code-color: #333333;--share-logo-filter: invert(80%);}}@media screen and (min-width: 700px) {:root {--content-width: 80vw;--image-width: 50vw;--h1-size: 1.5rem;--h2-size: 1.3rem;--h3-size: 1.1rem;--block-code-radius: 5px;--block-code-width: var(--content-width);--block-code-padding: .5rem;}}@media screen and (max-width: 700px) {:root {--content-width: 90vw;--image-width: 90vw;--h1-size: 1.2rem;--h2-size: 1.2rem;--h3-size: 1.1rem;--block-code-radius: none;--block-code-width: var(100vw);--block-code-padding: .5rem calc((100vw - var(--content-width)) / 2);}}html {background-color: var(--background-color);color: var(--main-color);box-sizing: border-box;}body {box-sizing: border-box;margin: 0;}header {position: sticky;top: 0;left: 0;height: 3rem;box-shadow: 0 5px 15px rgba(3, 3, 3, 0.05);background: var(--header-background-color);padding: 0 calc((100vw - var(--content-width)) / 2);z-index: 1000;}header a {display: inline-block;line-height: 3rem;text-decoration: none;color: var(--main-color);}header a:visited {color: var(--main-color)}a {text-decoration: none;color: var(--link-color);}a:visited {color: var(--visited-link-color);}.entries {list-style: none;padding-left: 0;}.tag-list {list-style: none;display: inline;padding-left: 0;}.tag-list::before {content: '[';}.tag-list::after {content: ']';}.tag-list > li {display: inline;}.tag-list > li:not(:last-child)::after {content: ', ';}footer {margin: 3rem auto 1rem auto;text-align: center;}footer small {display: block;}footer small > span:not(:last-child)::after {content: ' | ';}</style>
-<meta property="og:type" content="article"><meta property="og:url" content="http://localhost/entries/2020-06-28/create-kotlin-project.html"><meta property="og:title" content="Kotlin プロジェクトを作成する | blog.comame.xyz"><meta property="og:site_name" content="blog.comame.xyz"><meta property="og:description" content="Gradle 周りの設定の備忘録。  Gradle Wrapper を準備する。 $ gradle wrapper gradle jar で実行可能な Jar ファイルを吐けるようにする。 // build.gradle.kts    plugins { +   appli..."><meta name="description" content="Gradle 周りの設定の備忘録。  Gradle Wrapper を準備する。 $ gradle wrapper gradle jar で実行可能な Jar ファイルを吐けるようにする。 // build.gradle.kts    plugins { +   appli..."><link rel="canonical" href="https://blog.comame.xyz/entries/2020-06-28/create-kotlin-project.html"></head>
+    <style>:root {--background-color: white;--header-background-color: rgba(255, 255, 255, 0.95);--main-color: black;--link-color: #00e;--visited-link-color: #a52a2a;--code-color: #efefef;--share-logo-filter: none;--code-addition-color: #06770b;--code-deletion-color: #bb001f;font-size: 16px;--radius: 5px;}@media (prefers-color-scheme: light) {:root {--background-color: white;--header-background-color: rgba(255, 255, 255, 0.95);--main-color: black;--link-color: #00e;--visited-link-color: #a52a2a;--code-color: #efefef;--share-logo-filter: none;--code-addition-color: #06770b;--code-deletion-color: #bb001f;}}@media (prefers-color-scheme: dark) {:root {--background-color: #0a0a0a;--header-background-color: rgba(30, 30, 30, 0.85);--main-color: #bebebe;--link-color: #8b8bf9;--visited-link-color: #c77676;--code-color: #333333;--share-logo-filter: invert(80%);--code-addition-color: #47b94c;--code-deletion-color: #f9758b;}}@media screen and (min-width: 700px) {:root {--content-width: 80vw;--image-width: 50vw;--h1-size: 1.5rem;--h2-size: 1.3rem;--h3-size: 1.1rem;--block-code-radius: 5px;--block-code-width: var(--content-width);--block-code-padding: .5rem;}}@media screen and (max-width: 700px) {:root {--content-width: 90vw;--image-width: 90vw;--h1-size: 1.2rem;--h2-size: 1.2rem;--h3-size: 1.1rem;--block-code-radius: none;--block-code-width: var(100vw);--block-code-padding: .5rem calc((100vw - var(--content-width)) / 2);}}html {background-color: var(--background-color);color: var(--main-color);box-sizing: border-box;}body {box-sizing: border-box;margin: 0;}header {position: sticky;top: 0;left: 0;height: 3rem;box-shadow: 0 5px 15px rgba(3, 3, 3, 0.05);background: var(--header-background-color);padding: 0 calc((100vw - var(--content-width)) / 2);z-index: 1000;}header a {display: inline-block;line-height: 3rem;text-decoration: none;color: var(--main-color);}header a:visited {color: var(--main-color)}a {text-decoration: none;color: var(--link-color);}a:visited {color: var(--visited-link-color);}.entries {list-style: none;padding-left: 0;}.tag-list {list-style: none;display: inline;padding-left: 0;}.tag-list::before {content: '[';}.tag-list::after {content: ']';}.tag-list > li {display: inline;}.tag-list > li:not(:last-child)::after {content: ', ';}footer {margin: 3rem auto 1rem auto;text-align: center;}footer small {display: block;}footer small > span:not(:last-child)::after {content: ' | ';}</style>
+<meta property="og:type" content="article"><meta property="og:url" content="http://localhost/entries/2020-06-28/create-kotlin-project.html"><meta property="og:title" content="Kotlin プロジェクトを作成する | blog.comame.xyz"><meta property="og:site_name" content="blog.comame.xyz"><meta property="og:description" content="Gradle 周りの設定の備忘録。  Gradle Wrapper を準備する。 $ gradle wrapper  gradle jar で実行可能な Jar ファイルを吐けるようにする。 // build.gradle.kts    plugins { +   appl..."><meta name="description" content="Gradle 周りの設定の備忘録。  Gradle Wrapper を準備する。 $ gradle wrapper  gradle jar で実行可能な Jar ファイルを吐けるようにする。 // build.gradle.kts    plugins { +   appl..."><link rel="canonical" href="https://blog.comame.xyz/entries/2020-06-28/create-kotlin-project.html"></head>
 
 <body>
     <header>
@@ -24,23 +24,25 @@
         <div id="content"><p>Gradle 周りの設定の備忘録。</p>
 <h2>Gradle Wrapper</h2>
 <p>Gradle Wrapper を準備する。</p>
-<pre><code>$ gradle wrapper</code></pre><h2>ビルド設定</h2>
+<pre><code>$ gradle wrapper</code>
+</pre><h2>ビルド設定</h2>
 <p><code>gradle jar</code> で実行可能な Jar ファイルを吐けるようにする。</p>
-<pre><code>// build.gradle.kts
-
-  plugins {
-+   application
-  }
-
-+ application {
-+     mainClassName = "xyz.comame.project.MainKt"
-+ }
-
-+ val jar by tasks.getting(Jar::class) {
-+     manifest {
-+         attributes["Main-Class"] = "xyz.comame.project.MainKt"
-+     }
-+ }</code></pre><h2>ソースコード</h2>
+<pre><code>// build.gradle.kts</code>
+<code></code>
+<code>  plugins {</code>
+<code class="addition">+   application</code>
+<code>  }</code>
+<code></code>
+<code class="addition">+ application {</code>
+<code class="addition">+     mainClassName = "xyz.comame.project.MainKt"</code>
+<code class="addition">+ }</code>
+<code></code>
+<code class="addition">+ val jar by tasks.getting(Jar::class) {</code>
+<code class="addition">+     manifest {</code>
+<code class="addition">+         attributes["Main-Class"] = "xyz.comame.project.MainKt"</code>
+<code class="addition">+     }</code>
+<code class="addition">+ }</code>
+</pre><h2>ソースコード</h2>
 <p><code>src/main/kotlin/xyz/comame/project/</code> に置く。</p>
 <h2>最後に</h2>
 <p>正直よく分かっていない。<code>gradle init</code> を試してみたら、実はこれでもプロジェクト設定をしてくれるらしい。</p>
@@ -57,14 +59,14 @@
                 <img alt="URL をコピー" src="/assets/icons/link.svg">
             </a>
         </div>
-        <style>#metadata {margin-bottom: 3rem;margin-right: auto;margin-left: auto;width: var(--content-width);}#metadata h1 {font-size: var(--h1-size);}#tags {display: block;margin-top: .3rem;}#content {word-break: break-all;}#content > * {margin-right: auto;margin-left: auto;width: var(--content-width);}#content p {text-indent: .5rem;}#content h2 {margin-top: 2rem;font-size: var(--h2-size);}#content h3 {font-size: var(--h3-size);}#content code {background: var(--code-color);border-radius: var(--radius);font-family: monospace;padding: 2px 4px;word-break: break-all;}#content pre {padding: var(--block-code-padding);white-space: pre;overflow-x: scroll;border-radius: var(--block-code-radius);background: var(--code-color);width: var(--block-code-width);}#content pre > code {padding: 0;}#content img {display: block;width: var(--image-width);margin-right: auto;margin-left: auto;}#content ul, #content ol {counter-reset: ol;list-style: none;padding-left: 1rem;}#content ul > li::before {content: '- ';}#content ol > li::before {counter-increment: ol;content: counter(ol) '. ';}#share {margin-top: 3rem;width: var(--content-width);margin-right: auto;margin-left: auto;}#share > img {margin-right: 2rem;}#share a {margin-right: 1rem;}#share img {height: 2rem;width: 2rem;filter: var(--share-logo-filter);}</style>
+        <style>#metadata {margin-bottom: 3rem;margin-right: auto;margin-left: auto;width: var(--content-width);}#metadata h1 {font-size: var(--h1-size);}#tags {display: block;margin-top: .3rem;}#content {word-break: break-all;}#content > * {margin-right: auto;margin-left: auto;width: var(--content-width);}#content p {text-indent: .5rem;}#content h2 {margin-top: 2rem;font-size: var(--h2-size);}#content h3 {font-size: var(--h3-size);}#content code {background: var(--code-color);border-radius: var(--radius);font-family: monospace;padding: 2px 4px;word-break: break-all;}#content pre {padding: var(--block-code-padding);white-space: pre;overflow-x: scroll;border-radius: var(--block-code-radius);background: var(--code-color);width: var(--block-code-width);}#content pre > code {padding: 0;}#content img {display: block;width: var(--image-width);margin-right: auto;margin-left: auto;}#content ul, #content ol {counter-reset: ol;list-style: none;padding-left: 1rem;}#content ul > li::before {content: '- ';}#content ol > li::before {counter-increment: ol;content: counter(ol) '. ';}#content pre code.addition {color: var(--code-addition-color);}#content pre code.deletion {color: var(--code-deletion-color);}#share {margin-top: 3rem;width: var(--content-width);margin-right: auto;margin-left: auto;}#share > img {margin-right: 2rem;}#share a {margin-right: 1rem;}#share img {height: 2rem;width: 2rem;filter: var(--share-logo-filter);}</style>
         <script async="" not-remove="" src="/assets/js/url-copy.js"></script>
     </div>
 
     <footer>
         <small>
             <a href="https://github.com/comame/blog.comame.xyz" target="_blank" rel="noopener">
-                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Wed, 01 Jul 2020 19:43:34 GMT">
+                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Thu, 02 Jul 2020 07:07:16 GMT">
             </a>
         </small>
         <small>

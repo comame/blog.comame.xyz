@@ -6,6 +6,8 @@
     --visited-link-color: #a52a2a;
     --code-color: #efefef;
     --share-logo-filter: none;
+    --code-addition-color: #06770b;
+    --code-deletion-color: #bb001f;
 
     font-size: 16px;
     --radius: 5px;
@@ -21,6 +23,8 @@
         --visited-link-color: #a52a2a;
         --code-color: #efefef;
         --share-logo-filter: none;
+        --code-addition-color: #06770b;
+        --code-deletion-color: #bb001f;
     }
 }
 
@@ -34,6 +38,8 @@
         --visited-link-color: #c77676;
         --code-color: #333333;
         --share-logo-filter: invert(80%);
+        --code-addition-color: #47b94c;
+        --code-deletion-color: #f9758b;
     }
 }
 
