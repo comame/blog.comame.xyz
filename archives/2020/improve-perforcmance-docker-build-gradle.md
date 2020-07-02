@@ -7,7 +7,7 @@ Docker で `gradle build` を実行すると、`Starting a Gradle Daemon` で 1 
 
 適当に `gradle clean` などをあらかじめ実行しておく
 
-```
+```diff
   # Dockerfile
 
   FROM gradle

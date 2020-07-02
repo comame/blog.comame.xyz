@@ -12,7 +12,7 @@ $ gradle wrapper
 
 `gradle jar` で実行可能な Jar ファイルを吐けるようにする。
 
-```
+```diff
 // build.gradle.kts
 
   plugins {
