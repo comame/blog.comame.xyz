@@ -134,7 +134,7 @@ function generateOgp(description) {
     })
     const url = document.createElement('meta').with(it => {
         it.setAttribute('property', 'og:url')
-        it.content = location.href
+        it.content = 'https://blog.comame.xyz' + location.pathname
     })
     const title = document.createElement('meta').with(it => {
         it.setAttribute('property', 'og:title')
