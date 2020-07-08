@@ -5,9 +5,122 @@
       <link rel='alternate' href='https://blog.comame.xyz/' />
       <link rel='self' href='https://blog.comame.xyz/feed.xml' />
       <author><name>comame</name></author>
-      <updated>2020-07-02T00:00:00Z</updated>
+      <updated>2020-07-08T00:00:00Z</updated>
 
       
+    <entry>
+      <title>Chrome の検索エンジン設定</title>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-07-08/chrome-search-engine.html' />
+      <id>https://blog.comame.xyz/entries/2020-07-08/chrome-search-engine.html</id>
+      <updated>2020-07-08T00:00:00Z</updated>
+      <content type='html'>&lt;p&gt;Chrome には、アドレスバーに特定のキーワードを入力すると、特定のサイト内を直接検索できる機能がある。手動で検索エンジンとキーワードを設定することもできるので、頻繁に検索するサイトは登録しておくと便利。&lt;/p&gt;
+&lt;p&gt;最近登録していた検索エンジンを整理したので、備忘録も兼ねて以下に記す。&lt;/p&gt;
+&lt;h2&gt;辞書とか翻訳とか&lt;/h2&gt;
+&lt;p&gt;英単語の意味を調べたり、言葉遣いに誤りがないか調べたりするときに便利。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="left"&gt;キーワード&lt;/th&gt;
+&lt;th align="left"&gt;説明&lt;/th&gt;
+&lt;th align="left"&gt;URL&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td align="left"&gt;translate&lt;/td&gt;
+&lt;td align="left"&gt;Google 翻訳&lt;/td&gt;
+&lt;td align="left"&gt;&lt;a href="https://translate.google.com/#auto|auto|%s" target="_blank" rel="noopener"&gt;https://translate.google.com/#auto|auto|%s&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;en&lt;/td&gt;
+&lt;td align="left"&gt;Dictionary.com&lt;/td&gt;
+&lt;td align="left"&gt;&lt;a href="https://www.dictionary.com/browse/%s" target="_blank" rel="noopener"&gt;https://www.dictionary.com/browse/%s&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;lexico&lt;/td&gt;
+&lt;td align="left"&gt;Oxford Dictionaries&lt;/td&gt;
+&lt;td align="left"&gt;&lt;a href="https://www.lexico.com/definition/%s" target="_blank" rel="noopener"&gt;https://www.lexico.com/definition/%s&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;jp&lt;/td&gt;
+&lt;td align="left"&gt;weblio&lt;/td&gt;
+&lt;td align="left"&gt;&lt;a href="https://www.weblio.jp/content/%s" target="_blank" rel="noopener"&gt;https://www.weblio.jp/content/%s&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;h2&gt;開発の資料とか&lt;/h2&gt;
+&lt;p&gt;公式の資料に当たりたいときに関係ないサイトが検索結果に出てきたり、頻繁にサイト内検索するのに毎回 URL を直打ちするのが面倒なので設定。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="left"&gt;キーワード&lt;/th&gt;
+&lt;th align="left"&gt;説明&lt;/th&gt;
+&lt;th align="left"&gt;URL&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td align="left"&gt;caniuse&lt;/td&gt;
+&lt;td align="left"&gt;ブラウザごとの実装状況&lt;/td&gt;
+&lt;td align="left"&gt;&lt;a href="https://caniuse.com/#search=%s" target="_blank" rel="noopener"&gt;https://caniuse.com/#search=%s&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;mdn&lt;/td&gt;
+&lt;td align="left"&gt;MDN Web Docs 内を Google で検索&lt;/td&gt;
+&lt;td align="left"&gt;&lt;a href="https://www.google.com/search?q=site%3Adeveloper.mozilla.org%2Fja+%s" target="_blank" rel="noopener"&gt;https://www.google.com/search?q=site%3Adeveloper.mozilla.org%2Fja+%s&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;node&lt;/td&gt;
+&lt;td align="left"&gt;Node.js のドキュメントを Google で検索&lt;/td&gt;
+&lt;td align="left"&gt;&lt;a href="https://www.google.co.jp/search?q=site%3Ahttps%3A%2F%2Fnodejs.org%2Fapi+%s" target="_blank" rel="noopener"&gt;https://www.google.co.jp/search?q=site%3Ahttps%3A%2F%2Fnodejs.org%2Fapi+%s&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;rfc&lt;/td&gt;
+&lt;td align="left"&gt;RFC を Google で検索&lt;/td&gt;
+&lt;td align="left"&gt;&lt;a href="https://www.google.com/search?q=site%3Ahttps%3A%2F%2Ftools.ietf.org%2Fhtml+%s" target="_blank" rel="noopener"&gt;https://www.google.com/search?q=site%3Ahttps%3A%2F%2Ftools.ietf.org%2Fhtml+%s&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;npm&lt;/td&gt;
+&lt;td align="left"&gt;npm パッケージの検索&lt;/td&gt;
+&lt;td align="left"&gt;&lt;a href="https://www.npmjs.com/search?q=%s" target="_blank" rel="noopener"&gt;https://www.npmjs.com/search?q=%s&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;docker&lt;/td&gt;
+&lt;td align="left"&gt;Docker Hub&lt;/td&gt;
+&lt;td align="left"&gt;&lt;a href="https://hub.docker.com/search?q=%s&amp;type=image" target="_blank" rel="noopener"&gt;https://hub.docker.com/search?q=%s&amp;type=image&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;h2&gt;その他&lt;/h2&gt;
+&lt;p&gt;その他、よく使うもの。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align="left"&gt;キーワード&lt;/th&gt;
+&lt;th align="left"&gt;説明&lt;/th&gt;
+&lt;th align="left"&gt;URL&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td align="left"&gt;whois&lt;/td&gt;
+&lt;td align="left"&gt;whois&lt;/td&gt;
+&lt;td align="left"&gt;&lt;a href="https://www.whois.com/search.php?query=%s" target="_blank" rel="noopener"&gt;https://www.whois.com/search.php?query=%s&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;chrome&lt;/td&gt;
+&lt;td align="left"&gt;Google Chrome ヘルプ&lt;/td&gt;
+&lt;td align="left"&gt;&lt;a href="https://support.google.com/chrome/search?hl=ja&amp;q=%s" target="_blank" rel="noopener"&gt;https://support.google.com/chrome/search?hl=ja&amp;q=%s&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;gmail&lt;/td&gt;
+&lt;td align="left"&gt;Gmail ヘルプ&lt;/td&gt;
+&lt;td align="left"&gt;&lt;a href="https://support.google.com/mail/search?hl=ja&amp;q=%s" target="_blank" rel="noopener"&gt;https://support.google.com/mail/search?hl=ja&amp;q=%s&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align="left"&gt;accounts&lt;/td&gt;
+&lt;td align="left"&gt;Google アカウント ヘルプ&lt;/td&gt;
+&lt;td align="left"&gt;&lt;a href="https://support.google.com/accounts/search?hl=ja&amp;q=%s" target="_blank" rel="noopener"&gt;https://support.google.com/accounts/search?hl=ja&amp;q=%s&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+</content>
+    </entry>
+    
     <entry>
       <title>Docker を使用したGradle のビルドを高速化する</title>
       <link rel='alternate' href='https://blog.comame.xyz/entries/2020-07-02/improve-perforcmance-docker-build-gradle.html' />
