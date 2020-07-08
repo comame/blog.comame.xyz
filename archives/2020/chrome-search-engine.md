@@ -6,7 +6,7 @@ Chrome には、アドレスバーに特定のキーワードを入力すると�
 
 英単語の意味を調べたり、言葉遣いに誤りがないか調べたりするときに便利。
 
-|キーワード|説明|URL|
+|キーワード|説明|URL (%s = 検索ワード)|
 |:--|:--|:--|
 |translate|Google 翻訳|https://translate.google.com/#auto\|auto\|%s|
 |en|Dictionary.com|https://www.dictionary.com/browse/%s|
@@ -17,7 +17,7 @@ Chrome には、アドレスバーに特定のキーワードを入力すると�
 
 公式の資料に当たりたいときに関係ないサイトが検索結果に出てきたり、頻繁にサイト内検索するのに毎回 URL を直打ちするのが面倒なので設定。
 
-|キーワード|説明|URL|
+|キーワード|説明|URL (%s = 検索ワード)|
 |:--|:--|:--|
 |caniuse|ブラウザごとの実装状況|https://caniuse.com/#search=%s|
 |mdn|MDN Web Docs 内を Google で検索|https://www.google.com/search?q=site%3Adeveloper.mozilla.org%2Fja+%s|
@@ -30,7 +30,7 @@ Chrome には、アドレスバーに特定のキーワードを入力すると�
 
 その他、よく使うもの。
 
-|キーワード|説明|URL|
+|キーワード|説明|URL (%s = 検索ワード)|
 |:--|:--|:--|
 |whois|whois|https://www.whois.com/search.php?query=%s|
 |chrome|Google Chrome ヘルプ|https://support.google.com/chrome/search?hl=ja&q=%s|
