@@ -74,6 +74,26 @@
 #content pre code.deletion {
     color: var(--code-deletion-color);
 }
+#content table {
+    border-collapse: collapse;
+    border-width: 1px 0px;
+    border-color: var(--main-color);
+    border-style: solid;
+}
+#content thead tr {
+    border-bottom: solid 1px var(--main-color);
+    border-width: 0 0 1px 0;
+}
+#content td, #content th {
+    padding-top: .4rem;
+    padding-bottom: .4rem;
+}
+#content tbody tr:nth-child(even) {
+    background-color: var(--code-color);
+}
+#content th {
+    min-width: 6rem;
+}
 
 #share {
     margin-top: 3rem;

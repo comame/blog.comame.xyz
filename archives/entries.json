@@ -220,4 +220,10 @@
     "date": "2020-07-02",
     "tags": [ "Kotlin", "note" ],
     "type": "md"
+}, {
+    "entry": "chrome-search-engine",
+    "title": "Chrome の検索エンジン設定",
+    "date": "2020-07-08",
+    "tags": [ "Chrome" ],
+    "type": "md"
 }]
