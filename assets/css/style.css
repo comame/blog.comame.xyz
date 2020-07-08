@@ -79,6 +79,7 @@ html {
     background-color: var(--background-color);
     color: var(--main-color);
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 body {
