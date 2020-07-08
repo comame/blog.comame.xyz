@@ -85,8 +85,7 @@
     border-width: 0 0 1px 0;
 }
 #content td, #content th {
-    padding-top: .4rem;
-    padding-bottom: .4rem;
+    padding: .4rem;
 }
 #content tbody tr:nth-child(even) {
     background-color: var(--code-color);
