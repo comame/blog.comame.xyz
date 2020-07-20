@@ -83,11 +83,11 @@
 &lt;h2&gt;参考にしたもの&lt;/h2&gt;
 &lt;dl&gt;
     &lt;dt&gt;IPA の RFC 日本語訳&lt;/dt&gt;
-    &lt;dl&gt;HMAC と SHA-1 の実装&lt;/dl&gt;
+    &lt;dd&gt;HMAC と SHA-1 の実装&lt;/dd&gt;
     &lt;dt&gt;Golang のソースコード&lt;/dt&gt;
-    &lt;dl&gt;テストケースや各アルゴリズムの実装。読みやすい。&lt;/dl&gt;
+    &lt;dd&gt;テストケースや各アルゴリズムの実装。読みやすい。&lt;/dd&gt;
     &lt;dt&gt;RFC&lt;/dt&gt;
-    &lt;dl&gt;テスト用のサンプルケースが Appendix に書いてあることを初めて知った&lt;/dl&gt;
+    &lt;dd&gt;テスト用のサンプルケースが Appendix に書いてあることを初めて知った&lt;/dd&gt;
 &lt;/dl&gt;
 </content>
     </entry>
