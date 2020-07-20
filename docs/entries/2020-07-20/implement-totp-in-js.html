@@ -81,7 +81,52 @@
 <code>HMAC(K, M) = H((K xor opad) || H((K xor ipad) || M))</code>
 </pre><p>K と opad, ipad とで排他的論理和をとっていることから分かるように、K の長さもハッシュ関数のブロック長と同一にする必要がある。K は入力値であることから、長さを揃えるために次のような処理を順に行う。</p>
 <p>K の長さがブロック長より大きい場合、K をハッシュ関数に通す。K の長さがブロック長より小さい場合、ブロック長と同一になるまで末尾に 0 を追加する。</p>
-<h2>実装で苦しんだところ (大体うっかり)</h2>
+<h2>SHA-1</h2>
+<p><a href="https://www.ipa.go.jp/security/rfc/RFC3174JA.html" target="_blank" rel="noopener">https://www.ipa.go.jp/security/rfc/RFC3174JA.html</a> に日本語での解説がある。</p>
+<p>まずはメッセージのパディングを行い、メッセージ長を 512-bit の倍数にする。オリジナルのメッセージ長が 512-bit の倍数であった時にもパディングは行う。パディングは次の手順で行う。</p>
+<ul>
+<li>末尾に 1-bit の 1 を付加する</li>
+<li>メッセージ長が mod 512-bit = 448 になるまで 0 を末尾に付加する</li>
+<li>オリジナルのメッセージ長を 64-bit で付加する</li>
+</ul>
+<p>次の関数を定義する。</p>
+<pre><code>f(t; B, C, D) = (B &amp; C) | ((~B) &amp; D); (0 &lt;= t &lt;= 19)</code>
+<code>f(t; B, C, D) = B ^ C ^ D; (20 &lt;= t &lt;= 39)</code>
+<code>f(t; B, C, D) = (B &amp; C) | (B &amp; D) | (C &amp; D) (40 &lt;= t &lt;= 59)</code>
+<code>f(t; B, C, D) = B ^ C ^ D; (60 &lt;= t &lt;= 79)</code>
+<code></code>
+<code>K(t) = 0x5A827999; (0 &lt;= t &lt;= 19)</code>
+<code>K(t) = 0x6ED9EBA1; (20 &lt;= t &lt;= 39)</code>
+<code>K(t) = 0x8F1BBCDC; (40 &lt;= t &lt;= 59)</code>
+<code>K(t) = 0xCA62C1D6; (60 &lt;= t &lt;= 79)</code>
+<code></code>
+<code>S^N(n) = (M &lt;&lt; n) | (M &gt;&gt; (32 - n)) // 循環左シフト</code>
+<code>A + B = (A + B) mod (2 ** 32)</code>
+</pre><p>複数の計算方法があるようだが、今回は次の方法で計算した。</p>
+<pre><code>M: 512-bit ごとに区切ったメッセージ</code>
+<code></code>
+<code>H0 = 0x67452301</code>
+<code>H1 = 0xEFCDAB89</code>
+<code>H2 = 0x98BADCFE</code>
+<code>H3 = 0x10325476</code>
+<code>H4 = 0xC3D2E1F0</code>
+<code></code>
+<code>for each M(i)</code>
+<code>    W[16] = M(i) // M(i) を 32-bit ごとに分割する</code>
+<code></code>
+<code>    for t from 16 to 79</code>
+<code>        W[t] = S^1(W[t - 3] ^ W[t - 8] ^ W[t - 14] ^ W[t - 16])</code>
+<code></code>
+<code>    A = H0; B = H1; C = H2; D = H3; E = H4</code>
+<code></code>
+<code>    for t from 0 to 79</code>
+<code>        TMP = S^5(A) + f(t; B, C, D) + E + W[t] + K(t)</code>
+<code>        E = D; D = C; C = s^30(B); A = TMP</code>
+<code></code>
+<code>    H0 += A; H1 += B; H2 += C; H3 += D; H4 += E</code>
+<code></code>
+<code>// H0 H1 H2 H3 H4 をこの順で並べる</code>
+</pre><h2>実装で苦しんだところ (大体うっかり)</h2>
 <h3>HOTP</h3>
 <p>C は 8-byte 整数。</p>
 <h3>HMAC</h3>
@@ -117,7 +162,7 @@
     <footer>
         <small>
             <a href="https://github.com/comame/blog.comame.xyz" target="_blank" rel="noopener">
-                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Mon, 20 Jul 2020 03:24:18 GMT">
+                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Mon, 20 Jul 2020 05:31:40 GMT">
             </a>
         </small>
         <small>
