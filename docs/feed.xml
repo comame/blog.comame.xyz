@@ -5,9 +5,83 @@
       <link rel='alternate' href='https://blog.comame.xyz/' />
       <link rel='self' href='https://blog.comame.xyz/feed.xml' />
       <author><name>comame</name></author>
-      <updated>2020-07-08T00:00:00Z</updated>
+      <updated>2020-07-20T00:00:00Z</updated>
 
       
+    <entry>
+      <title>TOTP をフルスクラッチした</title>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-07-20/implement-totp-in-js.html' />
+      <id>https://blog.comame.xyz/entries/2020-07-20/implement-totp-in-js.html</id>
+      <updated>2020-07-20T00:00:00Z</updated>
+      <content type='html'>&lt;p&gt;JavaScript で TOTP を実装してみたので、その実装メモなど。&lt;/p&gt;
+&lt;h2&gt;TOTP&lt;/h2&gt;
+&lt;p&gt;RFC 6238: TOTP: Time-Based One-Time Password Algorithm で規定される。Google Authenticator アプリなどを使って時刻ベースで生成される (大抵) 6 桁のワンタイムパスワードであり、2 要素認証に用いられる。&lt;/p&gt;
+&lt;p&gt;疑似コードで次のように表される。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;K: 共有シークレット、QR コードとかで読み込むやつ&lt;/code&gt;
+&lt;code&gt;X: ステップ秒。大抵 30 秒。この値の周期でトークンが切り替わる&lt;/code&gt;
+&lt;code&gt;T0: Unix Time の開始秒。大抵 0&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;T = (Current Unix Time - T0) / X) as Integer&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;TOTP(K, T) = HOTP(K, T) = Truncate(HMAC-SHA-1(K, T))&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;トークンの生成アルゴリズムには HOTP を使用する。&lt;/p&gt;
+&lt;p&gt;のちに記述するように、HOTP では T の値が 32-bit までしかサポートされていないため、4.2 節では 32-bit より大きい整数をサポートするように規定されている。具体的にどう実装するのかは記述されていないので、Google Authenticator の実装などを見るのが良いと思われる。&lt;/p&gt;
+&lt;h2&gt;HOTP&lt;/h2&gt;
+&lt;p&gt;RFC 4226: HOTP: An HMAC-Based One-Time Password Algorithm で規定される。カウンターベースのワンタイムパスワード。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;K: 共有シークレット&lt;/code&gt;
+&lt;code&gt;C: カウンター。8-byte の整数&lt;/code&gt;
+&lt;code&gt;HS: 20-byte&lt;/code&gt;
+&lt;code&gt;S: 31-bit&lt;/code&gt;
+&lt;code&gt;D: 桁数が Digit の HOTP トークン&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;DT(HS: bytes[20])&lt;/code&gt;
+&lt;code&gt;    OffsetBits = HS[19] &amp; 0xF // HS[19] の下位 4-bit&lt;/code&gt;
+&lt;code&gt;    Offset = OffsetBits as Integer // 0 &lt;= offset&lt;= 15&lt;/code&gt;
+&lt;code&gt;    P = HS[Offset]...HS[Offset + 3]&lt;/code&gt;
+&lt;code&gt;    return P &amp; 0x7FFFFFFF // 下位 31-bit&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;HS = HMAC-SHA-1(K, C)&lt;/code&gt;
+&lt;code&gt;S = DT(HS)&lt;/code&gt;
+&lt;code&gt;D = (S as Integer) mod 10^Digit&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;RFC の 5.4 節の例は次の通りである。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;HS = {&lt;/code&gt;
+&lt;code&gt;    1F, 86, 98, 69, 0E,&lt;/code&gt;
+&lt;code&gt;    02, CA, 16, 61, 85,&lt;/code&gt;
+&lt;code&gt;    50, EF, 7F, 19, DA,&lt;/code&gt;
+&lt;code&gt;    8E, 94, 5B, 55, 5A&lt;/code&gt;
+&lt;code&gt;}&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;OffsetBits = 0xA&lt;/code&gt;
+&lt;code&gt;Offset = 10&lt;/code&gt;
+&lt;code&gt;P = 0x50EF7F19&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;S = 0x50EF7F19 &amp; 0x7FFFFFFF = 0x50EF7F19&lt;/code&gt;
+&lt;code&gt;D = 872921&lt;/code&gt;
+&lt;/pre&gt;&lt;h2&gt;HMAC&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.ipa.go.jp/security/rfc/RFC2104JA.html" target="_blank" rel="noopener"&gt;https://www.ipa.go.jp/security/rfc/RFC2104JA.html&lt;/a&gt; に日本語での解説がある。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;H: ハッシュ関数&lt;/code&gt;
+&lt;code&gt;K: シークレット&lt;/code&gt;
+&lt;code&gt;M: メッセージ&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;ipad = 0x3636...&lt;/code&gt;
+&lt;code&gt;opad = 0x5C5C...&lt;/code&gt;
+&lt;code&gt;// ipad, opad の長さはハッシュ関数のブロック長 (SHA-1 の場合 512-bit) と同一&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;||: ビットの連結&lt;/code&gt;
+&lt;code&gt;&lt;/code&gt;
+&lt;code&gt;HMAC(K, M) = H((K xor opad) || H((K xor ipad) || M))&lt;/code&gt;
+&lt;/pre&gt;&lt;p&gt;K と opad, ipad とで排他的論理和をとっていることから分かるように、K の長さもハッシュ関数のブロック長と同一にする必要がある。K は入力値であることから、長さを揃えるために次のような処理を順に行う。&lt;/p&gt;
+&lt;p&gt;K の長さがブロック長より大きい場合、K をハッシュ関数に通す。K の長さがブロック長より小さい場合、ブロック長と同一になるまで末尾に 0 を追加する。&lt;/p&gt;
+&lt;h2&gt;実装で苦しんだところ (大体うっかり)&lt;/h2&gt;
+&lt;h3&gt;HOTP&lt;/h3&gt;
+&lt;p&gt;C は 8-byte 整数。&lt;/p&gt;
+&lt;h3&gt;HMAC&lt;/h3&gt;
+&lt;p&gt;ハッシュ関数に SHA-1 を使用する場合、ブロック長は 64-byte、出力長は 20-byte であることから、K にハッシュを通した後に 0 を追加する処理を行う必要がある。&lt;/p&gt;
+&lt;h3&gt;SHA-1&lt;/h3&gt;
+&lt;p&gt;左循環シフト。&lt;code&gt;(n: number, x: number) =&gt; (x &lt;&lt; n) | (x &gt;&gt; (32 - n))&lt;/code&gt; と素直に書くと、x は 32-bit 整数、&lt;code&gt;0 &lt;= n &lt; 32&lt;/code&gt; であることからオーバーフローする。&lt;/p&gt;
+</content>
+    </entry>
+    
     <entry>
       <title>Chrome の検索エンジン設定</title>
       <link rel='alternate' href='https://blog.comame.xyz/entries/2020-07-08/chrome-search-engine.html' />

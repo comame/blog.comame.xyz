@@ -1,0 +1,130 @@
+<!DOCTYPE html><html lang="ja"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOTP をフルスクラッチした | blog.comame.xyz</title>
+
+    <style>:root {--background-color: white;--header-background-color: rgba(255, 255, 255, 0.95);--main-color: black;--link-color: #00e;--visited-link-color: #a52a2a;--code-color: #efefef;--share-logo-filter: none;--code-addition-color: #06770b;--code-deletion-color: #bb001f;font-size: 16px;--radius: 5px;}@media (prefers-color-scheme: light) {:root {--background-color: white;--header-background-color: rgba(255, 255, 255, 0.95);--main-color: black;--link-color: #00e;--visited-link-color: #a52a2a;--code-color: #efefef;--share-logo-filter: none;--code-addition-color: #06770b;--code-deletion-color: #bb001f;}}@media (prefers-color-scheme: dark) {:root {--background-color: #0a0a0a;--header-background-color: rgba(30, 30, 30, 0.85);--main-color: #bebebe;--link-color: #8b8bf9;--visited-link-color: #c77676;--code-color: #333333;--share-logo-filter: invert(80%);--code-addition-color: #47b94c;--code-deletion-color: #f9758b;}}@media screen and (min-width: 700px) {:root {--content-width: 80vw;--image-width: 50vw;--h1-size: 1.5rem;--h2-size: 1.3rem;--h3-size: 1.1rem;--block-code-radius: 5px;--block-code-width: var(--content-width);--block-code-padding: .5rem;}}@media screen and (max-width: 700px) {:root {--content-width: 90vw;--image-width: 90vw;--h1-size: 1.2rem;--h2-size: 1.2rem;--h3-size: 1.1rem;--block-code-radius: none;--block-code-width: var(100vw);--block-code-padding: .5rem calc((100vw - var(--content-width)) / 2);}}html {background-color: var(--background-color);color: var(--main-color);box-sizing: border-box;font-family: sans-serif;}body {box-sizing: border-box;margin: 0;}header {position: sticky;top: 0;left: 0;height: 3rem;box-shadow: 0 5px 15px rgba(3, 3, 3, 0.05);background: var(--header-background-color);padding: 0 calc((100vw - var(--content-width)) / 2);z-index: 1000;}header a {display: inline-block;line-height: 3rem;text-decoration: none;color: var(--main-color);}header a:visited {color: var(--main-color)}a {text-decoration: none;color: var(--link-color);}a:visited {color: var(--visited-link-color);}.entries {list-style: none;padding-left: 0;}.tag-list {list-style: none;display: inline;padding-left: 0;}.tag-list::before {content: '[';}.tag-list::after {content: ']';}.tag-list > li {display: inline;}.tag-list > li:not(:last-child)::after {content: ', ';}footer {margin: 3rem auto 1rem auto;text-align: center;}footer small {display: block;}footer small > span:not(:last-child)::after {content: ' | ';}</style>
+<meta property="og:type" content="article"><meta property="og:url" content="https://blog.comame.xyz/entries/2020-07-20/implement-totp-in-js.html"><meta property="og:title" content="TOTP をフルスクラッチした | blog.comame.xyz"><meta property="og:site_name" content="blog.comame.xyz"><meta property="og:description" content="JavaScript で TOTP を実装してみたので、その実装メモなど。  RFC 6238: TOTP: Time-Based One-Time Password Algorithm で規定される。Google Authenticator アプリなどを使って時刻ベースで..."><meta name="description" content="JavaScript で TOTP を実装してみたので、その実装メモなど。  RFC 6238: TOTP: Time-Based One-Time Password Algorithm で規定される。Google Authenticator アプリなどを使って時刻ベースで..."><link rel="canonical" href="https://blog.comame.xyz/entries/2020-07-20/implement-totp-in-js.html"></head>
+
+<body>
+    <header>
+        <a href="/">blog.comame.xyz</a>
+    </header>
+
+    
+    
+    
+    
+    <div component="entry" id="c-entry">
+        <div id="metadata">
+            <h1 id="title">TOTP をフルスクラッチした</h1>
+            <time id="time">2020-07-20</time>
+            <ul id="tags" class="tag-list"><li><a href="/tags/note.html">note</a></li></ul>
+        </div>
+        <div id="content"><p>JavaScript で TOTP を実装してみたので、その実装メモなど。</p>
+<h2>TOTP</h2>
+<p>RFC 6238: TOTP: Time-Based One-Time Password Algorithm で規定される。Google Authenticator アプリなどを使って時刻ベースで生成される (大抵) 6 桁のワンタイムパスワードであり、2 要素認証に用いられる。</p>
+<p>疑似コードで次のように表される。</p>
+<pre><code>K: 共有シークレット、QR コードとかで読み込むやつ</code>
+<code>X: ステップ秒。大抵 30 秒。この値の周期でトークンが切り替わる</code>
+<code>T0: Unix Time の開始秒。大抵 0</code>
+<code></code>
+<code>T = (Current Unix Time - T0) / X) as Integer</code>
+<code></code>
+<code>TOTP(K, T) = HOTP(K, T) = Truncate(HMAC-SHA-1(K, T))</code>
+</pre><p>トークンの生成アルゴリズムには HOTP を使用する。</p>
+<p>のちに記述するように、HOTP では T の値が 32-bit までしかサポートされていないため、4.2 節では 32-bit より大きい整数をサポートするように規定されている。具体的にどう実装するのかは記述されていないので、Google Authenticator の実装などを見るのが良いと思われる。</p>
+<h2>HOTP</h2>
+<p>RFC 4226: HOTP: An HMAC-Based One-Time Password Algorithm で規定される。カウンターベースのワンタイムパスワード。</p>
+<pre><code>K: 共有シークレット</code>
+<code>C: カウンター。8-byte の整数</code>
+<code>HS: 20-byte</code>
+<code>S: 31-bit</code>
+<code>D: 桁数が Digit の HOTP トークン</code>
+<code></code>
+<code>DT(HS: bytes[20])</code>
+<code>    OffsetBits = HS[19] &amp; 0xF // HS[19] の下位 4-bit</code>
+<code>    Offset = OffsetBits as Integer // 0 &lt;= offset&lt;= 15</code>
+<code>    P = HS[Offset]...HS[Offset + 3]</code>
+<code>    return P &amp; 0x7FFFFFFF // 下位 31-bit</code>
+<code></code>
+<code>HS = HMAC-SHA-1(K, C)</code>
+<code>S = DT(HS)</code>
+<code>D = (S as Integer) mod 10^Digit</code>
+</pre><p>RFC の 5.4 節の例は次の通りである。</p>
+<pre><code>HS = {</code>
+<code>    1F, 86, 98, 69, 0E,</code>
+<code>    02, CA, 16, 61, 85,</code>
+<code>    50, EF, 7F, 19, DA,</code>
+<code>    8E, 94, 5B, 55, 5A</code>
+<code>}</code>
+<code></code>
+<code>OffsetBits = 0xA</code>
+<code>Offset = 10</code>
+<code>P = 0x50EF7F19</code>
+<code></code>
+<code>S = 0x50EF7F19 &amp; 0x7FFFFFFF = 0x50EF7F19</code>
+<code>D = 872921</code>
+</pre><h2>HMAC</h2>
+<p><a href="https://www.ipa.go.jp/security/rfc/RFC2104JA.html" target="_blank" rel="noopener">https://www.ipa.go.jp/security/rfc/RFC2104JA.html</a> に日本語での解説がある。</p>
+<pre><code>H: ハッシュ関数</code>
+<code>K: シークレット</code>
+<code>M: メッセージ</code>
+<code></code>
+<code>ipad = 0x3636...</code>
+<code>opad = 0x5C5C...</code>
+<code>// ipad, opad の長さはハッシュ関数のブロック長 (SHA-1 の場合 512-bit) と同一</code>
+<code></code>
+<code>||: ビットの連結</code>
+<code></code>
+<code>HMAC(K, M) = H((K xor opad) || H((K xor ipad) || M))</code>
+</pre><p>K と opad, ipad とで排他的論理和をとっていることから分かるように、K の長さもハッシュ関数のブロック長と同一にする必要がある。K は入力値であることから、長さを揃えるために次のような処理を順に行う。</p>
+<p>K の長さがブロック長より大きい場合、K をハッシュ関数に通す。K の長さがブロック長より小さい場合、ブロック長と同一になるまで末尾に 0 を追加する。</p>
+<h2>実装で苦しんだところ (大体うっかり)</h2>
+<h3>HOTP</h3>
+<p>C は 8-byte 整数。</p>
+<h3>HMAC</h3>
+<p>ハッシュ関数に SHA-1 を使用する場合、ブロック長は 64-byte、出力長は 20-byte であることから、K にハッシュを通した後に 0 を追加する処理を行う必要がある。</p>
+<h3>SHA-1</h3>
+<p>左循環シフト。<code>(n: number, x: number) =&gt; (x &lt;&lt; n) | (x &gt;&gt; (32 - n))</code> と素直に書くと、x は 32-bit 整数、<code>0 &lt;= n &lt; 32</code> であることからオーバーフローする。</p>
+</div>
+        <div id="share">
+            <img alt="共有" src="/assets/icons/share.svg">
+            <a rel="noopener" target="_blank" title="Twitter で共有" href="https://twitter.com/intent/tweet?text=TOTP%20%E3%82%92%E3%83%95%E3%83%AB%E3%82%B9%E3%82%AF%E3%83%A9%E3%83%83%E3%83%81%E3%81%97%E3%81%9F%0a&amp;url=https%3A%2F%2Fblog.comame.xyz%2Fentries%2F2020-07-20%2Fimplement-totp-in-js.html&amp;related=comameito">
+                <img alt="Twitter で共有" src="/assets/icons/twitter_logo.svg">
+            </a>
+            <a rel="noopener" target="_blank" title="Facebook で共有" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblog.comame.xyz%2Fentries%2F2020-07-20%2Fimplement-totp-in-js.html">
+                <img alt="Facebook で共有" src="/assets/icons/facebook_logo.svg">
+            </a>
+            <a title="URL をコピー">
+                <img alt="URL をコピー" src="/assets/icons/link.svg">
+            </a>
+        </div>
+        <style>#metadata {margin-bottom: 3rem;margin-right: auto;margin-left: auto;width: var(--content-width);}#metadata h1 {font-size: var(--h1-size);}#tags {display: block;margin-top: .3rem;}#content {word-break: break-all;}#content > * {margin-right: auto;margin-left: auto;width: var(--content-width);}#content p {text-indent: .5rem;}#content h2 {margin-top: 2rem;font-size: var(--h2-size);}#content h3 {font-size: var(--h3-size);}#content code {background: var(--code-color);border-radius: var(--radius);font-family: monospace;padding: 2px 4px;word-break: break-all;}#content pre {padding: var(--block-code-padding);white-space: pre;overflow-x: scroll;border-radius: var(--block-code-radius);background: var(--code-color);width: var(--block-code-width);}#content pre > code {padding: 0;}#content img {display: block;width: var(--image-width);margin-right: auto;margin-left: auto;}#content ul, #content ol {counter-reset: ol;list-style: none;padding-left: 1rem;}#content ul > li::before {content: '- ';}#content ol > li::before {counter-increment: ol;content: counter(ol) '. ';}#content pre code.addition {color: var(--code-addition-color);}#content pre code.deletion {color: var(--code-deletion-color);}#content table {border-collapse: collapse;border-width: 1px 0px;border-color: var(--main-color);border-style: solid;}#content thead tr {border-bottom: solid 1px var(--main-color);border-width: 0 0 1px 0;}#content td, #content th {padding: .4rem;}#content tbody tr:nth-child(even) {background-color: var(--code-color);}#content th {min-width: 6rem;}#share {margin-top: 3rem;width: var(--content-width);margin-right: auto;margin-left: auto;}#share > img {margin-right: 2rem;}#share a {margin-right: 1rem;}#share img {height: 2rem;width: 2rem;filter: var(--share-logo-filter);}</style>
+        <script async="" not-remove="" src="/assets/js/url-copy.js"></script>
+    </div>
+
+    <footer>
+        <small>
+            <a href="https://github.com/comame/blog.comame.xyz" target="_blank" rel="noopener">
+                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Mon, 20 Jul 2020 02:53:54 GMT">
+            </a>
+        </small>
+        <small>
+            <span>Copyright 2020 <a href="https://comame.xyz">comame</a></span>
+            
+            
+            <span component="source" for="source"><a id="source" target="_blank" rel="noopener" href="https://github.com/comame/blog.comame.xyz/blob/master/archives/2020/implement-totp-in-js.md">source</a></span>
+            <span component="history" for="history"><a id="history" target="_blank" rel="noopener" href="https://github.com/comame/blog.comame.xyz/commits/master/archives/2020/implement-totp-in-js.md">history</a></span>
+            <span><a href="/feed.xml">Feed</a></span>
+        </small>
+    </footer>
+
+    
+    
+    
+    <script src="/assets/js/log.js" async="" not-remove=""></script>
+
+
+
+</body></html>
