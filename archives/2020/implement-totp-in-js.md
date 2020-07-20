@@ -104,9 +104,9 @@ C は 8-byte 整数。
 
 <dl>
     <dt>IPA の RFC 日本語訳</dt>
-    <dl>HMAC と SHA-1 の実装</dl>
+    <dd>HMAC と SHA-1 の実装</dd>
     <dt>Golang のソースコード</dt>
-    <dl>テストケースや各アルゴリズムの実装。読みやすい。</dl>
+    <dd>テストケースや各アルゴリズムの実装。読みやすい。</dd>
     <dt>RFC</dt>
-    <dl>テスト用のサンプルケースが Appendix に書いてあることを初めて知った</dl>
+    <dd>テスト用のサンプルケースが Appendix に書いてあることを初めて知った</dd>
 </dl>
