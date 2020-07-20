@@ -132,7 +132,7 @@
 <h3>HMAC</h3>
 <p>ハッシュ関数に SHA-1 を使用する場合、ブロック長は 64-byte、出力長は 20-byte であることから、K にハッシュを通した後に 0 を追加する処理を行う必要がある。</p>
 <h3>SHA-1</h3>
-<p>左循環シフト。<code>(n: number, x: number) =&gt; (x &lt;&lt; n) | (x &gt;&gt; (32 - n))</code> と素直に書くと、x は 32-bit 整数、<code>0 &lt;= n &lt; 32</code> であることからオーバーフローする。</p>
+<p>(追記あり) 左循環シフト。<code>(n: number, x: number) =&gt; (x &lt;&lt; n) | (x &gt;&gt; (32 - n))</code> と素直に書くと、x は 32-bit 整数、<code>0 &lt;= n &lt; 32</code> であることからオーバーフローする。</p>
 <h2>参考にしたもの</h2>
 <dl>
     <dt>IPA の RFC 日本語訳</dt>
@@ -142,7 +142,23 @@
     <dt>RFC</dt>
     <dd>テスト用のサンプルケースが Appendix に書いてあることを初めて知った</dd>
 </dl>
-</div>
+
+
+<h2>左循環シフトの高速化</h2>
+<p><a href="https://github.com/comame/TOTP/compare/e495732d9156e805c78ff2626e95f09301123b32...361549fc64a207bcc402f48f802ee4d68b61cac6" target="_blank" rel="noopener">https://github.com/comame/TOTP/compare/e495732d9156e805c78ff2626e95f09301123b32...361549fc64a207bcc402f48f802ee4d68b61cac6</a></p>
+<p>オーバーフローをしないためにビットの配列に変換してシフト操作をしていたものを、number のまま計算できるように書き換えた。オーバーフローを起こさないため、32-bit 整数を 8-bit ずつに区切り、場合分けした。また、シフト演算子を使うとオーバーフローを起こすため、掛け算と割り算でシフト演算子と同等の計算を行うようにした。</p>
+<p>次のようなコードで 10 回ずつ計測しそれぞれ平均をとったところ、高速化前は 616 ms、高速化後は 5 ms となった。</p>
+<p>また、SHA-1 の計算自体も、おおむね半分から 5 分の 1 程度の実行時間に短縮された。</p>
+<pre><code>const t = Date.now()</code>
+<code>for (let i = 0; i &lt; 100000; i +=1) circularShift(16, 0x12345678)</code>
+<code>console.log(Date.now() - t)</code>
+</pre><pre><code>測定結果</code>
+<code></code>
+<code>高速化前 [ms]</code>
+<code>    608 605 611 598 612 599 698 605 612 611</code>
+<code>高速化後 [ms]</code>
+<code>    4   4   6   4   5   5   5   4   5   5</code>
+</pre></div>
         <div id="share">
             <img alt="共有" src="/assets/icons/share.svg">
             <a rel="noopener" target="_blank" title="Twitter で共有" href="https://twitter.com/intent/tweet?text=TOTP%20%E3%82%92%E3%83%95%E3%83%AB%E3%82%B9%E3%82%AF%E3%83%A9%E3%83%83%E3%83%81%E3%81%97%E3%81%9F%0a&amp;url=https%3A%2F%2Fblog.comame.xyz%2Fentries%2F2020-07-20%2Fimplement-totp-in-js.html&amp;related=comameito">
@@ -162,7 +178,7 @@
     <footer>
         <small>
             <a href="https://github.com/comame/blog.comame.xyz" target="_blank" rel="noopener">
-                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Mon, 20 Jul 2020 05:31:40 GMT">
+                <img id="build-status" src="https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push" title="Mon, 20 Jul 2020 09:39:33 GMT">
             </a>
         </small>
         <small>
