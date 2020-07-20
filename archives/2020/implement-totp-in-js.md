@@ -1,5 +1,7 @@
 JavaScript で TOTP を実装してみたので、その実装メモなど。
 
+https://github.com/comame/TOTP
+
 ## TOTP
 
 RFC 6238: TOTP: Time-Based One-Time Password Algorithm で規定される。Google Authenticator アプリなどを使って時刻ベースで生成される (大抵) 6 桁のワンタイムパスワードであり、2 要素認証に用いられる。
@@ -96,3 +98,15 @@ C は 8-byte 整数。
 ### SHA-1
 
 左循環シフト。`(n: number, x: number) => (x << n) | (x >> (32 - n))` と素直に書くと、x は 32-bit 整数、`0 <= n < 32` であることからオーバーフローする。
+
+
+## 参考にしたもの
+
+<dl>
+    <dt>IPA の RFC 日本語訳</dt>
+    <dl>HMAC と SHA-1 の実装</dl>
+    <dt>Golang のソースコード</dt>
+    <dl>テストケースや各アルゴリズムの実装。読みやすい。</dl>
+    <dt>RFC</dt>
+    <dl>テスト用のサンプルケースが Appendix に書いてあることを初めて知った</dl>
+</dl>
