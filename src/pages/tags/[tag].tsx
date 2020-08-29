@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import Head from 'next/head'
+import MyHead from '../../components/head'
 import Header from '../../components/header'
 import Footer from '../../components/footer'
 import EntryList from '../../components/entry-list'
@@ -8,9 +8,12 @@ import { Entry, listAllTags, listEntryByTag } from '../../lib/entry'
 
 const Tag: FunctionComponent<{ entries: Entry[], tag: string }> = ({ entries, tag }) => {
     return <>
-        <Head>
-            <title>{ tag } | blog.comame.xyz</title>
-        </Head>
+        <MyHead
+            tagPage
+            title={ tag + ' | blog.comame.xyz'}
+            tag={ tag }
+            description={ tag }
+        ></MyHead>
         <Header></Header>
         <EntryList entries={ entries }></EntryList>
         <Footer></Footer>

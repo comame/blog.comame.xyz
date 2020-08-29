@@ -1,6 +1,6 @@
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useState } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import Head from 'next/head'
+import MyHead from '../../../components/head'
 import { Entry, listEntryMetadata, getEntry } from '../../../lib/entry'
 import Header from '../../../components/header'
 import Footer from '../../../components/footer'
@@ -13,14 +13,19 @@ const EntryPage: FunctionComponent<{
     entry: Entry,
     text: string
 }> = ({ entry, text }) => {
+    const [ description, setDescription ] = useState<string>('')
+
     return <>
-        <Head>
-            <title>{entry.title} | blog.comame.xyz</title>
-        </Head>
+        <MyHead
+            postPage
+            title={ entry.title + ' | blog.comame.xyz' }
+            entry={ entry }
+            description={ description }
+        ></MyHead>
         <Header></Header>
         <div className='post'>
             <Metadata entry={ entry }></Metadata>
-            <Content text={ text }></Content>
+            <Content text={ text } setDescription={ setDescription }></Content>
             <Share entry={ entry }></Share>
         </div>
         <Footer entryPage entry={ entry }></Footer>

@@ -13,7 +13,7 @@ const Footer: FunctionComponent<{
     return <footer className={ styles.footer }>
         <small>
             <a href='https://github.com/comame/blog.comame.xyz' target='_blank' rel='noopener'>
-                <img id='build-status' src='https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push' />
+                <img alt='GitHub Actions build status' id='build-status' src='https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push' />
             </a>
         </small>
         <small>

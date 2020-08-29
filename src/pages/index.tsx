@@ -1,7 +1,6 @@
 import { FunctionComponent } from 'react'
 import { GetStaticProps } from 'next'
-import Head from 'next/head'
-
+import MyHead from '../components/head'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import EntryList from '../components/entry-list'
@@ -11,9 +10,7 @@ const Index: FunctionComponent<{
     entries: Entry[]
 }> = ({ entries }) => {
     return <>
-        <Head>
-            <title>blog.comame.xyz</title>
-        </Head>
+        <MyHead title='blog.comame.xyz' description='blog.comame.xyz'></MyHead>
         <Header></Header>
         <EntryList entries={ entries }></EntryList>
         <Footer></Footer>
