@@ -9,7 +9,7 @@
     font-size: var(--h1-size);
 }
 
-#tags {
+.tag-list {
     display: block;
     margin-top: .3rem;
 }

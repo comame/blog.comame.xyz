@@ -1,4 +1,7 @@
 import entries from '../../archives/entries.json'
+import marked from 'marked'
+import { promises } from 'fs'
+import path from 'path'
 
 export interface Entry {
     entry: string,
@@ -50,4 +53,58 @@ export function listAllTags(): string[] {
 
 export function listEntryByTag(tag: string): Entry[] {
     return listEntryMetadata().filter(entry => entry.tags.includes(tag))
+}
+
+export async function getEntry(year: string, id: string): Promise<{
+    entry: Entry,
+    rendered: string
+}> {
+    const entry = listEntryByYear(year).find(it => it.entry == id)
+    if (!entry) throw Error('entry not found')
+
+    const filedir = path.join(process.cwd(), 'archives', year)
+    const filepath = filedir + '/' + entry.entry + '.' + entry.type
+
+    const file = await promises.readFile(filepath, 'utf-8')
+
+    if (entry.type == 'html') {
+        return {
+            entry, rendered: file
+        }
+    } else {
+        const renderer = new marked.Renderer()
+        renderer.link = function(href, title, text) {
+            if (
+                href?.startsWith('http://') ||
+                href?.startsWith('https://') ||
+                href?.startsWith('//')
+            ) {
+                return `<a href=${href} target='_blank' rel='noopener'>${text}</a>`
+            } else {
+                return `<a href=${href}>${text}</a>`
+            }
+        }
+        renderer.code = (code, info) => {
+            const lines = code.split(/\n/).map(it => {
+                if (info == 'diff' && it.startsWith('+ ')) {
+                    return `<code class='addition'>${it}</code>`
+                } else if (info == 'diff' && it.startsWith('- ')) {
+                    return `<code class='deletion'>${it}</code>`
+                } else {
+                    return `<code>${it}</code>`
+                }
+            })
+            return [ '<pre>', ...lines, '</pre>' ].join('\n')
+        }
+
+        const html = marked(file, {
+            headerIds: false,
+            renderer
+        })
+
+        return {
+            entry,
+            rendered: html
+        }
+    }
 }
