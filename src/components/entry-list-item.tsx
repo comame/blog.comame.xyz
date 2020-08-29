@@ -1,6 +1,6 @@
-import { Entry } from '../lib/entry'
-import Link from 'next/link'
 import { FunctionComponent } from 'react'
+import Link from 'next/link'
+import { Entry } from '../lib/entry'
 
 const EntryListItem: FunctionComponent<{ entry: Entry }> = ({ entry }) => {
     const time = entry.date.split('-').slice(1).join('-')

@@ -36,8 +36,18 @@ export function listEntryMetadata(): Entry[] {
     }) as any
 }
 
-export function listEntryMetadataByYear(year: string): Entry[] {
-    return listEntryMetadata().filter(entry => {
-        return entry.date.split('-')[0] == year
-    })
+export function listEntryByYear(year: string): Entry[] {
+    return listEntryMetadata().filter(entry => entry.date.split('-')[0] == year)
+}
+
+export function listAllTags(): string[] {
+    const tagSet: Set<string> = new Set()
+    for (const entry of entries) {
+        for (const tag of entry.tags) tagSet.add(tag)
+    }
+    return Array.from(tagSet)
+}
+
+export function listEntryByTag(tag: string): Entry[] {
+    return listEntryMetadata().filter(entry => entry.tags.includes(tag))
 }
