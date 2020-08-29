@@ -10,8 +10,6 @@ const Tag: FunctionComponent<{ entries: Entry[], tag: string }> = ({ entries, ta
     return <>
         <Head>
             <title>{ tag } | blog.comame.xyz</title>
-            <link rel='stylesheet' href='/css/style.css'></link>
-            <link rel='stylesheet' href='/css/home.css'></link>
         </Head>
         <Header></Header>
         <EntryList entries={ entries }></EntryList>

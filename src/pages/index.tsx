@@ -1,11 +1,11 @@
-import { FunctionComponent, Fragment } from 'react'
+import { FunctionComponent } from 'react'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 
 import Header from '../components/header'
 import Footer from '../components/footer'
 import EntryList from '../components/entry-list'
-import { Entry, listEntryMetadata, listEntryByYear } from '../lib/entry'
+import { Entry, listEntryMetadata } from '../lib/entry'
 
 const Index: FunctionComponent<{
     entries: Entry[]
@@ -13,8 +13,6 @@ const Index: FunctionComponent<{
     return <>
         <Head>
             <title>blog.comame.xyz</title>
-            <link rel='stylesheet' href='/css/style.css'></link>
-            <link rel='stylesheet' href='/css/home.css'></link>
         </Head>
         <Header></Header>
         <EntryList entries={ entries }></EntryList>

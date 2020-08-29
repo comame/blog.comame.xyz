@@ -4,43 +4,24 @@ import Head from 'next/head'
 import { Entry, listEntryMetadata, getEntry } from '../../../lib/entry'
 import Header from '../../../components/header'
 import Footer from '../../../components/footer'
-import TagList from '../../../components/tag-list'
+import '../../../styles/post.module.scss'
+import Metadata from '../../../components/post/metadata'
+import Content from '../../../components/post/content'
+import Share from '../../../components/post/share'
 
 const EntryPage: FunctionComponent<{
     entry: Entry,
     text: string
 }> = ({ entry, text }) => {
-    const href = 'https://blog.comame.xyz/entries/' + entry.date + '/' + entry.entry + '.' + entry.type
-    const twitterUrl = 'https://twitter.com/intent/tweet?text='+ encodeURIComponent(entry.title) + '%0a&url=' + encodeURIComponent(href) + '&related=comameito'
-    const facebookUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(href)
-
     return <>
         <Head>
             <title>{entry.title} | blog.comame.xyz</title>
-            <link rel='stylesheet' href='/css/style.css'></link>
-            <link rel='stylesheet' href='/css/entry.css'></link>
         </Head>
         <Header></Header>
-        <div>
-            <div id='metadata'>
-                <h1 id='title'>{ entry.title }</h1>
-                <time id='time'>{ entry.date }</time>
-                <TagList tags={ entry.tags }></TagList>
-            </div>
-            <div id='content' dangerouslySetInnerHTML={{ __html: text }}></div>
-            <div id='share'>
-                <img alt='共有' src='/icons/share.svg' />
-                <a rel='noopener' target='_blank' title='Twitter で共有' href={ twitterUrl }>
-                    <img alt='Twitter で共有' src='/icons/twitter_logo.svg' />
-                </a>
-                <a rel='noopener' target='_blank' title='Facebook で共有' href={ facebookUrl }>
-                    <img alt='Facebook で共有' src='/icons/facebook_logo.svg' />
-                </a>
-                <a title='URL をコピー'>
-                    <img alt='URL をコピー' src='/icons/link.svg' />
-                </a>
-            </div>
-            <script src='/js/url-copy.js'></script>
+        <div className='post'>
+            <Metadata entry={ entry }></Metadata>
+            <Content text={ text }></Content>
+            <Share entry={ entry }></Share>
         </div>
         <Footer entryPage entry={ entry }></Footer>
     </>

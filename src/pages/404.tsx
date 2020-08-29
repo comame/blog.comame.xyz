@@ -7,7 +7,6 @@ const NotFound = () => {
     return <>
         <Head>
             <title>404 | blog.comame.xyz</title>
-            <link rel='stylesheet' href='/css/style.css'></link>
         </Head>
         <Header></Header>
         <div>

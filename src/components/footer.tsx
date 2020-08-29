@@ -1,5 +1,6 @@
 import { FunctionComponent } from 'react'
 import { Entry } from '../lib/entry'
+import styles from '../styles/footer.module.scss'
 
 const Footer: FunctionComponent<{
     entryPage?: boolean,
@@ -9,7 +10,7 @@ const Footer: FunctionComponent<{
     const id = entry?.entry
     const type = entry?.type
 
-    return <footer>
+    return <footer className={ styles.footer }>
         <small>
             <a href='https://github.com/comame/blog.comame.xyz' target='_blank' rel='noopener'>
                 <img id='build-status' src='https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push' />

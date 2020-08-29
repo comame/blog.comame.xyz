@@ -1,0 +1,19 @@
+.share {
+    margin-top: 3rem;
+    width: var(--content-width);
+    margin-right: auto;
+    margin-left: auto;
+
+    & > img {
+        margin-right: 2rem;
+    }
+
+    a {
+        margin-right: 1rem;
+    }
+    img {
+        height: 2rem;
+        width: 2rem;
+        filter: var(--share-logo-filter);
+    }
+}

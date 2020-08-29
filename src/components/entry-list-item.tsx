@@ -8,7 +8,7 @@ const EntryListItem: FunctionComponent<{ entry: Entry }> = ({ entry }) => {
 
     return <li key={ entry.entry }>
         <time>{ time }</time>
-        <Link href='/entries/[year]/[id]' as={ `/entries/${entry.date}/${entry.entry}`}><a className='entry'>{ entry.title }</a></Link>
+        <Link href='/entries/[year]/[id]' as={ `/entries/${entry.date}/${entry.entry}`}><a>{ entry.title }</a></Link>
         <TagList tags={ entry.tags } />
     </li>
 }

@@ -1,5 +1,5 @@
 let coping = false;
-const button = document.querySelectorAll("#share a")[2]
+const button = document.getElementById('url-copy')
 
 if (button) button.addEventListener("click", function() {
     if (coping) return;
