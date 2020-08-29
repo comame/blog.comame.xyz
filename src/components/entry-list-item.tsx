@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react'
-import Link from 'next/link'
+import Link from '../lib/link'
 import { Entry } from '../lib/entry'
 import TagList from './tag-list'
 

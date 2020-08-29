@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Link from 'next/link'
+import Link from '../lib/link'
 
 import Header from '../components/header'
 
