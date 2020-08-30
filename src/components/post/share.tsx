@@ -3,7 +3,7 @@ import { Entry } from '../../lib/entry'
 import styles from '../../styles/post/share.module.scss'
 
 const Share: FunctionComponent<{ entry: Entry }> = ({ entry }) => {
-    const href = 'https://blog.comame.xyz/entries/' + entry.date + '/' + entry.entry + '.' + entry.type
+    const href = 'https://blog.comame.xyz/entries/' + entry.date + '/' + entry.entry + '.html'
     const twitterUrl = 'https://twitter.com/intent/tweet?text='+ encodeURIComponent(entry.title) + '%0a&url=' + encodeURIComponent(href) + '&related=comameito'
     const facebookUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(href)
 
