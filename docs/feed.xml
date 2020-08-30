@@ -5,8 +5,15 @@
       <link rel='alternate' href='https://blog.comame.xyz/' />
       <link rel='self' href='https://blog.comame.xyz/feed.xml' />
       <author><name>comame</name></author>
-      <updated>2020-07-20T00:00:00Z</updated>
+      <updated>2020-08-30T00:00:00Z</updated>
       
+    <entry>
+      <title>ブログを Next.js で作り直した</title>
+      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-08-30/renew-blog-nextjs.html' />
+      <id>https://blog.comame.xyz/entries/2020-08-30/renew-blog-nextjs.html</id>
+      <updated>2020-08-30T00:00:00Z</updated>
+    </entry>
+    
     <entry>
       <title>TOTP をフルスクラッチした</title>
       <link rel='alternate' href='https://blog.comame.xyz/entries/2020-07-20/implement-totp-in-js.html' />
@@ -54,13 +61,6 @@
       <link rel='alternate' href='https://blog.comame.xyz/entries/2020-03-26/wsl2-publish-server.html' />
       <id>https://blog.comame.xyz/entries/2020-03-26/wsl2-publish-server.html</id>
       <updated>2020-03-26T00:00:00Z</updated>
-    </entry>
-    
-    <entry>
-      <title>ブログシステムを新しくした (技術面)</title>
-      <link rel='alternate' href='https://blog.comame.xyz/entries/2020-03-11/blog-tech.html' />
-      <id>https://blog.comame.xyz/entries/2020-03-11/blog-tech.html</id>
-      <updated>2020-03-11T00:00:00Z</updated>
     </entry>
     
     <entry>
