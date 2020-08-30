@@ -1,0 +1,25 @@
+.entry-list {
+    width: var(--content-width);
+    margin: 0 auto;
+
+    & > ul {
+        list-style: none;
+        padding-left: 0;
+
+        & > li {
+            margin-bottom: .5rem;
+
+            &::before {
+                content: '- ';
+            }
+
+            & > a {
+                margin-right: 1rem;
+            }
+
+            & > time::after {
+                content: ': ';
+            }
+        }
+    }
+}

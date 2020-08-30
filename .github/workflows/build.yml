@@ -7,16 +7,6 @@ on:
       - .github/**
       - '!.github/workflows/build.yml'
       - docs/**
-      - build/comameito_blog-builder/**
-      - .gitignore
-      - README.md
-  pull_request:
-    branches: [ master ]
-    paths-ignore:
-      - docs/**
-      - .github/**
-      - '!.github/workflows/build.yml'
-      - build/comameito_blog-builder/**
       - .gitignore
       - README.md
 
@@ -25,28 +15,23 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [14.x]
+
     steps:
     - uses: actions/checkout@v2
 
-    - name: Build
-      run: |
-        cd ${{ github.workspace }}
-        rm -r docs
-        mkdir docs
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
 
-        echo "Downloading image comameito/blog-builder"
-        docker pull -q comameito/blog-builder
-        echo "Starting build"
-        npm run build
-
-        sudo adduser comame --disabled-password --gecos ""  -q
-        sudo chown -R comame:comame docs
-        sudo chmod -R 777 docs
+    - run: rm -rf docs
+    - run: npm ci
+    - run: npm run build
 
     - name: Commit
       run: |
-        cd ${{ github.workspace }}
-        echo "blog.comame.xyz" | cat > docs/CNAME
         git config --local user.name "GitHub Actions"
         git config --local user.email dev@comame.xyz
         git add docs
