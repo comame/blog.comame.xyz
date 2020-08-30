@@ -226,4 +226,10 @@
     "date": "2020-07-20",
     "tags": [ "note" ],
     "type": "md"
+}, {
+    "entry": "renew-blog-nextjs",
+    "title": "ブログを Next.js で作り直した",
+    "date": "2020-08-30",
+    "tags": [ "Blog" ],
+    "type": "md"
 }]
