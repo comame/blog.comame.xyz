@@ -1,12 +1,13 @@
-const fs = require('fs').promises
-const { destinationDir } = require('./dir')
+module.exports = () => {
+    const archives = require('../../../archives/entries.json')
 
-async function createSiteMap(paths) {
-    await fs.writeFile(destinationDir + '/sitemap.txt', '')
-    for (const path of paths) {
-        await fs.appendFile(destinationDir + '/sitemap.txt', 'https://blog.comame.xyz/' + path + '\n')
+    const entries = archives.map(entry => `https://blog.comame.xyz/entries/${entry.date}/${entry.date}.html`)
+
+    const tagSet = new Set()
+    for (const entry of archives) {
+        for (const tag of entry.tags) tagSet.add(tag)
     }
-    console.log('Sitemap created')
-}
+    const tags = Array.from(tagSet).map(tag => `https://blog.comame.xyz/tags/${tag}.html`)
 
-module.exports = createSiteMap
+    return [ 'https://blog.comame.xyz/', ...entries, ...tags ].join('\n')
+}

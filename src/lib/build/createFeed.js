@@ -1,27 +1,4 @@
-const puppeteer = require('puppeteer')
-const fs = require('fs').promises
-const { destinationDir } = require('./dir')
-
-async function createFeed(entries) {
-    const browser =  await puppeteer.launch({
-        headless: true,
-        args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox'
-        ]
-    })
-
-    try {
-        const page = await browser.newPage()
-        await generate(entries, page)
-    } catch (err) {
-        throw err
-    } finally {
-        await browser.close()
-    }
-}
-
-async function generate(entries, page) {
+module.exports = createFeed = () => {
     const items = []
 
     const base = (updated, items) => `
@@ -33,21 +10,20 @@ async function generate(entries, page) {
       <link rel='self' href='https://blog.comame.xyz/feed.xml' />
       <author><name>comame</name></author>
       <updated>${updated}</updated>
-
       ${items.join('')}
     </feed>
     `
 
-    const item = (title, link, date, htmlContent) => `
+    const item = (title, link, date) => `
     <entry>
       <title>${title}</title>
       <link rel='alternate' href='${link}' />
       <id>${link}</id>
       <updated>${date}T00:00:00Z</updated>
-      <content type='html'>${htmlContent.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</content>
     </entry>
     `
 
+    const entries = require('../../../archives/entries.json')
     entries.sort((a, b) => {
         const [aYear, aMonth, aDay] = a.date.split('-').map(it => Number.parseInt(it))
         const [bYear, bMonth, bDay] = b.date.split('-').map(it => Number.parseInt(it))
@@ -62,13 +38,7 @@ async function generate(entries, page) {
         const date = entry.date
         const link = 'https://blog.comame.xyz/entries/' + date + '/' + entry.entry + '.html'
 
-        const url = 'file:' + destinationDir + '/entries/' + date + '/' + entry.entry + '.html'
-        console.log(url)
-        await page.goto(url)
-
-        const htmlContent = await page.$eval('#content', el => el.innerHTML )
-
-        items.push(item(title, link, date, htmlContent))
+        items.push(item(title, link, date))
     }
 
     const latestEntryDate = entries[0].date.split('-')
@@ -82,10 +52,5 @@ async function generate(entries, page) {
         ((date.getSeconds() < 10) ? `0${date.getSeconds()}Z` : `${date.getSeconds()}Z`)
 
     const rss = base(updated, items).replace(/^\s+|\s+$/g,"");
-
-    await fs.writeFile(destinationDir + '/feed.xml', rss)
-
-    console.log('Feed created')
+    return rss
 }
-
-module.exports = createFeed
