@@ -185,12 +185,6 @@
     "tags": [ "Windows", "note" ],
     "type": "html"
 }, {
-    "entry": "blog-tech",
-    "title": "ブログシステムを新しくした (技術面)",
-    "date": "2020-03-11",
-    "tags": [ "Blog" ],
-    "type": "md"
-}, {
     "entry": "wsl2-publish-server",
     "title": "WSL2 のサーバをネットワークに公開する",
     "date": "2020-03-26",
