@@ -13,6 +13,7 @@ const EntryPage: FunctionComponent<{
     text: string
 }> = ({ entry, text }) => {
     const [ description, setDescription ] = useState<string>('')
+    const year = Number.parseInt(entry.date.split('-')[0])
 
     return <>
         <MyHead
@@ -27,7 +28,7 @@ const EntryPage: FunctionComponent<{
             <Content text={ text } setDescription={ setDescription }></Content>
             <Share entry={ entry }></Share>
         </div>
-        <Footer entryPage entry={ entry }></Footer>
+        <Footer entryPage entry={ entry } copyRightYear={ year }></Footer>
     </>
 }
 

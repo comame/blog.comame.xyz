@@ -4,8 +4,9 @@ import styles from '../styles/footer.module.scss'
 
 const Footer: FunctionComponent<{
     entryPage?: boolean,
-    entry?: Entry
-}> = ({ entryPage, entry }) => {
+    entry?: Entry,
+    copyRightYear?: number
+}> = ({ entryPage, entry, copyRightYear }) => {
     const year = entry?.date.split('-')[0]
     const id = entry?.entry
     const type = entry?.type
@@ -17,7 +18,7 @@ const Footer: FunctionComponent<{
             </a>
         </small>
         <small>
-            <span>Copyright 2020 <a href='https://comame.xyz'>comame</a></span>
+            <span>© { copyRightYear ?? new Date().getFullYear() } <a href='https://comame.xyz'>comame</a></span>
             {
                 entryPage && <>
                     <span><a target='_blank' rel='noopener' href={ `https://github.com/comame/blog.comame.xyz/blob/master/archives/${ year }/${id}.${type}` }>source</a></span>
