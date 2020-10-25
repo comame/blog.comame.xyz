@@ -27,6 +27,16 @@ $ ifconfig eth0 | grep inet
 を叩くと取得できる。
 
 
-## Netsh interface portproxy
+## netsh interface portproxy
 
 [Netsh interface portproxy コマンド | Microsoft Docs](https://docs.microsoft.com/ja-jp/windows-server/networking/technologies/netsh/netsh-interface-portproxy)
+
+## サンプルスクリプト
+
+```
+$port = Read-Host 'Port'
+$internal_ip = bash.exe -c "ifconfig eth0 | grep 'inet ' | awk '{ print `$2 }'"
+
+netsh interface portproxy delete v4tov4 listenport=$port listenaddress=0.0.0.0
+netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=$port connectaddress=$internal_ip connectport=$port
+```
