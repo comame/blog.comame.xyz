@@ -1,4 +1,4 @@
-import entries from '../../archives/entries.json'
+import entries from '../../entries/entries.json'
 import marked from 'marked'
 import { promises } from 'fs'
 import path from 'path'
@@ -62,7 +62,7 @@ export async function getEntry(year: string, id: string): Promise<{
     const entry = listEntryByYear(year).find(it => it.entry == id)
     if (!entry) throw Error('entry not found')
 
-    const filedir = path.join(process.cwd(), 'archives', year)
+    const filedir = path.join(process.cwd(), 'entries', year)
     const filepath = filedir + '/' + entry.entry + '.' + entry.type
 
     const file = await promises.readFile(filepath, 'utf-8')

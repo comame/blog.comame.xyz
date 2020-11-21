@@ -23,7 +23,7 @@ module.exports = createFeed = () => {
     </entry>
     `
 
-    const entries = require('../../../archives/entries.json')
+    const entries = require('../../../entries/entries.json')
     entries.sort((a, b) => {
         const [aYear, aMonth, aDay] = a.date.split('-').map(it => Number.parseInt(it))
         const [bYear, bMonth, bDay] = b.date.split('-').map(it => Number.parseInt(it))

@@ -4,11 +4,11 @@
 - [blog.comame.xyz](https://blog.comame.xyz)
 
 ## ディレクトリ
-- archives: 記事のデータ
+- entries: 記事のデータ
 - docs: ビルドされたファイル
 - src: ソースコード
 
 ## 技術情報
 
 ### ビルド
-[Actions](https://github.com/comame/blog.comame.xyz/blob/master/.github/workflows/build.yml) を参照
+[Actions](./.github/workflows/build.yml) を参照
