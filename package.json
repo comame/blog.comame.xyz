@@ -1,15 +1,8 @@
 {
-  "name": "blog.comame.xyz",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
   "scripts": {
     "dev": "next dev",
     "build": "NEXT_PUBLIC_STATIC=1 next build && next export -o docs && node src/lib/build/build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@types/marked": "^1.2.0",
     "@types/node": "^14.14.9",
