@@ -1,7 +1,7 @@
 module.exports = () => {
     const entriesJson = require('../../../entries/entries.json')
 
-    const entries = entriesJson.map(entry => `https://blog.comame.xyz/entries/${entry.date}/${entry.date}.html`)
+    const entries = entriesJson.map(entry => `https://blog.comame.xyz/entries/${entry.date}/${entry.entry}.html`)
 
     const tagSet = new Set()
     for (const entry of entriesJson) {
