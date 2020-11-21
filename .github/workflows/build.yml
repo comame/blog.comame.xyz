@@ -26,7 +26,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - run: git checkout gh-pages
+    - run: git checkout -B gh-pages && git reset --hard origin/main
     - run: rm -rf docs
     - run: npm ci
     - run: npm run build
@@ -42,4 +42,4 @@ jobs:
       run: |
         cd ${{ github.workspace }}
         remote_repo="https://comame:${{ secrets.TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
-        git push ${remote_repo} gh-pages
+        git push -f ${remote_repo} gh-pages
