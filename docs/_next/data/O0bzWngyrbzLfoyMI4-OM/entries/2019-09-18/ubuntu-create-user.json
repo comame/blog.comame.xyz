@@ -1,1 +1,0 @@
-{"pageProps":{"entry":{"entry":"ubuntu-create-user","title":"Ubuntu ユーザー作成","date":"2019-09-18","tags":["server","note"],"type":"html"},"text":"<ol>\n    <li><code>adduser [user]</code></li>\n    <li><code>gpasswd -a [user] [group]</code></li>\n    </ol>\n"},"__N_SSG":true}
