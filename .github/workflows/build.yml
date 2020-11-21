@@ -27,7 +27,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - run: git checkout -B gh-pages && git reset --hard origin/main
-    - run: rm -rf docs
     - run: npm ci
     - run: npm run build
 

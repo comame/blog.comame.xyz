@@ -1,14 +1,17 @@
 ![Build](https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push)
 
 # blog.comame.xyz
+
 - [blog.comame.xyz](https://blog.comame.xyz)
 
-## ディレクトリ
-- entries: 記事のデータ
-- docs: ビルドされたファイル
-- src: ソースコード
+このブログは Next.js で作成し、GitHub Pages で配信しています。
 
-## 技術情報
+## ビルド方法
 
-### ビルド
-[Actions](./.github/workflows/build.yml) を参照
+[Workflow](./.github/workflows/build.yml) を参照。
+
+## ライセンス
+
+このブログのソースコードは [MIT](https://opensource.org/licenses/mit-license.php) です。
+
+ブログの記事内のコンテンツについては、comame が著作権を保有します。
