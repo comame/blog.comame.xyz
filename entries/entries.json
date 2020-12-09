@@ -232,4 +232,10 @@
     "date": "2020-08-30",
     "tags": [ "Blog" ],
     "type": "md"
+}, {
+    "entry": "pixel-pin-screen-game",
+    "title": "[Pixel] ゲーム中にうっかりホーム画面に戻ってしまう",
+    "date": "2020-12-10",
+    "tags": [ "Android" ],
+    "type": "md"
 }]
