@@ -21,8 +21,8 @@ const Footer: FunctionComponent<{
             <span>© { copyRightYear ?? new Date().getFullYear() } <a href='https://comame.xyz'>comame</a></span>
             {
                 entryPage && <>
-                    <span><a target='_blank' rel='noopener' href={ `https://github.com/comame/blog.comame.xyz/blob/master/entries/${ year }/${id}.${type}` }>source</a></span>
-                    <span><a target='_blank' rel='noopener' href={ `https://github.com/comame/blog.comame.xyz/commits/master/entries/${ year }/${id}.${type}` }>history</a></span>
+                    <span><a target='_blank' rel='noopener' href={ `https://github.com/comame/blog.comame.xyz/blob/main/entries/${ year }/${id}.${type}` }>source</a></span>
+                    <span><a target='_blank' rel='noopener' href={ `https://github.com/comame/blog.comame.xyz/commits/main/entries/${ year }/${id}.${type}` }>history</a></span>
                 </>
             }
             <span><a href="/feed.xml">Feed</a></span>
