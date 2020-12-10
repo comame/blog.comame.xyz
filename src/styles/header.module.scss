@@ -8,6 +8,7 @@
         background: var(--header-background-color);
         padding: 0 calc((100vw - var(--content-width)) / 2);
         z-index: 1000;
+        backdrop-filter: blur(var(--header-backdrop-blur));
     }
 
     a {

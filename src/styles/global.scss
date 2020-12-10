@@ -1,6 +1,6 @@
 :root {
     --background-color: white;
-    --header-background-color: rgba(255, 255, 255, 0.95);
+    --header-background-color: rgba(255, 255, 255, 0.8);
     --main-color: black;
     --link-color: #00e;
     --visited-link-color: #a52a2a;
@@ -8,12 +8,12 @@
     --share-logo-filter: none;
     --code-addition-color: #06770b;
     --code-deletion-color: #bb001f;
+    --header-backdrop-blur: 3px;
 
     font-size: 16px;
     --radius: 5px;
 }
 
-/* Dark mode */
 @media (prefers-color-scheme: dark) {
     :root {
         --background-color: #0a0a0a;
@@ -25,6 +25,19 @@
         --share-logo-filter: invert(80%);
         --code-addition-color: #47b94c;
         --code-deletion-color: #f9758b;
+    }
+}
+
+@media (prefers-reduced-motion) {
+    :root {
+        --header-backdrop-blur: 0;
+        --header-background-color: white;
+    }
+}
+
+@media (prefers-reduced-motion) and (prefers-color-scheme:dark) {
+    :root {
+        --header-background-color: rgb(30, 30, 30);
     }
 }
 
