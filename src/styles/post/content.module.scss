@@ -63,12 +63,11 @@
         content: counter(ol) '. ';
     }
 
-    /* I hate this... */
-    pre code:global(.addition) {
+    pre code[class=addition] {
         color: var(--code-addition-color);
     }
 
-    pre code:global(.deletion) {
+    pre code[class=deletion] {
         color: var(--code-deletion-color);
     }
 
