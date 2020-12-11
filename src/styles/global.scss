@@ -12,6 +12,10 @@
 
     font-size: 16px;
     --radius: 5px;
+
+    @supports not (backdrop-filter: blur(0)) {
+        --header-background-color: white;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,6 +29,10 @@
         --share-logo-filter: invert(80%);
         --code-addition-color: #47b94c;
         --code-deletion-color: #f9758b;
+
+        @supports not (backdrop-filter: blur(0)) {
+            --header-background-color: rgb(30, 30, 30);
+        }
     }
 }
 
