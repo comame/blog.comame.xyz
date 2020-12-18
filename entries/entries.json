@@ -380,5 +380,12 @@
             "Android"
         ],
         "type": "md"
+    },
+    {
+        "entry": "import-wsl",
+        "title": "WSL  を引っ越す",
+        "date": "2020-12-19",
+        "tags": [ "note" ],
+        "type": "md"
     }
 ]
