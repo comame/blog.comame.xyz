@@ -385,7 +385,18 @@
         "entry": "import-wsl",
         "title": "WSL  を引っ越す",
         "date": "2020-12-19",
-        "tags": [ "note" ],
+        "tags": [
+            "note"
+        ],
+        "type": "md"
+    },
+    {
+        "entry": "update-npm-packages",
+        "title": "npm のパッケージをとりあえず全部アップデートする方法",
+        "date": "2020-12-23",
+        "tags": [
+            "node.js"
+        ],
         "type": "md"
     }
 ]
