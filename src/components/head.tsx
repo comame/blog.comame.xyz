@@ -11,8 +11,8 @@ const MyHead: FunctionComponent<{
     description: string
 }> = ({ title, tagPage, postPage, entry, tag, description, children }) => {
     const url =
-        tagPage ? 'https://blog.comame.xyz/tags/' + tag + '/':
-        postPage ? 'https://blog.comame.xyz/entries/' + entry?.date + '/' + entry?.entry + '/':
+        tagPage ? 'https://blog.comame.xyz/tags/' + tag:
+        postPage ? 'https://blog.comame.xyz/entries/' + entry?.date + '/' + entry?.entry:
         'https://blog.comame.xyz'
 
     return <Head>
