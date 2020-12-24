@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next export -o docs && node src/lib/build/build",
+    "build": "node src/lib/build/build && next build",
     "compose": "node src/lib/compose/compose"
   },
   "devDependencies": {
