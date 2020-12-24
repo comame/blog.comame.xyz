@@ -10,10 +10,26 @@
 
     a {
         margin-right: 1rem;
+        cursor: pointer;
     }
     img {
         height: 2rem;
         width: 2rem;
         filter: var(--share-logo-filter);
+    }
+
+    #copied {
+        display: none;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        color: white;
+        padding: .5em 1em;
+        width: 100%;
+        background: rgba(32, 33, 35, 0.8);
+    }
+
+    #copied.shown {
+        display: block;
     }
 }
