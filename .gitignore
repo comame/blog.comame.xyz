@@ -1,3 +1,5 @@
 node_modules
 .next
 docs
+public/feed.xml
+public/sitemap.txt
