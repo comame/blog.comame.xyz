@@ -3,3 +3,4 @@ node_modules
 docs
 public/feed.xml
 public/sitemap.txt
+.vercel
