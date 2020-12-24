@@ -3,7 +3,7 @@ import { Entry } from '../../lib/entry'
 import styles from '../../styles/post/share.module.scss'
 
 const Share: FunctionComponent<{ entry: Entry }> = ({ entry }) => {
-    const href = 'https://blog.comame.xyz/entries/' + entry.date + '/' + entry.entry + '.html'
+    const href = 'https://blog.comame.xyz/entries/' + entry.date + '/' + entry.entry
     const twitterUrl = 'https://twitter.com/intent/tweet?text='+ encodeURIComponent(entry.title) + '%0a&url=' + encodeURIComponent(href) + '&related=comameito'
     const facebookUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(href)
 
@@ -14,9 +14,6 @@ const Share: FunctionComponent<{ entry: Entry }> = ({ entry }) => {
         </a>
         <a rel='noopener' target='_blank' title='Facebook で共有' href={ facebookUrl }>
             <img alt='Facebook で共有' src='/icons/facebook_logo.svg' />
-        </a>
-        <a title='URL をコピー' id='url-copy'>
-            <img alt='URL をコピー' src='/icons/link.svg' />
         </a>
         <script async src='/js/url-copy.js'></script>
     </div>
