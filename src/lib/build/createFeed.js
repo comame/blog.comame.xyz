@@ -36,7 +36,7 @@ module.exports = createFeed = () => {
     for (const entry of entries) {
         const title = entry.title
         const date = entry.date
-        const link = 'https://blog.comame.xyz/entries/' + date + '/' + entry.entry + '/'
+        const link = 'https://blog.comame.xyz/entries/' + date + '/' + entry.entry
 
         items.push(item(title, link, date))
     }
