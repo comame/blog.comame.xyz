@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "next dev",
-    "build": "NEXT_PUBLIC_STATIC=1 next build && next export -o docs && node src/lib/build/build",
+    "build": "next build && next export -o docs && node src/lib/build/build",
     "compose": "node src/lib/compose/compose"
   },
   "devDependencies": {

@@ -1,16 +1,27 @@
 import Head from 'next/head'
-import Link from '../lib/link'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 import Header from '../components/header'
 
 const NotFound = () => {
+    const router = useRouter()
+    const path = router.asPath
+
+    if ((path.startsWith('/entries/') || path.startsWith('/tags/')) && path.endsWith('.html')) {
+        useEffect(() => {
+            router.replace(path.slice(0, -5))
+        }, [])
+    }
+
     return <>
         <Head>
             <title>404 | blog.comame.xyz</title>
         </Head>
         <Header></Header>
         <div>
-            <p>Not Found</p>
+            <p>ページが見つかりませんでした</p>
             <p><Link href='/'><a>トップへ</a></Link></p>
         </div>
         <style jsx>{`
