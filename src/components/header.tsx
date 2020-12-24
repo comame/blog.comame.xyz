@@ -1,4 +1,4 @@
-import Link from '../lib/link'
+import Link from 'next/link'
 import styles from '../styles/header.module.scss'
 
 const Header = () => {

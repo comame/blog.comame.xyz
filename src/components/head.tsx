@@ -11,8 +11,8 @@ const MyHead: FunctionComponent<{
     description: string
 }> = ({ title, tagPage, postPage, entry, tag, description, children }) => {
     const url =
-        tagPage ? 'https://blog.comame.xyz/tags/' + tag + '.html' :
-        postPage ? 'https://blog.comame.xyz/entries/' + entry?.date + '/' + entry?.entry + '.' + entry?.type :
+        tagPage ? 'https://blog.comame.xyz/tags/' + tag + '/':
+        postPage ? 'https://blog.comame.xyz/entries/' + entry?.date + '/' + entry?.entry + '/':
         'https://blog.comame.xyz'
 
     return <Head>
@@ -23,6 +23,7 @@ const MyHead: FunctionComponent<{
         <meta property='og:site_name' content='blog.comame.xyz'></meta>
         <meta property='og:description' content={ description }></meta>
         <meta name='description' content={ description }></meta>
+        <link rel='canonical' href={ url }/>
         { children }
     </Head>
 }

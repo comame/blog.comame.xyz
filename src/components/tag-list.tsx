@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react'
-import Link from '../lib/link'
+import Link from 'next/link'
 import styles from '../styles/tag-list.module.scss'
 
 const TagList: FunctionComponent<{ tags: string[] }> = ({ tags }) => {
