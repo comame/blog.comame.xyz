@@ -1,8 +1,8 @@
 {
   "scripts": {
     "dev": "next dev",
-    "build": "node src/lib/build/build && next build",
-    "compose": "node src/lib/compose/compose"
+    "build": "node src/scripts/build && next build",
+    "compose": "node src/scripts/compose"
   },
   "devDependencies": {
     "@types/marked": "^1.2.0",
