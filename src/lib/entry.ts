@@ -11,6 +11,10 @@ export interface Entry {
     type: 'md'|'html'
 }
 
+function escapeHtmlText(text: string): string {
+    return text.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+}
+
 function isEntry(arg: any): arg is Entry {
     return (
         typeof arg == 'object' &&
@@ -74,18 +78,20 @@ export async function getEntry(year: string, id: string): Promise<{
     } else {
         const renderer = new marked.Renderer()
         renderer.link = function(href, title, text) {
+            const escaped = escapeHtmlText(text)
             if (
                 href?.startsWith('http://') ||
                 href?.startsWith('https://') ||
                 href?.startsWith('//')
             ) {
-                return `<a href=${href} target='_blank' rel='noopener'>${text}</a>`
+                return `<a href=${href} target='_blank' rel='noopener'>${escaped}</a>`
             } else {
-                return `<a href=${href}>${text}</a>`
+                return `<a href=${href}>${escaped}</a>`
             }
         }
         renderer.code = (code, info) => {
-            const lines = code.split(/\n/).map(it => {
+            const escapedCode = escapeHtmlText(code)
+            const lines = escapedCode.split(/\n/).map(it => {
                 if (info == 'diff' && it.startsWith('+ ')) {
                     return `<code class='addition'>${it}</code>`
                 } else if (info == 'diff' && it.startsWith('- ')) {
