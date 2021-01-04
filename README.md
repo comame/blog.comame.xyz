@@ -2,13 +2,9 @@
 
 # blog.comame.xyz
 
-- [blog.comame.xyz](https://blog.comame.xyz)
+[https://blog.comame.xyz](https://blog.comame.xyz)
 
-このブログは Next.js で作成し、GitHub Pages で配信しています。
-
-## ビルド方法
-
-[Workflow](./.github/workflows/build.yml) を参照。
+Next.js + Vercel
 
 ## ライセンス
 
