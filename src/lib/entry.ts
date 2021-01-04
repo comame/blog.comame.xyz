@@ -77,7 +77,7 @@ export async function getEntry(year: string, id: string): Promise<{
         }
     } else {
         const renderer = new marked.Renderer()
-        renderer.link = function(href, title, text) {
+        renderer.link = function(href, _title, text) {
             const escaped = escapeHtmlText(text)
             if (
                 href?.startsWith('http://') ||
