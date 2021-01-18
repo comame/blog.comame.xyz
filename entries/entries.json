@@ -398,5 +398,14 @@
             "nodejs"
         ],
         "type": "md"
+    },
+    {
+        "entry": "windows-lockscreen-registry",
+        "title": "Windows 10 のロック画面でスリープさせない設定",
+        "date": "2021-01-18",
+        "tags": [
+            "Windows"
+        ],
+        "type": "md"
     }
 ]
