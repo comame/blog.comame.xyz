@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react'
 import { Entry } from '../lib/entry'
 import styles from '../styles/footer.module.scss'
+import Link from 'next/link'
 
 const Footer: FunctionComponent<{
     entryPage?: boolean,
@@ -26,6 +27,7 @@ const Footer: FunctionComponent<{
                 </>
             }
             <span><a href="/feed.xml">Feed</a></span>
+            <span><Link href='/tags'>Tags</Link></span>
         </small>
     </footer>
 }
