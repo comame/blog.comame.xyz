@@ -386,7 +386,8 @@
         "title": "WSL  を引っ越す",
         "date": "2020-12-19",
         "tags": [
-            "note"
+            "note",
+            "Windows"
         ],
         "type": "md"
     },
@@ -404,6 +405,7 @@
         "title": "Windows 10 のロック画面でスリープさせない設定",
         "date": "2021-01-18",
         "tags": [
+            "note",
             "Windows"
         ],
         "type": "md"
