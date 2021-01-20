@@ -1,0 +1,12 @@
+.tag-page {
+    width: var(--content-width);
+    margin: 0 auto;
+
+    ul {
+        list-style: none;
+    }
+
+    li::before {
+        content: '- ';
+    }
+}
