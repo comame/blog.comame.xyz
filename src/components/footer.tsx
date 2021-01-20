@@ -3,11 +3,20 @@ import { Entry } from '../lib/entry'
 import styles from '../styles/footer.module.scss'
 import Link from 'next/link'
 
-const Footer: FunctionComponent<{
-    entryPage?: boolean,
-    entry?: Entry,
+type props = {
     copyRightYear?: number
-}> = ({ entryPage, entry, copyRightYear }) => {
+} & (
+    {} |
+    {
+        entryPage: true,
+        entry: Entry
+    }
+)
+
+const Footer: FunctionComponent<props> = (props) => {
+    const { copyRightYear } = props
+    const { entry, entryPage } = 'entryPage' in props ? props : { entry: null, entryPage: null }
+
     const year = entry?.date.split('-')[0]
     const id = entry?.entry
     const type = entry?.type
