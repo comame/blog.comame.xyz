@@ -409,5 +409,14 @@
             "Windows"
         ],
         "type": "md"
+    },
+    {
+        "entry": "ms-office-odt",
+        "title": "特定の Microsoft Office アプリのみインストールする",
+        "date": "2021-01-26",
+        "tags": [
+            "Windows"
+        ],
+        "type": "md"
     }
 ]
