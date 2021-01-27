@@ -37,6 +37,10 @@ export function listEntryMetadata(): Entry[] {
 
     return (rawEntries as RawEntry[]).map(entry => {
         const [ year, month, date ] = entry.date.split('-').map(it => Number.parseInt(it, 10))
+        if (typeof year == 'undefined' || typeof month == 'undefined' || typeof date == 'undefined') {
+            console.error('Invalid date in entries.json', { entry })
+            throw Error('Invalid date in entries.json')
+        }
         return {
             ...entry,
             date: { year, month, date }

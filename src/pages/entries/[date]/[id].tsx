@@ -50,7 +50,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
     const date = params?.date as string
     const id = params?.id as string
 
-    const { entry, rendered } = await getEntry(Number.parseInt(date.split('-')[0]), id)
+    const { entry, rendered } = await getEntry(Number.parseInt(date.split('-')[0] ?? '0'), id)
 
     return {
         props: {

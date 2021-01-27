@@ -40,7 +40,7 @@ export function createFeed(entries: EntryWithRenderedHTML[]) {
         items.push(item(title, link, toString(date), entry.html))
     }
 
-    const date = new Date(entries[0].date.year, entries[0].date.month - 1, entries[0].date.date)
+    const date = entries.length > 0 ? new Date(entries[0]!!.date.year, entries[0]!!.date.month - 1, entries[0]!!.date.date) : new Date()
     const updated =
         date.getFullYear() + '-' +
         (((date.getMonth() + 1) < 10) ? `0${date.getMonth() + 1}-` : `${date.getMonth() + 1}-`) +
