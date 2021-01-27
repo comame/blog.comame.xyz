@@ -69,6 +69,8 @@ export async function getEntry(year: number, id: string): Promise<{
     rendered: string
 }> {
     const entry = listEntryByYear(year).find(it => it.entry == id)
+
+    // listEntryMetadata() から取得した引数以外渡さないものとし、それ以外はランタイムエラーとする
     if (!entry) throw Error('entry not found')
 
     const filedir = path.join(process.cwd(), 'entries', year.toString())
