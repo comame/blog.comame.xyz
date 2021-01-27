@@ -60,7 +60,8 @@
         "date": "2018-10-21",
         "tags": [
             "Google",
-            "events"
+            "events",
+            "note"
         ],
         "type": "html"
     },
@@ -126,7 +127,7 @@
         "title": "Macbook Pro を買いました",
         "date": "2019-03-12",
         "tags": [
-            "random"
+            "note"
         ],
         "type": "html"
     },
@@ -173,8 +174,7 @@
         "title": "Ubuntu ユーザー作成",
         "date": "2019-09-18",
         "tags": [
-            "server",
-            "note"
+            "server"
         ],
         "type": "html"
     },
@@ -224,7 +224,8 @@
         "title": "Unlimited Mirai に参加しました",
         "date": "2019-10-30",
         "tags": [
-            "events"
+            "events",
+            "note"
         ],
         "type": "html"
     },
@@ -291,8 +292,7 @@
         "title": "WSL2 で Docker を自動起動する",
         "date": "2020-03-08",
         "tags": [
-            "Windows",
-            "note"
+            "Windows"
         ],
         "type": "html"
     },
@@ -330,8 +330,7 @@
         "title": "Kotlin プロジェクトを作成する",
         "date": "2020-06-28",
         "tags": [
-            "Kotlin",
-            "note"
+            "Kotlin"
         ],
         "type": "md"
     },
@@ -340,8 +339,7 @@
         "title": "Docker を使用したGradle のビルドを高速化する",
         "date": "2020-07-02",
         "tags": [
-            "Kotlin",
-            "note"
+            "Kotlin"
         ],
         "type": "md"
     },
@@ -359,7 +357,8 @@
         "title": "TOTP をフルスクラッチした",
         "date": "2020-07-20",
         "tags": [
-            "note"
+            "security",
+            "nodejs"
         ],
         "type": "md"
     },
@@ -383,10 +382,9 @@
     },
     {
         "entry": "import-wsl",
-        "title": "WSL  を引っ越す",
+        "title": "WSL を引っ越す",
         "date": "2020-12-19",
         "tags": [
-            "note",
             "Windows"
         ],
         "type": "md"
@@ -405,7 +403,6 @@
         "title": "Windows 10 のロック画面でスリープさせない設定",
         "date": "2021-01-18",
         "tags": [
-            "note",
             "Windows"
         ],
         "type": "md"
