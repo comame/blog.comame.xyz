@@ -18,11 +18,11 @@ const Tag: FunctionComponent<Props> = ({ entries, tag }) => {
             description={ tag }
         ></MyHead>
         <Header></Header>
-        <h2 className='tagName'>タグ: { tag }</h2>
+        <h2>タグ: { tag }</h2>
         <EntryList entries={ entries }></EntryList>
         <Footer></Footer>
         <style jsx>{`
-            .tagName {
+            h2 {
                 width: var(--content-width);
                 margin: 1rem auto;
             }

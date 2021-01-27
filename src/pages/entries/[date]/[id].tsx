@@ -32,7 +32,7 @@ const EntryPage: FunctionComponent<Props> = ({ entry, text }) => {
             description={ description }
         ></MyHead>
         <Header></Header>
-        <div className='post'>
+        <div>
             <Metadata entry={ entry }></Metadata>
             <Content text={ text }></Content>
             <Share entry={ entry }></Share>
