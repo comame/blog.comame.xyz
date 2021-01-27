@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react'
+import { FunctionComponent, useEffect, useState } from 'react'
 import { GetStaticPaths, InferGetStaticPropsType, GetStaticPropsContext } from 'next'
 import MyHead from '../../../components/head'
 import { listEntryMetadata, getEntry } from '../../../lib/entry'
@@ -15,6 +15,14 @@ const EntryPage: FunctionComponent<Props> = ({ entry, text }) => {
     const [ description, setDescription ] = useState<string>('')
     const year = entry.date.year
 
+    useEffect(() => {
+        // SSR されないことに気付いたが、まあ今までも SSR されていなかったので、気にしないことにする
+        const el = document.createElement('div')
+        el.innerHTML = text
+        const desc = el.textContent!!.replace(/\n/g, ' ').replace(/\s+/, ' ').slice(0, 137) + '...'
+        setDescription(desc)
+    }, [])
+
     return <>
         <MyHead
             postPage
@@ -25,7 +33,7 @@ const EntryPage: FunctionComponent<Props> = ({ entry, text }) => {
         <Header></Header>
         <div className='post'>
             <Metadata entry={ entry }></Metadata>
-            <Content text={ text } setDescription={ setDescription }></Content>
+            <Content text={ text }></Content>
             <Share entry={ entry }></Share>
         </div>
         <Footer entryPage entry={ entry } copyRightYear={ year }></Footer>
