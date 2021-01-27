@@ -1,5 +1,3 @@
-![Build](https://github.com/comame/blog.comame.xyz/workflows/Build/badge.svg?event=push)
-
 # blog.comame.xyz
 
 [https://blog.comame.xyz](https://blog.comame.xyz)

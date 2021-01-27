@@ -24,15 +24,20 @@ const Footer: FunctionComponent<props> = (props) => {
 
     return <footer className={ styles.footer }>
         <small>
-            <span>© { copyRightYear ?? new Date().getFullYear() } <a href={ config.copyrightUrl }>{ config.copyrightName }</a></span>
-            {
-                entryPage && <>
-                    <span><a target='_blank' rel='noopener' href={ `${ config.githubRepoUrl }/blob/main/entries/${ year }/${id}.${type}` }>source</a></span>
-                    <span><a target='_blank' rel='noopener' href={ `${ config.githubRepoUrl }/commits/main/entries/${ year }/${id}.${type}` }>history</a></span>
-                </>
-            }
+            <span><a className={ styles.copyright } target='_blank' rel='noopener' href={ config.copyrightUrl }>© { copyRightYear ?? new Date().getFullYear() + ' ' + config.copyrightName }</a></span>
             <span><a href="/api/feed.xml">Feed</a></span>
             <span><Link href='/tags'>Tags</Link></span>
+            {
+                !entryPage && <>
+                    <span><a target='_blank' rel='noopener' href={ config.githubRepoUrl }>GitHub</a></span>
+                </>
+            }
+            {
+                entryPage && <>
+                    <span><a target='_blank' rel='noopener' href={ `${ config.githubRepoUrl }/blob/main/entries/${ year }/${id}.${type}` }>GitHub</a></span>
+                    <span><a target='_blank' rel='noopener' href={ `${ config.githubRepoUrl }/commits/main/entries/${ year }/${id}.${type}` }>History</a></span>
+                </>
+            }
         </small>
     </footer>
 }
