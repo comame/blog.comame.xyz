@@ -35,7 +35,7 @@ export function createFeed(entries: EntryWithRenderedHTML[]) {
     for (const entry of entries) {
         const title = entry.title
         const date = entry.date
-        const link = 'https://blog.comame.xyz/entries/' + date + '/' + entry.entry
+        const link = 'https://blog.comame.xyz/entries/' + toString(date) + '/' + entry.entry
 
         items.push(item(title, link, toString(date), entry.html))
     }
