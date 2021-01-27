@@ -7,9 +7,9 @@ import styles from '../styles/entry-list.module.scss'
 const EntryList: FunctionComponent<{
     entries: Entry[]
 }> = ({ entries }) => {
-    const years: string[] = []
+    const years: number[] = []
     for (const entry of entries) {
-        const year = entry.date.split('-')[0]
+        const year = entry.date.year
         if (!years.includes(year)) {
             years.push(year)
         }
@@ -22,7 +22,7 @@ const EntryList: FunctionComponent<{
             <h2>{ year }</h2>
             <ul>{
                 entries
-                    .filter(entry => entry.date.split('-')[0] == year)
+                    .filter(entry => entry.date.year == year)
                     .map(entry => <EntryListItem key={ entry.entry } entry={ entry } />)
             }</ul>
         </Fragment>)

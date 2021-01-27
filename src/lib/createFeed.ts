@@ -1,3 +1,4 @@
+import { compareByDate, toString } from './date'
 import { Entry } from './entry'
 import { escapeHtmlText } from './escapeHtmlText'
 
@@ -29,25 +30,17 @@ export function createFeed(entries: EntryWithRenderedHTML[]) {
     </entry>
     `
 
-    entries.sort((a, b) => {
-        const [aYear, aMonth, aDay] = a.date.split('-').map(it => Number.parseInt(it))
-        const [bYear, bMonth, bDay] = b.date.split('-').map(it => Number.parseInt(it))
-
-        if (aYear != bYear) return bYear - aYear
-        if (aMonth != bMonth) return bMonth - aMonth
-        return bDay - aDay
-    })
+    entries.sort((a, b) => compareByDate(a.date, b.date))
 
     for (const entry of entries) {
         const title = entry.title
         const date = entry.date
         const link = 'https://blog.comame.xyz/entries/' + date + '/' + entry.entry
 
-        items.push(item(title, link, date, entry.html))
+        items.push(item(title, link, toString(date), entry.html))
     }
 
-    const latestEntryDate = entries[0].date.split('-').map(it => parseInt(it, 10))
-    const date = new Date(latestEntryDate[0], latestEntryDate[1] - 1, latestEntryDate[2])
+    const date = new Date(entries[0].date.year, entries[0].date.month - 1, entries[0].date.date)
     const updated =
         date.getFullYear() + '-' +
         (((date.getMonth() + 1) < 10) ? `0${date.getMonth() + 1}-` : `${date.getMonth() + 1}-`) +

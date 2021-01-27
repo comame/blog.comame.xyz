@@ -7,12 +7,13 @@ import Footer from '../../../components/footer'
 import Metadata from '../../../components/post/metadata'
 import Content from '../../../components/post/content'
 import Share from '../../../components/post/share'
+import { toString } from '../../../lib/date'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 const EntryPage: FunctionComponent<Props> = ({ entry, text }) => {
     const [ description, setDescription ] = useState<string>('')
-    const year = Number.parseInt(entry.date.split('-')[0])
+    const year = entry.date.year
 
     return <>
         <MyHead
@@ -37,7 +38,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     return {
         paths: listEntryMetadata().map(entry => ({
             params: {
-                date: entry.date,
+                date: toString(entry.date),
                 id: entry.entry
             }
         })),
@@ -49,7 +50,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
     const date = params?.date as string
     const id = params?.id as string
 
-    const { entry, rendered } = await getEntry(date.split('-')[0], id)
+    const { entry, rendered } = await getEntry(Number.parseInt(date.split('-')[0]), id)
 
     return {
         props: {

@@ -17,7 +17,7 @@ const Footer: FunctionComponent<props> = (props) => {
     const { copyRightYear } = props
     const { entry, entryPage } = 'entryPage' in props ? props : { entry: null, entryPage: null }
 
-    const year = entry?.date.split('-')[0]
+    const year = entry?.date.year
     const id = entry?.entry
     const type = entry?.type
 

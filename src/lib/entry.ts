@@ -1,18 +1,23 @@
-import entries from '../../entries/entries.json'
+import rawEntries from '../../entries/entries.json'
 import marked from 'marked'
 import { promises } from 'fs'
 import path from 'path'
 import { escapeHtmlText } from './escapeHtmlText'
+import { compareByDate } from './date'
 
-export interface Entry {
+export type Entry = {
     entry: string,
     title: string,
-    date: string,
+    date: { year: number, month: number, date: number },
     tags: string[],
     type: 'md'|'html'
 }
 
-function isEntry(arg: any): arg is Entry {
+type RawEntry = Omit<Entry, 'date'> & {
+    date: string
+}
+
+function isRawEntry(arg: any): arg is RawEntry {
     return (
         typeof arg == 'object' &&
         typeof arg?.entry == 'string' &&
@@ -25,28 +30,27 @@ function isEntry(arg: any): arg is Entry {
 }
 
 export function listEntryMetadata(): Entry[] {
-    if (!entries.every(it => isEntry(it))) {
+    if (!rawEntries.every(it => isRawEntry(it))) {
         console.error('Invalid entries.json')
         throw Error('Invalid entries.json')
     }
 
-    return entries.sort((a, b) => {
-        const [aYear, aMonth, aDay] = a.date.split('-').map(it => Number.parseInt(it))
-        const [bYear, bMonth, bDay] = b.date.split('-').map(it => Number.parseInt(it))
-
-        if (aYear != bYear) return bYear - aYear
-        if (aMonth != bMonth) return bMonth - aMonth
-        return bDay - aDay
-    }) as any
+    return (rawEntries as RawEntry[]).map(entry => {
+        const [ year, month, date ] = entry.date.split('-').map(it => Number.parseInt(it, 10))
+        return {
+            ...entry,
+            date: { year, month, date }
+        }
+    }).sort((a, b) => compareByDate(a.date, b.date))
 }
 
-export function listEntryByYear(year: string): Entry[] {
-    return listEntryMetadata().filter(entry => entry.date.split('-')[0] == year)
+export function listEntryByYear(year: number): Entry[] {
+    return listEntryMetadata().filter(entry => entry.date.year == year)
 }
 
 export function listAllTags(): string[] {
     const tagSet: Set<string> = new Set()
-    for (const entry of entries) {
+    for (const entry of listEntryMetadata()) {
         for (const tag of entry.tags) tagSet.add(tag)
     }
     return Array.from(tagSet)
@@ -56,14 +60,14 @@ export function listEntryByTag(tag: string): Entry[] {
     return listEntryMetadata().filter(entry => entry.tags.includes(tag))
 }
 
-export async function getEntry(year: string, id: string): Promise<{
+export async function getEntry(year: number, id: string): Promise<{
     entry: Entry,
     rendered: string
 }> {
     const entry = listEntryByYear(year).find(it => it.entry == id)
     if (!entry) throw Error('entry not found')
 
-    const filedir = path.join(process.cwd(), 'entries', year)
+    const filedir = path.join(process.cwd(), 'entries', year.toString())
     const filepath = filedir + '/' + entry.entry + '.' + entry.type
 
     const file = await promises.readFile(filepath, 'utf-8')
