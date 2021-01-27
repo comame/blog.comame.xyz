@@ -26,7 +26,7 @@ const Footer: FunctionComponent<{
                     <span><a target='_blank' rel='noopener' href={ `https://github.com/comame/blog.comame.xyz/commits/main/entries/${ year }/${id}.${type}` }>history</a></span>
                 </>
             }
-            <span><a href="/feed.xml">Feed</a></span>
+            <span><a href="/api/feed.xml">Feed</a></span>
             <span><Link href='/tags'>Tags</Link></span>
         </small>
     </footer>

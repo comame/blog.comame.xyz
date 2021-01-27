@@ -1,7 +1,12 @@
-module.exports = createFeed = () => {
+import { Entry } from './entry'
+import { escapeHtmlText } from './escapeHtmlText'
+
+type EntryWithRenderedHTML = Entry & { html: string }
+
+export function createFeed(entries: EntryWithRenderedHTML[]) {
     const items = []
 
-    const base = (updated, items) => `
+    const base = (updated: string, items: string[]) => `
     <?xml version='1.0'?>
     <feed xmlns='http://www.w3.org/2005/Atom'>
       <id>https://blog.comame.xyz/</id>
@@ -14,16 +19,16 @@ module.exports = createFeed = () => {
     </feed>
     `
 
-    const item = (title, link, date) => `
+    const item = (title: string, link: string, date: string, content: string) => `
     <entry>
       <title>${title}</title>
       <link rel='alternate' href='${link}' />
       <id>${link}</id>
       <updated>${date}T00:00:00Z</updated>
+      <summary>${escapeHtmlText(content, true)}</summary>
     </entry>
     `
 
-    const entries = require('../../../entries/entries.json')
     entries.sort((a, b) => {
         const [aYear, aMonth, aDay] = a.date.split('-').map(it => Number.parseInt(it))
         const [bYear, bMonth, bDay] = b.date.split('-').map(it => Number.parseInt(it))
@@ -38,10 +43,10 @@ module.exports = createFeed = () => {
         const date = entry.date
         const link = 'https://blog.comame.xyz/entries/' + date + '/' + entry.entry
 
-        items.push(item(title, link, date))
+        items.push(item(title, link, date, entry.html))
     }
 
-    const latestEntryDate = entries[0].date.split('-')
+    const latestEntryDate = entries[0].date.split('-').map(it => parseInt(it, 10))
     const date = new Date(latestEntryDate[0], latestEntryDate[1] - 1, latestEntryDate[2])
     const updated =
         date.getFullYear() + '-' +
