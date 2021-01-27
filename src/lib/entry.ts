@@ -2,6 +2,7 @@ import entries from '../../entries/entries.json'
 import marked from 'marked'
 import { promises } from 'fs'
 import path from 'path'
+import { escapeHtmlText } from './escapeHtmlText'
 
 export interface Entry {
     entry: string,
@@ -9,10 +10,6 @@ export interface Entry {
     date: string,
     tags: string[],
     type: 'md'|'html'
-}
-
-function escapeHtmlText(text: string): string {
-    return text.replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 
 function isEntry(arg: any): arg is Entry {
