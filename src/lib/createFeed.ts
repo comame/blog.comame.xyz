@@ -1,3 +1,4 @@
+import { config } from './config'
 import { compareByDate, toString } from './date'
 import { Entry } from './entry'
 import { escapeHtmlText } from './escapeHtmlText'
@@ -10,11 +11,11 @@ export function createFeed(entries: EntryWithRenderedHTML[]) {
     const base = (updated: string, items: string[]) => `
     <?xml version='1.0'?>
     <feed xmlns='http://www.w3.org/2005/Atom'>
-      <id>https://blog.comame.xyz/</id>
-      <title>blog.comame.xyz</title>
-      <link rel='alternate' href='https://blog.comame.xyz/' />
-      <link rel='self' href='https://blog.comame.xyz/feed.xml' />
-      <author><name>comame</name></author>
+      <id>https://${ config.hostname }/</id>
+      <title>${ config.hostname }</title>
+      <link rel='alternate' href='https://${ config.hostname }/' />
+      <link rel='self' href='https://${ config.hostname }/feed.xml' />
+      <author><name>${ config.copyrightName }</name></author>
       <updated>${updated}</updated>
       ${items.join('')}
     </feed>
@@ -35,7 +36,7 @@ export function createFeed(entries: EntryWithRenderedHTML[]) {
     for (const entry of entries) {
         const title = entry.title
         const date = entry.date
-        const link = 'https://blog.comame.xyz/entries/' + toString(date) + '/' + entry.entry
+        const link = `https://${ config.hostname }/entries/` + toString(date) + '/' + entry.entry
 
         items.push(item(title, link, toString(date), entry.html))
     }

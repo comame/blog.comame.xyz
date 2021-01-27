@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
 import Header from '../components/header'
+import { config } from '../lib/config'
 
 const NotFound = () => {
     const router = useRouter()
@@ -17,7 +18,7 @@ const NotFound = () => {
 
     return <>
         <Head>
-            <title>404 | blog.comame.xyz</title>
+            <title>404 | { config.hostname }</title>
         </Head>
         <Header></Header>
         <div>

@@ -1,10 +1,12 @@
 import { FunctionComponent, useState } from 'react'
+import { config } from '../../lib/config'
+import { toString } from '../../lib/date'
 import { Entry } from '../../lib/entry'
 import styles from '../../styles/post/share.module.scss'
 
 const Share: FunctionComponent<{ entry: Entry }> = ({ entry }) => {
-    const href = 'https://blog.comame.xyz/entries/' + entry.date + '/' + entry.entry
-    const twitterUrl = 'https://twitter.com/intent/tweet?text='+ encodeURIComponent(entry.title) + '%0a&url=' + encodeURIComponent(href) + '&related=comameito'
+    const href = `https://${ config.hostname }/entries/` + toString(entry.date) + '/' + entry.entry
+    const twitterUrl = 'https://twitter.com/intent/tweet?text='+ encodeURIComponent(entry.title) + '%0a&url=' + encodeURIComponent(href) + `&related=${ config.twitterRelatedUser }`
     const facebookUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(href)
 
     const [ isCopiedShown, setIsCopiedShown ] = useState(false)
@@ -14,7 +16,7 @@ const Share: FunctionComponent<{ entry: Entry }> = ({ entry }) => {
 
         const tmp = document.createElement('div')
         tmp.setAttribute('style', 'position: fixed; left: -100%;')
-        tmp.appendChild(document.createElement("pre")).textContent = "https://" + location.host + location.pathname;
+        tmp.appendChild(document.createElement("pre")).textContent = href
         document.body.appendChild(tmp)
         document.getSelection()?.selectAllChildren(tmp)
         document.execCommand('copy')
