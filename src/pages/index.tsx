@@ -5,12 +5,13 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import EntryList from '../components/entry-list'
 import { Entry, listEntryMetadata } from '../lib/entry'
+import { config } from '../lib/config'
 
 const Index: FunctionComponent<{
     entries: Entry[]
 }> = ({ entries }) => {
     return <>
-        <MyHead title='blog.comame.xyz' description='blog.comame.xyz'></MyHead>
+        <MyHead title={ config.hostname } description={ config.hostname }></MyHead>
         <Header></Header>
         <EntryList entries={ entries }></EntryList>
         <Footer></Footer>
