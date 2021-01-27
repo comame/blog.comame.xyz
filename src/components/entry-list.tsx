@@ -7,13 +7,11 @@ import styles from '../styles/entry-list.module.scss'
 const EntryList: FunctionComponent<{
     entries: Entry[]
 }> = ({ entries }) => {
-    const years: number[] = []
+    const yearsSet = new Set<number>()
     for (const entry of entries) {
-        const year = entry.date.year
-        if (!years.includes(year)) {
-            years.push(year)
-        }
+        yearsSet.add(entry.date.year)
     }
+    const years = Array.from(yearsSet)
     years.sort((a: any, b: any) => (b - a))
 
 
