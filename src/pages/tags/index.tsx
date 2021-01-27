@@ -5,7 +5,6 @@ import Footer from '../../components/footer'
 import MyHead from '../../components/head'
 import Header from '../../components/header'
 import { listAllTags, listEntryMetadata } from '../../lib/entry'
-import styles from '../../styles/tag-list-page.module.scss'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -16,7 +15,7 @@ const Index: FC<Props> = ({ tags, allEntries }) => {
             description='タグの一覧'
         ></MyHead>
         <Header></Header>
-        <div className={ styles['tag-page'] }>
+        <div>
             <h2>タグの一覧</h2>
             <ul>{
                 tags.sort().map(tag => <li key={tag}>
@@ -25,6 +24,24 @@ const Index: FC<Props> = ({ tags, allEntries }) => {
             }</ul>
         </div>
         <Footer></Footer>
+        <style jsx>{`
+            div {
+                width: var(--content-width);
+                margin: 0 auto;
+            }
+
+            ul {
+                list-style: none;
+            }
+
+            li {
+                margin-bottom: .5rem;
+            }
+
+            li::before {
+                content: '- ';
+            }
+        `}</style>
     </>
 }
 

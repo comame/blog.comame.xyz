@@ -2,17 +2,27 @@ import { FunctionComponent } from 'react'
 import Head from 'next/head'
 import { Entry } from '../lib/entry'
 
-const MyHead: FunctionComponent<{
+type tagPageProps = {
+    tagPage: true,
+    tag: string
+}
+
+type entryPageProps = {
+    postPage: true,
+    entry: Entry
+}
+
+type props = (tagPageProps | entryPageProps | {}) & {
     title: string,
-    tagPage?: boolean,
-    postPage?: boolean,
-    tag?: string
-    entry?: Entry,
     description: string
-}> = ({ title, tagPage, postPage, entry, tag, description, children }) => {
+}
+
+const MyHead: FunctionComponent<props> = (props) => {
+    const { title, description } = props
+
     const url =
-        tagPage ? 'https://blog.comame.xyz/tags/' + tag:
-        postPage ? 'https://blog.comame.xyz/entries/' + entry?.date + '/' + entry?.entry:
+        'tagPage' in props ? 'https://blog.comame.xyz/tags/' + props.tag:
+        'postPage' in props ? 'https://blog.comame.xyz/entries/' + props.entry.date + '/' + props.entry?.entry:
         'https://blog.comame.xyz'
 
     return <Head>
@@ -24,7 +34,6 @@ const MyHead: FunctionComponent<{
         <meta property='og:description' content={ description }></meta>
         <meta name='description' content={ description }></meta>
         <link rel='canonical' href={ url }/>
-        { children }
     </Head>
 }
 
