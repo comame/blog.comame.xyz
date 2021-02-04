@@ -11,7 +11,7 @@ const Index: FunctionComponent<{
     entries: Entry[]
 }> = ({ entries }) => {
     return <>
-        <MyHead title={ config.hostname } description={ config.hostname }></MyHead>
+        <MyHead description={ config.hostname }></MyHead>
         <Header></Header>
         <EntryList entries={ entries }></EntryList>
         <Footer></Footer>

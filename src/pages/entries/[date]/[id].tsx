@@ -8,7 +8,6 @@ import Metadata from '../../../components/post/metadata'
 import Content from '../../../components/post/content'
 import Share from '../../../components/post/share'
 import { toString } from '../../../lib/date'
-import { config } from '../../../lib/config'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -27,7 +26,7 @@ const EntryPage: FunctionComponent<Props> = ({ entry, text }) => {
     return <>
         <MyHead
             postPage
-            title={ entry.title + ` | ${ config.hostname }` }
+            title={ entry.title }
             entry={ entry }
             description={ description }
         ></MyHead>

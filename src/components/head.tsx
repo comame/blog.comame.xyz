@@ -14,7 +14,7 @@ type entryPageProps = {
 }
 
 type props = (tagPageProps | entryPageProps | {}) & {
-    title: string,
+    title?: string,
     description: string
 }
 
@@ -27,7 +27,9 @@ const MyHead: FunctionComponent<props> = (props) => {
         `https://${ config.hostname }`
 
     return <Head>
-        <title>{ title }</title>
+        <title>{
+            title == undefined ? config.hostname : (title + ' | ' + config.hostname )
+        }</title>
         <meta property='og:type' content='article'></meta>
         <meta property='og:url' content={ url }></meta>
         <meta property='og:title' content={ title }></meta>

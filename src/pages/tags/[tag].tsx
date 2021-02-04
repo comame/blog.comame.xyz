@@ -5,7 +5,6 @@ import Header from '../../components/header'
 import Footer from '../../components/footer'
 import EntryList from '../../components/entry-list'
 import { listAllTags, listEntryByTag } from '../../lib/entry'
-import { config } from '../../lib/config'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -13,7 +12,7 @@ const Tag: FunctionComponent<Props> = ({ entries, tag }) => {
     return <>
         <MyHead
             tagPage
-            title={ tag + ` | ${ config.hostname }`}
+            title={ tag }
             tag={ tag }
             description={ tag }
         ></MyHead>
