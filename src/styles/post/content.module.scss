@@ -22,7 +22,7 @@
 
     code {
         background: var(--code-color);
-        border-radius: var(--radius);
+        border-radius: var(--inline-code-radius);
         font-family: consolas, 'メイリオ', monospace; // Windows 用。他ではそのまま綺麗に表示できる、多分。
         padding: 2px 4px;
         word-break: break-all;

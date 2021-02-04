@@ -25,6 +25,10 @@ const Index: FC<Props> = ({ tags, allEntries }) => {
         </div>
         <Footer></Footer>
         <style jsx>{`
+            h2 {
+                font-size: var(--h2-size);
+            }
+
             div {
                 width: var(--content-width);
                 margin: 0 auto;
