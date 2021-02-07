@@ -22,8 +22,6 @@
     --block-code-padding: .5rem;
     --inline-code-radius: 5px;
 
-    font-size: 16px;
-
     @supports not (backdrop-filter: blur(0)) {
         --header-background-color: white;
     }
