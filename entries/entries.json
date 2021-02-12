@@ -415,5 +415,14 @@
             "Windows"
         ],
         "type": "md"
+    },
+    {
+        "entry": "built-pc",
+        "title": "自作 PC を組んだ",
+        "date": "2021-02-11",
+        "tags": [
+            "note"
+        ],
+        "type": "md"
     }
 ]
