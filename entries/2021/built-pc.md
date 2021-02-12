@@ -22,7 +22,7 @@ LGA1200 で MicroATX で Wi-Fi がもともと付いていて安いもの。Amaz
 
 ### ビデオカード
 
-[MSI GEFORCE GTX 1660 SUPER™ VENTUS XS OC](https://jp.msi.com/Graphics-Card/GeForce-GTX-1660-SUPER-VENTUS-XS-OC)
+[MSI GEFORCE GTX 1660 SUPER AERO ITX OC](https://jp.msi.com/Graphics-Card/GeForce-GTX-1660-SUPER-AERO-ITX-OC)
 
 今までのパソコンではゲーム性能などが基本的に期待できなかったため、とりあえずゲームや VR が動くもののうち、安いものを選んだ。結局ゲームはほとんどやらないので、より高いグレードのものは必要ないと判断した。
 
