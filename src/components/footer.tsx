@@ -24,7 +24,7 @@ const Footer: FunctionComponent<props> = (props) => {
 
     return <footer className={ styles.footer }>
         <small>
-            <span><a className={ styles.copyright } target='_blank' rel='noopener' href={ config.copyrightUrl }>© { copyRightYear ?? new Date().getFullYear() + ' ' + config.copyrightName }</a></span>
+            <span><a className={ styles.copyright } target='_blank' rel='noopener' href={ config.copyrightUrl }>© { (copyRightYear ?? new Date().getFullYear()) + ' ' + config.copyrightName }</a></span>
             <span><a href="/api/feed.xml">Feed</a></span>
             <span><Link href='/tags'>Tags</Link></span>
             {
