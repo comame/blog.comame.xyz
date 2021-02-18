@@ -422,5 +422,14 @@
             "note"
         ],
         "type": "md"
+    },
+    {
+        "entry": "my-workspace-setup",
+        "title": "自分の作業環境のセットアップ",
+        "date": "2021-02-12",
+        "tags": [
+            "note"
+        ],
+        "type": "md"
     }
 ]
