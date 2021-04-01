@@ -25,6 +25,7 @@ Chrome には、アドレスバーに特定のキーワードを入力すると�
 |rfc|RFC を Google で検索|https://www.google.com/search?q=site%3Ahttps%3A%2F%2Ftools.ietf.org%2Fhtml+%s
 |npm|npm パッケージの検索|https://www.npmjs.com/search?q=%s|
 |docker|Docker Hub|https://hub.docker.com/search?q=%s&type=image|
+|eng|Google を英語で検索|https://google.com/search?gl=us&hl=en&gws_rd=cr&pws=0&q=%s|
 
 ## その他
 
