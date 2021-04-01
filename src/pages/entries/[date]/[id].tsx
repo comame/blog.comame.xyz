@@ -44,7 +44,7 @@ export default EntryPage
 
 export const getStaticPaths: GetStaticPaths = async () => {
     return {
-        paths: listEntryMetadata().map(entry => ({
+        paths: listEntryMetadata(true).map(entry => ({
             params: {
                 date: toString(entry.date),
                 id: entry.entry

@@ -29,7 +29,7 @@ function isRawEntry(arg: any): arg is RawEntry {
     )
 }
 
-export function listEntryMetadata(): Entry[] {
+export function listEntryMetadata(includePrivate = false): Entry[] {
     if (!rawEntries.every(it => isRawEntry(it))) {
         console.error('Invalid entries.json')
         throw Error('Invalid entries.json')
@@ -45,6 +45,8 @@ export function listEntryMetadata(): Entry[] {
             ...entry,
             date: { year, month, date }
         }
+    }).filter(entry => {
+        return includePrivate || !entry.entry.startsWith('_')
     }).sort((a, b) => compareByDate(a.date, b.date))
 }
 
@@ -68,7 +70,9 @@ export async function getEntry(year: number, id: string): Promise<{
     entry: Entry,
     rendered: string
 }> {
-    const entry = listEntryByYear(year).find(it => it.entry == id)
+    const entry = (!id.startsWith('_')) ?
+        listEntryByYear(year).find(it => it.entry == id) :
+        listEntryMetadata(true).find(entry => entry.date.year === year && entry.entry === id) // 非公開記事
 
     // listEntryMetadata() から取得した引数以外渡さないものとし、それ以外はランタイムエラーとする
     if (!entry) throw Error('entry not found')
