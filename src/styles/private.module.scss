@@ -1,0 +1,14 @@
+.private {
+    --font-size: max(3vw, 2rem);
+
+    position: fixed;
+    top: 30vh;
+    left: 50vw;
+
+    transform: translate(-50%, -50%);
+
+    font-size: var(--font-size);
+    font-weight: bold;
+
+    color: var(--private-color);
+}

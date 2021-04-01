@@ -8,6 +8,7 @@ import Metadata from '../../../components/post/metadata'
 import Content from '../../../components/post/content'
 import Share from '../../../components/post/share'
 import { toString } from '../../../lib/date'
+import Private from '../../../components/private'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -34,9 +35,11 @@ const EntryPage: FunctionComponent<Props> = ({ entry, text }) => {
         <div>
             <Metadata entry={ entry }></Metadata>
             <Content text={ text }></Content>
-            <Share entry={ entry }></Share>
+            { !entry.entry.startsWith('_') && <Share entry={ entry }></Share> }
         </div>
         <Footer entryPage entry={ entry } copyRightYear={ year }></Footer>
+
+        { entry.entry.startsWith('_') && <Private /> }
     </>
 }
 
