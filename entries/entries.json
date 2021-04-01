@@ -431,5 +431,14 @@
             "note"
         ],
         "type": "md"
+    },
+    {
+        "entry": "softether-systemd-service",
+        "title": "Softether を systemd のサービスとして起動する",
+        "date": "2021-03-16",
+        "tags": [
+            "server"
+        ],
+        "type": "md"
     }
 ]
