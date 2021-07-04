@@ -449,5 +449,14 @@
             "events"
         ],
         "type": "md"
+    },
+    {
+        "entry": "install-windows11-hyperv",
+        "title": "Windows 11 の Insider Preview を Hyper-V でインストールする",
+        "date": "2021-07-04",
+        "tags": [
+            "Windows"
+        ],
+        "type": "md"
     }
 ]
