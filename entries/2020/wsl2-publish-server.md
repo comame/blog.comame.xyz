@@ -35,7 +35,7 @@ $ ifconfig eth0 | grep inet
 
 ```
 $port = Read-Host 'Port'
-$internal_ip = bash.exe -c "ifconfig eth0 | grep 'inet ' | awk '{ print `$2 }'"
+$internal_ip = bash.exe -c "ip addr show eth0 | sed -nEe 's/^[ \t]*inet[ \t]*([0-9.]+)\/.*$/\1/p'"
 
 netsh interface portproxy delete v4tov4 listenport=$port listenaddress=0.0.0.0
 netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=$port connectaddress=$internal_ip connectport=$port
