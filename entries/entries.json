@@ -458,5 +458,14 @@
             "Windows"
         ],
         "type": "md"
+    },
+    {
+        "entry": "wsl2-on-hyperv",
+        "title": "Hyper-V の Windows 11 で WSL2 を実行する",
+        "date": "2021-09-23",
+        "tags": [
+            "Windows"
+        ],
+        "type": "md"
     }
 ]
