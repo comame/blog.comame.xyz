@@ -37,6 +37,7 @@
 1. コンテナを再起動
 1. `$ /usr/bin/fcitx-configtool`
 
+
 1. `$ apt install uim-fep uim-mozc`
 1. 後述の設定ファイルを `$HOME/.uim` に記述する
 1. `$ uim-fep`
@@ -46,6 +47,10 @@
 (define-key generic-on-key? '("<Control> "))
 (define-key generic-off-key? '("<Control> "))
 ```
+
+### mozc の設定
+
+`/usr/lib/mozc/mozc_tool --mode=config_dialog` で設定する。もしなければ `apt install mozc-utils-gui`
 
 ### SSH がつながらないとき、MTU を変更する
 
