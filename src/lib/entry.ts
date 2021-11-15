@@ -10,10 +10,11 @@ export type Entry = {
     title: string,
     date: { year: number, month: number, date: number },
     tags: string[],
-    type: 'md'|'html'
+    type: 'md'|'html',
+    unlisted: boolean
 }
 
-type RawEntry = Omit<Entry, 'date'> & {
+type RawEntry = Omit<Entry, 'date' | 'unlisted'> & {
     date: string
 }
 
@@ -29,29 +30,27 @@ function isRawEntry(arg: any): arg is RawEntry {
     )
 }
 
-export function listEntryMetadata(includePrivate = false): Entry[] {
+export function listEntryMetadata(includeUnlisted = false): Entry[] {
     if (!rawEntries.every(it => isRawEntry(it))) {
         console.error('Invalid entries.json')
         throw Error('Invalid entries.json')
     }
 
     return (rawEntries as RawEntry[]).map(entry => {
-        const [ year, month, date ] = entry.date.split('-').map(it => Number.parseInt(it, 10))
-        if (typeof year == 'undefined' || typeof month == 'undefined' || typeof date == 'undefined') {
-            console.error('Invalid date in entries.json', { entry })
-            throw Error('Invalid date in entries.json')
-        }
+        // isRawEntry() で担保する
+        const [ year, month, date ] = entry.date.split('-').map(it => Number.parseInt(it, 10)) as [ number, number, number ]
         return {
             ...entry,
-            date: { year, month, date }
+            date: { year, month, date },
+            unlisted: entry.entry.startsWith('_')
         }
     }).filter(entry => {
-        return includePrivate || !entry.entry.startsWith('_')
+        if (includeUnlisted) {
+            return true
+        } else {
+            return !entry.unlisted
+        }
     }).sort((a, b) => compareByDate(a.date, b.date))
-}
-
-export function listEntryByYear(year: number): Entry[] {
-    return listEntryMetadata().filter(entry => entry.date.year == year)
 }
 
 export function listAllTags(): string[] {
@@ -70,9 +69,8 @@ export async function getEntry(year: number, id: string): Promise<{
     entry: Entry,
     rendered: string
 }> {
-    const entry = (!id.startsWith('_')) ?
-        listEntryByYear(year).find(it => it.entry == id) :
-        listEntryMetadata(true).find(entry => entry.date.year === year && entry.entry === id) // 非公開記事
+    const entry =
+        listEntryMetadata(true).find(entry => entry.date.year === year && entry.entry === id)
 
     // listEntryMetadata() から取得した引数以外渡さないものとし、それ以外はランタイムエラーとする
     if (!entry) throw Error('entry not found')

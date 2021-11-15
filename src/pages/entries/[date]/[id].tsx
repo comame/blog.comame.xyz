@@ -35,11 +35,11 @@ const EntryPage: FunctionComponent<Props> = ({ entry, text }) => {
         <div>
             <Metadata entry={ entry }></Metadata>
             <Content text={ text }></Content>
-            { !entry.entry.startsWith('_') && <Share entry={ entry }></Share> }
+            { !entry.unlisted && <Share entry={ entry }></Share> }
         </div>
         <Footer entryPage entry={ entry } copyRightYear={ year }></Footer>
 
-        { entry.entry.startsWith('_') && <Private /> }
+        { entry.unlisted && <Private /> }
     </>
 }
 
