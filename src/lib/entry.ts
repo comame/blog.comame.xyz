@@ -1,5 +1,5 @@
 import rawEntries from '../../entries/entries.json'
-import marked from 'marked'
+import { marked, Renderer } from 'marked'
 import { promises } from 'fs'
 import path from 'path'
 import { escapeHtmlText } from './escapeHtmlText'
@@ -87,7 +87,7 @@ export async function getEntry(year: number, id: string): Promise<{
             entry, rendered: file
         }
     } else {
-        const renderer = new marked.Renderer()
+        const renderer = new Renderer()
         renderer.link = function(href, _title, text) {
             const escaped = escapeHtmlText(text)
             if (
