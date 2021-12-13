@@ -37,16 +37,7 @@
 1. コンテナを再起動
 1. `$ /usr/bin/fcitx-configtool`
 
-
-1. `$ apt install uim-fep uim-mozc`
-1. 後述の設定ファイルを `$HOME/.uim` に記述する
-1. `$ uim-fep`
-
-```
-(define default-im-name 'mozc)
-(define-key generic-on-key? '("<Control> "))
-(define-key generic-off-key? '("<Control> "))
-```
+どこかのタイミングで、ターミナルでも Chrome OS の日本語入力が使用できるようになったらしい。ただ、`Ctrl + Space` の入力切替は効かない様子。
 
 ### mozc の設定
 
