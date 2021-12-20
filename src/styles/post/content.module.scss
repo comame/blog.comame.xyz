@@ -1,6 +1,4 @@
 .content {
-    word-break: break-all;
-
     & > * {
         margin-right: auto;
         margin-left: auto;
@@ -13,6 +11,7 @@
 
     a {
         text-decoration: underline;
+        word-break: break-all;
     }
 
     h2 {
