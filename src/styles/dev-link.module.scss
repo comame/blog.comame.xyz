@@ -1,0 +1,16 @@
+.dev-link {
+    a {
+        bottom: 2em;
+        right: 2em;
+
+        display: inline-block;
+        padding: .5em 2em;
+
+        position: fixed;
+        background: var(--private-color);
+
+        z-index: 10000;
+
+        color: black;
+    }
+}
