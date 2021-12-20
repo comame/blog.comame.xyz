@@ -16,10 +16,10 @@ Hyper-V の NAT をこねくり回そうとしたけれども、うまくいか�
 
 ### connectaddress
 
-WSL2 に割り当てられた内部 IP を指定する必要がある。WSL2 内で
+WSL 2 に割り当てられた内部 IP を指定する必要がある。WSL 2 内で
 
 ```
-# bash (WSL2)
+# bash (WSL 2)
 
 $ ifconfig eth0 | grep inet
 ```

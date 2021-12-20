@@ -1,4 +1,4 @@
-Hyper-V にインストールしている Windows 11 で WSL2 を動かすことができた。
+Hyper-V にインストールしている Windows 11 で WSL 2 を動かすことができた。
 
 ## 手順
 
@@ -16,6 +16,6 @@ PowerShell で以下のコマンドを実行する。`<VMName>` は `Get-VM` で
 Set-VMProcessor -VMName <VMName> -ExposeVirtualizationExtensions $true
 ```
 
-WSL2 は Hyper-V を使用しているため、この方法で仮想マシン内で仮想環境を使用できる。
+WSL 2 は Hyper-V を使用しているため、この方法で仮想マシン内で仮想環境を使用できる。
 
 参考: <https://docs.microsoft.com/ja-jp/virtualization/hyper-v-on-windows/user-guide/nested-virtualization>
