@@ -467,5 +467,15 @@
             "Windows"
         ],
         "type": "md"
+    },
+    {
+        "entry": "chromeos-smb",
+        "title": "Chromebook から Windows のフォルダにアクセスする",
+        "date": "2021-12-20",
+        "tags": [
+            "Chrome OS",
+            "Windows"
+        ],
+        "type": "md"
     }
 ]
