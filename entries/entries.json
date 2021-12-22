@@ -477,5 +477,15 @@
             "Windows"
         ],
         "type": "md"
+    },
+    {
+        "entry": "_rtainmisw",
+        "title": "RTA in MISW を開催しました",
+        "date": "2021-12-24",
+        "tags": [
+            "note",
+            "AdC2021"
+        ],
+        "type": "md"
     }
 ]
