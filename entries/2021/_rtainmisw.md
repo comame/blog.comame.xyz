@@ -1,5 +1,20 @@
 12/23, 24 の二日間、RTA in MISW の配信をお手伝いした。想像していたより遥かに大規模なものになったので、経緯を書く。
 
+<iframe class='youtube-embed' src="https://www.youtube.com/embed/B-DTLg1QKio" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe class='youtube-embed' src="https://www.youtube.com/embed/Hn6b_luWGCo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<style>
+    .youtube-embed {
+        display: block;
+
+        width: var(--content-width);
+        height: calc(var(--content-width) / 16 * 9);
+
+        margin: 1em auto;
+    }
+</style>
+
 ### 11月上旬
 
 [2019 年のアドベントカレンダー](https://hackmd.io/y3kTvgErQo24DOo5YvqOEQ) でしうまいくんが走った「星のカービィ 参上！ドロッチェ団」を 2021 年のアドベントカレンダーネタとしてもう一度走ろうという話が雑談レベルで挙がり、さらにかっつくんもスーパーマリオ64 を走ろうかなと言い出したことで、RTA 配信の機運が高まった。
