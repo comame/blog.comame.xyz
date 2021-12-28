@@ -8,8 +8,8 @@
     .youtube-embed {
         display: block;
 
-        width: var(--content-width);
-        height: calc(var(--content-width) / 16 * 9);
+        width: var(--image-width);
+        height: calc(var(--image-width) / 16 * 9);
 
         margin: 1em auto;
     }
