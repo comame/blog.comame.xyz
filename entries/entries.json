@@ -487,5 +487,14 @@
             "AdC2021"
         ],
         "type": "md"
+    },
+    {
+        "entry": "chromebook",
+        "title": "Chromebook は気軽に使えて良い",
+        "date": "2022-01-07",
+        "tags": [
+            "Chrome OS"
+        ],
+        "type": "md"
     }
 ]
