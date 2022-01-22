@@ -33,3 +33,7 @@ HTTP サーバは Ingress を、それ以外は `type=LoadBalancer` の Service 
 というよりやらないといけないこと
 
 - cert-manager の導入
+
+## マニフェストのレポジトリ
+
+<https://github.com/comame/kubernetes-manifests>
