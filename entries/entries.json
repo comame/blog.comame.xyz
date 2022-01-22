@@ -496,5 +496,15 @@
             "Chrome OS"
         ],
         "type": "md"
+    },
+    {
+        "entry": "k8s-at-home",
+        "title": "自宅に k8s を構築した",
+        "date": "2022-01-23",
+        "tags": [
+            "server",
+            "Kubernetes"
+        ],
+        "type": "md"
     }
 ]
