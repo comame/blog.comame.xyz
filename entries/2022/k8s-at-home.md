@@ -24,6 +24,16 @@
 
 ingress-nginx を使用した。`svc/ingress-nginx-controller` に `.spec.loadBalancerIP` を指定して、IP を固定化することにした。将来的に困ることがあればまた考えることにする。
 
+### cert-manager のセットアップ
+
+CloudFlare API を使用して、dns-01 で検証するようにした。
+
+### Docker Registry を構築した
+
+HTTPS でないとエラーが出るため、`comame.dev` をローカルサブネットに向けて、Let's Encrypt で証明書を発行した。Ingress に `nginx.ingress.kubernetes.io/proxy-body-size` のアノテーションを指定しておかないと、大きいイメージをアップロードするときに怒られる。
+
+インターネットからアクセスすることは想定していないものの、Ingress はインターネットから見えてしまうため、Host ヘッダフォージェリを恐れて一応認証を設定しておいた。
+
 ## 考えている運用方針
 
 HTTP サーバは Ingress を、それ以外は `type=LoadBalancer` の Service に `loadBalancerIP` を直接指定して IP を固定化してしまおうと考えている。Node を増やすつもりはないので、当面の間は困らないだろうと妄想している。
@@ -32,4 +42,5 @@ HTTP サーバは Ingress を、それ以外は `type=LoadBalancer` の Service 
 
 というよりやらないといけないこと
 
-- cert-manager の導入
+- cert-manager の導入 (やった)
+- 証明書の自動更新
