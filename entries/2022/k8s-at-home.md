@@ -18,7 +18,7 @@
 
 ### MetalLB のセットアップ
 
-`type=LoadBalancer` を使いたかったので、MetalLB のセットアップをした。[IP アドレスの範囲を指定する](https://metallb.universe.tf/configuration/) 場面で少しつまり、ルータの設定が必要なのかと右往左往していた。ネットワークに対する理解の浅さが露呈した。最終的に、自宅内ネットワークのサブネット内の IP アドレスを指定してみたところ、なぜかうまく動いた。
+`type=LoadBalancer` を使いたかったので、MetalLB のセットアップをした。[IP アドレスの範囲を指定する](https://metallb.universe.tf/configuration/) 場面で少しつまり、ルータの設定が必要なのかと右往左往していた。ネットワークに対する理解の浅さが露呈した (友人に聞いたら MetalLB は ARP を喋るということを教えてもらった)。最終的に、自宅内ネットワークのサブネット内の IP アドレスを指定してみたところ、なぜかうまく動いた。
 
 ### Ingress のセットアップ
 
@@ -44,3 +44,7 @@ HTTP サーバは Ingress を、それ以外は `type=LoadBalancer` の Service 
 
 - cert-manager の導入 (やった)
 - 証明書の自動更新
+
+## マニフェストのレポジトリ
+
+<https://github.com/comame/kubernetes-manifests>
