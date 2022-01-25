@@ -26,13 +26,19 @@ ingress-nginx を使用した。`svc/ingress-nginx-controller` に `.spec.loadBa
 
 ### cert-manager のセットアップ
 
-CloudFlare API を使用して、dns-01 で検証するようにした。
+CloudFlare API を使用して、dns-01 で検証するようにした。ClusterIssuer を使って Ingress を別の Namespace に配置しようと思ったが、dns-01 用の Cloudflare API トークンを保存している Secret を見に行けずにチャレンジが失敗するので、結局 Ingress 用の Namespace を用意することにした。
 
 ### Docker Registry を構築した
 
 HTTPS でないとエラーが出るため、`comame.dev` をローカルサブネットに向けて、Let's Encrypt で証明書を発行した。Ingress に `nginx.ingress.kubernetes.io/proxy-body-size` のアノテーションを指定しておかないと、大きいイメージをアップロードするときに怒られる。
 
 インターネットからアクセスすることは想定していないものの、Ingress はインターネットから見えてしまうため、Host ヘッダフォージェリを恐れて一応認証を設定しておいた。
+
+### Kubernetes Dashboard を設置してみた
+
+今動かしているクラスターのバージョンは 1.23 らしいので、[ドキュメントに書いてあるコマンド](https://kubernetes.io/ja/docs/tasks/access-application-cluster/web-ui-dashboard/) を愚直に叩くと、絶妙に API リクエストが失敗するものがデプロイされてしまう。[GitHub のリリースページ](https://github.com/kubernetes/dashboard/releases) にバージョンごとの対応表があるが、1.23 の情報はなかったのでとりあえず最新の 2.4.0 をいれておくことにした。
+
+いまのところ、Pod のログが見れて便利だな程度なので、将来的にどうするかは検討したい。
 
 ## 考えている運用方針
 
