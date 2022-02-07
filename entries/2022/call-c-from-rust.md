@@ -1,6 +1,7 @@
 Rust のコードから C を呼び出して Hello, world! するだけ。
 
-## C のコードを書いてコンパイルする
+## 手順
+### C のコードを書いてコンパイルする
 
 適当にコードを書く。
 
@@ -22,9 +23,9 @@ $ ar crs libhello_world.a hello_world.o
 ```
 
 
-## Rust から呼び出す。
+### Rust から呼び出す
 
-`link` attribute でライブラリを指定する。`libhello_world` を使いたいので、`#[link(name="hello_world")] とする。
+`link` attribute でライブラリを指定する。`libhello_world` を使いたいので、`#[link(name="hello_world")]` とする。build.rs で `cargo:rustc-link-lib=hello_world` を出力してもよい。
 
 ```
 // /project_root/src/main.rs
@@ -53,7 +54,7 @@ fn main() {
 }
 ```
 
-## 動かす
+### 動かす
 
 ```
 $ cargo run
@@ -68,3 +69,8 @@ $ cargo run
 ## 感想
 
 C のことはよくわかっていないが、思ったよりも簡単に動かすことができた。大抵のことは既存の Crate が用意されていると思うので、自分で使うことは当分の間なさそう。
+
+## 参考
+
+- <https://blog.ojisan.io/rust-ffi-cpp-wakaran/>
+- <https://www.yunabe.jp/docs/static_library.html>
