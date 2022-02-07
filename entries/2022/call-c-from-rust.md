@@ -54,6 +54,8 @@ fn main() {
 }
 ```
 
+[参考 (cargo:rustc-link-search)](https://doc.rust-lang.org/cargo/reference/build-scripts.html#rustc-link-search)
+
 ### 動かす
 
 ```
