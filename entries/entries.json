@@ -506,5 +506,14 @@
             "Kubernetes"
         ],
         "type": "md"
+    },
+    {
+        "entry": "call-c-from-rust",
+        "title": "Rust から C のコードを呼び出す",
+        "date": "2022-02-07",
+        "tags": [
+            "Rust"
+        ],
+        "type": "md"
     }
 ]
