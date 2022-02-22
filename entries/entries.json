@@ -515,5 +515,16 @@
             "Rust"
         ],
         "type": "md"
+    },
+    {
+        "entry": "metallb-mode",
+        "title": "MetalLB の設定に右往左往した",
+        "date": "2022-02-22",
+        "tags": [
+            "Kubernetes",
+            "server",
+            "network"
+        ],
+        "type": "md"
     }
 ]
