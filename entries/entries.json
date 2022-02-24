@@ -526,5 +526,12 @@
             "network"
         ],
         "type": "md"
+    },
+    {
+        "entry": "easy-server-op",
+        "title": "手を自宅サーバを運用する",
+        "date": "2022-02-25",
+        "tags": [],
+        "type": "md"
     }
 ]
