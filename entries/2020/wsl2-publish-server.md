@@ -21,7 +21,7 @@ WSL 2 に割り当てられた内部 IP を指定する必要がある。WSL 2 �
 ```
 # bash (WSL 2)
 
-$ ifconfig eth0 | grep inet
+$ ip a show eth0
 ```
 
 を叩くと取得できる。
@@ -35,8 +35,9 @@ $ ifconfig eth0 | grep inet
 
 ```
 $port = Read-Host 'Port'
-$internal_ip = bash.exe -c "ip addr show eth0 | sed -nEe 's/^[ \t]*inet[ \t]*([0-9.]+)\/.*$/\1/p'"
+$internal_ip = bash.exe -c "ip a show eth0 | grep -E '^\s*inet ' | xargs echo | cut -d ' ' -f 2 | cut -d '/' -f 1"
 
 netsh interface portproxy delete v4tov4 listenport=$port listenaddress=0.0.0.0
 netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=$port connectaddress=$internal_ip connectport=$port
+
 ```
