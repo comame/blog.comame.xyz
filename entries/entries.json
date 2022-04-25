@@ -535,5 +535,15 @@
             "server"
         ],
         "type": "md"
+    },
+    {
+        "entry": "chromebook-spin-311",
+        "title": "Acer Chromebook Spin 311 を買った",
+        "date": "2022-04-25",
+        "tags": [
+            "note",
+            "Chrome OS"
+        ],
+        "type": "md"
     }
 ]
