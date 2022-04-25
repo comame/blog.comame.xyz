@@ -76,3 +76,8 @@ $ echo "ip link eth0 set mtu <MTU>" >> ~/.sommelierrc
 VPN 設定時の MTU について。
 
 - [VPN and Linux help : Crostini](https://www.reddit.com/r/Crostini/comments/rajbas/vpn_and_linux_help/)
+
+gnome-terminal で日本語入力ができない問題について。
+
+- [Twitter](https://twitter.com/tricken/status/1204380733776596998)
+- [Crostiniのfcitxで１文字ずつ勝手に確定される問題の解決方法（暫定）](https://qiita.com/niwashi/items/dc325c44dcc538245cc4)
