@@ -60,7 +60,19 @@ Chrome OS 側で VPN を設定していると、Crostini からネットワー�
 $ echo "ip link eth0 set mtu <MTU>" >> ~/.sommelierrc
 ```
 
-## 普段使ってるアプリケーションを入れる
+### 普段使ってるアプリケーションを入れる
 
 - VSCode
 - LibreOffice (なんだかんだあると便利)
+
+## 参考
+
+主に日本語入力周りで参考にした文献。
+
+- [Fcitx5 - ArchWiki](https://wiki.archlinux.jp/index.php/Fcitx5)
+- [ja/I18n/Fcitx5 - Debian Wiki](https://wiki.debian.org/ja/I18n/Fcitx5)
+- [Chromebook Crostini の有効化と日本語化](https://zenn.dev/igac/articles/84d1f377bcd9d698ee8d)
+
+VPN 設定時の MTU について。
+
+- [VPN and Linux help : Crostini](https://www.reddit.com/r/Crostini/comments/rajbas/vpn_and_linux_help/)
