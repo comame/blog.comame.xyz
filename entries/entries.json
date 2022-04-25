@@ -551,7 +551,8 @@
         "title": "Chromebook のセットアップ",
         "date": "2022-04-26",
         "tags": [
-            "Chrome OS"
+            "Chrome OS",
+            "note"
         ],
         "type": "md"
     }
