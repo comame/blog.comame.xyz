@@ -58,8 +58,10 @@ $ sudo apt install konsole
 
 ```
 $ sudo apt install xterm
-$ echo "XTerm*selectToClipboard: true" >> ~/.Xresources
-$ echo "xrdb -merge ~/.Xresources" >> ~/.xinitrc
+$ echo "XTerm*selectToClipboard: true" >> ~/.Xdefaults
+
+# .xsessionrc などは実行されなかったので仕方ない
+$ echo "xrdb ~/.Xdefaults" >> ~/.bashrc
 ```
 
 ### MTU の設定 (VPN 接続時)
