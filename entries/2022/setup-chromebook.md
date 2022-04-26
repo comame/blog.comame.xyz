@@ -67,7 +67,7 @@ $ echo "xrdb -merge ~/.Xresources" >> ~/.xinitrc
 Chrome OS 側で VPN を設定していると、Crostini からネットワークにつながったり繋がらなくなったりする。必要に応じて MTU を小さくする。
 
 ```
-$ echo "ip link eth0 set mtu <MTU>" >> ~/.sommelierrc
+$ echo "sudo ip link eth0 set mtu <MTU>" >> ~/.sommelierrc
 ```
 
 ### 普段使ってるアプリケーションを入れる
