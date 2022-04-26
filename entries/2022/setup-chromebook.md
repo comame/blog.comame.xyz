@@ -52,14 +52,14 @@ gnome-terminal は日本語入力が正しく動かず、xterm は起動が速�
 $ sudo apt install konsole
 ```
 
-### xterm のインストール
+### (追記) xterm のインストール
 
-クリップボードを動作させることができた。
+クリップボードを動作させることができた。他のターミナルよりも圧倒的に起動が速い。
 
 ```
 $ sudo apt install xterm
 $ echo "XTerm*selectToClipboard: true" >> ~/.Xresources
-$ xrdb -merge ~/.Xresources
+$ echo "xrdb -merge ~/.Xresources" >> ~/.xinitrc
 ```
 
 ### MTU の設定 (VPN 接続時)
