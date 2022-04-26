@@ -93,3 +93,8 @@ gnome-terminal で日本語入力ができない問題について。
 
 - [Twitter](https://twitter.com/tricken/status/1204380733776596998)
 - [Crostiniのfcitxで１文字ずつ勝手に確定される問題の解決方法（暫定）](https://qiita.com/niwashi/items/dc325c44dcc538245cc4)
+
+Xterm について。
+
+- [Xterm - ArchWiki](https://wiki.archlinux.jp/index.php/Xterm)
+- [xinit - ArchWiki](https://wiki.archlinux.jp/index.php/Xinit)
