@@ -42,7 +42,7 @@ $ /usr/lib/mozc/mozc_tool --mode=config_dialog
 fcitx-configtool で Mozc を追加するとき、`Only show current language` のチェックに注意
 
 
-### konsole のインストール
+### konsole のインストール (追記あり)
 
 日本語入力とクリップボードがどちらも動いたので、konsole にした。Terminator も問題なく動作しそうなので、好みで選ぶ。
 
@@ -50,6 +50,16 @@ gnome-terminal は日本語入力が正しく動かず、xterm は起動が速�
 
 ```
 $ sudo apt install konsole
+```
+
+### xterm のインストール
+
+クリップボードを動作させることができた。
+
+```
+$ sudo apt install xterm
+$ echo "XTerm*selectToClipboard: true" >> ~/.Xresources
+$ xrdb -merge ~/.Xresources
 ```
 
 ### MTU の設定 (VPN 接続時)
