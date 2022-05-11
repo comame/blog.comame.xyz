@@ -555,5 +555,14 @@
             "note"
         ],
         "type": "md"
+    },
+    {
+        "entry": "register-app-to-launcher-ubuntu",
+        "title": "Ubuntu でアプリケーションアイコンを手動で追加する",
+        "date": "2022-05-10",
+        "tags": [
+            "Ubuntu"
+        ],
+        "type": "md"
     }
 ]
