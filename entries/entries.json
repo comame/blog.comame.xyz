@@ -564,5 +564,14 @@
             "Ubuntu"
         ],
         "type": "md"
+    },
+    {
+        "entry": "kubernetes-1-24-docker-remove",
+        "title": "Kubernetes を 1.24 にしたら壊れた",
+        "date": "2022-05-16",
+        "tags": [
+            "Kubernetes"
+        ],
+        "type": "md"
     }
 ]
