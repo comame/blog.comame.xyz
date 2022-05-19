@@ -39,6 +39,14 @@ $ fcitx-configtool
 $ /usr/lib/mozc/mozc_tool --mode=config_dialog
 ```
 
+/etc/systemd/user/cros-garcon.service.d/cros-garcon-override.conf に追記する。
+
+```
+Environment="GTK_IM_MODULE=fcitx"
+Environment="QT_IM_MODULE=fcitx"
+Environment="XMODIFIERS=@im=fcitx"
+```
+
 fcitx-configtool で Mozc を追加するとき、`Only show current language` のチェックに注意
 
 
