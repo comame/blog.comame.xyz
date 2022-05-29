@@ -573,5 +573,15 @@
             "Kubernetes"
         ],
         "type": "md"
+    },
+    {
+        "entry": "wacom-driver-no-response",
+        "title": "ワコムのペンタブレットドライバが応答しないときの対処法",
+        "date": "2022-05-29",
+        "tags": [
+            "Windows",
+            "troubleshoot"
+        ],
+        "type": "md"
     }
 ]
