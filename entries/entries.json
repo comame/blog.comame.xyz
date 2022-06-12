@@ -583,5 +583,14 @@
             "troubleshoot"
         ],
         "type": "md"
+    },
+    {
+        "entry": "migrate-kubernetes-runtime-to-containerd",
+        "title": "Kubernetes のコンテナランタイムを containerd にする",
+        "date": "2022-06-03",
+        "tags": [
+            "Kubernetes"
+        ],
+        "type": "md"
     }
 ]
