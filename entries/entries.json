@@ -592,5 +592,15 @@
             "Kubernetes"
         ],
         "type": "md"
+    },
+    {
+        "entry": "publish-local-network-softether",
+        "title": "SoftEther で自宅ネットワークを公開する",
+        "date": "2022-06-18",
+        "tags": [
+            "server",
+            "network"
+        ],
+        "type": "md"
     }
 ]
