@@ -300,7 +300,8 @@
         "date": "2020-03-26",
         "tags": [
             "Windows",
-            "server"
+            "server",
+            "PowerShell"
         ],
         "type": "md"
     },
@@ -600,6 +601,16 @@
         "tags": [
             "server",
             "network"
+        ],
+        "type": "md"
+    },
+    {
+        "entry": "run-powershell-script-as-admin",
+        "title": "PowerShellスクリプトを特権で起動する",
+        "date": "2022-06-26",
+        "tags": [
+            "Windows",
+            "PowerShell"
         ],
         "type": "md"
     }
