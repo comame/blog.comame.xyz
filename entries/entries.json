@@ -613,5 +613,14 @@
             "PowerShell"
         ],
         "type": "md"
+    },
+    {
+        "entry": "authenticate-kubernetes-dashboard",
+        "title": "Kubernete Dashboard の認証を通す",
+        "date": "2022-11-03",
+        "tags": [
+            "Kubernetes"
+        ],
+        "type": "md"
     }
 ]
