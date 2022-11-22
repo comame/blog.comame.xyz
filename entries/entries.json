@@ -622,5 +622,15 @@
             "Kubernetes"
         ],
         "type": "md"
+    },
+    {
+        "entry": "mastodon",
+        "title": "Mastodon インスタンスを立てた",
+        "date": "2022-11-21",
+        "tags": [
+            "server",
+            "Mastodon"
+        ],
+        "type": "md"
     }
 ]
