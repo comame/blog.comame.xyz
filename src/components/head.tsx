@@ -2,6 +2,7 @@ import { FunctionComponent } from 'react'
 import Head from 'next/head'
 import { Entry } from '../lib/entry'
 import { config } from '../lib/config'
+import { toString } from '../lib/date'
 
 type tagPageProps = {
     tagPage: true,
@@ -23,7 +24,7 @@ const MyHead: FunctionComponent<props> = (props) => {
 
     const url =
         'tagPage' in props ? `https://${ config.hostname }/tags/` + props.tag:
-        'postPage' in props ? `https://${ config.hostname }/entries/` + props.entry.date + '/' + props.entry?.entry:
+        'postPage' in props ? `https://${ config.hostname }/entries/` + toString(props.entry.date) + '/' + props.entry?.entry:
         `https://${ config.hostname }`
 
     return <Head>
