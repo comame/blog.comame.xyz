@@ -632,5 +632,15 @@
             "Mastodon"
         ],
         "type": "md"
+    },
+    {
+        "entry": "become-avatar",
+        "title": "VRoid でアバターになろう！",
+        "date": "2022-12-01",
+        "tags": [
+            "note",
+            "AdC2022"
+        ],
+        "type": "md"
     }
 ]
