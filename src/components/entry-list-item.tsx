@@ -9,7 +9,7 @@ const EntryListItem: FunctionComponent<{ entry: Entry }> = ({ entry }) => {
 
     return <li key={ entry.entry }>
         <time>{ toStringMonthAndDate(entry.date) }</time>
-        <Link href='/entries/[date]/[id]' as={ `/entries/${time}/${entry.entry}`}><a>{ entry.title }</a></Link>
+        <Link href='/entries/[date]/[id]' as={ `/entries/${time}/${entry.entry}`}>{ entry.title }</Link>
         <TagList tags={ entry.tags } />
     </li>
 }

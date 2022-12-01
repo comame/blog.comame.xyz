@@ -23,7 +23,7 @@ const NotFound = () => {
         <Header></Header>
         <div>
             <p>ページが見つかりませんでした</p>
-            <p><Link href='/'><a>トップへ</a></Link></p>
+            <p><Link href='/'>トップへ</Link></p>
         </div>
         <style jsx>{`
             div {
