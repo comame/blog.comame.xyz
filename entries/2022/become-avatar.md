@@ -2,7 +2,7 @@
 
 VRoid Studio でアバターを作って、kalidoface 3D で動かそう！
 
-<video src='/img/2022-become-avatar/preview.mp4' controls autoplay></video>
+<video src='/img/2022-become-avatar/preview.webm' controls autoplay></video>
 
 ## 必要なもの
 
