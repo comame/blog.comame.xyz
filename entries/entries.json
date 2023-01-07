@@ -642,5 +642,15 @@
             "AdC2022"
         ],
         "type": "md"
+    },
+    {
+        "entry": "fix-chrome-password-sync-fail",
+        "title": "Chrome のパスワード同期を直す",
+        "date": "2023-01-06",
+        "tags": [
+            "troubleshoot",
+            "Google"
+        ],
+        "type": "md"
     }
 ]
