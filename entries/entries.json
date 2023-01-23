@@ -652,5 +652,15 @@
             "Google"
         ],
         "type": "md"
+    },
+    {
+        "entry": "dev-port",
+        "title": "ローカルで動かしている開発環境のポートをインターネットからアクセス可能にする",
+        "date": "2023-01-23",
+        "tags": [
+            "network",
+            "server"
+        ],
+        "type": "md"
     }
 ]
