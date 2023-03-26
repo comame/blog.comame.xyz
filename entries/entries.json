@@ -662,5 +662,14 @@
             "server"
         ],
         "type": "md"
+    },
+    {
+        "entry": "mu2023",
+        "title": "Music Unity 2023",
+        "date": "2023-03-27",
+        "tags": [
+            "events"
+        ],
+        "type": "md"
     }
 ]
