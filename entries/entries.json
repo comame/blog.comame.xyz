@@ -671,5 +671,14 @@
             "events"
         ],
         "type": "md"
+    },
+    {
+        "entry": "crazybus-bgm",
+        "title": "CRAZYBUS の BGM を生成する",
+        "date": "2023-03-30",
+        "tags": [
+            "Blog"
+        ],
+        "type": "md"
     }
 ]
