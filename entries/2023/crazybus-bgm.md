@@ -30,3 +30,7 @@ oscillator.frequency.value = 440
 ### CRAZYBUS の BGM を作る
 
 CRAZYBUS の BGM は、音程をランダムに 2 つ選び、BPM 360 で音程を変えながら混ぜればよい。
+
+## ちなみに
+
+バスの走行音は A#2、クラクションの音は G#5 らしい。
