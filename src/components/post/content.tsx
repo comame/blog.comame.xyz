@@ -7,13 +7,19 @@ type MathJax = {
 
 declare global {
     interface Window {
-        MathJax: MathJax
+        MathJax?: MathJax
     }
 }
 
 const Content: FunctionComponent<{ text: string }> = ({ text }) => {
     useEffect(() => {
-        window.MathJax.typeset()
+        const f = () => {
+            if (window.MathJax) {
+                window.MathJax.typeset()
+            } else {
+                setTimeout(() => f(), 10)
+            }
+        }
     }, [])
     return <div className={ styles.content } dangerouslySetInnerHTML={{ __html: text }}></div>
 }
