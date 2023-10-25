@@ -509,5 +509,12 @@
     "date": "2023-10-16",
     "tags": ["server", "Kubernetes"],
     "type": "md"
+  },
+  {
+    "entry": "keyboard-jp-en",
+    "title": "日本語配列のキーボードを英語配列設定で使っている",
+    "date": "2023-10-25",
+    "tags": ["note"],
+    "type": "md"
   }
 ]
