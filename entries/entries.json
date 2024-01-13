@@ -537,5 +537,12 @@
     "date": "2023-12-30",
     "tags": ["note"],
     "type": "md"
+  },
+  {
+    "entry": "metallb-arp-not-work",
+    "title": "MetalLB が ARP 応答を返していなかった問題に対処した",
+    "date": "2024-01-13",
+    "tags": ["Kubernetes"],
+    "type": "md"
   }
 ]
