@@ -72,13 +72,13 @@ export function listEntryByTag(tag: string): Entry[] {
 
 export async function getEntry(
   year: number,
-  id: string,
+  id: string
 ): Promise<{
   entry: Entry;
   rendered: string;
 }> {
   const entry = listEntryMetadata(true).find(
-    (entry) => entry.date.year === year && entry.entry === id,
+    (entry) => entry.date.year === year && entry.entry === id
   );
 
   // listEntryMetadata() から取得した引数以外渡さないものとし、それ以外はランタイムエラーとする
@@ -123,7 +123,6 @@ export async function getEntry(
     };
 
     const html = await marked(file, {
-      headerIds: false,
       renderer,
     });
 
