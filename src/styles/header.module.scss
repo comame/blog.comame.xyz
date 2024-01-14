@@ -1,24 +1,24 @@
 .header {
-    & {
-        position: sticky;
-        top: 0;
-        left: 0;
-        height: 3rem;
-        box-shadow: 0 5px 15px rgba(3, 3, 3, 0.05);
-        background: var(--header-background-color);
-        padding: 0 calc((100vw - var(--content-width)) / 2);
-        z-index: 1000;
-        backdrop-filter: blur(var(--header-backdrop-blur));
-    }
+  & {
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 3rem;
+    box-shadow: 0 5px 15px rgba(3, 3, 3, 0.05);
+    background: var(--header-background-color);
+    padding: 0 calc((100vw - var(--content-width)) / 2);
+    z-index: 1000;
+    backdrop-filter: blur(var(--header-backdrop-blur));
+  }
 
-    a {
-        display: inline-block;
-        line-height: 3rem;
-        text-decoration: none;
-        color: var(--main-color);
+  a {
+    display: inline-block;
+    line-height: 3rem;
+    text-decoration: none;
+    color: var(--main-color);
 
-        &:visited {
-            color: var(--main-color)
-        }
+    &:visited {
+      color: var(--main-color);
     }
+  }
 }

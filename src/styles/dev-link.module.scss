@@ -1,16 +1,16 @@
 .dev-link {
-    a {
-        bottom: 2em;
-        right: 2em;
+  a {
+    bottom: 2em;
+    right: 2em;
 
-        display: inline-block;
-        padding: .5em 2em;
+    display: inline-block;
+    padding: 0.5em 2em;
 
-        position: fixed;
-        background: var(--private-color);
+    position: fixed;
+    background: var(--private-color);
 
-        z-index: 10000;
+    z-index: 10000;
 
-        color: black;
-    }
+    color: black;
+  }
 }

@@ -1,19 +1,18 @@
 .tag-list {
-    list-style: none;
+  list-style: none;
+  display: inline;
+  padding-left: 0;
+
+  &::before {
+    content: "[";
+  }
+  &::after {
+    content: "]";
+  }
+  & > li {
     display: inline;
-    padding-left: 0;
-
-    &::before {
-        content: '[';
-    }
-    &::after {
-        content: ']';
-    }
-    & > li {
-        display: inline;
-    }
-    & > li:not(:last-child)::after {
-        content: ', ';
-    }
-
+  }
+  & > li:not(:last-child)::after {
+    content: ", ";
+  }
 }

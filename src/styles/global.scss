@@ -1,98 +1,97 @@
 :root {
-    --background-color: white;
-    --header-background-color: rgba(255, 255, 255, 0.8);
-    --main-color: black;
-    --link-color: #00e;
-    --private-color: #ff8d00b0;
-    --visited-link-color: #a52a2a;
-    --code-color: #efefef;
-    --share-logo-filter: none;
-    --code-addition-color: #06770b;
-    --code-deletion-color: #bb001f;
-    --header-backdrop-blur: 3px;
+  --background-color: white;
+  --header-background-color: rgba(255, 255, 255, 0.8);
+  --main-color: black;
+  --link-color: #00e;
+  --private-color: #ff8d00b0;
+  --visited-link-color: #a52a2a;
+  --code-color: #efefef;
+  --share-logo-filter: none;
+  --code-addition-color: #06770b;
+  --code-deletion-color: #bb001f;
+  --header-backdrop-blur: 3px;
 
-    --content-width: 80vw;
-    --image-width: 50vw;
+  --content-width: 80vw;
+  --image-width: 50vw;
 
-    --h1-size: 1.5rem;
-    --h2-size: 1.3rem;
-    --h3-size: 1.1rem;
+  --h1-size: 1.5rem;
+  --h2-size: 1.3rem;
+  --h3-size: 1.1rem;
 
-    --block-code-radius: 5px;
-    --block-code-width: var(--content-width);
-    --block-code-padding: .5rem;
-    --inline-code-radius: 5px;
+  --block-code-radius: 5px;
+  --block-code-width: var(--content-width);
+  --block-code-padding: 0.5rem;
+  --inline-code-radius: 5px;
 
-    @supports not (backdrop-filter: blur(0)) {
-        --header-background-color: white;
-    }
+  @supports not (backdrop-filter: blur(0)) {
+    --header-background-color: white;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --background-color: #0a0a0a;
-        --header-background-color: rgba(30, 30, 30, 0.85);
-        --main-color: #bebebe;
-        --link-color: #8b8bf9;
-        --visited-link-color: #c77676;
-        --code-color: #333333;
-        --share-logo-filter: invert(80%);
-        --code-addition-color: #47b94c;
-        --code-deletion-color: #f9758b;
+  :root {
+    --background-color: #0a0a0a;
+    --header-background-color: rgba(30, 30, 30, 0.85);
+    --main-color: #bebebe;
+    --link-color: #8b8bf9;
+    --visited-link-color: #c77676;
+    --code-color: #333333;
+    --share-logo-filter: invert(80%);
+    --code-addition-color: #47b94c;
+    --code-deletion-color: #f9758b;
 
-        @supports not (backdrop-filter: blur(0)) {
-            --header-background-color: rgb(30, 30, 30);
-        }
+    @supports not (backdrop-filter: blur(0)) {
+      --header-background-color: rgb(30, 30, 30);
     }
+  }
 }
 
 @media (prefers-reduced-motion) {
-    :root {
-        --header-backdrop-blur: 0;
-        --header-background-color: white;
-    }
+  :root {
+    --header-backdrop-blur: 0;
+    --header-background-color: white;
+  }
 }
 
-@media (prefers-reduced-motion) and (prefers-color-scheme:dark) {
-    :root {
-        --header-background-color: rgb(30, 30, 30);
-    }
+@media (prefers-reduced-motion) and (prefers-color-scheme: dark) {
+  :root {
+    --header-background-color: rgb(30, 30, 30);
+  }
 }
 
 /* Mobile */
 @media (max-width: 700px) {
-    :root {
-        --content-width: 90vw;
-        --image-width: 90vw;
+  :root {
+    --content-width: 90vw;
+    --image-width: 90vw;
 
-        --h1-size: 1.2rem;
-        --h2-size: 1.2rem;
-        --h3-size: 1.1rem;
+    --h1-size: 1.2rem;
+    --h2-size: 1.2rem;
+    --h3-size: 1.1rem;
 
-        --block-code-radius: none;
-        --block-code-width: var(100vw);
-        --block-code-padding: .5rem calc((100vw - var(--content-width)) / 2);
-    }
+    --block-code-radius: none;
+    --block-code-width: var(100vw);
+    --block-code-padding: 0.5rem calc((100vw - var(--content-width)) / 2);
+  }
 }
 
 html {
-    background-color: var(--background-color);
-    color: var(--main-color);
-    box-sizing: border-box;
-    font-family: sans-serif;
+  background-color: var(--background-color);
+  color: var(--main-color);
+  box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 body {
-    box-sizing: border-box;
-    margin: 0;
+  box-sizing: border-box;
+  margin: 0;
 }
 
-
 a {
-    text-decoration: none;
-    color: var(--link-color);
+  text-decoration: none;
+  color: var(--link-color);
 
-    &.visited {
-        color: var(--visited-link-color);
-    }
+  &.visited {
+    color: var(--visited-link-color);
+  }
 }

@@ -1,100 +1,103 @@
 .content {
-    & > * {
-        margin-right: auto;
-        margin-left: auto;
-        width: var(--content-width);
-    }
+  & > * {
+    margin-right: auto;
+    margin-left: auto;
+    width: var(--content-width);
+  }
 
-    p {
-        text-indent: .5rem;
-    }
+  p {
+    text-indent: 0.5rem;
+  }
 
-    a {
-        text-decoration: underline;
-        word-break: break-all;
-    }
+  a {
+    text-decoration: underline;
+    word-break: break-all;
+  }
 
-    h2 {
-        margin-top: 2rem;
-        font-size: var(--h2-size);
-    }
+  h2 {
+    margin-top: 2rem;
+    font-size: var(--h2-size);
+  }
 
-    h3 {
-        font-size: var(--h3-size);
-    }
+  h3 {
+    font-size: var(--h3-size);
+  }
 
-    code {
-        background: var(--code-color);
-        border-radius: var(--inline-code-radius);
-        font-family: consolas, 'メイリオ', monospace; // Windows 用。他ではそのまま綺麗に表示できる、多分。
-        padding: 2px 4px;
-        word-break: break-all;
-    }
+  code {
+    background: var(--code-color);
+    border-radius: var(--inline-code-radius);
+    font-family: consolas, "メイリオ", monospace; // Windows 用。他ではそのまま綺麗に表示できる、多分。
+    padding: 2px 4px;
+    word-break: break-all;
+  }
 
-    pre {
-        padding: var(--block-code-padding);
-        white-space: pre;
-        overflow-x: scroll;
-        border-radius: var(--block-code-radius);
-        background: var(--code-color);
-        width: var(--block-code-width);
-    }
+  pre {
+    padding: var(--block-code-padding);
+    white-space: pre;
+    overflow-x: scroll;
+    border-radius: var(--block-code-radius);
+    background: var(--code-color);
+    width: var(--block-code-width);
+  }
 
-    pre > code {
-        padding: 0;
-    }
+  pre > code {
+    padding: 0;
+  }
 
-    img, video {
-        display: block;
-        width: var(--image-width);
-        margin-right: auto;
-        margin-left: auto;
-    }
+  img,
+  video {
+    display: block;
+    width: var(--image-width);
+    margin-right: auto;
+    margin-left: auto;
+  }
 
-    ul, ol {
-        counter-reset: ol;
-        list-style: none;
-        padding-left: 1rem;
-    }
+  ul,
+  ol {
+    counter-reset: ol;
+    list-style: none;
+    padding-left: 1rem;
+  }
 
-    ul > li::before {
-        content: '- ';
-    }
+  ul > li::before {
+    content: "- ";
+  }
 
-    ol > li::before {
-        counter-increment: ol;
-        content: counter(ol) '. ';
-    }
+  ol > li::before {
+    counter-increment: ol;
+    content: counter(ol) ". ";
+  }
 
-    pre code[class=addition] {
-        color: var(--code-addition-color);
-    }
+  pre code[class="addition"] {
+    color: var(--code-addition-color);
+  }
 
-    pre code[class=deletion] {
-        color: var(--code-deletion-color);
-    }
+  pre code[class="deletion"] {
+    color: var(--code-deletion-color);
+  }
 
-    table {
-        border-collapse: collapse;
-        border-width: 1px 0px;
-        border-color: var(--main-color);
-        border-style: solid;
-    }
+  table {
+    border-collapse: collapse;
+    border-width: 1px 0px;
+    border-color: var(--main-color);
+    border-style: solid;
+  }
 
-    thead tr {
-        border-bottom: solid 1px var(--main-color);
-        border-width: 0 0 1px 0;
-    }
+  thead tr {
+    border-bottom: solid 1px var(--main-color);
+    border-width: 0 0 1px 0;
+  }
 
-    td, th {
-        padding: .4rem;
-    }
+  td,
+  th {
+    padding: 0.4rem;
+  }
 
-    tbody tr:nth-child(even) {
-        background-color: var(--code-color);
-    }
+  tbody tr:nth-child(even) {
+    background-color: var(--code-color);
+  }
 
-    th {
-        min-width: 6rem;
-    }
+  th {
+    min-width: 6rem;
+  }
 }

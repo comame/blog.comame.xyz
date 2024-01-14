@@ -1,35 +1,35 @@
 .share {
-    margin-top: 3rem;
-    width: var(--content-width);
-    margin-right: auto;
-    margin-left: auto;
+  margin-top: 3rem;
+  width: var(--content-width);
+  margin-right: auto;
+  margin-left: auto;
 
-    & > img {
-        margin-right: 2rem;
-    }
+  & > img {
+    margin-right: 2rem;
+  }
 
-    a {
-        margin-right: 1rem;
-        cursor: pointer;
-    }
-    img {
-        height: 2rem;
-        width: 2rem;
-        filter: var(--share-logo-filter);
-    }
+  a {
+    margin-right: 1rem;
+    cursor: pointer;
+  }
+  img {
+    height: 2rem;
+    width: 2rem;
+    filter: var(--share-logo-filter);
+  }
 
-    #copied {
-        display: none;
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        color: white;
-        padding: .5em 1em;
-        width: 100%;
-        background: rgba(32, 33, 35, 0.8);
-    }
+  #copied {
+    display: none;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    color: white;
+    padding: 0.5em 1em;
+    width: 100%;
+    background: rgba(32, 33, 35, 0.8);
+  }
 
-    #copied.shown {
-        display: block;
-    }
+  #copied.shown {
+    display: block;
+  }
 }
